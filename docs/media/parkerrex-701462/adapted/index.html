@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Token bucket rate limiter</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080f10}
+#root{position:relative;width:100%;height:100%;overflow:hidden}
+canvas{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1080" data-height="1080" data-duration="18" data-fps="30">
+<canvas id="art" class="clip" data-start="0" data-duration="18" width="1080" height="1080" aria-label="Token bucket rate limiter: capacity ten, refill two tokens per second"></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+'use strict';
+/*
+Sampled reconstruction of the supplied @ParkerRex reference; not recovered source.
+Timed brief: fixed square dashboard throughout. Steady traffic 0–2.40s;
+burst 2.40–3.30s; empty-bucket refusals 3.30–6.40s; recovery 6.40–11.70s;
+amber conclusion and completed chart 11.70–18s. Caption boundaries are inferred.
+No camera moves, entrances, exits, or audio. Final second continues the sampled hold.
+Canvas draws all artwork; local harness GSAP supplies deterministic seek time only.
+Generic monospace with width adjustment approximates the unidentified reference font.
+Requests 4 and 11–14, fractional refill arithmetic, and accent timing are inferred.
+Green outlines follow the next empty slot during depletion, except the one-token
+sample state; no pulse animation is added. Recovery uses a narrow partial blue strip.
+Coincident refill/request events are consolidated before plotting, avoiding artificial
+zero-duration spikes. All intermediate chart-event timing remains a reconstruction.
+Dependencies: harness-provided gsap.min.js. No images, fonts, or other assets used.
+This source has not been rendered or visually validated.
+*/
+const canvas=document.getElementById('art');
+const ctx=canvas.getContext('2d');
+const C={bg:'#080f10',text:'#c8d2d7',muted:'#626a6f',blue:'#55a2ff',green:'#4bb366',red:'#ef514b',amber:'#d1a329',outline:'#777f82',slot:'#273033'};
+const CAPACITY=10,REFILL=2,SIMULATION_END=12,EPS=1e-8;
+// Inferred unreadable events: #4=2.40, #11=3.02, #12=3.10, #13=3.15, #14=3.27.
+const requests=[0.50,1.30,1.90,2.40,2.47,2.58,2.64,2.76,2.83,2.90,3.02,3.10,3.15,3.27,3.33,3.42,3.53,3.60,3.78,3.90,4.08,4.23,4.35,4.56,4.70,4.88,5.06,5.17,5.42,5.65,5.90,6.18,7.60];
+const whole=n=>Math.max(0,Math.min(CAPACITY,Math.floor(n+EPS)));
+function stateAt(time){
+ const end=Math.max(0,Math.min(SIMULATION_END,time));
+ let balance=CAPACITY,previous=0;
+ const rows=[],events=[[0,CAPACITY]];
+ function refillUntil(until){
+  const initial=balance;
+  for(let level=whole(initial)+1;level<=CAPACITY;level++){
+   const crossing=previous+(level-initial)/REFILL;
+   if(crossing>until+EPS)break;
+   events.push([crossing,level]);
+  }
+  balance=Math.min(CAPACITY,initial+REFILL*(until-previous));
+  previous=until;
+ }
+ for(let i=0;i<requests.length;i++){
+  const at=requests[i];
+  if(at>end+EPS)break;
+  refillUntil(at);
+  const taken=balance+EPS>=1;
+  if(taken)balance=Math.max(0,balance-1);
+  const left=whole(balance);
+  events.push([at,left]);
+  rows.push({at,id:i+1,taken,left});
+ }
+ refillUntil(end);
+ events.push([end,whole(balance)]);
+ // Keep the final state at each timestamp, eliminating instantaneous round trips.
+ const merged=[];
+ for(const event of events){
+  const last=merged[merged.length-1];
+  if(last&&Math.abs(last[0]-event[0])<EPS)last[1]=event[1];
+  else merged.push(event.slice());
+ }
+ const points=[[0,CAPACITY]];
+ let level=CAPACITY;
+ for(const event of merged){
+  if(event[1]!==level){
+   points.push([event[0],level],[event[0],event[1]]);
+   level=event[1];
+  }
+ }
+ points.push([end,level]);
+ return {time:end,balance,count:whole(balance),rows,points};
+}
+function text(str,x,y,size,color,align='left',widthScale=0.93){
+ ctx.save();
+ ctx.translate(x,y);ctx.scale(widthScale,1);
+ ctx.fillStyle=color;ctx.font=size+'px monospace';
+ ctx.textAlign=align;ctx.textBaseline='alphabetic';
+ ctx.fillText(str,0,0);ctx.restore();
+}
+function line(x1,y1,x2,y2,color,width=1){
+ ctx.strokeStyle=color;ctx.lineWidth=width;
+ ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+}
+function zero(x,baseline,color){
+ ctx.strokeStyle=color;ctx.lineWidth=11;ctx.lineCap='butt';
+ ctx.beginPath();ctx.ellipse(x+45,baseline-55,31,51,0,0,Math.PI*2);ctx.stroke();
+ ctx.beginPath();ctx.moveTo(x+20,baseline-14);ctx.lineTo(x+70,baseline-97);ctx.stroke();
+}
+function countLabel(value){
+ const x=415,y=318,color=value===0?C.red:C.text;
+ if(value===10){text('1',x,y,150,color,'left',1);zero(x+90,y,color);}
+ else if(value===0)zero(x,y,color);
+ else text(String(value),x,y,150,color,'left',1);
+ text('/ 10 tokens',x+(value===10?180:90)+12,y,32,C.muted);
+}
+function captionAt(t){
+ if(t<2.40)return ['steady traffic, refill keeps the bucket full',C.text];
+ if(t<3.30)return ['a burst spends the saved tokens',C.text];
+ if(t<6.40)return ['empty: requests refused until a token refills',C.text];
+ if(t<11.70)return ['traffic eases, refill at 2/s catches up',C.text];
+ return ['capacity sets the burst, refill rate sets the limit',C.amber];
+}
+function draw(time){
+ const t=Math.max(0,Math.min(18,time));
+ ctx.setTransform(1,0,0,1,0,0);
+ ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+ ctx.setLineDash([]);ctx.lineWidth=1;ctx.lineCap='butt';ctx.lineJoin='miter';
+ ctx.shadowBlur=0;ctx.shadowColor='transparent';ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;
+ ctx.clearRect(0,0,1080,1080);
+ ctx.fillStyle=C.bg;ctx.fillRect(0,0,1080,1080);
+ const endHold=t>=11.70;
+ const s=stateAt(endHold?SIMULATION_END:t);
+ const empty=s.count===0;
+
+ // Open-topped vessel and ten token slots, filled from the bottom.
+ ctx.strokeStyle=empty?'#874b47':C.outline;ctx.lineWidth=1.5;
+ ctx.beginPath();ctx.moveTo(95.5,176);ctx.lineTo(95.5,622);
+ ctx.lineTo(324.5,622);ctx.lineTo(324.5,176);ctx.stroke();
+ for(let bottom=0;bottom<10;bottom++){
+  const y=572-bottom*42;
+  ctx.strokeStyle=C.slot;ctx.lineWidth=0.8;
+  ctx.strokeRect(112.5,y+0.5,195,33);
+  if(bottom<s.count){ctx.fillStyle=C.blue;ctx.fillRect(112,y,196,34);}
+ }
+ if(s.count<10){
+  const nextY=572-s.count*42;
+  // State-based accent reconstruction; durations between samples are unresolved.
+  if(t>=1.90&&t<6.40&&s.count!==1){
+   ctx.strokeStyle='#38764a';ctx.lineWidth=1.25;
+   ctx.strokeRect(112.5,nextY+0.5,195,33);
+  }
+  // Approximately five pixels at the observed 9s balance of 5.2 tokens.
+  if(t>=6.40&&!endHold){
+   const fraction=Math.max(0,Math.min(1,s.balance-s.count));
+   const height=Math.min(7,fraction*26);
+   if(height>EPS){
+    ctx.fillStyle=C.blue;ctx.fillRect(112,nextY+34-height,196,height);
+   }
+  }
+ }
+
+ // Twelve-second chart, consolidated integer staircase and request ticks.
+ const px=seconds=>112+seconds/SIMULATION_END*908;
+ const py=value=>900-value*20;
+ ctx.setLineDash([4,6]);line(112,700,1020,700,'#283338',0.8);
+ ctx.setLineDash([]);line(112,900.5,1020,900.5,C.outline,1);
+ ctx.strokeStyle=C.blue;ctx.lineWidth=1.7;ctx.beginPath();
+ s.points.forEach((p,i)=>{if(i===0)ctx.moveTo(px(p[0]),py(p[1]));else ctx.lineTo(px(p[0]),py(p[1]));});
+ ctx.stroke();
+ for(const row of s.rows)line(px(row.at),922,px(row.at),952,row.taken?C.green:C.red,1.8);
+ if(!endHold)line(px(s.time),688,px(s.time),952,'#828d92',0.8);
+
+ // Small text is narrowed while retaining its established positions and sizes.
+ text('token bucket, capacity 10, refill 2/s',60,66,28,C.text);
+ text('opus 5.5 drew this',1020,66,28,C.muted,'right');
+ const caption=captionAt(t);
+ text(caption[0],60,136,32,caption[1],'left',0.97);
+ countLabel(s.count);
+ s.rows.slice(-6).forEach((row,i)=>{
+  const y=404+i*42;
+  text(row.at.toFixed(2)+'s',419,y,28,C.muted);
+  text('req '+String(row.id).padStart(2,' '),548,y,28,C.text);
+  text(row.taken?'taken':'refused',692,y,28,row.taken?C.green:C.red);
+  text(row.left+' left',925,y,28,C.muted);
+ });
+ text('10',96,708,26,C.muted,'right');
+ text('0',96,908,26,C.muted,'right');
+ text('0s',112,994,26,C.muted);
+ text('12s',1020,994,26,C.muted,'right');
+ text('@ParkerRex midweek update',60,1047,28,C.muted);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:18,duration:18,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+</script>
+</body>
+</html>

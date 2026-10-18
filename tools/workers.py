@@ -17,6 +17,7 @@ def status():
  return rows
 
 def archive_interrupted():
+ process_text=subprocess.check_output(['ps','-eo','args='],text=True)
  stamp=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
  progress=ROOT/'work/batch-baseline-progress.json'
  if progress.exists():
@@ -24,6 +25,7 @@ def archive_interrupted():
  for p in (ROOT/'results').glob('*/result.json'):
   for track,r in json.loads(p.read_text()).items():
    if r.get('status')!='running' or track!='adapted':continue
+   if f'tools/generate.py {p.parent.name} --track {track}' in process_text:continue
    folder=p.parent/track;archive=folder/'iterations'/('interrupted-'+stamp);archive.mkdir(parents=True,exist_ok=False)
    for name in ['input.txt','schema.json','events.jsonl','stderr.log','metadata.json','response.json']:
     if (folder/name).exists():shutil.copyfile(folder/name,archive/name)
@@ -44,6 +46,7 @@ def start(roles=None):
    'render':['tools/render_queue.py','--watch'],
    'publication':['tools/publish_progress.py','--watch']}
   registry=json.loads(REGISTRY.read_text()) if REGISTRY.exists() else {}
+  if not roles and 'render' in registry and not alive(registry['render']['pid'],registry['render']['script']):registry.pop('render')
   for role,args in jobs.items():
    if role not in (roles or ['generation','publication']):continue
    log=ROOT/'work'/f'worker-{role}.log'

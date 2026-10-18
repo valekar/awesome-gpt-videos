@@ -1,0 +1,103 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "reference-v3",
+  "track": "adapted",
+  "iteration": 1,
+  "source_prompt_sha256": "ac9bd5b367baebc6fc2f6e6ffad4b34856e932bcb991839d15e18b4a73bcc53d",
+  "input_sha256": "58810abc92ac59757be6be716d2cdce3e95280e5051e77c149e99f1240d7fe16",
+  "started_at": "2026-10-18T15:42:52.178045+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [
+    "sheet-01.jpg",
+    "sheet-02.jpg",
+    "full-1.jpg",
+    "full-2.jpg",
+    "full-3.jpg"
+  ],
+  "reference_image_sha256": {
+    "sheet-01.jpg": "4512f80af664bb6c956db4e7f4984476b724271e955ee68f775b623350c5e39d",
+    "sheet-02.jpg": "5d4835b43f9b80e62faabdd0b2fb78b12b011429ebc2c24a72e82ae27057fc72",
+    "full-1.jpg": "7dcda761f638785d88e409f4c935ed3857b1b873ddce42731af56ff1c5a69c44",
+    "full-2.jpg": "b4fa25c7316fa816783303200a6de146156c7adeeb544158146ca29a9f9e7e5e",
+    "full-3.jpg": "21b9dbda63103f6e6401d93d654bcb356a16390eaf20e8b04b2ae194ed00077a"
+  },
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/parkerrex-701462/adapted/schema.json",
+    "-o",
+    "$REPO/results/parkerrex-701462/adapted/response.json",
+    "--image",
+    "$REPO/work/references/parkerrex-701462/evidence/sheet-01.jpg",
+    "--image",
+    "$REPO/work/references/parkerrex-701462/evidence/sheet-02.jpg",
+    "--image",
+    "$REPO/work/references/parkerrex-701462/evidence/full-1.jpg",
+    "--image",
+    "$REPO/work/references/parkerrex-701462/evidence/full-2.jpg",
+    "--image",
+    "$REPO/work/references/parkerrex-701462/evidence/full-3.jpg",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 35065,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4837,
+    "reasoning_output_tokens": 2070
+  },
+  "finished_at": "2026-10-18T15:44:43.955178+00:00",
+  "assumptions": [
+    "Reconstruction uses the supplied frames and brief; source has not been rendered or visually validated.",
+    "Continuous refill at two tokens per second reproduces the sampled live counts and visible request outcomes.",
+    "Unreadable request times are inferred: request 4 at 2.40s; requests 11–14 at 3.02s, 3.10s, 3.15s and 3.27s.",
+    "Caption changes at 2.40s, 3.30s, 6.40s and 11.70s, instantaneous history updates and fractional slot accents are inferred.",
+    "The completed dashboard holds through 18s. Output declares 30 fps and contains no audio.",
+    "Generic monospace and manually drawn large slashed zeros approximate the unknown typography. GSAP is used only for the required harness timeline; artwork uses Canvas exclusively."
+  ],
+  "missing_inputs": [],
+  "summary": "Editable 18-second Canvas reconstruction with deterministic token arithmetic, request history, staircase chart and concluding hold. Preserves reference text and attribution; rendering and matched-time review remain unperformed.",
+  "fps": 30.0,
+  "source_sha256": "1e448ff844fb9b993a8ab233dbf5099b70856a6597bb7fa1086262876e85c08f",
+  "width": 1080,
+  "height": 1080,
+  "duration_seconds": 18,
+  "source_path": "results/parkerrex-701462/adapted/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/parkerrex-701462/adapted/video.mp4",
+  "poster_url": "media/parkerrex-701462/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "18.000000"
+    }
+  },
+  "staged_source_sha256": "1e448ff844fb9b993a8ab233dbf5099b70856a6597bb7fa1086262876e85c08f",
+  "source_modified_after_generation": false
+}

@@ -26,3 +26,5 @@ Read `comparison/prompt-improvements/<slug>.md` when present. These are scoped, 
 `tools/catalog.py` also regenerates the README comparison block. Keep paired reference/result previews, attempt counts, prompt/brief/review links and current differences in it. A sampled comparison and a technical render must remain distinct from full visual acceptance.
 
 For typed or progressively revealed closing titles, include a decoded frame within the last0.05seconds in addition to the prior second. A partially revealed string at duration-minus-one is not the finished closing copy. The typography reconstruction exposed this: the original completes “Opus5.5” near the end while an early recreation held “Opu”. Compare the actual final tail before accepting text coverage.
+
+For quantitative animations, compare the displayed integer separately from any fractional visual state. The token-bucket recreation matched the visible count yet initially omitted the partial next-token fill and green refill-slot accent. Preserve these state cues rather than “correcting” a reference display from an integer counter alone. Keep the per-case measured differences in its prompt-improvement record.

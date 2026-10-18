@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Claude — inferred reference reconstruction</title>
+<title>Claude — sampled reference reconstruction</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1B1C13}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%;object-fit:contain}
 </style>
@@ -11,42 +11,47 @@
 </head>
 <body>
 <div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="10" data-fps="60">
-<canvas id="art" class="clip" data-start="0" data-duration="10" width="1280" height="720" role="img" aria-label="Hi. I read every word. I think it through. I tell it straight. I build with you. I’m Claude. Opu."></canvas>
+<canvas id="art" class="clip" data-start="0" data-duration="10" width="1280" height="720" role="img" aria-label="Hi. I read every word. I think it through. I tell it straight. I build with you. I’m Claude. Opus 5.5."></canvas>
 </div>
 <!--
-EDITABLE SOURCE — inferred recreation, not rendered or visually validated.
-Reference creator: @souravbhar871.
-Reference URL: https://x.com/souravbhar871/status/2103711849703477361
-Requested experiment model/effort: gpt-6.1-sol / high; execution metadata must be recorded separately by the harness.
-Format: 1280 × 720, exactly 10 seconds, intended capture at 60 fps, silent.
+EDITABLE RECONSTRUCTION BRIEF AND PROVENANCE
+Creator: @souravbhar871
+Source: https://x.com/souravbhar871/status/2103711849703477361
+Adapted experiment target: gpt-6.1-sol / high. Actual execution metadata belongs
+in the recording harness; this source does not attest to a particular CLI run.
+1280×720, 10.0 seconds, intended capture at 60 fps, silent.
 
-TIMED RECONSTRUCTION BRIEF
-0.00–1.17: Ivory field. Two narrow cropped strokes resolve into newly drawn,
-soft-contoured black Hi lettering and an orange circular period.
-1.17–2.66: Orange field, dense mixed text, large central ivory reading statement.
-2.66–3.34: Near-black field with the small orange dot at the observed position.
-3.34–4.64: Branching ivory/orange thought paths, upper-left and lower-right text.
-4.64–6.60: Orange field. Individually rotated, differently weighted letters rise
-across the page at 5 seconds, then align. An ivory rule enters in front of them.
-6.60–7.78: Ivory collaboration card, hard orange extrusion behind dark faces.
-7.78–10.00: Cropped I’m reveal, heavy Claude lettering, radial orange emblem,
-and a staggered partial Opu subtitle. The last evidenced partial subtitle is held.
-All shot boundaries, intermediate trajectories, easing and final hold are inferred.
-The camera remains a fixed, front-facing graphic plane. No added audio or texture.
+0.00–1.0167: Original partial-stroke greeting entrance retained.
+1.0167–1.1667: Greeting enlarges, becomes extremely cropped, then the orange
+period expands into a full orange field. Camera interpolation is inferred;
+required sampled states are encoded explicitly at 1.05, 1.0667 and 1.15.
+1.1667–2.66: Collage enters first; no foreground title at 1.2667. The heavy
+reading statement subsequently reveals and is fully present at 2.0.
+2.66–3.34: Near-black field with the small orange dot.
+3.34–4.64: Preserved thought-path geometry and text choreography.
+4.64–6.60: Refined individual letter weights, rotations and g/h overlap;
+retained alignment motion and foreground ivory rule.
+6.60–7.78: Retained collaboration card and hard offset extrusion.
+7.78–10.00: Retained identity reveal and newly drawn radial emblem. Opu remains
+visible at 9.0; subtitle completes to exactly Opus 5.5 by 9.85. This supersedes
+the older reconstruction instruction forbidding subtitle completion.
+
+All unsupplied intermediate trajectories and timing remain inferred. Straight-on
+view throughout; the short greeting enlargement acts on the flat artwork.
 
 DEPENDENCY AND ASSET LEDGER
-- gsap.min.js: supplied locally by the harness.
-- Canvas paths, letter placement, curves and emblem: newly authored artwork.
-- Generic system fonts: shared approximations, not recovered source typography.
+- gsap.min.js: supplied locally by the harness; sole runtime dependency.
+- Canvas lettering contours, diagram, emblem and scene assembly: newly authored.
+- Generic system typography: shared approximation, not recovered source fonts.
 - Supplied Bangers.ttf and Caveat.ttf: unused.
-- Supplied reference images: guidance only, never drawn into the output.
-- Background collage: visible supplied fragments, with inferred repetition/layout.
-No remote fonts, media, modules, network requests or original film pixels.
+- Collage text: newly authored illustrative text; no exact transcription claimed.
+- Reference images: visual guidance only; never loaded or drawn.
+- No audio, external images, remote fonts, modules or network requests.
 
-REVIEW RECORD
-This deliverable is source only. No recorded execution, MP4, poster, technical
-check, matched-time visual review or fidelity score is claimed. Complete collage
-transcription, unsampled transitions and the actual final frame remain unknown.
+REVIEW STATUS
+Source only. No render, poster, execution log, technical validation, matched-time
+review or fidelity score is claimed. Exact source typography, unreadable collage
+fragments and unsampled transition details remain unresolved.
 -->
 <script>
 (function(){
@@ -75,47 +80,90 @@ function pathStroke(d,color,width,reveal=1,length=2000){
  ctx.stroke(new Path2D(d));ctx.restore();
 }
 
-// Newly drawn greeting contours follow the full-resolution silhouette.
 const hiH=new Path2D('M320 203 C356 196 399 197 420 215 Q438 231 438 260 L438 341 Q478 338 504 357 L504 204 C539 197 580 199 601 216 Q618 231 618 260 L618 489 Q618 527 624 556 C591 566 550 566 530 553 Q504 538 504 497 L504 446 L438 446 L438 556 Q390 568 352 552 Q326 543 326 499 L326 435 Q309 424 310 385 L310 341 L326 341 L326 245 Z');
 const hiI=new Path2D('M650 278 C690 272 749 272 774 291 Q789 302 788 330 L788 486 Q788 526 796 558 C764 565 723 565 701 556 Q677 546 677 517 L677 383 Q657 404 651 380 Q643 352 644 307 Q643 287 650 278 Z');
+const greetingKeys=[
+ {t:1.0166667,s:1,x:640,y:360},
+ {t:1.05,s:2.5,x:640,y:360},
+ {t:1.0666667,s:8,x:650,y:390},
+ {t:1.1166667,s:10,x:884,y:507},
+ {t:1.15,s:13,x:872,y:500},
+ {t:1.1666667,s:22,x:884,y:507}
+];
+function greetingCamera(t){
+ if(t<=greetingKeys[0].t)return greetingKeys[0];
+ for(let i=1;i<greetingKeys.length;i++){
+  const a=greetingKeys[i-1],b=greetingKeys[i];
+  if(t<=b.t){const p=smooth(a.t,b.t,t);return {s:lerp(a.s,b.s,p),x:lerp(a.x,b.x,p),y:lerp(a.y,b.y,p)};}
+ }
+ return greetingKeys[greetingKeys.length-1];
+}
 function greeting(t){
  background(C.ivory);
+ const camera=greetingCamera(t);
+ ctx.save();ctx.translate(640,360);ctx.scale(camera.s,camera.s);ctx.translate(-camera.x,-camera.y);
  const stem=1-smooth(.07,.26,t),rise=out(.045,.88,t);
  if(stem>0){ctx.save();ctx.globalAlpha=stem;roundedRect(420,620-130*rise,34,210,17,C.ink);roundedRect(550,620-110*rise,36,210,18,C.ink);ctx.restore();}
  ctx.save();ctx.globalAlpha=smooth(.06,.25,t);ctx.translate(640,420*(1-rise));ctx.scale(lerp(.79,1,rise),1);ctx.translate(-640,0);
  ctx.fillStyle=C.ink;ctx.fill(hiH);
  ctx.save();const ip=out(.17,.82,t);ctx.translate(0,120*(1-ip));ctx.globalAlpha*=ip;ctx.fill(hiI);disc(723,207,42,C.ink);ctx.restore();
- const dp=out(.37,.91,t);disc(884,507,51*dp,C.orange);ctx.restore();
+ const dp=out(.37,.91,t);disc(884,507,51*dp,C.orange);ctx.restore();ctx.restore();
 }
 
+// Original prose and notation provide density without claiming transcription.
 const fragments=[
- 'Dear Maya, thank you for the letter -- Add the flour slowly, then fold in the eggs.',
- 'sawubona · kia ora · hello · bonjour · hola · ciao · olá · hallo · namaste · merhaba · salve · hej · aloha',
- 'SELECT idea FROM everything · git commit -m "first draft" · while (!done) {',
- 'the questions · all the lines are alike · Hope is the thing with',
- 'println("hi"); · npm test · npm run build · SELECT idea FROM everything',
- 'p < 0.05 · n = 1,024 · R² = 0.87 · 95% CI [0.42, 0.61] · revenue grew 12% quarter',
- 'Dear Maya · Add the flour slowly · thank you for the letter · fold in the eggs',
- 'import · while (!done) { · git commit · println("hi"); · SELECT idea',
- 'Measure twice, cut once. · Step one: read the question. Step two: read it again. Step three: think.',
- 'Qué horas es? · Wie geht’s? · Ça va? · Come stai? · Tudo bem? · Hoe gaat het?'
+ 'Dear Mira, I kept your question beside the window. Let us begin with what we know.',
+ 'hello · bonjour · hola · ciao · olá · hallo · namaste · merhaba · salve · hej · aloha',
+ 'const next = ideas.map(refine); // a small change can open another door',
+ 'Add the flour a little at a time. Fold gently, then leave room for the dough to rise.',
+ 'SELECT possibility FROM questions WHERE curiosity > 0; read(); consider(); revise();',
+ 'n = 1024 · mean = 0.62 · interval [0.41, 0.83] · change +12% · x² + y² = r²',
+ 'A sentence carries its context. A quiet detail can change the whole explanation.',
+ 'import { patience } from practice; while (learning) { ask(); build(); test(); }',
+ 'Measure carefully. Read the question once more. Follow the thread to its end.',
+ 'Comment ça va? · Come stai? · Tudo bem? · Hoe gaat het? · How is your day?',
+ 'The first draft is a beginning. Keep the useful parts; make the next version clearer.',
+ 'if (uncertain) { compare(evidence); } else { explain(reasoning); }'
 ];
+const rowSizes=[13,11,26,15,12,35,14,19,11,29,15,12,24,14,11,32,18,12,25,13,30,14,11,23,15,12];
+function heavyReadingLine(text,x,y,width,size,offset){
+ ctx.save();ctx.font='900 '+size+'px sans-serif';ctx.textBaseline='alphabetic';ctx.textAlign='left';
+ const chars=Array.from(text),advances=chars.map(ch=>ctx.measureText(ch).width);
+ const full=advances.reduce((a,b)=>a+b,0)-Math.max(0,chars.length-1)*3;
+ ctx.translate(x,y);ctx.scale(width/full,1);
+ let cursor=0;
+ const shifts=[0,-2,2,-1,3,-2,1,0,-2,2,1];
+ const tilts=[-.009,.006,-.012,.008,-.005,.011,-.006,0,.009];
+ chars.forEach((ch,i)=>{
+  if(ch!==' '){
+   ctx.save();ctx.translate(cursor,shifts[(i+offset)%shifts.length]);ctx.rotate(tilts[(i+offset)%tilts.length]);
+   ctx.scale(1,[1.02,.98,1.035,1,.99][(i+offset)%5]);
+   ctx.fillStyle=C.ivory;ctx.strokeStyle=C.ivory;ctx.lineJoin='round';ctx.lineWidth=10+(i%3)*1.5;
+   ctx.strokeText(ch,0,0);ctx.fillText(ch,0,0);ctx.restore();
+  }
+  cursor+=advances[i]-3;
+ });ctx.restore();
+}
 function reading(t){
  background(C.orange);
+ const collage=out(1.18,1.25,t);
  ctx.save();ctx.beginPath();ctx.rect(0,0,W,H);ctx.clip();
- for(let row=0;row<25;row++){
-  const size=[15,19,12,24,14,17,13][row%7];
-  ctx.font=(row%3===0?'700 ':'500 ')+size+'px monospace';ctx.textBaseline='alphabetic';
-  ctx.fillStyle=row%5===1?C.ivory:C.ink;ctx.globalAlpha=row%5===1?.78:.92;
-  const text=fragments[row%fragments.length]+' · '+fragments[(row+3)%fragments.length];
-  const x=-50-(row%4)*18+12*Math.sin((t-2)*1.2+row*.8);
-  ctx.fillText(text,x,row*30+12);
+ let y=-8;
+ for(let row=0;row<rowSizes.length;row++){
+  const size=rowSizes[row];y+=size+9+(row%3)*2;
+  ctx.font=(row%4===2?'800 ':row%3===0?'600 ':'400 ')+size+'px monospace';ctx.textBaseline='alphabetic';
+  const pale=row%6===1||row===15;
+  ctx.fillStyle=pale?C.ivory:C.ink;ctx.globalAlpha=collage*(pale?.82:row%4===0?.67:.94);
+  const text=fragments[row%fragments.length]+' · '+fragments[(row+5)%fragments.length];
+  const x=-34-(row%4)*23+12*Math.sin((t-2)*1.2+row*.8);
+  ctx.fillText(text,x,y);
  }
  ctx.restore();
- const p=out(1.20,1.62,t);ctx.save();ctx.translate(0,35*(1-p));ctx.globalAlpha=p;
- textFit('I read',90,327,590,158,'sans-serif',900,C.ivory,3);
- textFit('every word',90,495,909,158,'sans-serif',900,C.ivory,3);
- disc(1042,475,20,C.ink);ctx.restore();
+ const p=out(1.43,1.87,t);
+ if(p>0){ctx.save();ctx.translate(0,35*(1-p));ctx.globalAlpha=p;
+ heavyReadingLine('I read',94,327,582,158,0);
+ heavyReadingLine('every word',94,495,905,158,4);
+ disc(1042,475,20,C.ink);ctx.restore();}
 }
 function lonelyDot(){background(C.ink);disc(973,131,14,C.orange);}
 
@@ -140,27 +188,26 @@ function thinking(t){
  textFit('it through',385,590,757,108,'monospace',900,C.ivory,1);disc(1169,577,15,C.orange);ctx.restore();
 }
 
-// Eight independent glyphs retain the observed rising, rotated arrangement at 5s.
 const letters=Array.from('straight');
 const scattered=[
- {x:169,y:491,size:226,r:-.12,f:'sans-serif',w:400},
- {x:268,y:486,size:246,r:-.28,f:'sans-serif',w:900},
- {x:403,y:513,size:219,r:.25,f:'serif',w:400},
- {x:504,y:520,size:242,r:-.18,f:'serif',w:400},
- {x:651,y:477,size:188,r:.19,f:'sans-serif',w:900},
- {x:718,y:426,size:234,r:-.33,f:'sans-serif',w:900},
- {x:816,y:407,size:243,r:-.09,f:'sans-serif',w:900},
- {x:932,y:251,size:225,r:.70,f:'sans-serif',w:900}
+ {x:169,y:491,size:226,r:-.12,f:'sans-serif',w:400,italic:false},
+ {x:274,y:487,size:246,r:-.29,f:'sans-serif',w:900,italic:false},
+ {x:407,y:516,size:219,r:.24,f:'serif',w:400,italic:true},
+ {x:512,y:521,size:242,r:-.19,f:'serif',w:400,italic:true},
+ {x:650,y:478,size:188,r:.19,f:'sans-serif',w:800,italic:true},
+ {x:724,y:429,size:238,r:-.34,f:'sans-serif',w:900,italic:false},
+ {x:803,y:410,size:249,r:-.09,f:'sans-serif',w:900,italic:false},
+ {x:942,y:251,size:225,r:.72,f:'sans-serif',w:900,italic:false}
 ];
 ctx.font='900 220px sans-serif';
 const widths=letters.map(ch=>ctx.measureText(ch).width);
 const naturalWidth=widths.reduce((a,b)=>a+b,0),alignedScale=900/naturalWidth;
 const targets=[];let cursor=174;
 widths.forEach(w=>{targets.push(cursor);cursor+=w*alignedScale;});
-function glyph(ch,x,y,size,rotation,family,weight,scaleX,alpha){
+function glyph(ch,x,y,size,rotation,family,weight,scaleX,alpha,italic=false){
  if(alpha<=0)return;
  ctx.save();ctx.translate(x,y);ctx.rotate(rotation);ctx.scale(scaleX,1);ctx.globalAlpha=alpha;
- ctx.font=weight+' '+size+'px '+family;ctx.fillStyle=C.ink;ctx.textBaseline='alphabetic';ctx.textAlign='left';
+ ctx.font=(italic?'italic ':'')+weight+' '+size+'px '+family;ctx.fillStyle=C.ink;ctx.textBaseline='alphabetic';ctx.textAlign='left';
  if(weight>=900){ctx.strokeStyle=C.ink;ctx.lineJoin='round';ctx.lineWidth=2;ctx.strokeText(ch,0,0);}
  ctx.fillText(ch,0,0);ctx.restore();
 }
@@ -172,7 +219,7 @@ function straight(t){
  letters.forEach((ch,i)=>{
   const s=scattered[i],x=lerp(s.x,targets[i],p),y=lerp(s.y,492,p)+35*(1-intro);
   const size=lerp(s.size,220,p),rotation=s.r*(1-p),sx=lerp(1,alignedScale,p);
-  glyph(ch,x,y,size,rotation,s.f,s.w,sx,(1-m)*intro);
+  glyph(ch,x,y,size,rotation,s.f,s.w,sx,(1-m)*intro,s.italic);
   glyph(ch,x,y,size,rotation,'sans-serif',900,sx,m*intro);
  });
  const rule=out(5.72,5.99,t);ctx.fillStyle=C.ivory;ctx.fillRect(0,442,1280*rule,6);
@@ -192,7 +239,7 @@ function collaboration(t){
  ctx.restore();
 }
 
-// Uneven, round-ended radial spokes are drawn anew rather than traced pixels.
+// Fresh asymmetric geometry approximates the observed radial emblem.
 const spokes=[
  [-1.58,74],[-1.13,52],[-.75,60],[-.37,49],[-.08,70],
  [.36,73],[.77,68],[1.16,76],[1.66,58],[2.07,74],
@@ -204,6 +251,15 @@ function emblem(p){
  spokes.forEach(s=>{const a=s[0],r=s[1];ctx.beginPath();ctx.moveTo(-Math.cos(a)*8,-Math.sin(a)*8);ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);ctx.stroke();});
  disc(0,0,16,C.orange);ctx.restore();
 }
+const subtitle=[
+ {ch:'O',index:0,y:461,start:8.79,end:8.86,alpha:1},
+ {ch:'p',index:1,y:477,start:8.86,end:8.94,alpha:.87},
+ {ch:'u',index:2,y:477,start:8.94,end:9.00,alpha:.62},
+ {ch:'s',index:3,y:461,start:9.24,end:9.36,alpha:1},
+ {ch:'5',index:5,y:461,start:9.46,end:9.60,alpha:1},
+ {ch:'.',index:6,y:461,start:9.60,end:9.70,alpha:1},
+ {ch:'5',index:7,y:461,start:9.70,end:9.84,alpha:1}
+];
 function identity(t){
  background(C.ink);
  const p=smooth(7.82,8.42,t);
@@ -213,30 +269,25 @@ function identity(t){
  ctx.save();ctx.beginPath();ctx.rect(449,175,500*name,200);ctx.clip();
  textFit('Claude',455+22*(1-name),361,483,151,'sans-serif',900,C.ivory,3);ctx.restore();
  const star=out(8.57,8.96,t);if(star>0)emblem(star);
- // Preserve the partial subtitle and the staggered character levels visible
- // in the full-resolution reference. Completion beyond Opu is not evidenced.
- const subtitle=[
-  {ch:'O',x:465,y:461,start:8.79,end:8.86,alpha:1},
-  {ch:'p',x:502,y:477,start:8.86,end:8.94,alpha:.87},
-  {ch:'u',x:539,y:477,start:8.94,end:9.00,alpha:.62}
- ];
+ const settle=smooth(9.08,9.45,t);
  ctx.save();ctx.font='400 62px monospace';ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillStyle=C.orange;
  subtitle.forEach(letter=>{
-  const q=out(letter.start,letter.end,t);
-  if(q<=0)return;
-  ctx.save();ctx.globalAlpha=q*letter.alpha;ctx.beginPath();ctx.rect(letter.x-2,405,43,82);ctx.clip();
-  ctx.fillText(letter.ch,letter.x,letter.y+13*(1-q));ctx.restore();
- });
- ctx.restore();
+  const q=out(letter.start,letter.end,t);if(q<=0)return;
+  const x=465+letter.index*37.3;
+  const baseline=lerp(letter.y,461,settle);
+  ctx.save();ctx.globalAlpha=q*lerp(letter.alpha,1,settle);
+  ctx.beginPath();ctx.rect(x-2,401,44,92);ctx.clip();
+  ctx.fillText(letter.ch,x,baseline+13*(1-q));ctx.restore();
+ });ctx.restore();
 }
 
-// Every pixel is recomputed from time; seeking never depends on prior frames.
+// Stateless drawing: all geometry and lettering are computed from absolute time.
 function draw(time){
  const t=Math.max(0,Math.min(DURATION,time));
  ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
  ctx.setLineDash([]);ctx.lineDashOffset=0;ctx.lineWidth=1;ctx.lineCap='butt';ctx.lineJoin='miter';
  ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.filter='none';ctx.clearRect(0,0,W,H);
- if(t<1.17)greeting(t);
+ if(t<1.1666667)greeting(t);
  else if(t<2.66)reading(t);
  else if(t<3.34)lonelyDot();
  else if(t<4.64)thinking(t);

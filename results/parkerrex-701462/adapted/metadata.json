@@ -1,14 +1,14 @@
 {
-  "status": "generated",
+  "status": "rendered",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
   "cli_version": "0.163.0",
   "protocol_version": "reference-v3",
   "track": "adapted",
-  "iteration": 1,
+  "iteration": 2,
   "source_prompt_sha256": "ac9bd5b367baebc6fc2f6e6ffad4b34856e932bcb991839d15e18b4a73bcc53d",
-  "input_sha256": "58810abc92ac59757be6be716d2cdce3e95280e5051e77c149e99f1240d7fe16",
-  "started_at": "2026-10-18T15:42:52.178045+00:00",
+  "input_sha256": "f8de06ad4853e7198f478f8ba5dfa1a3ebf515474ee507969754bddfb9d86cea",
+  "started_at": "2026-10-18T15:48:26.117762+00:00",
   "tools": "none requested; read-only sandbox",
   "reference_images_supplied": [
     "sheet-01.jpg",
@@ -55,28 +55,48 @@
     "-"
   ],
   "usage": {
-    "input_tokens": 35065,
+    "input_tokens": 37621,
     "cached_input_tokens": 0,
     "cache_write_input_tokens": 0,
-    "output_tokens": 4837,
-    "reasoning_output_tokens": 2070
+    "output_tokens": 5671,
+    "reasoning_output_tokens": 2588
   },
-  "finished_at": "2026-10-18T15:44:43.955178+00:00",
+  "finished_at": "2026-10-18T15:50:33.164609+00:00",
   "assumptions": [
-    "Reconstruction uses the supplied frames and brief; source has not been rendered or visually validated.",
-    "Continuous refill at two tokens per second reproduces the sampled live counts and visible request outcomes.",
-    "Unreadable request times are inferred: request 4 at 2.40s; requests 11–14 at 3.02s, 3.10s, 3.15s and 3.27s.",
-    "Caption changes at 2.40s, 3.30s, 6.40s and 11.70s, instantaneous history updates and fractional slot accents are inferred.",
-    "The completed dashboard holds through 18s. Output declares 30 fps and contains no audio.",
-    "Generic monospace and manually drawn large slashed zeros approximate the unknown typography. GSAP is used only for the required harness timeline; artwork uses Canvas exclusively."
+    "Caption boundaries, unreadable request events and fractional refill arithmetic retain the previous reconstruction choices.",
+    "Green accent timing and the partial blue strip between sampled frames are inferred without added pulse animation.",
+    "Coincident refill and request events are consolidated to remove unsupported instantaneous chart peaks.",
+    "Horizontally adjusted generic monospace approximates the unknown reference typography.",
+    "The silent 30 fps composition continues the conclusion through 18 seconds; GSAP supplies seek time only."
   ],
   "missing_inputs": [],
-  "summary": "Editable 18-second Canvas reconstruction with deterministic token arithmetic, request history, staircase chart and concluding hold. Preserves reference text and attribution; rendering and matched-time review remain unperformed.",
+  "summary": "Revised refill accents, staircase edges, small-text widths, header spacing, red zero and amber conclusion. Preserved sampled counts, history, sequence and ending hold. Not rendered or visually reviewed.",
   "fps": 30.0,
-  "source_sha256": "1e448ff844fb9b993a8ab233dbf5099b70856a6597bb7fa1086262876e85c08f",
+  "source_sha256": "c8da452a1f42562de64943d0c320f26f29244f8c770fdb1d732c4ce95354c2da",
   "width": 1080,
   "height": 1080,
   "duration_seconds": 18,
   "source_path": "results/parkerrex-701462/adapted/index.html",
-  "reason": "Source generated; rendering and matched-time fidelity review pending."
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/parkerrex-701462/adapted/video.mp4",
+  "poster_url": "media/parkerrex-701462/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "18.000000"
+    }
+  },
+  "staged_source_sha256": "c8da452a1f42562de64943d0c320f26f29244f8c770fdb1d732c4ce95354c2da",
+  "source_modified_after_generation": false
 }

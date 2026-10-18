@@ -5,10 +5,10 @@
   "cli_version": "0.163.0",
   "protocol_version": "reference-v3",
   "track": "adapted",
-  "iteration": 2,
+  "iteration": 3,
   "source_prompt_sha256": "7bd7ddf6ff03c0a36187b6a32b7e3f1c8bfbf3f7780526a48767873203810d54",
-  "input_sha256": "fa71e4b2cc835b5996fec2b4428d107f622f64e72c5a05cc5a41941b2ebd5ef2",
-  "started_at": "2026-10-18T15:41:26.185063+00:00",
+  "input_sha256": "c74da7de2c353791e1844c3381682f678413c7caa0d6616cb5892f779dd61b27",
+  "started_at": "2026-10-18T15:45:41.229891+00:00",
   "tools": "none requested; read-only sandbox",
   "reference_images_supplied": [
     "sheet-01.jpg",
@@ -51,23 +51,23 @@
     "-"
   ],
   "usage": {
-    "input_tokens": 34379,
-    "cached_input_tokens": 0,
+    "input_tokens": 34864,
+    "cached_input_tokens": 18816,
     "cache_write_input_tokens": 0,
-    "output_tokens": 5479,
-    "reasoning_output_tokens": 516
+    "output_tokens": 7608,
+    "reasoning_output_tokens": 1737
   },
-  "finished_at": "2026-10-18T15:43:08.025130+00:00",
+  "finished_at": "2026-10-18T15:48:02.665763+00:00",
   "assumptions": [
-    "Preserves the supplied source’s inferred timing and motion at 1280×720, 60 fps, with no audio.",
-    "System typography approximates the reference; supplied font files are unused.",
-    "Unsampled transitions and collage transcription remain inferred.",
-    "The final second holds the evidenced Claude lockup and partial Opu subtitle; subtitle completion is not invented."
+    "Unsampled motion and transition interpolation are inferred from the supplied sampled states.",
+    "Generic system lettering approximates the reference; collage text is newly authored.",
+    "The updated evidence supersedes the obsolete subtitle restriction: Opu at 9.0 seconds completes to Opus 5.5 by 9.85 seconds.",
+    "The composition is silent, matching the supplied zero-audio-stream metadata. Source has not been rendered or visually validated."
   ],
   "missing_inputs": [],
-  "summary": "Complete editable source preserving all six beats, scattered letters at 5 seconds, and the partial closing reveal. No execution, render or review is claimed.",
-  "fps": 60,
-  "source_sha256": "0bd1ad6152f64a43b5a6843f2987915e9ab48eac2180e52e309a24887661cf9b",
+  "summary": "Repaired greeting enlargement and orange-fill transition, delayed the collage title, refined lettering and scattered glyphs, and completed the closing subtitle while retaining diagram and collaboration motion.",
+  "fps": 60.0,
+  "source_sha256": "b717e2ca4b0a45be0a903b0b7339d6c9251e335628d6c774ae0de1e67ecfec18",
   "width": 1280,
   "height": 720,
   "duration_seconds": 10,
@@ -92,6 +92,6 @@
       "duration": "10.000000"
     }
   },
-  "staged_source_sha256": "0bd1ad6152f64a43b5a6843f2987915e9ab48eac2180e52e309a24887661cf9b",
+  "staged_source_sha256": "b717e2ca4b0a45be0a903b0b7339d6c9251e335628d6c774ae0de1e67ecfec18",
   "source_modified_after_generation": false
 }

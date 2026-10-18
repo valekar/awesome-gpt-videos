@@ -46,3 +46,8 @@ Revise only the evidenced mismatches:
 - Keep “Opu” at 9.0s, but complete the subtitle to exactly “Opus 5.5” by 9.85s. Replace earlier instructions that prohibit this completion.
 - Preserve the correctly matched scene sequence, thought-path geometry and straight-on framing. Draw any revised lettering and emblem anew.
 
+
+## Matched-time review of attempt 3
+
+Revise only the evidenced mismatches. Match the greeting’s sampled scale and crop at 1.05, 1.0667 and 1.15 seconds; show a plain orange field at 1.1667 seconds. Match readable collage text and numerical notation where supplied detail makes them legible; explicitly mark unresolved microtext rather than presenting substitutions as exact. Recreate the narrower, irregular heavy headline contours, mixed scattered-letter silhouettes and overlaps, and tighter collaboration-card line spacing using newly drawn geometry or appropriately licensed lettering. Match the warmer orange and refine the closing emblem’s visible proportions. Preserve the correct scene coverage, thought diagram, rule layering, extrusion and “Opu” to “Opus 5.5” progression. Treat interpolation between supplied states as inferred.
+

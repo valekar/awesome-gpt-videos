@@ -2,7 +2,7 @@
   "priority": "adapted",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
-  "updated_at": "2026-10-18T15:44:05.373102+00:00",
+  "updated_at": "2026-10-18T15:51:27.064874+00:00",
   "entries": [
     {
       "slug": "ror-fly-880547",
@@ -334,7 +334,7 @@
     },
     {
       "slug": "souravbhar871-477361",
-      "stage": "ready_for_visual_recreation"
+      "stage": "existing_render"
     },
     {
       "slug": "ved-cj-066575",
@@ -670,7 +670,7 @@
     },
     {
       "slug": "parkerrex-701462",
-      "stage": "ready_for_visual_recreation"
+      "stage": "existing_render"
     },
     {
       "slug": "justincooperman-188876",

@@ -4,26 +4,25 @@
   "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
   "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
   "adapted": {
-    "attempts": 2,
+    "attempts": 3,
     "observations": [
-      "All principal scene types appear: greeting, reading collage, orange dot, thought diagram, scattered/aligned lettering, extruded collaboration statement and closing identity.",
-      "The ivory, near-black and burnt-orange palette, empty backgrounds and straight-on graphic presentation are broadly consistent.",
-      "At 1.0 seconds, the greeting’s overall placement and custom letter geometry are closely matched.",
-      "At 3.0 and 4.0 seconds, the isolated dot and branching/looping thought diagram closely match their reference compositions.",
-      "The scattered-to-aligned word states, foreground ivory rule and orange letter extrusion are present.",
-      "The partially clipped identity reveal at 8.0 seconds and partial subtitle at 9.0 seconds are broadly preserved."
+      "The sampled sequence preserves the greeting, reading collage, isolated dot, thought diagram, scattered and aligned lettering, extruded collaboration card, and closing identity.",
+      "Principal text matches: “Hi.”, “I read every word.”, “I think it through.”, “I tell it straight”, “I build with you.” and “I’m Claude”.",
+      "The closing subtitle matches both observed states: partial “Opu” at 9.0s and complete “Opus 5.5” at 9.85s.",
+      "The thought diagram at 4.0s closely preserves its branching endpoints, junction, loop and underline geometry.",
+      "The ivory rule crosses in front of “straight” at 6.0s, and orange extrusion remains behind dark letter faces at 7.0s.",
+      "Both versions retain the sparse three-color design and straight-on graphic presentation."
     ],
     "remaining_differences": [
-      "GPT’s completed greeting is larger and extends higher than ORIGINAL at this sample; the groups become much closer at 1.0 seconds.",
-      "ORIGINAL has enlarged the greeting substantially, whereas GPT still shows the centered greeting at its previous size. At 1.0667 seconds, ORIGINAL is dramatically cropped by the frame while GPT remains unchanged.",
-      "ORIGINAL shows a huge orange circle cropped by the right and bottom edges; GPT still displays the complete greeting. At 1.1667 seconds, ORIGINAL is orange edge to edge while GPT has already introduced the text collage.",
-      "ORIGINAL shows the reading collage without the large foreground statement; GPT already shows a translucent “I read every word.” This advances the title reveal relative to the sampled reference.",
-      "The detail pair shows materially different title lettering: ORIGINAL has very heavy, compact, irregular forms, while GPT uses more conventional forms, especially the narrower-stroked “I.” GPT’s background also has more tightly packed rows and different text ordering, repetition and size hierarchy.",
-      "The scattered word is recognizable, but GPT changes individual glyph silhouettes, weights, rotations and overlap. ORIGINAL’s chunky tilted letters and crowded g/h cluster are more distinctive than GPT’s arrangement.",
-      "GPT’s aligned “straight” uses more regular letterforms than ORIGINAL’s heavy irregular display treatment. The ivory crossing rule also appears thinner.",
-      "GPT preserves the two-line statement and diagonal extrusion, but regularizes the letter contours and places the second line lower and farther right. The orange depth consequently has a different silhouette.",
-      "ORIGINAL clearly reads “Opus 5.5”; GPT remains at “Opu.” This omits the completed model-name/version subtitle visible in the supplied final sample.",
-      "The detail pair shows GPT’s “Claude” with more conventional, less irregular letterforms. Its orange emblem has more uniform spokes and a different outline than ORIGINAL’s uneven starburst."
+      "GPT is substantially further enlarged: its greeting is cropped at the top, bottom and right while ORIGINAL still shows the complete greeting within the frame. At 1.0667s, ORIGINAL retains a visible orange period and recognizable cropped letter forms; GPT shows a much larger dark mass with the period outside the visible area.",
+      "GPT’s orange circle occupies much more of the frame than ORIGINAL’s circle at the same timestamp. At 1.1667s, ORIGINAL is a plain orange field, whereas faint collage lettering is already visible in GPT. These sampled transition states do not align.",
+      "The detail pair shows different background content and row arrangements. ORIGINAL visibly includes “Dear Maya, thank you for the letter” and statistics including “R² = 0.87” and “95% CI [0.42, 0.61]”; GPT substitutes a letter to Mira and prominently displays “mean = 0.62” and “interval [0.41, 0.83]”. This changes readable text and numerical visual claims.",
+      "GPT’s headline has rounder, more swollen glyphs and a noticeably wider “I read” line. ORIGINAL’s narrower, irregular heavy letter forms and line proportions are not preserved, although the wording and foreground-over-collage layering match.",
+      "The scattered word keeps the general rising arrangement, but GPT changes individual glyph silhouettes, rotations and overlap. The central thin letters and heavy g/h cluster have visibly different relationships, altering the distinctive mixed-letter composition.",
+      "GPT’s aligned “straight” has shorter, more conventional glyph proportions and sits lower relative to “I tell it”. The horizontal rule is close in height, so it intersects a different portion of the letters.",
+      "GPT places “with you.” lower and slightly farther right, increasing the separation between the two lines. Its letter faces are smoother and more conventional than ORIGINAL’s irregular heavy forms. The extrusion mechanism is present, but the resulting text block has different proportions.",
+      "The closing detail pair shows a wider, more regular orange starburst in GPT and smoother “Claude” letter forms. The wording, subtitle and overall lockup placement remain close; exact font identity and spoke count cannot be established.",
+      "GPT’s orange field appears darker and redder than ORIGINAL’s warmer orange, also visible in the 5–6s cards. The sampled ivory and dark fields are comparatively close."
     ]
   },
   "adapted_review_history": [
@@ -196,18 +195,184 @@
         "output_tokens": 2445,
         "reasoning_output_tokens": 950
       }
+    },
+    {
+      "iteration": 3,
+      "summary": "All sampled scenes and principal phrases are present, including the completed “Opus 5.5” subtitle at 9.85s. The main discrepancies are the greeting transition’s scale and timing, substituted collage text, and display-letter shapes and spacing. A focused revision is supported.",
+      "matches": [
+        "The sampled sequence preserves the greeting, reading collage, isolated dot, thought diagram, scattered and aligned lettering, extruded collaboration card, and closing identity.",
+        "Principal text matches: “Hi.”, “I read every word.”, “I think it through.”, “I tell it straight”, “I build with you.” and “I’m Claude”.",
+        "The closing subtitle matches both observed states: partial “Opu” at 9.0s and complete “Opus 5.5” at 9.85s.",
+        "The thought diagram at 4.0s closely preserves its branching endpoints, junction, loop and underline geometry.",
+        "The ivory rule crosses in front of “straight” at 6.0s, and orange extrusion remains behind dark letter faces at 7.0s.",
+        "Both versions retain the sparse three-color design and straight-on graphic presentation."
+      ],
+      "differences": [
+        {
+          "time_seconds": 1.05,
+          "description": "GPT is substantially further enlarged: its greeting is cropped at the top, bottom and right while ORIGINAL still shows the complete greeting within the frame. At 1.0667s, ORIGINAL retains a visible orange period and recognizable cropped letter forms; GPT shows a much larger dark mass with the period outside the visible area.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 1.15,
+          "description": "GPT’s orange circle occupies much more of the frame than ORIGINAL’s circle at the same timestamp. At 1.1667s, ORIGINAL is a plain orange field, whereas faint collage lettering is already visible in GPT. These sampled transition states do not align.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 2,
+          "description": "The detail pair shows different background content and row arrangements. ORIGINAL visibly includes “Dear Maya, thank you for the letter” and statistics including “R² = 0.87” and “95% CI [0.42, 0.61]”; GPT substitutes a letter to Mira and prominently displays “mean = 0.62” and “interval [0.41, 0.83]”. This changes readable text and numerical visual claims.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 2,
+          "description": "GPT’s headline has rounder, more swollen glyphs and a noticeably wider “I read” line. ORIGINAL’s narrower, irregular heavy letter forms and line proportions are not preserved, although the wording and foreground-over-collage layering match.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 5,
+          "description": "The scattered word keeps the general rising arrangement, but GPT changes individual glyph silhouettes, rotations and overlap. The central thin letters and heavy g/h cluster have visibly different relationships, altering the distinctive mixed-letter composition.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 6,
+          "description": "GPT’s aligned “straight” has shorter, more conventional glyph proportions and sits lower relative to “I tell it”. The horizontal rule is close in height, so it intersects a different portion of the letters.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 7,
+          "description": "GPT places “with you.” lower and slightly farther right, increasing the separation between the two lines. Its letter faces are smoother and more conventional than ORIGINAL’s irregular heavy forms. The extrusion mechanism is present, but the resulting text block has different proportions.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9.85,
+          "description": "The closing detail pair shows a wider, more regular orange starburst in GPT and smoother “Claude” letter forms. The wording, subtitle and overall lockup placement remain close; exact font identity and spoke count cannot be established.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 2,
+          "description": "GPT’s orange field appears darker and redder than ORIGINAL’s warmer orange, also visible in the 5–6s cards. The sampled ivory and dark fields are comparatively close.",
+          "severity": "minor",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "Prioritize the 1.05–1.1667s greeting transition: reduce enlargement at the supplied timestamps and keep collage lettering absent at 1.1667s. Then correct readable collage strings and quantities, narrow and reshape the reading headline, refine the scattered glyph arrangement, and raise the collaboration card’s second line. Preserve the scene sequence, thought-path geometry, foreground rule, extrusion layering and evidenced subtitle completion.",
+      "should_revise": true,
+      "prompt_improvement_markdown": "Revise only the evidenced mismatches. Match the greeting’s sampled scale and crop at 1.05, 1.0667 and 1.15 seconds; show a plain orange field at 1.1667 seconds. Match readable collage text and numerical notation where supplied detail makes them legible; explicitly mark unresolved microtext rather than presenting substitutions as exact. Recreate the narrower, irregular heavy headline contours, mixed scattered-letter silhouettes and overlaps, and tighter collaboration-card line spacing using newly drawn geometry or appropriately licensed lettering. Match the warmer orange and refine the closing emblem’s visible proportions. Preserve the correct scene coverage, thought diagram, rule layering, extrusion and “Opu” to “Opus 5.5” progression. Treat interpolation between supplied states as inferred.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Only supplied decoded still pairs were assessed. Continuous motion, easing, trajectories, intermediate layering and camera behavior between samples cannot be established.",
+        "Requested seek times are quantized to each stream’s frame rate; very small timing discrepancies may reflect sampling.",
+        "The latest supplied image is at 9.85s; the exact final frame is not shown.",
+        "Audio was not supplied or listened to. Reference metadata reports zero audio streams, providing technical evidence of a silent reference file; the supplied GPT render probe likewise lists only a video stream.",
+        "Exact font identities, complete collage transcription, emblem spoke count and the origin of subtle texture remain uncertain.",
+        "Color differences are visual observations from supplied images, not measured source-color values.",
+        "Reference text, brands and numerical values are visual claims, not independently verified facts.",
+        "Technical render metadata was supplied rather than independently checked; its passing status does not establish visual fidelity."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "ca9677c5bf4c68f22377f62438b4633ba607b6d6509d080ff46b1f8ad033502f",
+      "image_sha256": {
+        "work/comparison-evidence/souravbhar871-477361/003/sheet-01.jpg": "6513d06288ad4e7a94cd93dac398375a6522f206d384f61fb1326f3e423bc1b0",
+        "work/comparison-evidence/souravbhar871-477361/003/sheet-02.jpg": "ebce4ffb17a34e8e7facb386899f8880ab7aa3e1c4b97ca626209248c51adc8b",
+        "work/comparison-evidence/souravbhar871-477361/003/sheet-03.jpg": "af659ed5b80a700e622175345f58dd55ece22010b3a07bc208c628aec2ba0ed9",
+        "work/comparison-evidence/souravbhar871-477361/003/detail-0000.jpg": "2ca661acf7a22d3c98b39ba0d685f347447013bf12d879c48b259e4aac01cd42",
+        "work/comparison-evidence/souravbhar871-477361/003/detail-0008.jpg": "4d07eaf8d9c0d3c91af0daf468d252b941b45a8c2c01dc26d08eb2dfab431964",
+        "work/comparison-evidence/souravbhar871-477361/003/detail-0016.jpg": "c5cc56c65e0e296342dd2375f344f2c415380df6c06be70b2df4bccd79bfc488"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          0.95,
+          1.0,
+          1.05,
+          1.0667,
+          1.15,
+          1.1667,
+          1.2667,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          9.85
+        ],
+        "reference_metadata": {
+          "slug": "souravbhar871-477361",
+          "width": 1280,
+          "height": 720,
+          "fps": "60/1",
+          "duration_seconds": 10.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0
+          ],
+          "scene_change_times": [
+            1.05,
+            1.166667
+          ],
+          "sheets": [
+            "work/references/souravbhar871-477361/evidence/sheet-01.jpg"
+          ],
+          "full_frames": [
+            "work/references/souravbhar871-477361/evidence/full-1.jpg",
+            "work/references/souravbhar871-477361/evidence/full-2.jpg",
+            "work/references/souravbhar871-477361/evidence/full-3.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/souravbhar871-477361/003/sheet-01.jpg",
+          "work/comparison-evidence/souravbhar871-477361/003/sheet-02.jpg",
+          "work/comparison-evidence/souravbhar871-477361/003/sheet-03.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/souravbhar871-477361/003/detail-0000.jpg",
+          "work/comparison-evidence/souravbhar871-477361/003/detail-0008.jpg",
+          "work/comparison-evidence/souravbhar871-477361/003/detail-0016.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 37548,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2549,
+        "reasoning_output_tokens": 1034
+      }
     }
   ],
-  "summary": "The sampled scene sequence is broadly preserved, but GPT misses the rapid greeting enlargement/orange transition and the completed closing subtitle. Typography and several letter arrangements also differ materially.",
+  "summary": "All sampled scenes and principal phrases are present, including the completed “Opus 5.5” subtitle at 9.85s. The main discrepancies are the greeting transition’s scale and timing, substituted collage text, and display-letter shapes and spacing. A focused revision is supported.",
   "limitations": [
-    "These are model-generated findings from supplied decoded stills, not a human review, frame-by-frame acceptance, quality score or model ranking.",
-    "Matching requested timestamps can select frames quantized to each stream’s frame rate. Still samples establish visible states, not continuous motion, easing or exact transition boundaries.",
-    "Exact font identities are unknown; typography findings concern visible weight, contour and layout.",
-    "The collage is only partly legible. Its complete text, punctuation and numerical contents cannot be reliably compared.",
-    "Reference metadata reports zero audio streams, indicating technical silence. No audio was supplied or listened to; GPT audio was not independently verified.",
-    "Technical render metadata was supplied, not independently checked. Automated checks do not establish visual fidelity.",
-    "The supplied reconstruction predates the additional transition and 9.85-second evidence and contains instructions contradicted by those images.",
-    "Reference wording, branding and values are visual claims, not independently verified facts. Label strips and blank sheet cells were excluded from the artwork assessment."
+    "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+    "Only supplied decoded still pairs were assessed. Continuous motion, easing, trajectories, intermediate layering and camera behavior between samples cannot be established.",
+    "Requested seek times are quantized to each stream’s frame rate; very small timing discrepancies may reflect sampling.",
+    "The latest supplied image is at 9.85s; the exact final frame is not shown.",
+    "Audio was not supplied or listened to. Reference metadata reports zero audio streams, providing technical evidence of a silent reference file; the supplied GPT render probe likewise lists only a video stream.",
+    "Exact font identities, complete collage transcription, emblem spoke count and the origin of subtle texture remain uncertain.",
+    "Color differences are visual observations from supplied images, not measured source-color values.",
+    "Reference text, brands and numerical values are visual claims, not independently verified facts.",
+    "Technical render metadata was supplied rather than independently checked; its passing status does not establish visual fidelity."
   ],
   "reference": {
     "slug": "souravbhar871-477361",

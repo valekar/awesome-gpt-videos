@@ -1,0 +1,224 @@
+{
+  "slug": "parkerrex-701462",
+  "status": "sampled",
+  "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+  "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+  "adapted": {
+    "attempts": 1,
+    "observations": [
+      "All 19 paired samples show corresponding dashboard states, including steady traffic, burst depletion, refusals, recovery and the concluding hold through 17.85s.",
+      "The sampled live counts match: 10, 10, 9, 4, 0, 1, 0, 2, 3, 5, 7, 9, then 10 throughout the conclusion.",
+      "Visible captions, request-history entries, quantities, attribution and footer text match, including “opus 5.5 drew this” and “@ParkerRex midweek update”.",
+      "The vessel, bottom-up token stacking, large count, aligned history columns and twelve-second chart occupy closely matching positions.",
+      "The broad chart trajectory, accepted/refused request ticks, recovery interruption and completed graph are preserved.",
+      "The sampled views retain the same fixed camera, flat diagram style, negative space and layer arrangement."
+    ],
+    "remaining_differences": [
+      "GPT's small monospaced text is visibly wider. The header extends farther right, while the credit begins farther left, substantially narrowing their gap. Phase captions also occupy more horizontal space. The large count and vessel remain closely aligned.",
+      "The original shows a green outline around the slot immediately above the four filled tokens; GPT lacks this accent. Similar green slot outlines visible in the original at 2s, 4s and 6s are absent or much less visible in GPT.",
+      "The full-resolution original shows a narrow blue partial fill along the bottom of the next empty slot above the five full tokens. GPT shows only five full tokens, omitting this visible fractional-refill cue.",
+      "The fine staircase geometry differs despite matching overall behavior. GPT includes additional needle-like upward segments along the near-zero plateau and slightly different intermediate edges during the steep descent. These differences remain visible in the completed graph at 17.85s.",
+      "GPT's zero is pinker than the original's warmer red. During the conclusion, GPT's takeaway text also appears more yellow-green than the original's warmer amber."
+    ]
+  },
+  "adapted_review_history": [
+    {
+      "iteration": 1,
+      "summary": "The GPT frames closely reproduce all sampled phases, counts, text and dashboard geometry. Visible differences are minor: missing refill accents, altered fine chart steps, wider typography and small color shifts. No major scene or content omission is evident.",
+      "matches": [
+        "All 19 paired samples show corresponding dashboard states, including steady traffic, burst depletion, refusals, recovery and the concluding hold through 17.85s.",
+        "The sampled live counts match: 10, 10, 9, 4, 0, 1, 0, 2, 3, 5, 7, 9, then 10 throughout the conclusion.",
+        "Visible captions, request-history entries, quantities, attribution and footer text match, including “opus 5.5 drew this” and “@ParkerRex midweek update”.",
+        "The vessel, bottom-up token stacking, large count, aligned history columns and twelve-second chart occupy closely matching positions.",
+        "The broad chart trajectory, accepted/refused request ticks, recovery interruption and completed graph are preserved.",
+        "The sampled views retain the same fixed camera, flat diagram style, negative space and layer arrangement."
+      ],
+      "differences": [
+        {
+          "time_seconds": 0,
+          "description": "GPT's small monospaced text is visibly wider. The header extends farther right, while the credit begins farther left, substantially narrowing their gap. Phase captions also occupy more horizontal space. The large count and vessel remain closely aligned.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 3,
+          "description": "The original shows a green outline around the slot immediately above the four filled tokens; GPT lacks this accent. Similar green slot outlines visible in the original at 2s, 4s and 6s are absent or much less visible in GPT.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9,
+          "description": "The full-resolution original shows a narrow blue partial fill along the bottom of the next empty slot above the five full tokens. GPT shows only five full tokens, omitting this visible fractional-refill cue.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9,
+          "description": "The fine staircase geometry differs despite matching overall behavior. GPT includes additional needle-like upward segments along the near-zero plateau and slightly different intermediate edges during the steep descent. These differences remain visible in the completed graph at 17.85s.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 4,
+          "description": "GPT's zero is pinker than the original's warmer red. During the conclusion, GPT's takeaway text also appears more yellow-green than the original's warmer amber.",
+          "severity": "minor",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "Preserve the current composition, sampled counts, text, history, phase sequence and concluding hold. Make a narrow fidelity revision: restore the observed partial blue refill strip and green slot-boundary accents, correct the visibly different chart segments, reduce small-text width and restore header spacing. Adjust the zero and conclusion colors slightly. Keep unresolved accent timing and chart-event details explicitly inferred.",
+      "should_revise": true,
+      "prompt_improvement_markdown": "Preserve the existing dashboard geometry, exact visible wording, request history, sampled live counts and ending hold. Refine only these observed differences:\n\n- Match small-text widths and header-to-credit spacing more closely; retain monospaced styling without claiming an exact font identification.\n- Render the narrow partial blue refill visible above the five full tokens at 9s, plus the green slot outlines visible at 2s, 3s, 4s and 6s. Do not invent pulse choreography between samples.\n- Match the visible staircase edges during depletion and the near-zero plateau; avoid adding unsupported needle-like peaks.\n- Shift the zero toward the original's warmer red and the final caption toward warmer amber.\n\nUse independently drawn Canvas elements. Document unresolved timing and event details as reconstruction choices.",
+      "limitations": [
+        "These are model-generated sampled findings, not human review, frame-by-frame acceptance, a quality score or a model ranking.",
+        "Assessment uses only the supplied image pairs and metadata. No tools, files, shell, web or agents were used.",
+        "Matching requested timestamps can still select slightly different quantized frame times. Motion, transition behavior and event ordering between samples cannot be established.",
+        "Exact font identity, original color values and subpixel rendering are unknown; fine appearance can also reflect decoding, scaling and compression.",
+        "Small request-history text in contact sheets has lower inspection confidence than text in the full-resolution detail pairs.",
+        "The original's numerical behavior is a visual claim, not an independently verified rate-limiter specification.",
+        "Audio was not supplied or listened to. The reference reports audio_streams=0, and the GPT probe lists only a video stream; these reports indicate technical silence through absence of audio streams.",
+        "The last supplied paired sample is 17.85s; endpoint behavior at 18.0s is not directly shown."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "1e813dc42cffbbe7dbbc62bc9626ee61383f3ed6b801fde319a78bbccae5aa7e",
+      "image_sha256": {
+        "work/comparison-evidence/parkerrex-701462/001/sheet-01.jpg": "a17ba83918fa8fc734f539e5db7f11781355cdeb9895884d22357b966257f0a0",
+        "work/comparison-evidence/parkerrex-701462/001/sheet-02.jpg": "c9d3bd6c8bf187b266e5a773e6ea212be2f57b44b8dce77fc1175c6e9f915fc9",
+        "work/comparison-evidence/parkerrex-701462/001/sheet-03.jpg": "63218fe1d480a8bf7ba7c3b22b3f31013bf920253f7ea8d7cfc5ffc53412050b",
+        "work/comparison-evidence/parkerrex-701462/001/detail-0000.jpg": "68da0f059e3fca06a0ef9b50751a8d9d538f10d44a87f4c9d6f60fcdadfa2657",
+        "work/comparison-evidence/parkerrex-701462/001/detail-0009.jpg": "d9b4a7fb1eec2939689d6f01d0b991d3a005ea250a71c794633a8b485aa3e382",
+        "work/comparison-evidence/parkerrex-701462/001/detail-0018.jpg": "92a8f83422756ab31ffa5109a18d2b98e75b0c1ad85ef14f7247006e28c19566"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          17.85
+        ],
+        "reference_metadata": {
+          "slug": "parkerrex-701462",
+          "width": 1080,
+          "height": 1080,
+          "fps": "30/1",
+          "duration_seconds": 18.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0,
+            10.0,
+            11.0,
+            12.0,
+            13.0,
+            14.0,
+            15.0,
+            16.0,
+            17.0
+          ],
+          "scene_change_times": [],
+          "sheets": [
+            "work/references/parkerrex-701462/evidence/sheet-01.jpg",
+            "work/references/parkerrex-701462/evidence/sheet-02.jpg"
+          ],
+          "full_frames": [
+            "work/references/parkerrex-701462/evidence/full-1.jpg",
+            "work/references/parkerrex-701462/evidence/full-2.jpg",
+            "work/references/parkerrex-701462/evidence/full-3.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/parkerrex-701462/001/sheet-01.jpg",
+          "work/comparison-evidence/parkerrex-701462/001/sheet-02.jpg",
+          "work/comparison-evidence/parkerrex-701462/001/sheet-03.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/parkerrex-701462/001/detail-0000.jpg",
+          "work/comparison-evidence/parkerrex-701462/001/detail-0009.jpg",
+          "work/comparison-evidence/parkerrex-701462/001/detail-0018.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 41154,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2481,
+        "reasoning_output_tokens": 1355
+      }
+    }
+  ],
+  "summary": "The GPT frames closely reproduce all sampled phases, counts, text and dashboard geometry. Visible differences are minor: missing refill accents, altered fine chart steps, wider typography and small color shifts. No major scene or content omission is evident.",
+  "limitations": [
+    "These are model-generated sampled findings, not human review, frame-by-frame acceptance, a quality score or a model ranking.",
+    "Assessment uses only the supplied image pairs and metadata. No tools, files, shell, web or agents were used.",
+    "Matching requested timestamps can still select slightly different quantized frame times. Motion, transition behavior and event ordering between samples cannot be established.",
+    "Exact font identity, original color values and subpixel rendering are unknown; fine appearance can also reflect decoding, scaling and compression.",
+    "Small request-history text in contact sheets has lower inspection confidence than text in the full-resolution detail pairs.",
+    "The original's numerical behavior is a visual claim, not an independently verified rate-limiter specification.",
+    "Audio was not supplied or listened to. The reference reports audio_streams=0, and the GPT probe lists only a video stream; these reports indicate technical silence through absence of audio streams.",
+    "The last supplied paired sample is 17.85s; endpoint behavior at 18.0s is not directly shown."
+  ],
+  "reference": {
+    "slug": "parkerrex-701462",
+    "width": 1080,
+    "height": 1080,
+    "fps": "30/1",
+    "duration_seconds": 18.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/parkerrex-701462/evidence/sheet-01.jpg",
+      "work/references/parkerrex-701462/evidence/sheet-02.jpg"
+    ],
+    "full_frames": [
+      "work/references/parkerrex-701462/evidence/full-1.jpg",
+      "work/references/parkerrex-701462/evidence/full-2.jpg",
+      "work/references/parkerrex-701462/evidence/full-3.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  }
+}

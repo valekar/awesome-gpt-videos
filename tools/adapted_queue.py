@@ -8,6 +8,7 @@ def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def classify(v):
  if v['runs']['adapted'].get('status') in ('rendered','reviewed'):
   return 'existing_render' if v.get('review',{}).get('adapted') else 'render_needs_comparison'
+ if v['runs']['adapted'].get('status')=='running':return 'active_generation'
  if v['runs']['adapted'].get('status')=='blocked':return 'missing_inputs_or_workflow'
  path=ROOT/'work/references'/v['slug']/'reference.json'
  if not path.exists():return 'reference_unavailable'

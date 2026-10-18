@@ -78,7 +78,7 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "running",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -128,6 +128,50 @@
       "--image",
       "$REPO/work/references/souravbhar871-477361/evidence/full-3.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 34864,
+      "cached_input_tokens": 18816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7608,
+      "reasoning_output_tokens": 1737
+    },
+    "finished_at": "2026-10-18T15:48:02.665763+00:00",
+    "assumptions": [
+      "Unsampled motion and transition interpolation are inferred from the supplied sampled states.",
+      "Generic system lettering approximates the reference; collage text is newly authored.",
+      "The updated evidence supersedes the obsolete subtitle restriction: Opu at 9.0 seconds completes to Opus 5.5 by 9.85 seconds.",
+      "The composition is silent, matching the supplied zero-audio-stream metadata. Source has not been rendered or visually validated."
+    ],
+    "missing_inputs": [],
+    "summary": "Repaired greeting enlargement and orange-fill transition, delayed the collage title, refined lettering and scattered glyphs, and completed the closing subtitle while retaining diagram and collaboration motion.",
+    "fps": 60.0,
+    "source_sha256": "b717e2ca4b0a45be0a903b0b7339d6c9251e335628d6c774ae0de1e67ecfec18",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 10,
+    "source_path": "results/souravbhar871-477361/adapted/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/souravbhar871-477361/adapted/video.mp4",
+    "poster_url": "media/souravbhar871-477361/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "60/1"
+        }
+      ],
+      "format": {
+        "duration": "10.000000"
+      }
+    },
+    "staged_source_sha256": "b717e2ca4b0a45be0a903b0b7339d6c9251e335628d6c774ae0de1e67ecfec18",
+    "source_modified_after_generation": false
   }
 }
