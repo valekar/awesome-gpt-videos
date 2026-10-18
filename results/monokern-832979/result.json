@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,28 @@
       "-o",
       "$REPO/results/monokern-832979/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20539,
+      "cached_input_tokens": 12416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7973,
+      "reasoning_output_tokens": 3106
+    },
+    "finished_at": "2026-10-18T14:07:42.409977+00:00",
+    "assumptions": [
+      "Creative choice: a 16:9 psychedelic showreel with acid lime, pink, violet, kinetic typography, an optical tunnel, a procedural torus and a kaleidoscopic finale.",
+      "All artwork is original procedural Canvas code. No external assets or named fonts are used; GSAP is supplied locally by the harness.",
+      "Silent animation; no soundtrack was supplied or requested. This output has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete editable 20-second HyperFrames animation with five visual movements, circular transitions and one deterministic paused GSAP timeline.",
+    "source_sha256": "9ee54c4ac2383b1222c3094691a493ab8044cac7c3bbe534cff3d57a872bdd7a",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 20,
+    "source_path": "results/monokern-832979/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   },
   "adapted": {
     "status": "not_generated"

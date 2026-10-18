@@ -3546,7 +3546,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -3578,7 +3578,28 @@
           "-o",
           "$REPO/results/monokern-832979/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20539,
+          "cached_input_tokens": 12416,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7973,
+          "reasoning_output_tokens": 3106
+        },
+        "finished_at": "2026-10-18T14:07:42.409977+00:00",
+        "assumptions": [
+          "Creative choice: a 16:9 psychedelic showreel with acid lime, pink, violet, kinetic typography, an optical tunnel, a procedural torus and a kaleidoscopic finale.",
+          "All artwork is original procedural Canvas code. No external assets or named fonts are used; GSAP is supplied locally by the harness.",
+          "Silent animation; no soundtrack was supplied or requested. This output has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable 20-second HyperFrames animation with five visual movements, circular transitions and one deterministic paused GSAP timeline.",
+        "source_sha256": "9ee54c4ac2383b1222c3094691a493ab8044cac7c3bbe534cff3d57a872bdd7a",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 20,
+        "source_path": "results/monokern-832979/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -3622,7 +3643,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -3654,7 +3675,50 @@
           "-o",
           "$REPO/results/zheke-622583/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20518,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6104,
+          "reasoning_output_tokens": 2431
+        },
+        "finished_at": "2026-10-18T14:06:34.192921+00:00",
+        "assumptions": [
+          "The open-ended request grants creative choice: an original “MAKE IT MOVE.” typography study with striped sculptures, elastic motion and circular transitions.",
+          "Chosen format: 1920×1080, 18 seconds, silent.",
+          "Uses procedural Canvas artwork, generic sans-serif typography and the supplied local gsap.min.js; no external assets or associated license gaps.",
+          "This code has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable kinetic typography animation with rotating 3D striped forms and continuous iris transitions.",
+        "source_sha256": "05b15fee5afa0499cfa1ab34ef51a5b0ba90f4c8c0bb0a19fe9e1f95490aac7e",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 18,
+        "source_path": "results/zheke-622583/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/zheke-622583/baseline/video.mp4",
+        "poster_url": "media/zheke-622583/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "18.000000"
+          }
+        },
+        "staged_source_sha256": "05b15fee5afa0499cfa1ab34ef51a5b0ba90f4c8c0bb0a19fe9e1f95490aac7e",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -3696,7 +3760,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "fa61721e87a60572057180ff67083338f558ecb260770cffbe1b85ff50c5f0c7",
+        "input_sha256": "5e946b30e8bdb3260df18ce673092bd5381b22be64d0892a1793a3434727cb5d",
+        "started_at": "2026-10-18T14:06:36.146890+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/axtonliu-290566/baseline/schema.json",
+          "-o",
+          "$REPO/results/axtonliu-290566/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"
