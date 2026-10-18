@@ -1,0 +1,125 @@
+{
+  "brief_markdown": "Create a NEW, code-rendered, 30-second presentation video for Brieform at 1280 × 720, 16:9, 30 fps. This is an inferred reconstruction brief derived from supplied visual evidence, never the creator’s identical original prompt. The supplied creator material is only: “make a presentation video for Brieform, 30 seconds long”. Additional original instructions, assets and implementation details remain unknown.\n\nThe observed sequence is: opening question and highlighted answer; an AI chat creating and publishing a client intake form; a public form being filled and submitted; the AI chat summarizing responses; a closing brand and website card. Preserve all these stages and their readable holds across the full 30 seconds. Values and product statements are reference copy, not independently verified claims.\n\nEvidence interpretation: the first contact sheet has four columns, with rows covering 0–3, 4–7, 8–11 and 12–15 seconds. The second covers 16–19, 20–23 and 24–27 seconds, followed by 28 and 29 seconds in its final row. The unused lower-right cells are sheet space, not additional footage. Timestamp strips belong to the contact sheets and must not appear in the recreation. The four larger frames clarify typography and geometry; they have no visible timestamps and should not independently establish timing.\n\nVisual system: use a nearly black, warm charcoal background, approximately #191914, with an extremely restrained, broad olive glow around the central content. Off-white text, gray secondary text, and fluorescent yellow-green accents provide almost all the color. Keep the composition sparse, centered and front-facing, with generous empty space. There is no observed live action, photographic footage, perspective camera move or scene environment. Interface cards have soft corners, thin borders and subtle dark shadows. Use a bold contemporary sans serif for headlines and the brand name, regular sans serif for body copy and form labels, and a small monospace face for numbered step headings, URLs and tool calls. Exact font families are unknown.\n\nOpening layout: center two lines of large bold text. In the full-resolution evidence, “Need a form?” occupies roughly x405–875, y268–323; the larger “Just ask your AI.” occupies roughly x273–1012, y390–458. The first line is approximately 72 px and the second approximately 92 px. During the brighter sampled state, “Just” remains white while “ask your AI.” becomes black over a snug fluorescent lime rectangle with slightly softened corners. The opening begins and ends on the dark background in the sampled evidence.\n\nChat layouts: place the step label near the top center, around y40–70. A small lime badge contains the two-digit number; a widely spaced gray uppercase monospace label sits to its right. Beneath it, place a dark chat window approximately x220–1060, y150–570, with a narrow top bar, fine border, rounded corners and shadow. Three small red, yellow and green window dots sit at upper left, followed by “Your AI chat”. The upper-right status identifies MCP and Brieform connectivity in very small type. User prompts sit in a slightly lighter rounded bubble aligned right. Tool activity and assistant responses appear left aligned below. Use lime circular status indicators and tiny monospace tool names. The finished link is enclosed in a narrow lime-outlined rounded rectangle. Center the explanatory caption near y650, keeping it separate from the window.\n\nPublic form layout: the full-resolution frame shows a light off-white browser/form card at approximately x270, y117, width740, height486, with about 20 px corner radii. A narrow pale address strip spans almost the full card width at the top, showing brieform.app/f/client-intake in small gray monospace text. The content begins around x330, y194. “Client intake” is a bold approximately 32 px heading. Name and Email form a two-column row, with fields approximately 300 px wide and a narrow central gap. Budget and Project details span the full approximately 620 px content width. Field labels are about 15–16 px; entered values about 16 px. Inputs are white with thin pale-gray borders and modest corner rounding. Focus is indicated by a dark outline and a visible insertion caret. The Project details field is approximately 70 px tall. The black Submit button is approximately 109 × 43 px at x330, y514, with white text and a small radius. The caption beneath the card begins around x277, y648 and uses approximately 28 px text; highlight “never see an AI.” in lime. The success state retains the browser shell and replaces the form content with a centered dark circular check badge, bold confirmation and smaller gray supporting copy.\n\nClosing layout: the enlarged closing frames show a centered brand lockup around y215–289. A black square approximately 74 × 74 px at x462 contains a white asymmetrical triangular sail/shield shape, pointed toward the upper right and curved along its lower edge. “Brieform” sits immediately to its right in bold white type, approximately 64 px. Below, center the approximately 42 px sentence “Forms your AI builds, publishes, and reads.” around y328. Only “reads.” receives a fluorescent lime background with black lettering in the completed state. Center the smaller gray compatibility sentence around y403. Near y461, place a lime rounded website pill approximately 200 × 49 px containing bold black monospace “brieform.app”; place gray “Free to start” to its right. Hold the completed card through the last supplied sample.\n\nAnimation must follow changes actually supported by the samples: text becomes visible, lime emphasis appears, user prompts and form values progressively populate, tool statuses complete, assistant responses accumulate, and the form changes to confirmation. Do not add camera travel, elaborate transitions, cursor paths or interactions that the evidence does not establish. Exact easing, character cadence, subsecond transition durations and the final second require follow-up inspection. Rebuild the interfaces, text and logo geometry as new code artwork; do not use the reference images as output frames or textures.",
+  "observed_scenes": [
+    {
+      "start_seconds": 0,
+      "end_seconds": 3,
+      "description": "Opening title sequence. At 0 seconds, only the dark charcoal background and faint central olive glow are visible. At 1 second, centered bold text reads “Need a form?” above the larger “Just ask your AI.”, both in subdued gray tones. At 2 seconds, the lower line is brighter: “Just” is white and “ask your AI.” is black on a lime rectangle; the upper question remains gray. These samples establish a reveal and emphasis change, but not the precise fade curve or whether position also changes between frames."
+    },
+    {
+      "start_seconds": 3,
+      "end_seconds": 4,
+      "description": "The 3-second tile returns to the dark background without the opening text. The first chat demonstration is visible by 4 seconds. Preserve this observed visual separation; exact exit and entrance boundaries lie between the samples."
+    },
+    {
+      "start_seconds": 4,
+      "end_seconds": 7,
+      "description": "Step “01 ASK IN CHAT”. A centered dark desktop-style chat window appears beneath the small numbered heading. The right-aligned user bubble contains a prompt being progressively entered: a short fragment at 4 seconds, a longer two-line request at 5 seconds, and the completed request at 6 seconds: “Create a client intake form: name, email, budget and project details. Then publish it.” The lower caption reads “Describe it. Brieform builds and publishes it.” with “builds and publishes it.” in lime. The window is otherwise mostly empty during entry. At 7 seconds, a left-aligned create_form tool activity line is visible."
+    },
+    {
+      "start_seconds": 7,
+      "end_seconds": 9,
+      "description": "Continue the same fixed chat composition. The create_form activity is followed by publish_form activity; by 8 seconds, both tool rows are visible with small lime status marks. At 9 seconds, the assistant response and outlined URL have appeared: “Done. Your form is live at its own link:” followed by brieform.app/f/client-intake with a small outgoing-link symbol. Tool completion appears sequential across the samples; exact spinner behavior and icon animation are unresolved."
+    },
+    {
+      "start_seconds": 9,
+      "end_seconds": 12,
+      "description": "Hold the completed step-01 chat at 9, 10 and 11 seconds: full user request, two completed tool rows, publication confirmation and lime-outlined link. Keep the top step heading and bottom explanatory caption visible. By 12 seconds the shot has changed to the public form; the exact cut or transition is not sampled."
+    },
+    {
+      "start_seconds": 12,
+      "end_seconds": 17,
+      "description": "Step “02 SHARE THE LINK”. Replace the dark chat card with a centered light browser/form card containing “Client intake”, Name, Email, Budget, Project details and Submit. At 12 seconds, the Name field is focused with an insertion caret while the fields are empty. At 13 seconds, “Léa Martin” is filled and the Email field is being populated. At 14 seconds, the email is complete as “lea@studionord.fr” and the Budget field is being populated. At 15 seconds, Project details is being typed; the enlarged form evidence captures the partial text “A new site for our des” with a caret. At 16 seconds, all values are complete, including “$5k to $10k” and “A new site for our design studio, live before March.” The caption reads “A normal web page. The people filling it in never see an AI.”, with its final phrase lime. The caption is clearly readable from 13 seconds onward; its appearance timing around 12 seconds is less certain. No mouse-click trajectory is established by these stills."
+    },
+    {
+      "start_seconds": 17,
+      "end_seconds": 19,
+      "description": "The same step-02 browser card shows a submission success state at 17 and 18 seconds. The fields and button are replaced by a small dark circle containing a lime check, centered above “Thanks, we got it.” and the smaller gray line “We will get back to you within two days.” Keep the URL strip, step label and bottom caption. Submission occurs between the completed form at 16 seconds and success at 17 seconds; the exact click or transition is not shown. The chat summary shot is present by 19 seconds."
+    },
+    {
+      "start_seconds": 19,
+      "end_seconds": 22,
+      "description": "Step “03 READ THE ANSWERS”. Return to the dark chat-window arrangement. A right-aligned user message is partially entered at 19 seconds and complete at 20 seconds: “Summarize the responses so far.” At 21 seconds, a get_responses tool row with lime status mark is visible below it. The bottom caption reads “The answers come back in the same thread.”, with “in the same thread.” in lime. At 22 seconds, the assistant summary starts appearing beneath the tool activity."
+    },
+    {
+      "start_seconds": 22,
+      "end_seconds": 25,
+      "description": "The response accumulates in the existing step-03 chat. At 22 seconds, “You have 8 responses this week:” and the first budget bullet are readable, with the next content less fully revealed. By 23 seconds, the complete three-item summary is visible: “Most budgets fall between $5k and $10k.”; “5 of 8 want a site redesign.”; “Call first: Studio Nord, launch before March.” The third item highlights “Studio Nord” in lime, and the second item also includes lime emphasis around its numeric lead-in. Hold this completed summary at 24 seconds. Preserve the user prompt, tool row, sparse chat layout and caption."
+    },
+    {
+      "start_seconds": 25,
+      "end_seconds": 26,
+      "description": "At 25 seconds, the interface and caption have disappeared, leaving the dark background with its subtle olive glow. The closing brand card is visible by 26 seconds. The samples establish an intervening background-only state, without defining its exact duration or transition mechanics."
+    },
+    {
+      "start_seconds": 26,
+      "end_seconds": 30,
+      "description": "Closing Brieform card. At 26 seconds, the centered icon and bold Brieform wordmark are visible above “Forms your AI builds, publishes, and reads.” The compatibility copy and lower CTA are not yet clearly visible in that sample. At 27 seconds, “reads.” is black on a lime highlight, and “Works with Claude, ChatGPT, Cursor and any MCP client.” appears below; the website CTA is visible in a dimmer intermediate state. At 28 and 29 seconds, the complete card is bright and stable, with the lime “brieform.app” pill and gray “Free to start”. Preserve the uncluttered centered geometry. The supplied movie duration is 30 seconds, but no 30-second endpoint frame was supplied; behavior after the 29-second sample is unobserved."
+    }
+  ],
+  "exact_visible_text": [
+    "Need a form?",
+    "Just ask your AI.",
+    "01",
+    "ASK IN CHAT",
+    "Your AI chat",
+    "MCP",
+    "brieform",
+    "connected",
+    "Create a client intake form: name, email, budget and project details. Then publish it.",
+    "create_form",
+    "publish_form",
+    "Done. Your form is live at its own link:",
+    "brieform.app/f/client-intake",
+    "Describe it. Brieform builds and publishes it.",
+    "02",
+    "SHARE THE LINK",
+    "Client intake",
+    "Name",
+    "Email",
+    "Budget",
+    "Project details",
+    "Submit",
+    "Léa Martin",
+    "lea@studionord.fr",
+    "$5k to $10k",
+    "A new site for our des",
+    "A new site for our design studio, live before March.",
+    "A normal web page. The people filling it in never see an AI.",
+    "Thanks, we got it.",
+    "We will get back to you within two days.",
+    "03",
+    "READ THE ANSWERS",
+    "Summarize the responses so far.",
+    "get_responses",
+    "You have 8 responses this week:",
+    "Most budgets fall between $5k and $10k.",
+    "5 of 8 want a site redesign.",
+    "Call first: Studio Nord, launch before March.",
+    "The answers come back in the same thread.",
+    "Brieform",
+    "Forms your AI builds, publishes, and reads.",
+    "Works with Claude, ChatGPT, Cursor and any MCP client.",
+    "brieform.app",
+    "Free to start"
+  ],
+  "uncertainties": [
+    "The reference was sampled once per second, not reviewed frame by frame. All described intervals are reconstruction guides anchored to those samples; exact scene boundaries, fades, easing and intermediate positions remain uncertain.",
+    "No detected scene-change timestamps were supplied. Background-only samples at 3 and 25 seconds demonstrate visual separation but do not establish the precise transition method.",
+    "The full-resolution frames lack visible timestamps. Their geometry can clarify the matching shots, but their filenames do not establish chronological order or exact time.",
+    "Exact font families, weights, color values, glow construction, border widths and shadow parameters cannot be recovered from the supplied images. Pixel measurements are approximate visual estimates.",
+    "Tiny chat header and tool-row punctuation are less certain than the larger copy. The tool names are readable, but their separators and small status symbols should be verified against larger chat frames.",
+    "Progressive text entry is supported by multiple samples. Exact intermediate fragments, per-character timing and caret blinking are not fully recoverable.",
+    "The form changes to success between 16 and 17 seconds, but the supplied images do not establish a visible click, pointer movement or button-press animation.",
+    "The supplied closing frames establish a hold through 29 seconds. The last second and exact endpoint appearance require inspection.",
+    "The public form, tool calls, response count, budgets, compatibility list and free-start claim are visual evidence only; no live product behavior or underlying response dataset was verified.",
+    "The supplied creator request is partial production context. The additional layout, copy and sequence described here are visually inferred guidance, not recovered original chat."
+  ],
+  "missing_inputs": [
+    "Frame-level reference inspection around shot changes, text-entry completion, submission, closing-card buildup and the final second, to resolve timing before claiming a closely matched recreation.",
+    "Larger reference frames for both chat shots to confirm tiny header punctuation, tool-line formatting, bullet emphasis and status-icon geometry.",
+    "Original font files and vector brand asset, if exact typography and logo matching are required. Their availability and provenance are unknown; otherwise create new code-based approximations and label them inferred.",
+    "Any original private brief, brand guidelines, source project, application data or additional creator conversation remain unknown and must not be invented."
+  ],
+  "audio_review": "Frozen metadata reports audio_streams=0, so the supplied reference file has no audio stream to review. No listening review was performed and no soundtrack or narration is inferred. No audio follow-up is required for this file; separately sourced creator audio would require its own review if later supplied."
+}

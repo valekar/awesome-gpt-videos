@@ -1,0 +1,74 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "cfaaaebe3585ccb29b37e8b4e0ba2f561173f986042460c243dfb8feb897cdf0",
+  "reference_evidence": {
+    "slug": "majorbaguette-834228",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "duration_seconds": 30.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0,
+      21.0,
+      22.0,
+      23.0,
+      24.0,
+      25.0,
+      26.0,
+      27.0,
+      28.0,
+      29.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/majorbaguette-834228/evidence/sheet-01.jpg",
+      "work/references/majorbaguette-834228/evidence/sheet-02.jpg"
+    ],
+    "full_frames": [
+      "work/references/majorbaguette-834228/evidence/full-1.jpg",
+      "work/references/majorbaguette-834228/evidence/full-2.jpg",
+      "work/references/majorbaguette-834228/evidence/full-3.jpg",
+      "work/references/majorbaguette-834228/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/majorbaguette-834228/evidence/sheet-01.jpg": "d7a17507d11c3b45f51b606d3779815a92380fd591b9c4b8ba9337090569fd38",
+    "work/references/majorbaguette-834228/evidence/sheet-02.jpg": "02a9bba0f531908376a5cacc2df68beb9b19a7c019b96d282538a2c439444eb1",
+    "work/references/majorbaguette-834228/evidence/full-1.jpg": "740ed62d83e681a8a00d8707e91ed9f25c663451ce46e621172e0d695107a063",
+    "work/references/majorbaguette-834228/evidence/full-2.jpg": "96d0cbaf85d2d2ad8dbe843daac6625e99aec4cc85b1834fb438b0e8ea14165c",
+    "work/references/majorbaguette-834228/evidence/full-3.jpg": "a3d0bc31099a829c007c4d1d338eeb7fc96acda3cf945aace1ccb8de158a2ee6",
+    "work/references/majorbaguette-834228/evidence/full-4.jpg": "b1d4ad802a05e4b6c049b3b4e2faedab6059592c8fb92b180fca94fc053db83e"
+  },
+  "usage": {
+    "input_tokens": 30783,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4755,
+    "reasoning_output_tokens": 1034
+  },
+  "audio_supplied": false
+}
