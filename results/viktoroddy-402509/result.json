@@ -79,7 +79,7 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -145,6 +145,30 @@
       "--image",
       "$REPO/work/references/viktoroddy-402509/evidence/full-4.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 57013,
+      "cached_input_tokens": 18816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 23497,
+      "reasoning_output_tokens": 5536
+    },
+    "finished_at": "2026-10-18T17:00:37.199417+00:00",
+    "assumptions": [
+      "Preserves the supplied 1280×720, 30 fps, 54.3-second format and complete scene order.",
+      "Website artwork, ribbon geometry and system typography are independently authored approximations; supplied reference frames are not embedded.",
+      "Rapid montage crops and intermediate cuts are inferred using the evidenced automotive and nature subjects. The unidentified original intermediate images and terminal URL host remain unresolved.",
+      "No audio is added, consistent with the supplied zero-audio-stream reference.",
+      "Source only; no rendering, execution or visual validation was performed."
+    ],
+    "missing_inputs": [],
+    "summary": "Revised scene boundaries, rapid montage, rolling counter and graph, result-card overlap, audience transitions, detailed previews, compact final tagline and closing fade.",
+    "fps": 30.0,
+    "source_sha256": "c5a82ddf86434634b7d8bb9fadd8957233ee61a3b598e64c4ceb1f25a6e0db45",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 54.3,
+    "source_path": "results/viktoroddy-402509/adapted/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   }
 }

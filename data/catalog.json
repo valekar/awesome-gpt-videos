@@ -3908,16 +3908,16 @@
         "source_modified_after_generation": false
       },
       "adapted": {
-        "status": "rendered",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
         "protocol_version": "reference-v3",
         "track": "adapted",
-        "iteration": 1,
+        "iteration": 2,
         "source_prompt_sha256": "771a59321bcbae1be6dd9e673612e6a347748fc1839554a04d4373ec1c59dd94",
-        "input_sha256": "dff431d171990c565c5858ebad1c5b533119cf397290228c75aa3a7079c3c35c",
-        "started_at": "2026-10-18T16:42:13.024618+00:00",
+        "input_sha256": "70ff247d0f023e29651395fcce4418c2ef2ffb61682f9e3f28e2f1c8e1ec3679",
+        "started_at": "2026-10-18T16:51:55.623947+00:00",
         "tools": "none requested; read-only sandbox",
         "reference_images_supplied": [
           "sheet-01.jpg",
@@ -3976,51 +3976,29 @@
           "-"
         ],
         "usage": {
-          "input_tokens": 41841,
-          "cached_input_tokens": 0,
+          "input_tokens": 57013,
+          "cached_input_tokens": 18816,
           "cache_write_input_tokens": 0,
-          "output_tokens": 18588,
-          "reasoning_output_tokens": 3511
+          "output_tokens": 23497,
+          "reasoning_output_tokens": 5536
         },
-        "finished_at": "2026-10-18T16:48:50.831439+00:00",
+        "finished_at": "2026-10-18T17:00:37.199417+00:00",
         "assumptions": [
-          "Preserves the supplied 16:9 format, 54.3-second duration and 30 fps metadata.",
-          "Website illustrations and logo geometry are independently authored procedural approximations; reference images are not embedded.",
-          "Generic system fonts approximate unidentified reference typography.",
-          "Motion, transitions, counter interpolation and particle trajectories are inferred from sampled frames.",
-          "The unreadable terminal URL host is represented by an ellipsis.",
-          "Silent composition follows the supplied reference metadata reporting zero audio streams."
+          "Preserves the supplied 1280×720, 30 fps, 54.3-second format and complete scene order.",
+          "Website artwork, ribbon geometry and system typography are independently authored approximations; supplied reference frames are not embedded.",
+          "Rapid montage crops and intermediate cuts are inferred using the evidenced automotive and nature subjects. The unidentified original intermediate images and terminal URL host remain unresolved.",
+          "No audio is added, consistent with the supplied zero-audio-stream reference.",
+          "Source only; no rendering, execution or visual validation was performed."
         ],
         "missing_inputs": [],
-        "summary": "Complete editable, seekable HyperFrames source covering every supplied scene. Not rendered or visually validated.",
+        "summary": "Revised scene boundaries, rapid montage, rolling counter and graph, result-card overlap, audience transitions, detailed previews, compact final tagline and closing fade.",
         "fps": 30.0,
-        "source_sha256": "f106357f5f27a76988385d8c5cc09d076bab43c7a8b1bea9dd3e48658a3b9855",
+        "source_sha256": "c5a82ddf86434634b7d8bb9fadd8957233ee61a3b598e64c4ceb1f25a6e0db45",
         "width": 1280,
         "height": 720,
         "duration_seconds": 54.3,
         "source_path": "results/viktoroddy-402509/adapted/index.html",
-        "reason": "Rendered and technically checked. Matched-time visual review pending.",
-        "video_url": "media/viktoroddy-402509/adapted/video.mp4",
-        "poster_url": "media/viktoroddy-402509/adapted/poster.jpg",
-        "technical_check": "passed",
-        "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
-        "render_probe": {
-          "programs": [],
-          "stream_groups": [],
-          "streams": [
-            {
-              "codec_type": "video",
-              "width": 1280,
-              "height": 720,
-              "r_frame_rate": "30/1"
-            }
-          ],
-          "format": {
-            "duration": "54.300000"
-          }
-        },
-        "staged_source_sha256": "f106357f5f27a76988385d8c5cc09d076bab43c7a8b1bea9dd3e48658a3b9855",
-        "source_modified_after_generation": false
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       }
     },
     "review_status": "sampled",
