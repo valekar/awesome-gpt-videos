@@ -1,5 +1,5 @@
 {
-  "status": "generated",
+  "status": "rendered",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
   "cli_version": "0.163.0",
@@ -81,5 +81,26 @@
   "height": 720,
   "duration_seconds": 30,
   "source_path": "results/majorbaguette-834228/adapted/index.html",
-  "reason": "Source generated; rendering and matched-time fidelity review pending."
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/majorbaguette-834228/adapted/video.mp4",
+  "poster_url": "media/majorbaguette-834228/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "30.000000"
+    }
+  },
+  "staged_source_sha256": "f208cb5f327a8d59f735869b70fefa8950d02a34a9303842d4ce0390a9c6c35c",
+  "source_modified_after_generation": false
 }

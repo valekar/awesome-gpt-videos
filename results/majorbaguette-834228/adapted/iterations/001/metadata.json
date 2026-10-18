@@ -1,0 +1,106 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "reference-v3",
+  "track": "adapted",
+  "iteration": 1,
+  "source_prompt_sha256": "6a4c04c3887819823ae3d31512c956f6cc82c47e06665499db6e503afa914769",
+  "input_sha256": "9c694112924fde17a548bdb78172ebace4bcee52c2a389f9c43e4a44675664cd",
+  "started_at": "2026-10-18T15:59:09.287697+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [
+    "sheet-01.jpg",
+    "sheet-02.jpg",
+    "full-1.jpg",
+    "full-2.jpg",
+    "full-3.jpg",
+    "full-4.jpg"
+  ],
+  "reference_image_sha256": {
+    "sheet-01.jpg": "d7a17507d11c3b45f51b606d3779815a92380fd591b9c4b8ba9337090569fd38",
+    "sheet-02.jpg": "02a9bba0f531908376a5cacc2df68beb9b19a7c019b96d282538a2c439444eb1",
+    "full-1.jpg": "740ed62d83e681a8a00d8707e91ed9f25c663451ce46e621172e0d695107a063",
+    "full-2.jpg": "96d0cbaf85d2d2ad8dbe843daac6625e99aec4cc85b1834fb438b0e8ea14165c",
+    "full-3.jpg": "a3d0bc31099a829c007c4d1d338eeb7fc96acda3cf945aace1ccb8de158a2ee6",
+    "full-4.jpg": "b1d4ad802a05e4b6c049b3b4e2faedab6059592c8fb92b180fca94fc053db83e"
+  },
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/majorbaguette-834228/adapted/schema.json",
+    "-o",
+    "$REPO/results/majorbaguette-834228/adapted/response.json",
+    "--image",
+    "$REPO/work/references/majorbaguette-834228/evidence/sheet-01.jpg",
+    "--image",
+    "$REPO/work/references/majorbaguette-834228/evidence/sheet-02.jpg",
+    "--image",
+    "$REPO/work/references/majorbaguette-834228/evidence/full-1.jpg",
+    "--image",
+    "$REPO/work/references/majorbaguette-834228/evidence/full-2.jpg",
+    "--image",
+    "$REPO/work/references/majorbaguette-834228/evidence/full-3.jpg",
+    "--image",
+    "$REPO/work/references/majorbaguette-834228/evidence/full-4.jpg",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 34574,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 6765,
+    "reasoning_output_tokens": 2070
+  },
+  "finished_at": "2026-10-18T16:01:38.305199+00:00",
+  "assumptions": [
+    "Reconstruction follows the supplied images and inferred brief; exact subsecond timing, typography and logo geometry are approximated.",
+    "Uses generic system fonts and newly drawn Canvas artwork. Supplied font assets are unused.",
+    "Silent, matching the authoritative reference metadata; intended frame rate is 30 fps.",
+    "The completed closing card holds through 30 seconds; the unsupplied endpoint is inferred.",
+    "Source has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Editable, seekable 30-second Brieform reconstruction covering all five stages and progressive UI states.",
+  "fps": 30.0,
+  "source_sha256": "f208cb5f327a8d59f735869b70fefa8950d02a34a9303842d4ce0390a9c6c35c",
+  "width": 1280,
+  "height": 720,
+  "duration_seconds": 30,
+  "source_path": "results/majorbaguette-834228/adapted/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/majorbaguette-834228/adapted/video.mp4",
+  "poster_url": "media/majorbaguette-834228/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "30.000000"
+    }
+  },
+  "staged_source_sha256": "f208cb5f327a8d59f735869b70fefa8950d02a34a9303842d4ce0390a9c6c35c",
+  "source_modified_after_generation": false
+}
