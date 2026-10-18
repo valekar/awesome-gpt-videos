@@ -18,7 +18,7 @@ if __name__=='__main__':
    if subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT).returncode:raise RuntimeError('Existing staged work preserved; publisher stopped')
    command(['npm','test']);command(['git','add','--',*PATHS])
    if subprocess.run(['git','diff','--cached','--quiet'],cwd=ROOT).returncode:
-    command(['git','diff','--cached','--check','--','.',':!docs/media/**/gsap.min.js'])
+    command(['git','diff','--cached','--check','--','.',':!docs/media/**/gsap.min.js',':!docs/media/**/FONT-*'])
     command(['git','commit','-m','Update corpus generation and render progress'])
     command(['python3','tools/github_sync.py','--push'])
    last=key
