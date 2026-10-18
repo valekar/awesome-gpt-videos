@@ -34,8 +34,9 @@
     },
     "adapted": {
       "rendered": 12,
-      "not_generated": 688,
-      "blocked": 3
+      "not_generated": 687,
+      "blocked": 3,
+      "failed": 1
     }
   },
   "entries_with_source": 55,

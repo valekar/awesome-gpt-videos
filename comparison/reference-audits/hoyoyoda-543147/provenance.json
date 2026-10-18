@@ -1,0 +1,54 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "2f3b90f75ee989ceaebbc0f544a342e76dd9087fadebecff952340b1929483e4",
+  "reference_evidence": {
+    "slug": "hoyoyoda-543147",
+    "width": 1280,
+    "height": 720,
+    "fps": "60/1",
+    "duration_seconds": 12.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/hoyoyoda-543147/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/hoyoyoda-543147/evidence/full-1.jpg",
+      "work/references/hoyoyoda-543147/evidence/full-2.jpg",
+      "work/references/hoyoyoda-543147/evidence/full-3.jpg",
+      "work/references/hoyoyoda-543147/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/hoyoyoda-543147/evidence/sheet-01.jpg": "8030b7deb5e3e64e65dbb074ec17759ed380e4f64957b1e7f77f14c1f33995ab",
+    "work/references/hoyoyoda-543147/evidence/full-1.jpg": "b3a1556a495fcf5d097631394e5c15a8f3afbdd682d9511b31b1605c5ccc48ce",
+    "work/references/hoyoyoda-543147/evidence/full-2.jpg": "2dafe66572f540a5338f04b11493d75943153c873b858a5a2f2d3ad7ec397fe4",
+    "work/references/hoyoyoda-543147/evidence/full-3.jpg": "4508843e91b94bb91d2686c3fe820a3cbc4e38fe0ac91ade8e0ec4a770af6601",
+    "work/references/hoyoyoda-543147/evidence/full-4.jpg": "13c6bb1de7438486378fe2cd0deeb337dcefe82b3fabf967d9f607ca5821fcdf"
+  },
+  "usage": {
+    "input_tokens": 27964,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5495,
+    "reasoning_output_tokens": 2070
+  },
+  "audio_supplied": false
+}
