@@ -27,11 +27,11 @@
   "sampled_reviews": 3,
   "run_counts": {
     "baseline": {
-      "blocked": 9,
+      "blocked": 10,
       "not_generated": 674,
       "rendered": 14,
       "generated": 4,
-      "running": 2
+      "running": 1
     },
     "adapted": {
       "rendered": 2,
