@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore the Pagoda</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#182f32;font-family:system-ui,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#d6b899}canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;outline:none}canvas:active{cursor:grabbing}#hud{position:absolute;inset:0;pointer-events:none;color:#fff7dd}#intro{position:absolute;left:5%;top:7%;text-shadow:0 3px 24px #193b3b80}#intro p{margin:0 0 12px;font-size:clamp(14px,1.35vw,26px);letter-spacing:.15em;text-transform:uppercase}h1{margin:0;font-size:clamp(36px,4.7vw,90px);font-weight:450;letter-spacing:-.055em;line-height:1.05}#intro .sub{margin-top:20px;font-size:clamp(15px,1.45vw,28px);letter-spacing:0;text-transform:none;max-width:600px}#controls{position:absolute;left:4%;right:4%;bottom:4%;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:clamp(12px,1.25vw,24px)}.panel{pointer-events:auto;display:flex;align-items:center;gap:12px;padding:13px 17px;background:#142f30e8;border:1px solid #e8c98b40;border-radius:18px;box-shadow:0 8px 30px #0b252530;backdrop-filter:blur(10px)}.hint{line-height:1.5;padding:0 8px}.hint strong{font-weight:550;color:#f5d790}.hint span{white-space:nowrap}button{font:inherit;color:#fff3d3;border:1px solid #e7ca8c55;background:#ffffff08;border-radius:10px;min-width:46px;min-height:46px;padding:8px 12px;cursor:pointer}button:hover,button:focus-visible{background:#fff0c325;outline:2px solid #ecd292;outline-offset:2px}button[aria-pressed=true]{background:#e6c78b;color:#233c37;border-color:#e6c78b}.label{font-size:.8em;letter-spacing:.1em;text-transform:uppercase;margin:0 5px}.movement{gap:7px}.movement button{padding:7px;min-width:40px}#tour{margin-left:8px;white-space:nowrap}@media(max-width:1000px){#controls{gap:9px;flex-wrap:wrap;bottom:3%}.panel{padding:8px 10px;gap:6px;border-radius:12px}button{min-width:32px;min-height:34px;padding:5px 8px}.movement button{min-width:32px}.hint{padding:0}.label{margin:0 3px}}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="24">
+<canvas id="scene" class="clip" data-start="0" data-duration="24" width="1920" height="1080" tabindex="0" aria-label="Interactive three-dimensional pagoda. Use W A S D or arrow keys to move, drag to look, Q and E to change height, and number keys one through five to visit floors."></canvas>
+<div id="hud" class="clip" data-start="0" data-duration="24">
+<div id="intro"><p>A garden in the evening light</p><h1>Enter the pagoda.</h1><p class="sub">Five floors. Open balconies. A different view at every height.</p></div>
+<div id="controls">
+<div class="panel"><div class="hint"><span><strong>WASD</strong> move &nbsp; · &nbsp; <strong>drag</strong> to look</span><br><span><strong>Q / E</strong> lower / rise &nbsp; · &nbsp; <strong>1–5</strong> visit a floor</span></div></div>
+<div class="panel movement" aria-label="Movement controls"><button data-move="w" aria-label="Move forward">↑</button><button data-move="a" aria-label="Move left">←</button><button data-move="s" aria-label="Move backward">↓</button><button data-move="d" aria-label="Move right">→</button></div>
+<div class="panel"><span class="label">Floors</span><button data-floor="0" aria-label="Visit floor one" aria-pressed="false">1</button><button data-floor="1" aria-label="Visit floor two" aria-pressed="false">2</button><button data-floor="2" aria-label="Visit floor three" aria-pressed="false">3</button><button data-floor="3" aria-label="Visit floor four" aria-pressed="false">4</button><button data-floor="4" aria-label="Visit floor five" aria-pressed="false">5</button><button id="tour">Tour view</button></div>
+</div>
+</div>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(function(){
+'use strict';
+// Editable scene settings. All geometry is generated below, with no remote assets.
+const SETTINGS={width:1920,height:1080,duration:24,floors:5,floorHeight:4.4,baseHalfWidth:8.6,taper:1.1};
+const W=SETTINGS.width,H=SETTINGS.height,TAU=Math.PI*2;
+const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d',{alpha:false});
+const intro=document.getElementById('intro');
+const faces=[],columns=[];
+const colors={red:'#963f31',redLight:'#bc5540',wood:'#713e2d',gold:'#cba35d',roof:'#286b62',roofDark:'#164b49',stone:'#c6bba0',floor:'#b97848'};
+const V=(x,y,z)=>({x,y,z});
+const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const smooth=t=>{t=clamp(t,0,1);return t*t*(3-2*t)};
+function shade(hex,n){const v=parseInt(hex.slice(1),16);return 'rgb('+Math.round(((v>>16)&255)*n)+','+Math.round(((v>>8)&255)*n)+','+Math.round((v&255)*n)+')'}
+function face(vertices,color,lit=true,outline=null){
+ let c=color;
+ if(lit){const a=vertices[0],b=vertices[1],d=vertices[2],ux=b.x-a.x,uy=b.y-a.y,uz=b.z-a.z,vx=d.x-a.x,vy=d.y-a.y,vz=d.z-a.z;let nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx;const l=Math.hypot(nx,ny,nz)||1;nx/=l;ny/=l;nz/=l;const light=.69+.31*Math.max(0,-.42*nx+.78*ny+.46*nz);c=shade(color,light)}
+ faces.push({v:vertices,c,outline});
+}
+function box(x,y,z,sx,sy,sz,color){
+ const a=x-sx/2,b=x+sx/2,c=y-sy/2,d=y+sy/2,e=z-sz/2,f=z+sz/2;
+ const p=[V(a,c,e),V(b,c,e),V(b,c,f),V(a,c,f),V(a,d,e),V(b,d,e),V(b,d,f),V(a,d,f)];
+ [[0,1,2,3],[4,7,6,5],[3,2,6,7],[0,4,5,1],[0,3,7,4],[1,5,6,2]].forEach(q=>face(q.map(i=>p[i]),color));
+}
+function cylinder(x,y,z,r,h,color,n=10,topRadius=r){
+ let lower=[],upper=[];
+ for(let i=0;i<n;i++){let a=i*TAU/n;lower.push(V(x+Math.cos(a)*r,y,z+Math.sin(a)*r));upper.push(V(x+Math.cos(a)*topRadius,y+h,z+Math.sin(a)*topRadius))}
+ for(let i=0;i<n;i++){let j=(i+1)%n;face([lower[i],upper[i],upper[j],lower[j]],color)}
+ face(upper.slice().reverse(),color);face(lower,color);
+}
+function disc(x,y,z,r,color,n=48){let p=[];for(let i=n-1;i>=0;i--){let a=i*TAU/n;p.push(V(x+Math.cos(a)*r,y,z+Math.sin(a)*r))}face(p,color,false)}
+function beam(a,b,width,color){
+ // A rectangular horizontal or diagonal architectural strut.
+ const dx=b.x-a.x,dy=b.y-a.y,dz=b.z-a.z,len=Math.hypot(dx,dy,dz)||1;
+ const side=Math.hypot(dx,dz)||1,px=-dz/side*width/2,pz=dx/side*width/2;
+ const q=[V(a.x+px,a.y-width/2,a.z+pz),V(a.x-px,a.y-width/2,a.z-pz),V(a.x-px,a.y+width/2,a.z-pz),V(a.x+px,a.y+width/2,a.z+pz),V(b.x+px,b.y-width/2,b.z+pz),V(b.x-px,b.y-width/2,b.z-pz),V(b.x-px,b.y+width/2,b.z-pz),V(b.x+px,b.y+width/2,b.z+pz)];
+ [[0,4,5,1],[3,2,6,7],[0,3,7,4],[1,5,6,2],[0,1,2,3],[4,7,6,5]].forEach(f=>face(f.map(i=>q[i]),color));
+}
+function lantern(x,y,z,scale=1){
+ const rings=[[-.64,.18],[-.50,.40],[-.25,.51],[.22,.51],[.49,.37],[.60,.18]],n=10;
+ for(let j=0;j<rings.length-1;j++)for(let i=0;i<n;i++){
+ const a=i*TAU/n,b=(i+1)*TAU/n,A=rings[j],B=rings[j+1];
+ face([V(x+Math.cos(a)*A[1]*scale,y+A[0]*scale,z+Math.sin(a)*A[1]*scale),V(x+Math.cos(a)*B[1]*scale,y+B[0]*scale,z+Math.sin(a)*B[1]*scale),V(x+Math.cos(b)*B[1]*scale,y+B[0]*scale,z+Math.sin(b)*B[1]*scale),V(x+Math.cos(b)*A[1]*scale,y+A[0]*scale,z+Math.sin(b)*A[1]*scale)],i%2? '#b84932':'#df7951');
+ }
+ cylinder(x,y-.69*scale,z,.2*scale,.11*scale,colors.gold,10);cylinder(x,y+.57*scale,z,.2*scale,.11*scale,colors.gold,10);
+ box(x,y+.88*scale,z,.035*scale,.5*scale,.035*scale,colors.gold);
+ cylinder(x,y-1.05*scale,z,.055*scale,.38*scale,colors.gold,6);
+}
+function roof(floor,h,index){
+ const inner=index===4?.28:h-1.5,outer=h+1.55;
+ const radii=[inner,lerp(inner,outer,.32),lerp(inner,outer,.65),lerp(inner,outer,.88),outer];
+ const heights=index===4?[floor+5.25,floor+4.21,floor+3.58,floor+3.49,floor+3.84]:[floor+4.48,floor+3.89,floor+3.45,floor+3.38,floor+3.76];
+ const seg=14;
+ function p(side,s,r,y){let u=lerp(-r,r,s);if(side===0)return V(u,y,r);if(side===1)return V(r,y,-u);if(side===2)return V(-u,y,-r);return V(-r,y,u)}
+ for(let side=0;side<4;side++){
+ for(let j=0;j<4;j++)for(let k=0;k<seg;k++){
+ let a=p(side,k/seg,radii[j],heights[j]),b=p(side,(k+1)/seg,radii[j],heights[j]),c=p(side,(k+1)/seg,radii[j+1],heights[j+1]),d=p(side,k/seg,radii[j+1],heights[j+1]);
+ face([a,b,c,d],k%2?'#2b7067':'#236157',true,'#173f3d');
+ if(j===3){face([V(d.x,d.y-.17,d.z),V(c.x,c.y-.17,c.z),c,d],colors.gold)}
+ }
+ beam(p(side,0,outer,heights[4]-.1),p(side,1,outer,heights[4]-.1),.13,colors.gold);
+ }
+ for(let sx of [-1,1])for(let sz of [-1,1]){
+ let points=[V(sx*inner,heights[0]+.08,sz*inner),V(sx*radii[2],heights[2]+.08,sz*radii[2]),V(sx*outer,heights[4]+.11,sz*outer),V(sx*(outer+.31),heights[4]+.58,sz*(outer+.31))];
+ for(let i=0;i<points.length-1;i++)beam(points[i],points[i+1],.17,colors.gold);
+ }
+ if(index===4){cylinder(0,floor+5.15,0,.38,.35,colors.gold,12,.24);cylinder(0,floor+5.5,0,.2,1.3,colors.gold,10,.035);cylinder(0,floor+5.78,0,.38,.16,colors.gold,12,.25)}
+}
+function rail(x1,z1,x2,z2,y,opening){
+ let segments=8;
+ for(let i=0;i<segments;i++){
+ let a=i/segments,b=(i+1)/segments;
+ if(opening&&a>=.375&&b<=.625)continue;
+ let x=lerp(x1,x2,a),z=lerp(z1,z2,a),xx=lerp(x1,x2,b),zz=lerp(z1,z2,b);
+ box(x,y+.56,z,.12,1.12,.12,colors.red);
+ beam(V(x,y+1.08,z),V(xx,y+1.08,zz),.14,colors.redLight);
+ beam(V(x,y+.30,z),V(xx,y+.30,zz),.08,colors.gold);
+ const mx=(x+xx)/2,mz=(z+zz)/2;box(mx,y+.66,mz,.07,.65,.07,colors.gold);
+ }
+ box(x2,y+.56,z2,.13,1.12,.13,colors.red);
+}
+// Water, island, garden, and a broad approach aligned to the entrance.
+box(0,-1.05,0,500,.4,500,'#567d79');
+box(0,-.53,0,68,.7,61,'#66705a');
+box(0,-.14,0,27,.25,27,colors.stone);
+box(0,-.07,25,5.7,.18,28,'#b7ac91');
+for(let z=13;z<40;z+=2.2){box(0,.035,z,5.3,.05,.07,'#928b75');box((Math.round(z)%2?-.7:.7),.04,z+1,.06,.05,2,'#9f957f')}
+// Stepped stone platform and entrance stairs.
+box(0,.13,0,20.5,.45,20.5,'#8d9686');
+box(0,.40,0,19.7,.22,19.7,colors.stone);
+for(let i=0;i<4;i++)box(0,.03+i*.105,11.7-i*.46,4.3,.17,.55,colors.stone);
+for(let i=0;i<5;i++){
+ const y=.6+i*SETTINGS.floorHeight,h=SETTINGS.baseHalfWidth-i*SETTINGS.taper;
+ box(0,y-.14,0,(h+.55)*2,.28,(h+.55)*2,colors.wood);
+ // The floor is four editable panels, leaving a square stairwell.
+ const hole=1.65;
+ box(0,y+.025,(h+hole)/2,h*2,.07,h-hole,colors.floor);
+ box(0,y+.025,-(h+hole)/2,h*2,.07,h-hole,colors.floor);
+ box((h+hole)/2,y+.025,0,h-hole,.07,hole*2,colors.floor);
+ box(-(h+hole)/2,y+.025,0,h-hole,.07,hole*2,colors.floor);
+ for(let n=-Math.floor(h);n<=Math.floor(h);n++){
+ if(Math.abs(n)>hole)box(n,y+.068,0,.025,.012,h*2,'#9f643d');
+ else{box(n,y+.068,(h+hole)/2,.025,.012,h-hole,'#9f643d');box(n,y+.068,-(h+hole)/2,.025,.012,h-hole,'#9f643d')}
+ }
+ const p=h-.7;
+ const positions=[[-p,-p],[0,-p],[p,-p],[-p,0],[p,0],[-p,p],[p,p]];
+ positions.forEach(([x,z])=>{
+ cylinder(x,y+.07,z,.36,.17,'#b4aa8e',10);
+ cylinder(x,y+.24,z,.205,2.98,colors.redLight,10);
+ cylinder(x,y+3.04,z,.30,.18,colors.gold,8);
+ columns.push({x,z,bottom:y,top:y+3.4,r:.36});
+ for(let sign of [-1,1]){
+ beam(V(x,y+2.55,z),V(x+sign*.72,y+3.25,z),.12,colors.red);
+ beam(V(x,y+2.55,z),V(x,y+3.25,z+sign*.72),.12,colors.red);
+ }
+ });
+ for(let s of [-1,1]){
+ box(0,y+3.21,s*p,p*2+.6,.25,.32,colors.red);
+ box(s*p,y+3.21,0,.32,.25,p*2+.6,colors.red);
+ box(0,y+3.40,s*p,p*2+.9,.09,.40,colors.gold);
+ box(s*p,y+3.40,0,.40,.09,p*2+.9,colors.gold);
+ }
+ for(let n=-2;n<=2;n++){
+ if(n===0)continue;
+ box(n*h*.27,y+3.05,0,.12,.15,p*2,colors.wood);
+ }
+ rail(-h,-h,h,-h,y,false);rail(h,-h,h,h,y,false);rail(h,h,-h,h,y,i===0);rail(-h,h,-h,-h,y,false);
+ lantern(-p*.68,y+2.35,p,.62);lantern(p*.68,y+2.35,p,.62);
+ lantern(p,y+2.35,-p*.65,.50);lantern(-p,y+2.35,-p*.65,.50);
+ // A small geometric inlay beneath the front opening.
+ disc(0,y+.075,h*.55,1.08,'#cda467',32);disc(0,y+.079,h*.55,.88,'#925b36',32);
+ for(let n=0;n<8;n++){let a=n*TAU/8;beam(V(Math.cos(a)*.3,y+.09,h*.55+Math.sin(a)*.3),V(Math.cos(a)*.8,y+.09,h*.55+Math.sin(a)*.8),.045,colors.gold)}
+ roof(y,h,i);
+}
+// Central spiral staircase: visible treads connect every storey.
+cylinder(0,.6,0,.23,18.8,colors.red,12);
+for(let i=0;i<88;i++){
+ const a=i*TAU/22,y=.67+i*.20,r0=.27,r1=1.46,da=TAU/22*.88;
+ const p=[V(Math.cos(a)*r0,y,Math.sin(a)*r0),V(Math.cos(a+da)*r0,y,Math.sin(a+da)*r0),V(Math.cos(a+da)*r1,y,Math.sin(a+da)*r1),V(Math.cos(a)*r1,y,Math.sin(a)*r1)];
+ face(p.slice().reverse(),'#d59a59');face([p[3],p[2],V(p[2].x,y-.12,p[2].z),V(p[3].x,y-.12,p[3].z)],colors.wood);
+ if(i%2===0){const x=Math.cos(a)*r1,z=Math.sin(a)*r1;box(x,y+.43,z,.045,.86,.045,colors.gold);beam(V(x,y+.87,z),V(Math.cos(a+TAU/11)*r1,y+1.27,Math.sin(a+TAU/11)*r1),.065,colors.red)}
+}
+function pine(x,z,height,phase){
+ cylinder(x,-.2,z,.24,height*.7,'#684c38',7,.13);
+ for(let j=0;j<4;j++){let y=height*(.23+j*.15),r=height*(.30-j*.048);cylinder(x+Math.sin(phase+j)*.2,y,z+Math.cos(phase+j)*.15,r,height*.34,j%2?'#305b49':'#3d6850',9,.03)}
+}
+[[-24,7,9],[-21,-15,12],[23,-11,11],[26,11,8],[-25,23,7],[17,-24,8],[-9,-24,10],[27,-24,12]].forEach((p,i)=>pine(p[0],p[1],p[2],i));
+// Low shrubs and stepping stones use a fixed trigonometric arrangement.
+for(let i=0;i<26;i++){
+ const a=i*2.39996,r=17+(i%4)*3,x=Math.cos(a)*r,z=Math.sin(a)*r;
+ if(z>10&&Math.abs(x)<5)continue;
+ cylinder(x,-.15,z,.9+(i%3)*.25,.65,'#6b7657',7,.4);
+}
+for(let side of [-1,1]){
+ disc(side*20,-.12,6,5.4,'#94a799',40);disc(side*20,-.105,6,4.95,'#517875',40);
+ for(let j=0;j<7;j++){let a=j*2.3;disc(side*20+Math.cos(a)*3.4,-.09,6+Math.sin(a)*3,.4,'#81926a',10)}
+ for(let j=0;j<3;j++){let x=side*(13+j*3.4),z=18+j*1.8;cylinder(x,-.05,z,.6,.5,'#9b9d88',6,.5)}
+}
+// Camera and deterministic frame renderer.
+function look(eye,target){const dx=target.x-eye.x,dy=target.y-eye.y,dz=target.z-eye.z;return {x:eye.x,y:eye.y,z:eye.z,yaw:Math.atan2(dx,dz),pitch:Math.atan2(dy,Math.hypot(dx,dz))}}
+const shots=[
+ {t:0,e:V(36,24,45),q:V(0,10.3,0)},
+ {t:5,e:V(22,19,38),q:V(0,10.4,0)},
+ {t:9,e:V(6,7,27),q:V(0,6,0)},
+ {t:13,e:V(.4,2.6,14),q:V(0,2.25,0)},
+ {t:17,e:V(.4,2.55,6.2),q:V(-1,2.7,-1)},
+ {t:21,e:V(4.5,2.55,3.8),q:V(0,3,-.3)},
+ {t:24,e:V(5.5,2.7,-1.5),q:V(0,4,0)}
+];
+function tourCamera(t){
+ let j=0;while(j<shots.length-2&&t>shots[j+1].t)j++;
+ const a=shots[j],b=shots[j+1],u=smooth((t-a.t)/(b.t-a.t));
+ return look(V(lerp(a.e.x,b.e.x,u),lerp(a.e.y,b.e.y,u),lerp(a.e.z,b.e.z,u)),V(lerp(a.q.x,b.q.x,u),lerp(a.q.y,b.q.y,u),lerp(a.q.z,b.q.z,u)));
+}
+const time={t:0};let navigation=null;
+function basis(c){const sy=Math.sin(c.yaw),cy=Math.cos(c.yaw),sp=Math.sin(c.pitch),cp=Math.cos(c.pitch);return {r:V(cy,0,-sy),u:V(-sy*sp,cp,-cy*sp),f:V(sy*cp,sp,cy*cp)}}
+function toCamera(p,c,b){const x=p.x-c.x,y=p.y-c.y,z=p.z-c.z;return {x:x*b.r.x+y*b.r.y+z*b.r.z,y:x*b.u.x+y*b.u.y+z*b.u.z,z:x*b.f.x+y*b.f.y+z*b.f.z}}
+function clipNear(vertices){
+ const out=[],near=.16;
+ for(let i=0;i<vertices.length;i++){
+ const a=vertices[i],b=vertices[(i+1)%vertices.length],ina=a.z>=near,inb=b.z>=near;
+ if(ina)out.push(a);
+ if(ina!==inb){const u=(near-a.z)/(b.z-a.z);out.push({x:lerp(a.x,b.x,u),y:lerp(a.y,b.y,u),z:near})}
+ }
+ return out;
+}
+function background(c,t){
+ const horizon=H*.49+Math.tan(c.pitch)*H*.96;
+ const sky=ctx.createLinearGradient(0,0,0,H);sky.addColorStop(0,'#6f9998');sky.addColorStop(.46,'#d6c4a2');sky.addColorStop(1,'#f3d3a0');ctx.fillStyle=sky;ctx.fillRect(0,0,W,H);
+ const sunX=W*.75+Math.sin(c.yaw)*120,sunY=clamp(horizon-H*.28,-120,H*.48);
+ const glow=ctx.createRadialGradient(sunX,sunY,10,sunX,sunY,230);glow.addColorStop(0,'#fff1bc90');glow.addColorStop(1,'#fff1bc00');ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);ctx.fillStyle='#ffe9b0';ctx.beginPath();ctx.arc(sunX,sunY,49,0,TAU);ctx.fill();
+ for(let layer=0;layer<3;layer++){
+ ctx.beginPath();ctx.moveTo(0,H);
+ for(let x=0;x<=W+20;x+=20){let u=x/W*8+c.yaw*.4;const ridge=Math.sin(u*1.4+layer)*40+Math.sin(u*3.1+layer*.8)*25+Math.sin(u*.6+2)*50;ctx.lineTo(x,horizon-40-layer*8+ridge*(1-layer*.18))}
+ ctx.lineTo(W,H);ctx.closePath();ctx.fillStyle=['#84978b','#7f9484','#758b77'][layer];ctx.fill();
+ }
+}
+function render(t){
+ const c=navigation||tourCamera(t),b=basis(c),focal=H*.96;
+ background(c,t);
+ const queue=[];
+ for(const face of faces){
+ const raw=face.v.map(p=>toCamera(p,c,b));
+ if(raw.every(p=>p.z<.16))continue;
+ const points=clipNear(raw);if(points.length<3)continue;
+ let minX=Infinity,minY=Infinity,maxX=-Infinity,maxY=-Infinity,depth=0;
+ const screen=points.map(p=>{const x=W*.5+p.x*focal/p.z,y=H*.49-p.y*focal/p.z;minX=Math.min(minX,x);maxX=Math.max(maxX,x);minY=Math.min(minY,y);maxY=Math.max(maxY,y);depth+=p.z;return {x,y}});
+ if(maxX<0||minX>W||maxY<0||minY>H)continue;
+ queue.push({p:screen,z:depth/points.length,c:face.c,o:face.outline});
+ }
+ queue.sort((a,b)=>b.z-a.z);
+ ctx.lineJoin='round';
+ for(const item of queue){
+ ctx.beginPath();ctx.moveTo(item.p[0].x,item.p[0].y);for(let i=1;i<item.p.length;i++)ctx.lineTo(item.p[i].x,item.p[i].y);ctx.closePath();ctx.fillStyle=item.c;ctx.fill();
+ if(item.o&&item.z<100){ctx.strokeStyle=item.o;ctx.lineWidth=clamp(22/item.z,.35,1.7);ctx.stroke()}
+ }
+ // A gentle lens vignette is painted anew every frame.
+ const vignette=ctx.createRadialGradient(W*.5,H*.46,H*.23,W*.5,H*.5,W*.67);vignette.addColorStop(0,'#102e2e00');vignette.addColorStop(1,'#102e2e4a');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ intro.style.opacity=navigation?'0':String(1-smooth((t-3.8)/2.2));
+}
+function beginNavigation(){if(!navigation)navigation={...tourCamera(time.t)};intro.style.opacity='0';return navigation}
+function markFloor(n){document.querySelectorAll('[data-floor]').forEach(el=>el.setAttribute('aria-pressed',Number(el.dataset.floor)===n?'true':'false'))}
+function visitFloor(n){
+ const h=SETTINGS.baseHalfWidth-n*SETTINGS.taper,y=.6+n*SETTINGS.floorHeight;
+ navigation=look(V(2.5,y+1.85,h*.68),V(0,y+2,-.7));markFloor(n);render(time.t);
+}
+function move(key,fast=false){
+ const c=beginNavigation(),step=fast?1.15:.54,s=Math.sin(c.yaw),co=Math.cos(c.yaw);let dx=0,dz=0,dy=0;
+ if(key==='w'||key==='arrowup'){dx=s*step;dz=co*step}
+ if(key==='s'||key==='arrowdown'){dx=-s*step;dz=-co*step}
+ if(key==='d'){dx=co*step;dz=-s*step}
+ if(key==='a'){dx=-co*step;dz=s*step}
+ if(key==='q')dy=-step;if(key==='e')dy=step;
+ if(key==='arrowleft')c.yaw-=.085;if(key==='arrowright')c.yaw+=.085;
+ let nx=c.x+dx,nz=c.z+dz;
+ // Keep the viewer outside structural columns; the camera can rise freely.
+ for(const p of columns)if(c.y>p.bottom&&c.y<p.top+.4){let x=nx-p.x,z=nz-p.z,d=Math.hypot(x,z),r=p.r+.25;if(d<r){if(d<.001){x=1;z=0;d=1}nx=p.x+x/d*r;nz=p.z+z/d*r}}
+ c.x=clamp(nx,-65,65);c.z=clamp(nz,-65,65);c.y=clamp(c.y+dy,.95,34);markFloor(-1);render(time.t);
+}
+canvas.addEventListener('keydown',e=>{
+ const k=e.key.toLowerCase();
+ if('12345'.includes(k)&&k.length===1){e.preventDefault();visitFloor(Number(k)-1);return}
+ if(['w','a','s','d','q','e','arrowup','arrowdown','arrowleft','arrowright'].includes(k)){e.preventDefault();move(k,e.shiftKey)}
+ if(k==='r'){navigation=null;markFloor(-1);render(time.t)}
+});
+let drag=null;
+canvas.addEventListener('pointerdown',e=>{canvas.focus({preventScroll:true});const c=beginNavigation();drag={id:e.pointerId,x:e.clientX,y:e.clientY,yaw:c.yaw,pitch:c.pitch};canvas.setPointerCapture(e.pointerId);render(time.t)});
+canvas.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;const rect=canvas.getBoundingClientRect();navigation.yaw=drag.yaw-(e.clientX-drag.x)/rect.width*3.3;navigation.pitch=clamp(drag.pitch+(e.clientY-drag.y)/rect.height*2.2,-1.24,1.24);render(time.t)});
+function endDrag(e){if(drag&&drag.id===e.pointerId)drag=null}
+canvas.addEventListener('pointerup',endDrag);canvas.addEventListener('pointercancel',endDrag);canvas.addEventListener('lostpointercapture',()=>{drag=null});
+document.querySelectorAll('[data-floor]').forEach(button=>button.addEventListener('click',()=>{visitFloor(Number(button.dataset.floor));canvas.focus({preventScroll:true})}));
+document.querySelectorAll('[data-move]').forEach(button=>button.addEventListener('click',()=>{move(button.dataset.move);canvas.focus({preventScroll:true})}));
+document.getElementById('tour').addEventListener('click',()=>{navigation=null;markFloor(-1);render(time.t);canvas.focus({preventScroll:true})});
+// One paused, seek-safe timeline owns the entire guided camera animation.
+const timeline=gsap.timeline({paused:true});
+timeline.to(time,{t:SETTINGS.duration,duration:SETTINGS.duration,ease:'none',onUpdate:()=>render(time.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+render(0);
+})();
+</script>
+</body>
+</html>

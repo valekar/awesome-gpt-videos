@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,30 @@
       "-o",
       "$REPO/results/opener-ai-843891/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20521,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 13410,
+      "reasoning_output_tokens": 5055
+    },
+    "finished_at": "2026-10-18T15:20:41.452322+00:00",
+    "assumptions": [
+      "Chosen format: 4:3, 1280×960, with a 30-second deterministic campaign demonstration and playable turn-based controls.",
+      "Jade River is an original fictional strategy game inspired by classic province-management games. Names, geography, statistics and rules are creative inventions.",
+      "All artwork is generated in Canvas. No external assets, proprietary sprites, screenshots or named fonts are used.",
+      "GSAP is supplied locally as gsap.min.js. This output has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable pixel-art strategy game with province selection, recruitment, diplomacy, fortification, conquest and seasonal rival turns.",
+    "source_sha256": "810672e46c2420d556ce2f81251e95bfa839b96d9cac1dcb329a2df7dae61c7b",
+    "width": 1280,
+    "height": 960,
+    "duration_seconds": 30,
+    "source_path": "results/opener-ai-843891/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
   },
   "adapted": {
     "status": "not_generated"
