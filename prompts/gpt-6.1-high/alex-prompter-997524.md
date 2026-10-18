@@ -30,3 +30,12 @@ Deliver editable source, the exact model input, model/effort/CLI metadata, depen
 <creator_material>
 Adopt the role of an expert motion designer. Build a 30-second animated explainer for my business as a single HTML page. 5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end. Bold text, smooth transitions, my brand colours. My business [DESCRIBE WHAT YOU SELL, WHO IT'S FOR AND YOUR COLOURS]
 </creator_material>
+
+## Review-derived guidance — additional to creator material
+
+
+
+## Matched-time review of attempt 1
+
+Preserve the current duration, scene order, text, counter checkpoints, fixed layouts and blank transition samples. Refine only these observed details: wrap the completed composer paragraph into seven lines; use cooler, stronger blue supporting text; draw the lightning with a gold outline and pale interior; and increase the first instruction card's visibility at 17 seconds while retaining its settled appearance at 18 seconds. Slightly narrow the closing subtitle and byline without moving their centers. Rebuild these details independently in code.
+

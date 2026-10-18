@@ -24,7 +24,7 @@
   "prompt_audit": "All data prompts and Markdown files read and cross-checked by script. Dependency cues are heuristics; visual/reference review is not complete.",
   "unique_prompt_texts": 684,
   "visual_reviewed": 0,
-  "sampled_reviews": 6,
+  "sampled_reviews": 7,
   "run_counts": {
     "baseline": {
       "blocked": 31,
@@ -33,14 +33,13 @@
       "generated": 14
     },
     "adapted": {
-      "rendered": 5,
+      "rendered": 6,
       "not_generated": 695,
-      "blocked": 2,
-      "generated": 1
+      "blocked": 2
     }
   },
   "entries_with_source": 51,
-  "entries_with_render": 36,
+  "entries_with_render": 37,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"
 }

@@ -4467,8 +4467,8 @@
     ],
     "source_prompt_sha256": "615d134af75472ea0b903e7128c51bf1c42e3c63e98b2ac263c14a1c8799cfcc",
     "source_file_sha256": "98ca3347422f82d49de893db9d8a84bac1a7ed887e708b25ec4a5ac084c12690",
-    "adapted_prompt_sha256": "4f71443134e3ba640aeb0ed855611667d43b394233b9190f892ae1f4f46e9ab9",
-    "adapted_prompt": "# GPT-6.1 high adaptation — alex-prompter-997524\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @alex_prompter. Source: https://x.com/alex_prompter/status/2103499977632997524\nReference page: https://skillry.dev/ai-videos/opus-5-5/alex-prompter-997524\nOriginal prompt SHA-256: `615d134af75472ea0b903e7128c51bf1c42e3c63e98b2ac263c14a1c8799cfcc`.\n\n## Source completeness\n\nUpstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.\nDependency cues found by automated text inspection: placeholder_context.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve the complete explanatory sequence, language, narration, quantities, labels and causal demonstrations. Do not replace a mechanism with decorative text.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): svg, gsap. Keep vector geometry and typography sharp at the reference viewport. Use a paused seekable GSAP timeline; use explicit initial values and deterministic seeks.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nAdopt the role of an expert motion designer. Build a 30-second animated explainer for my business as a single HTML page. 5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end. Bold text, smooth transitions, my brand colours. My business [DESCRIBE WHAT YOU SELL, WHO IT'S FOR AND YOUR COLOURS]\n</creator_material>\n",
+    "adapted_prompt_sha256": "f497433c09aa7c9028e88c9edd2a38f94c6c4d9fc5143028669139730017dd4b",
+    "adapted_prompt": "# GPT-6.1 high adaptation — alex-prompter-997524\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @alex_prompter. Source: https://x.com/alex_prompter/status/2103499977632997524\nReference page: https://skillry.dev/ai-videos/opus-5-5/alex-prompter-997524\nOriginal prompt SHA-256: `615d134af75472ea0b903e7128c51bf1c42e3c63e98b2ac263c14a1c8799cfcc`.\n\n## Source completeness\n\nUpstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.\nDependency cues found by automated text inspection: placeholder_context.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve the complete explanatory sequence, language, narration, quantities, labels and causal demonstrations. Do not replace a mechanism with decorative text.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): svg, gsap. Keep vector geometry and typography sharp at the reference viewport. Use a paused seekable GSAP timeline; use explicit initial values and deterministic seeks.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nAdopt the role of an expert motion designer. Build a 30-second animated explainer for my business as a single HTML page. 5 scenes. The customer's problem, what I do, how it works in 3 steps, one proof point, and my name at the end. Bold text, smooth transitions, my brand colours. My business [DESCRIBE WHAT YOU SELL, WHO IT'S FOR AND YOUR COLOURS]\n</creator_material>\n\n## Review-derived guidance — additional to creator material\n\n\n\n## Matched-time review of attempt 1\n\nPreserve the current duration, scene order, text, counter checkpoints, fixed layouts and blank transition samples. Refine only these observed details: wrap the completed composer paragraph into seven lines; use cooler, stronger blue supporting text; draw the lightning with a gold outline and pale interior; and increase the first instruction card's visibility at 17 seconds while retaining its settled appearance at 18 seconds. Slightly narrow the closing subtitle and byline without moving their centers. Rebuild these details independently in code.\n\n",
     "reference": {
       "status": "reachable",
       "video_url": "https://media.skillry.dev/opus-5-5/alex-prompter-997524/original.mp4",
@@ -4536,7 +4536,7 @@
         "reason": "Business description: what you sell and who it serves.; Customer problem your business solves.; Your three-step process.; One factual proof point approved for use.; Business or personal name for the ending.; Brand colours."
       },
       "adapted": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -4622,11 +4622,321 @@
         "height": 720,
         "duration_seconds": 34.5,
         "source_path": "results/alex-prompter-997524/adapted/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/alex-prompter-997524/adapted/video.mp4",
+        "poster_url": "media/alex-prompter-997524/adapted/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1280,
+              "height": 720,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "34.500000"
+          }
+        },
+        "staged_source_sha256": "4aa7c859530e2083d11c46fd091c507d4fe5967e9a77fcc7a6c2d230734a6635",
+        "source_modified_after_generation": false
       }
     },
-    "review_status": "not_reviewed",
-    "review": {}
+    "review_status": "sampled",
+    "review": {
+      "slug": "alex-prompter-997524",
+      "status": "sampled",
+      "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+      "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+      "adapted": {
+        "attempts": 1,
+        "observations": [
+          "The opening detail preserves the greeting, composer geometry, caret, model label, send control and footer.",
+          "All five promotional scenes appear in the same order, with matching blank samples at 4, 10, 16, 24 and 29 seconds.",
+          "Headlines, newsletter name, instructions, founder statement and closing byline match.",
+          "The counter matches 1,697+ at 25 seconds and 2,000+ at 26 seconds.",
+          "The instructions build across a fixed horizontal row without recentering earlier cards.",
+          "The closing detail preserves the centered icon, title, subtitle and byline hierarchy through 34.35 seconds.",
+          "The sampled compositions retain a fixed camera and generous negative space."
+        ],
+        "remaining_differences": [
+          "The completed composer paragraph wraps into six lines in GPT versus seven in ORIGINAL. GPT fits more words per line and ends the paragraph higher within the otherwise closely matched composer.",
+          "GPT's supporting blue text is more muted and teal than ORIGINAL's stronger blue. Its pale background is also slightly lighter and more cyan; this treatment recurs in later scenes.",
+          "The surrounding pills retain their labels and broad arrangement, but several sampled positions and rotations differ, particularly the lower-middle pill. GPT also gives the pills less distinct borders.",
+          "GPT's first instruction card and its contents are substantially fainter than ORIGINAL at this timestamp. Both are fully legible by 18 seconds, so the discrepancy concerns the sampled entrance state.",
+          "The closing detail shows GPT's lightning as a broader, predominantly solid yellow shape. ORIGINAL uses a narrower gold outline with a much lighter interior. The same motif difference appears in the earlier newsletter scenes.",
+          "GPT's closing subtitle and byline span slightly wider than ORIGINAL despite closely matched centers and vertical placement. Exact font identity cannot be established."
+        ]
+      },
+      "adapted_review_history": [
+        {
+          "iteration": 1,
+          "summary": "Close sampled visual match across the introduction and all five promotional scenes. Text, quantities, scene order and sampled transition states are preserved. Differences concern paragraph wrapping, color treatment, lightning geometry and one card entrance; no major omission is evident.",
+          "matches": [
+            "The opening detail preserves the greeting, composer geometry, caret, model label, send control and footer.",
+            "All five promotional scenes appear in the same order, with matching blank samples at 4, 10, 16, 24 and 29 seconds.",
+            "Headlines, newsletter name, instructions, founder statement and closing byline match.",
+            "The counter matches 1,697+ at 25 seconds and 2,000+ at 26 seconds.",
+            "The instructions build across a fixed horizontal row without recentering earlier cards.",
+            "The closing detail preserves the centered icon, title, subtitle and byline hierarchy through 34.35 seconds.",
+            "The sampled compositions retain a fixed camera and generous negative space."
+          ],
+          "differences": [
+            {
+              "time_seconds": 3,
+              "description": "The completed composer paragraph wraps into six lines in GPT versus seven in ORIGINAL. GPT fits more words per line and ends the paragraph higher within the otherwise closely matched composer.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 6,
+              "description": "GPT's supporting blue text is more muted and teal than ORIGINAL's stronger blue. Its pale background is also slightly lighter and more cyan; this treatment recurs in later scenes.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 8,
+              "description": "The surrounding pills retain their labels and broad arrangement, but several sampled positions and rotations differ, particularly the lower-middle pill. GPT also gives the pills less distinct borders.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 17,
+              "description": "GPT's first instruction card and its contents are substantially fainter than ORIGINAL at this timestamp. Both are fully legible by 18 seconds, so the discrepancy concerns the sampled entrance state.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 34.35,
+              "description": "The closing detail shows GPT's lightning as a broader, predominantly solid yellow shape. ORIGINAL uses a narrower gold outline with a much lighter interior. The same motif difference appears in the earlier newsletter scenes.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 34.35,
+              "description": "GPT's closing subtitle and byline span slightly wider than ORIGINAL despite closely matched centers and vertical placement. Exact font identity cannot be established.",
+              "severity": "minor",
+              "actionable": true
+            }
+          ],
+          "revision_feedback": "No major correction is supported by these samples. Optional refinement should preserve the sequence, wording, quantities and layouts while matching composer wrapping, cooler blue colors, outlined lightning geometry and the first card's opacity at 17 seconds.",
+          "should_revise": false,
+          "prompt_improvement_markdown": "Preserve the current duration, scene order, text, counter checkpoints, fixed layouts and blank transition samples. Refine only these observed details: wrap the completed composer paragraph into seven lines; use cooler, stronger blue supporting text; draw the lightning with a gold outline and pale interior; and increase the first instruction card's visibility at 17 seconds while retaining its settled appearance at 18 seconds. Slightly narrow the closing subtitle and byline without moving their centers. Rebuild these details independently in code.",
+          "limitations": [
+            "These are model-generated findings from supplied sampled frames, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+            "Requested matching timestamps are quantized to each stream's frame rate. Samples do not establish exact cuts, easing, trajectories, typing cadence or intermediate counter values.",
+            "Audio was not supplied or reviewed. Reference metadata reports zero audio streams, indicating a technically silent reference file; this is stream evidence, not a listening assessment.",
+            "The final supplied pair is at 34.35 seconds; behavior through the 34.5-second endpoint is not visually established.",
+            "Exact font families and color values remain uncertain; image scaling and compression can affect fine comparisons.",
+            "Subscriber and revenue amounts are reproduced visual claims, not independently verified facts.",
+            "Reported technical checks do not establish visual fidelity; the automated contrast audit inspected zero text samples."
+          ],
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "input_sha256": "772f63b27c8cd183d3deb1278d4a9d0abfe5f9ede25d223a0f0054c50f06417c",
+          "image_sha256": {
+            "work/comparison-evidence/alex-prompter-997524/001/sheet-01.jpg": "55e79050091712313ef0ff9f70769f2b1b9a7c9f63dc2a546e169c8efaab6dbd",
+            "work/comparison-evidence/alex-prompter-997524/001/sheet-02.jpg": "1c0d7f0f176b9adad662538f6b9dfb4b56bb14981479781be0ad84cc3b127842",
+            "work/comparison-evidence/alex-prompter-997524/001/sheet-03.jpg": "97668adc12d6c9a7150818e4d7093d4850854147ae6a17c7afd3d24eb05ad135",
+            "work/comparison-evidence/alex-prompter-997524/001/sheet-04.jpg": "ec06bbaf42ecc5878a4bf26a231a41d5c5abadf740a8d731839b7548d4db32c2",
+            "work/comparison-evidence/alex-prompter-997524/001/sheet-05.jpg": "3f284bdf7621ba07aed1dd51c8e54fa5dd61b28d3885cef30a88e4e1b7ee3eb9",
+            "work/comparison-evidence/alex-prompter-997524/001/detail-0000.jpg": "74b9aff5abf8b2a04b109fa0cc1954ccb22aea5b13934baab044918efe6af405",
+            "work/comparison-evidence/alex-prompter-997524/001/detail-0018.jpg": "600bb543f1524f1dd0b24aff4298cabe8924350a6feb03030858ab2187910c43",
+            "work/comparison-evidence/alex-prompter-997524/001/detail-0035.jpg": "66c6ca1a31eb119e44d33130b5fde8498b75e0c286f4d51e0208eeca5a269d88"
+          },
+          "evidence": {
+            "times": [
+              0.0,
+              1.0,
+              2.0,
+              3.0,
+              4.0,
+              5.0,
+              6.0,
+              7.0,
+              8.0,
+              9.0,
+              10.0,
+              11.0,
+              12.0,
+              13.0,
+              14.0,
+              15.0,
+              16.0,
+              17.0,
+              18.0,
+              19.0,
+              20.0,
+              21.0,
+              22.0,
+              23.0,
+              24.0,
+              25.0,
+              26.0,
+              27.0,
+              28.0,
+              29.0,
+              30.0,
+              31.0,
+              32.0,
+              33.0,
+              34.0,
+              34.35
+            ],
+            "reference_metadata": {
+              "slug": "alex-prompter-997524",
+              "width": 1280,
+              "height": 720,
+              "fps": "30/1",
+              "duration_seconds": 34.5,
+              "audio_streams": 0,
+              "sample_times": [
+                0.0,
+                1.0,
+                2.0,
+                3.0,
+                4.0,
+                5.0,
+                6.0,
+                7.0,
+                8.0,
+                9.0,
+                10.0,
+                11.0,
+                12.0,
+                13.0,
+                14.0,
+                15.0,
+                16.0,
+                17.0,
+                18.0,
+                19.0,
+                20.0,
+                21.0,
+                22.0,
+                23.0,
+                24.0,
+                25.0,
+                26.0,
+                27.0,
+                28.0,
+                29.0,
+                30.0,
+                31.0,
+                32.0,
+                33.0,
+                34.0
+              ],
+              "scene_change_times": [],
+              "sheets": [
+                "work/references/alex-prompter-997524/evidence/sheet-01.jpg",
+                "work/references/alex-prompter-997524/evidence/sheet-02.jpg",
+                "work/references/alex-prompter-997524/evidence/sheet-03.jpg"
+              ],
+              "full_frames": [
+                "work/references/alex-prompter-997524/evidence/full-1.jpg",
+                "work/references/alex-prompter-997524/evidence/full-2.jpg",
+                "work/references/alex-prompter-997524/evidence/full-3.jpg",
+                "work/references/alex-prompter-997524/evidence/full-4.jpg"
+              ],
+              "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+            },
+            "sheets": [
+              "work/comparison-evidence/alex-prompter-997524/001/sheet-01.jpg",
+              "work/comparison-evidence/alex-prompter-997524/001/sheet-02.jpg",
+              "work/comparison-evidence/alex-prompter-997524/001/sheet-03.jpg",
+              "work/comparison-evidence/alex-prompter-997524/001/sheet-04.jpg",
+              "work/comparison-evidence/alex-prompter-997524/001/sheet-05.jpg"
+            ],
+            "details": [
+              "work/comparison-evidence/alex-prompter-997524/001/detail-0000.jpg",
+              "work/comparison-evidence/alex-prompter-997524/001/detail-0018.jpg",
+              "work/comparison-evidence/alex-prompter-997524/001/detail-0035.jpg"
+            ],
+            "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+          },
+          "usage": {
+            "input_tokens": 44535,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2014,
+            "reasoning_output_tokens": 1034
+          }
+        }
+      ],
+      "summary": "Close sampled visual match across the introduction and all five promotional scenes. Text, quantities, scene order and sampled transition states are preserved. Differences concern paragraph wrapping, color treatment, lightning geometry and one card entrance; no major omission is evident.",
+      "limitations": [
+        "These are model-generated findings from supplied sampled frames, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Requested matching timestamps are quantized to each stream's frame rate. Samples do not establish exact cuts, easing, trajectories, typing cadence or intermediate counter values.",
+        "Audio was not supplied or reviewed. Reference metadata reports zero audio streams, indicating a technically silent reference file; this is stream evidence, not a listening assessment.",
+        "The final supplied pair is at 34.35 seconds; behavior through the 34.5-second endpoint is not visually established.",
+        "Exact font families and color values remain uncertain; image scaling and compression can affect fine comparisons.",
+        "Subscriber and revenue amounts are reproduced visual claims, not independently verified facts.",
+        "Reported technical checks do not establish visual fidelity; the automated contrast audit inspected zero text samples."
+      ],
+      "reference": {
+        "slug": "alex-prompter-997524",
+        "width": 1280,
+        "height": 720,
+        "fps": "30/1",
+        "duration_seconds": 34.5,
+        "audio_streams": 0,
+        "sample_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          18.0,
+          19.0,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          28.0,
+          29.0,
+          30.0,
+          31.0,
+          32.0,
+          33.0,
+          34.0
+        ],
+        "scene_change_times": [],
+        "sheets": [
+          "work/references/alex-prompter-997524/evidence/sheet-01.jpg",
+          "work/references/alex-prompter-997524/evidence/sheet-02.jpg",
+          "work/references/alex-prompter-997524/evidence/sheet-03.jpg"
+        ],
+        "full_frames": [
+          "work/references/alex-prompter-997524/evidence/full-1.jpg",
+          "work/references/alex-prompter-997524/evidence/full-2.jpg",
+          "work/references/alex-prompter-997524/evidence/full-3.jpg",
+          "work/references/alex-prompter-997524/evidence/full-4.jpg"
+        ],
+        "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+      }
+    }
   },
   {
     "slug": "emollick-019567",

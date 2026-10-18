@@ -57,7 +57,7 @@
     "reason": "Business description: what you sell and who it serves.; Customer problem your business solves.; Your three-step process.; One factual proof point approved for use.; Business or personal name for the ending.; Brand colours."
   },
   "adapted": {
-    "status": "generated",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -143,6 +143,27 @@
     "height": 720,
     "duration_seconds": 34.5,
     "source_path": "results/alex-prompter-997524/adapted/index.html",
-    "reason": "Source generated; rendering and matched-time fidelity review pending."
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/alex-prompter-997524/adapted/video.mp4",
+    "poster_url": "media/alex-prompter-997524/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "34.500000"
+      }
+    },
+    "staged_source_sha256": "4aa7c859530e2083d11c46fd091c507d4fe5967e9a77fcc7a6c2d230734a6635",
+    "source_modified_after_generation": false
   }
 }
