@@ -1,0 +1,52 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "0e56c91d2cfe23b8f24bb9d9c8709e622c8c92969707de4894b734c0d3b2b2ee",
+  "reference_evidence": {
+    "slug": "vectorcrossprod-436573",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "duration_seconds": 10.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/vectorcrossprod-436573/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/vectorcrossprod-436573/evidence/full-1.jpg",
+      "work/references/vectorcrossprod-436573/evidence/full-2.jpg",
+      "work/references/vectorcrossprod-436573/evidence/full-3.jpg",
+      "work/references/vectorcrossprod-436573/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/vectorcrossprod-436573/evidence/sheet-01.jpg": "1afd16ae8c77c923c03188f994f0b1aad96d52873d635c3ddffbf0bf749fc241",
+    "work/references/vectorcrossprod-436573/evidence/full-1.jpg": "e3877481ef5eb6c6355d1f2ffe64c636a5596856ddd217661d4eec23f2f63f5e",
+    "work/references/vectorcrossprod-436573/evidence/full-2.jpg": "3bb8bce93ef67f6b83655b28e3c4417c0252f740b8fc34eadb9ceb5fc954d597",
+    "work/references/vectorcrossprod-436573/evidence/full-3.jpg": "38431ce0cc02878ec51d3306de5a9def017978a90b90141c46fcebf27d269562",
+    "work/references/vectorcrossprod-436573/evidence/full-4.jpg": "9020cc817855531bf19025fdc4bf6bc706134b4c296baef15dc0c7b8d77e3c9e"
+  },
+  "usage": {
+    "input_tokens": 27979,
+    "cached_input_tokens": 18816,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4240,
+    "reasoning_output_tokens": 946
+  },
+  "audio_supplied": false
+}

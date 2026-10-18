@@ -1,0 +1,86 @@
+{
+  "baseline": {
+    "status": "not_generated"
+  },
+  "adapted": {
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "reference-v3",
+    "track": "adapted",
+    "iteration": 1,
+    "source_prompt_sha256": "5d261c564a82c6444a4572c966a225dae6eea63c21c294ae9f97e0d2d3a8043b",
+    "input_sha256": "57ae112c5a08b76e3a6e0d8975f763a4f8132f0d148a278cfc1a56c2baf5de4b",
+    "started_at": "2026-10-18T17:49:57.832891+00:00",
+    "tools": "none requested; read-only sandbox",
+    "reference_images_supplied": [
+      "sheet-01.jpg",
+      "full-1.jpg",
+      "full-2.jpg",
+      "full-3.jpg",
+      "full-4.jpg"
+    ],
+    "reference_image_sha256": {
+      "sheet-01.jpg": "1afd16ae8c77c923c03188f994f0b1aad96d52873d635c3ddffbf0bf749fc241",
+      "full-1.jpg": "e3877481ef5eb6c6355d1f2ffe64c636a5596856ddd217661d4eec23f2f63f5e",
+      "full-2.jpg": "3bb8bce93ef67f6b83655b28e3c4417c0252f740b8fc34eadb9ceb5fc954d597",
+      "full-3.jpg": "38431ce0cc02878ec51d3306de5a9def017978a90b90141c46fcebf27d269562",
+      "full-4.jpg": "9020cc817855531bf19025fdc4bf6bc706134b4c296baef15dc0c7b8d77e3c9e"
+    },
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/vectorcrossprod-436573/adapted/schema.json",
+      "-o",
+      "$REPO/results/vectorcrossprod-436573/adapted/response.json",
+      "--image",
+      "$REPO/work/references/vectorcrossprod-436573/evidence/sheet-01.jpg",
+      "--image",
+      "$REPO/work/references/vectorcrossprod-436573/evidence/full-1.jpg",
+      "--image",
+      "$REPO/work/references/vectorcrossprod-436573/evidence/full-2.jpg",
+      "--image",
+      "$REPO/work/references/vectorcrossprod-436573/evidence/full-3.jpg",
+      "--image",
+      "$REPO/work/references/vectorcrossprod-436573/evidence/full-4.jpg",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 31548,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 17410,
+      "reasoning_output_tokens": 8077
+    },
+    "finished_at": "2026-10-18T17:57:03.813877+00:00",
+    "assumptions": [
+      "Procedural enclosure, PCB, connectors, fasteners and rail approximate the supplied visual evidence; authentic CAD geometry was not supplied.",
+      "Camera interpolation, assembly trajectories, plug connections and mounting motion are inferred between sampled states.",
+      "The untimestamped dark title state is placed within the final second as an inferred edit.",
+      "Generic sans-serif typography approximates the reference. Supplied font assets are unused.",
+      "The composition is silent and intended for 30 fps capture."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable, seekable 10-second procedural reconstruction with assembly, interface callouts and DIN-rail mounting. Source only; not rendered or visually validated.",
+    "fps": 30.0,
+    "source_sha256": "afe9347f1acec1ad57297ea4d6f8d96ea23e7fa16df5c4ac40178be463207c57",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 10,
+    "source_path": "results/vectorcrossprod-436573/adapted/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
+  }
+}

@@ -1,0 +1,77 @@
+# Model-drafted reference reconstruction — vectorcrossprod-436573
+
+Status: sampled visual reconstruction; full timing/audio acceptance pending. Generated with GPT-6.1 Sol/high from declared reference frames.
+
+Create a NEW, independently authored, code-rendered reconstruction of the observed 10.0-second product animation at 1280 × 720, 16:9, 30 fps. This brief is inferred from supplied decoded frames; it is not the creator’s original prompt or recovered private chat. The creator’s accompanying post attributes the PCB, printable enclosure and animation to prompting in Claude Code, but supplies no original instructions, CAD files or implementation. Reference images are inspection evidence only and must not become output artwork.
+
+The visual sequence presents a compact enclosure for a PCB, explains its assembly and electrical interfaces, then demonstrates an optional DIN-rail mounting arrangement. Preserve the sampled order and allocate the full 300-frame duration. The contact sheet contains four tiles across its first row at 0, 1, 2 and 3 seconds; four across its second row at 4, 5, 6 and 7 seconds; and two across its third row at 8 and 9 seconds. Each timestamp belongs to the image directly beneath it. Gray sheet gutters, timestamp strips and unused sheet space are evidence packaging, not film graphics.
+
+Use a dark, restrained technical-product aesthetic. The backdrop is nearly black around the perimeter, with a soft, desaturated blue-green illumination behind the floating product. No room, horizon or tabletop is visible. The object has soft directional highlights, dark occlusion in recesses and subtly reflective surfaces. Keep the housing charcoal rather than pure black so its corners, lid seam and front face remain visible. The low visual density comes from one central product, occasional hardware, cables and concise annotations.
+
+Build the product from new procedural geometry. Its main form is a squat rectangular box with softened corners and beveled edges: a black lower shell and a slightly lighter charcoal lid, separated by a horizontal seam. The lid carries dark recessed-looking or low-contrast lettering and two small colored status indicators. A horizontal opening in the front wall reveals two pale, small connector sockets and darker internal geometry. Yellow electrical connector bodies protrude from opposite sides. Two battery connections occupy the left side; one load connection occupies the right. Each has red and black cables. The cables are thick, smooth, curved cylinders with modest highlights, hanging or sweeping beyond the frame. Yellow connector shells have squared bodies and several narrow parallel ribs near the cable end. Match the observed impression without claiming authentic connector or enclosure dimensions.
+
+For the exploded assembly, show a light green or cream PCB inside the lower shell. Visible components include upright yellow connector geometry, amber/orange rectangular parts, a short blue cylinder and a peach-colored block. The lid floats above, with downward posts or bosses visible beneath it. Several slender gray screws float below the housing; the annotation explicitly specifies four screws. Exact PCB traces, components, mounting dimensions and original STL geometry are unknown. The visible text says three parts, but the original file breakdown is not supplied.
+
+Annotations use a clean sans-serif typeface, bold white primary labels and smaller regular gray secondary lines. Use thin white elbowed leader lines terminating in small amber/yellow dots or rings. Labels sit beside the product rather than covering important hardware. Text has restrained shadow or dark edging where needed. The opening lower-left lockup uses a narrow vertical yellow rule, a large bold uppercase product title and a smaller white-gray subtitle. In the full-resolution assembly frame, this lockup begins near x=65, y=580; its title spans roughly half the frame width. The assembly itself sits mainly in the right half, around x=625–1020, with the elevated lid partially cropped by the top edge. Its board annotation extends leftward from the housing around mid-height.
+
+During the connector explanation, enlarge and center the assembled enclosure. In the supplied full-resolution connector frame, the housing spans approximately x=425–885 and y=145–535. Its top face is prominent, with the front opening below. The battery annotation is at upper left, its leader pointing down-right to the left connector bank. The load annotation occupies the right side, pointing down-left toward the right connector. Cables sweep downward along both outer edges and are cropped by the bottom. Preserve this left/right relationship.
+
+For the mounting demonstration, add a thin bright red mounting plate or clip beneath the enclosure and a silver-gray DIN rail. The rail is a long channel with raised lips, a recessed central web and repeated rectangular slots. It projects diagonally from the lower-left foreground toward the product. Match its perspective, visible thickness, occlusion beneath the housing and cropped foreground end. The supplied final mounting close-up places the box across the upper middle, with the rail filling much of the lower-left quadrant and cables framing both sides.
+
+The sampled views change in elevation, yaw and scale: elevated exploded assembly, closed three-quarter product view, a more frontal connector presentation, then lower mounting views. These differences support a recreation with controlled camera changes, but do not establish an exact continuous orbit, easing curve or cut pattern. Likewise, captions indicate assembly, fastening and snapping actions, while the stills establish only sampled states. Treat all proposed interpolation as inferred reconstruction. Keep every observed state and label, and verify actual entrances, exits, camera paths and transitions against denser source frames before claiming a close motion match.
+
+A separate supplied full-resolution frame is almost black. A large left-side “KOOKABUS-01” title and faint product/rail geometry remain visible. Its timestamp is not supplied, while the 9-second contact-sheet tile is still bright. Treat this as an additional dark title/fade state with unresolved placement, plausibly near the ending; do not assign it an invented exact timestamp or invent its faint secondary copy.
+
+## Observed scene samples
+- 0–1s: The 0.000-second tile is black. By the 1.000-second sample, an exploded enclosure assembly is visible against the teal-black background. The open lower shell and populated PCB occupy the right half, a detached lid is above and partly outside the crop, and screws are below. The lower-left title reads “KOOKABUS-01 ENCLOSURE” above “3D-printed, support-free, three parts,” beside a vertical yellow rule. A white leader and yellow endpoint connect the mid-left caption “Board drops onto corner posts” / “No loose standoffs” to the housing. The full-resolution assembly image supplies the fine component and layout evidence. A reveal from black occurs somewhere between these samples; its exact timing and mechanism are unresolved. The caption suggests board insertion, but no exact insertion trajectory can be recovered from this still.
+- 1–2s: At 2.000 seconds, the lid is positioned close to the enclosure, and the assembly is smaller and farther right than in the supplied full-resolution exploded view. The lower-left enclosure lockup persists. The annotation changes to “M3 heat-set inserts” with “Moulded bosses in the lid,” with a leader toward the lid region. Hardware remains visible below. The sampled states imply assembly progression, but do not establish the exact lid descent, insert movement, caption crossfade or camera interpolation.
+- 2–3s: At 3.000 seconds, the enclosure appears closed in an elevated three-quarter view, with its front socket opening visible and its lid lettering facing the camera. The annotation below-left of the product reads “4 × M3 countersunk, from below” and “No screw heads on the lid,” with a thin leader directed toward a lower corner. The earlier large lower-left title is absent in this sample. Preserve the four-fastener quantity as displayed text. Fastener travel or rotation between samples is unobserved.
+- 3–4s: At 4.000 seconds, the closed enclosure is more central and enlarged, with the previous fastening annotation absent. Its lid has low-contrast product/interface lettering and colored status points; the front opening shows pale internal sockets. A cropped yellow connector body is visible entering the composition at the far left edge. This establishes an intermediate connector-presentation state; its motion direction, mating trajectory and timing cannot be confirmed from the single sample.
+- 4–5s: At 5.000 seconds, yellow connectors and red/black wiring are attached on both sides. Two battery connections are on the left and one load connection on the right, each with a red/black wire pair. The enclosure is viewed from above and slightly in front. The upper-left caption reads “BATT A / BATT B” and “XT60 inputs, one per 5S pack,” with a leader to the left connector bank. A right-side “LOAD” / “XT60 output” callout is visible at lower opacity in the supplied full-resolution connector frame. Preserve that frame’s left/right layout and the cables extending beyond the lower crop. Connection motion between 4 and 5 seconds remains inferred.
+- 5–6s: At 6.000 seconds, the wired product remains central in a somewhat more frontal view. The battery and load labels are visible, with two additional callouts: “Status LEDs” / “Which pack is live” above the lid, and “Qwiic I²C port” / “Voltage and current readout” below-right, pointing to the front opening. The top indicators include a red point near A and a pale yellow point near B. Do not infer blinking, a status-switch sequence or actual electrical operation. This is the densest annotation state, but the box and connectors remain readable.
+- 6–7s: At 7.000 seconds, the electrical callouts have disappeared. The wired housing is shown above a red mounting part and a silver DIN rail extending diagonally from the foreground beneath it. The product is higher in the composition and the rail enters through the bottom edge. This introduces the mounting section. The still does not determine whether the rail rises, the housing lowers, or the camera reveals an existing arrangement.
+- 7–8s: At 8.000 seconds, the product and rail are presented from an oblique angle. A thin red clip or plate is visible between the black enclosure and the silver rail. The rail runs from the lower-left foreground toward the enclosure, showing raised channel edges and rectangular slots. A lower-right annotation reads “Optional DIN-rail clip” with “Same four screws, M3 x 16,” its leader pointing toward the mounting assembly. The enclosure appears tilted relative to the later sample, consistent with a mounting demonstration; the exact pivot and contact sequence are unobserved.
+- 8–9s: At 9.000 seconds, the enclosure is shown in a more level, frontal three-quarter mounting view with its red underside part aligned over the rail. The front opening and two pale sockets are clear, the yellow load connector protrudes at right, and the red/black wires arc down both sides. The caption reads “Hooks on, snaps down” above “Standard TS35 rail,” with an elbowed white leader and yellow endpoint on the rail. The supplied full-resolution mounting frame shows the close-up geometry. The wording describes a hook-and-snap action, but the stills cannot establish its exact downward travel, flex or settling motion.
+- 9–10s: The bright 9.000-second mounting state is the last timestamped sample. An additional full-resolution image shows an almost-black state with large “KOOKABUS-01” text at left and faint product/rail imagery at right. Its timestamp is unknown. Reserve the remaining duration for the reference ending once its timing is checked; a final title/fade is a plausible inference, not a verified frame-by-frame reconstruction. Do not omit this supplied dark state, invent legible secondary wording, or assume the last frame is fully black.
+
+## Visible text evidence
+- KOOKABUS-01 ENCLOSURE
+- 3D-printed, support-free, three parts
+- Board drops onto corner posts
+- No loose standoffs
+- M3 heat-set inserts
+- Moulded bosses in the lid
+- 4 × M3 countersunk, from below
+- No screw heads on the lid
+- BATT A / BATT B
+- XT60 inputs, one per 5S pack
+- LOAD
+- XT60 output
+- Status LEDs
+- Which pack is live
+- Qwiic I²C port
+- Voltage and current readout
+- Optional DIN-rail clip
+- Same four screws, M3 x 16
+- Hooks on, snaps down
+- Standard TS35 rail
+- KOOKABUS-01
+- 5S HOT-SWAP
+- BATT A
+- BATT B
+- I2C
+- A
+- B
+
+## Declared uncertainties
+- The timed intervals bracket one-second samples; they are not measured scene boundaries. No scene-change timestamps were supplied.
+- Exact caption entrance/exit frames, fades, object trajectories, camera paths, easing and overlap cannot be recovered from the sampled stills.
+- The supplied full-resolution frames lack individual timestamps. Their matching states can be recognized, but exact temporal alignment is unknown.
+- The almost-black full-resolution title state cannot be confidently placed within the 10-second timeline. Its smaller text is too faint to transcribe reliably.
+- The fastening callout specifies four screws, but all four are not equally clear in every assembly sample.
+- The original three-part definition, PCB design, enclosure dimensions, screw lengths as physical specifications, connector internals and mounting mechanism are not independently verified. Displayed values are reference evidence.
+- Exact font family, materials, lighting setup, render engine, source code and private creator inputs are unknown.
+- The letter/number styling of the lid’s low-contrast I2C marking differs from the superscript treatment in the Qwiic callout; preserve their observed visual forms.
+- Changes in indicator appearance across frames do not establish blinking or functional electrical behavior.
+
+Audio: No audio listening review was performed. Frozen metadata reports audio_streams: 0, so the supplied reference is reported to contain no audio stream. No narration, music or sound effects are evidenced; none should be invented as part of a faithful reconstruction.
