@@ -28,18 +28,18 @@
   "run_counts": {
     "baseline": {
       "blocked": 16,
-      "not_generated": 647,
-      "rendered": 28,
-      "generated": 10,
-      "running": 2
+      "not_generated": 646,
+      "rendered": 29,
+      "generated": 11,
+      "running": 1
     },
     "adapted": {
       "rendered": 2,
       "not_generated": 701
     }
   },
-  "entries_with_source": 39,
-  "entries_with_render": 29,
+  "entries_with_source": 41,
+  "entries_with_render": 30,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"
 }

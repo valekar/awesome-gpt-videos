@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "status": "running",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "9a73c73009a341f1641fee96034be55a65f1eade3e78a95f09f6a5fc7e4a470a",
+    "input_sha256": "df5f096283add7e822a044e443bf92df068ff4c6437ad7240bb0195c0aef8109",
+    "started_at": "2026-10-18T15:12:05.754733+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/chrisjdimarco-808196/baseline/schema.json",
+      "-o",
+      "$REPO/results/chrisjdimarco-808196/baseline/response.json",
+      "-"
+    ]
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

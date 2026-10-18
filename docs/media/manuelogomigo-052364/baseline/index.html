@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FLOWDRIVE — Motion Showreel</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#101112;font-family:sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="15">
+<canvas id="art" class="clip" data-start="0" data-duration="15" width="1920" height="1080" role="img" aria-label="A bold, abstract FLOWDRIVE motion-design showreel."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+/* EDITABLE CREATIVE SETTINGS. All artwork is generated from timeline time. */
+const DESIGN={width:1920,height:1080,ink:'#111313',paper:'#f4f0e5',lime:'#d6ff43',mint:'#b8f4cd',blue:'#2146f5',orange:'#ff6038',duration:15};
+const canvas=document.getElementById('art'),c=canvas.getContext('2d');
+const W=DESIGN.width,H=DESIGN.height,TAU=Math.PI*2;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const ease=v=>1-Math.pow(1-clamp(v),4);
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const mix=(a,b,p)=>a+(b-a)*p;
+function bg(color){c.fillStyle=color;c.fillRect(0,0,W,H)}
+function disk(x,y,r,color){c.beginPath();c.arc(x,y,Math.max(0,r),0,TAU);c.fillStyle=color;c.fill()}
+function rounded(x,y,w,h,r,color){c.beginPath();c.roundRect(x,y,w,h,r);c.fillStyle=color;c.fill()}
+function line(x1,y1,x2,y2,color,width=2){c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.strokeStyle=color;c.lineWidth=width;c.stroke()}
+function type(text,x,y,size,color,maxWidth,outline=0){
+ c.save();c.translate(x,y);c.font=`900 ${size}px sans-serif`;c.textBaseline='alphabetic';
+ const natural=c.measureText(text).width,scale=maxWidth?Math.min(1,maxWidth/natural):1;c.scale(scale,1);
+ if(outline){c.strokeStyle=color;c.lineWidth=outline;c.lineJoin='round';c.strokeText(text,0,0)}else{c.fillStyle=color;c.fillText(text,0,0)}c.restore();
+}
+function centered(text,x,y,size,color,maxWidth){c.font=`900 ${size}px sans-serif`;const width=Math.min(maxWidth||1e9,c.measureText(text).width);type(text,x-width/2,y,size,color,maxWidth)}
+function flower(x,y,r,n,rotation,color,hole=0){
+ c.save();c.translate(x,y);c.rotate(rotation);c.beginPath();
+ for(let i=0;i<=n*24;i++){const a=i/(n*24)*TAU,rr=r*(.8+.2*Math.cos(n*a));const px=Math.cos(a)*rr,py=Math.sin(a)*rr;i?c.lineTo(px,py):c.moveTo(px,py)}
+ c.closePath();c.fillStyle=color;c.fill();if(hole)disk(0,0,hole,DESIGN.paper);c.restore();
+}
+function arrow(x,y,scale,rotation,color){c.save();c.translate(x,y);c.rotate(rotation);c.scale(scale,scale);c.beginPath();c.moveTo(-100,-22);c.lineTo(16,-22);c.lineTo(16,-75);c.lineTo(108,0);c.lineTo(16,75);c.lineTo(16,22);c.lineTo(-100,22);c.closePath();c.fillStyle=color;c.fill();c.restore()}
+
+/* 00:00–00:02.65 — expressive type, orbital counter-motion. */
+function opening(t){
+ bg(DESIGN.mint);
+ const intro=ease(t/.8),squeeze=Math.sin(t*2.2)*.025;
+ c.save();c.translate(960,540);c.scale(1+squeeze,1-squeeze);c.translate(-960,-540);
+ type('FLOW',78-32*(1-intro),484+26*(1-intro),548,DESIGN.ink,1740);
+ type('DRIVE',88+65*(1-ease((t-.12)/.85)),963,479,DESIGN.ink,1725,7);
+ c.restore();
+ const cx=1484-95*Math.sin(t*1.9),cy=524+42*Math.cos(t*2.1);
+ c.save();c.translate(cx,cy);c.rotate(-.46+t*.62);
+ c.beginPath();c.ellipse(0,0,273,102,0,0,TAU);c.strokeStyle=DESIGN.orange;c.lineWidth=43;c.stroke();
+ c.beginPath();c.ellipse(0,0,273,102,Math.PI/2,0,TAU);c.strokeStyle=DESIGN.ink;c.lineWidth=19;c.stroke();
+ disk(273*Math.cos(t*3),102*Math.sin(t*3),32,DESIGN.paper);c.restore();
+ const width=308+58*Math.sin(t*2.6);
+ c.save();c.translate(372,594);c.rotate(-.08+Math.sin(t*1.4)*.055);rounded(-width/2,-58,width,116,58,DESIGN.orange);arrow(0,0,1.12,0,DESIGN.ink);c.restore();
+}
+
+/* 00:02.65–00:05.15 — an accelerating, perspective type tunnel. */
+function tunnel(t){
+ bg(DESIGN.ink);
+ const rotation=.14*Math.sin(t*.9),pulse=.5+.5*Math.sin(t*3.8);
+ c.save();c.translate(960,540);c.rotate(rotation);
+ for(let i=18;i>=0;i--){
+  const phase=((i+t*5.5)%19)/19,depth=Math.pow(phase,2.25),w=180+depth*2750,h=120+depth*1760;
+  c.save();c.rotate((1-phase)*.57*Math.sin(t*.9));c.beginPath();c.roundRect(-w/2,-h/2,w,h,Math.min(w,h)*.22);c.strokeStyle=i%3===0?DESIGN.blue:DESIGN.lime;c.globalAlpha=.16+phase*.8;c.lineWidth=2+phase*12;c.stroke();c.restore();
+ }
+ c.restore();
+ for(let i=0;i<24;i++){
+  const a=i/24*TAU+.06*Math.sin(t),q=((t*.47+i*.137)%1),r=230+q*q*1050;
+  line(960+Math.cos(a)*r,540+Math.sin(a)*r*.63,960+Math.cos(a)*(r+45+q*170),540+Math.sin(a)*(r+45+q*170)*.63,i%3?DESIGN.lime:DESIGN.blue,2+q*3);
+ }
+ const pop=ease((t-.12)/.5);
+ c.save();c.translate(960,540);c.scale(.78+.22*pop+.015*pulse,.78+.22*pop+.015*pulse);
+ disk(0,0,242,DESIGN.blue);c.beginPath();c.arc(0,0,242,0,TAU);c.strokeStyle=DESIGN.paper;c.lineWidth=3;c.stroke();
+ centered('GO',0,90,265,DESIGN.lime,430);c.restore();
+ type('BEYOND',100,193,160,DESIGN.paper,1710);
+ type('EXPECTED.',91,1010,178,DESIGN.paper,1740);
+}
+
+/* 00:05.15–00:07.65 — typography meets an elastic graphic system. */
+function feeling(t){
+ bg(DESIGN.paper);
+ c.strokeStyle='#deddd2';c.lineWidth=1;
+ for(let x=80;x<W;x+=160){c.beginPath();c.moveTo(x,0);c.lineTo(x,H);c.stroke()}
+ for(let y=60;y<H;y+=160){c.beginPath();c.moveTo(0,y);c.lineTo(W,y);c.stroke()}
+ const arrive=ease(t/.65),rotation=t*.72;
+ c.save();c.translate(1532,288);c.scale(.65+.35*arrive,.65+.35*arrive);flower(0,0,236,12,rotation,DESIGN.orange);disk(0,0,75,DESIGN.ink);disk(0,0,27,DESIGN.lime);c.restore();
+ type('FORM',86-50*(1-arrive),381,395,DESIGN.ink,1185);
+ c.save();c.translate(593+45*Math.sin(t*1.7),568);c.rotate(-.085+.035*Math.sin(t*3));rounded(-489,-100,978,200,100,DESIGN.lime);centered('MEETS',0,64,178,DESIGN.ink,850);c.restore();
+ type('FEELING',82+45*(1-ease((t-.18)/.7)),990,374,DESIGN.ink,1750);
+ c.save();c.translate(1501,597);c.rotate(.11*Math.sin(t*2.4));arrow(0,0,1.4,0,DESIGN.orange);c.restore();
+}
+
+/* Deterministic projected tube mesh. The geometry, depth sort and lighting
+   are rebuilt on every seek; no simulation or accumulated state is used. */
+function knotPoint(u){const r=2+.62*Math.cos(3*u);return [r*Math.cos(2*u),r*Math.sin(2*u),.77*Math.sin(3*u)]}
+function norm(v){const l=Math.hypot(...v)||1;return v.map(a=>a/l)}
+function cross(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]}
+function rotate3(p,ax,ay,az){
+ let[x,y,z]=p;let v=y*Math.cos(ax)-z*Math.sin(ax);z=y*Math.sin(ax)+z*Math.cos(ax);y=v;
+ v=x*Math.cos(ay)+z*Math.sin(ay);z=-x*Math.sin(ay)+z*Math.cos(ay);x=v;
+ return[x*Math.cos(az)-y*Math.sin(az),x*Math.sin(az)+y*Math.cos(az),z];
+}
+function knot(t){
+ const N=168,M=10,verts=[],faces=[],ax=.65+t*.23,ay=.2+t*.54,az=-.4+t*.14,scale=165+12*Math.sin(t*1.3);
+ for(let i=0;i<=N;i++){
+  const u=i/N*TAU,p=knotPoint(u),next=knotPoint(u+.001),tangent=norm(next.map((n,j)=>n-p[j])),normal=norm(cross(tangent,[0,0,1])),binormal=norm(cross(tangent,normal)),row=[];
+  for(let j=0;j<=M;j++){
+   const v=j/M*TAU,offset=normal.map((n,k)=>Math.cos(v)*n+Math.sin(v)*binormal[k]);
+   const pos=rotate3(p.map((a,k)=>a+.235*offset[k]),ax,ay,az),n=rotate3(offset,ax,ay,az),perspective=7.5/(7.5+pos[2]);
+   row.push({x:1120+pos[0]*scale*perspective,y:558+pos[1]*scale*perspective,z:pos[2],light:clamp(.46+n[0]*-.22+n[1]*-.35+n[2]*-.3)});
+  }verts.push(row);
+ }
+ for(let i=0;i<N;i++)for(let j=0;j<M;j++){
+  const p=[verts[i][j],verts[i+1][j],verts[i+1][j+1],verts[i][j+1]];
+  faces.push({p,z:p.reduce((s,v)=>s+v.z,0)/4,l:p.reduce((s,v)=>s+v.light,0)/4,u:i/N});
+ }
+ faces.sort((a,b)=>b.z-a.z);
+ for(const f of faces){const hue=69+14*Math.sin(f.u*TAU*3+t*.5),light=22+f.l*61;color=`hsl(${hue},96%,${light}%)`;c.beginPath();f.p.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();c.fillStyle=color;c.strokeStyle=color;c.lineWidth=.85;c.fill();c.stroke()}
+}
+function flow(t){
+ bg(DESIGN.blue);
+ c.save();c.globalAlpha=.22;c.strokeStyle=DESIGN.paper;c.lineWidth=1.5;
+ for(let i=0;i<7;i++){c.beginPath();c.ellipse(1120,550,365+i*38,270+i*27,-.34,0,TAU);c.stroke()}c.restore();
+ type('FIND',89,263,232,DESIGN.paper,810);
+ type('YOUR',97,432,155,DESIGN.paper,640);
+ type('FLOW.',77,1015,283,DESIGN.paper,1390);
+ knot(t);
+ disk(1740,165,30,DESIGN.orange);
+ arrow(1735,922,.77,-Math.PI/4,DESIGN.paper);
+}
+
+/* 00:10.30–00:12.60 — hard-cut energy and oversized type. */
+function fullSend(t){
+ bg(DESIGN.orange);
+ c.save();c.translate(960,540);c.rotate(t*.14);
+ for(let i=0;i<24;i++){
+  const a=i/24*TAU,b=a+TAU/48;c.beginPath();c.moveTo(0,0);c.lineTo(Math.cos(a)*1700,Math.sin(a)*1700);c.lineTo(Math.cos(b)*1700,Math.sin(b)*1700);c.closePath();c.fillStyle=i%2?DESIGN.ink:'#c83f22';c.fill();
+ }c.restore();
+ const impact=Math.exp(-t*7),dx=Math.sin(t*75)*15*impact,dy=Math.cos(t*61)*11*impact;
+ c.save();c.translate(960+dx,540+dy);c.rotate(-.045+.009*Math.sin(t*3));c.translate(-960,-540);
+ type('FULL',95,497,540,DESIGN.ink,1710,15);
+ type('FULL',78,481,540,DESIGN.paper,1710);
+ type('SEND.',95,1005,521,DESIGN.ink,1720,15);
+ type('SEND.',78,989,521,DESIGN.paper,1720);
+ c.restore();
+ const p=ease((t-.5)/.4);c.save();c.translate(1640,140);c.rotate(-.18+t*.4);c.scale(p,p);rounded(-158,-68,316,136,68,DESIGN.lime);arrow(0,0,.9,0,DESIGN.ink);c.restore();
+}
+
+/* 00:12.60–00:15.00 — a clean, held closing lockup. */
+function closing(t){
+ bg(DESIGN.paper);
+ const arrive=ease(t/.85),settle=smooth((t-.75)/.8),angle=.25*(1-settle)+t*.08*(1-settle);
+ c.save();c.translate(960,294);c.rotate(angle);c.scale(.75+.25*arrive,.75+.25*arrive);
+ flower(0,0,130,8,-t*.55*(1-settle),DESIGN.orange);
+ c.save();c.rotate(-.48);c.beginPath();c.ellipse(0,0,185,56,0,0,TAU);c.strokeStyle=DESIGN.ink;c.lineWidth=15;c.stroke();c.restore();disk(0,0,31,DESIGN.lime);c.restore();
+ c.save();c.translate(0,48*(1-arrive));centered('FLOWDRIVE',960,706,276,DESIGN.ink,1710);c.restore();
+ const underline=1660*ease((t-.35)/.75);rounded(130,751,Math.max(.01,underline),9,4,DESIGN.ink);
+ c.save();c.globalAlpha=ease((t-.65)/.6);c.font='500 48px sans-serif';c.fillStyle=DESIGN.ink;c.textAlign='center';c.fillText('ALWAYS IN MOTION.',960,856);c.restore();
+}
+
+const SCENES=[{start:0,draw:opening},{start:2.65,draw:tunnel},{start:5.15,draw:feeling},{start:7.65,draw:flow},{start:10.3,draw:fullSend},{start:12.6,draw:closing}];
+function reveal(index,p){
+ c.beginPath();
+ if(index===1||index===5){c.arc(960,540,ease(p)*1220,0,TAU)}
+ else if(index===2){for(let i=0;i<8;i++){const q=ease((p-i*.045)/.685);c.rect(i*240,-1,241,(H+2)*q)}}
+ else if(index===3){const edge=-2300+ease(p)*4600;c.moveTo(0,0);c.lineTo(edge,0);c.lineTo(edge-580,H);c.lineTo(0,H);c.closePath()}
+ else{for(let i=0;i<6;i++){const q=ease((p-i*.04)/.8);c.rect(i%2?W*(1-q):0,i*180,W*q,181)}}
+ c.clip();
+}
+function draw(time){
+ const t=clamp(time,0,DESIGN.duration);c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,W,H);
+ let index=0;for(let i=1;i<SCENES.length;i++)if(t>=SCENES[i].start)index=i;
+ const scene=SCENES[index],local=t-scene.start,transition=.44;
+ if(index>0&&local<transition){const prev=SCENES[index-1];c.save();prev.draw(t-prev.start);c.restore();c.save();reveal(index,local/transition);scene.draw(local);c.restore()}
+ else{c.save();scene.draw(local);c.restore()}
+}
+/* One paused master timeline. The harness owns playback and seeking. */
+const clock={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(clock,{t:DESIGN.duration,duration:DESIGN.duration,ease:'none',onUpdate:()=>draw(clock.t)},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+</script>
+</body>
+</html>
