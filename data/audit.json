@@ -28,9 +28,10 @@
   "run_counts": {
     "baseline": {
       "blocked": 16,
-      "not_generated": 649,
+      "not_generated": 647,
       "rendered": 28,
-      "generated": 10
+      "generated": 10,
+      "running": 2
     },
     "adapted": {
       "rendered": 2,
