@@ -79,7 +79,7 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "generated",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -168,6 +168,27 @@
     "height": 1280,
     "duration_seconds": 56.966667,
     "source_path": "results/anirockshady-032809/adapted/index.html",
-    "reason": "Source generated; rendering and matched-time fidelity review pending."
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/anirockshady-032809/adapted/video.mp4",
+    "poster_url": "media/anirockshady-032809/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 720,
+          "height": 1280,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "56.966667"
+      }
+    },
+    "staged_source_sha256": "718bc391c31613fc8124c500c38b809a899a125811e4e8a2231a634b60df61de",
+    "source_modified_after_generation": false
   }
 }
