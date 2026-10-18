@@ -1,0 +1,11 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "reason": "Prompt mentions a native renderer; inspect and route to that workflow before using the HTML harness.",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high"
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

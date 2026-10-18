@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,31 @@
       "-o",
       "$REPO/results/prasenx-693512/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20596,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 10428,
+      "reasoning_output_tokens": 3624
+    },
+    "finished_at": "2026-10-18T15:30:30.437832+00:00",
+    "assumptions": [
+      "Creative direction: original typographic showreel using paper, black, electric blue, orange and lime; no invented client, product or résumé claims.",
+      "1920×1080 at 60 fps. Eight scenes cut on four-beat boundaries at 128 BPM, totaling exactly 15 seconds.",
+      "All artwork uses Canvas and generic system fonts. No external assets or associated license gaps.",
+      "The original soundtrack is synthesized deterministically into an in-memory stereo WAV. The rendering harness must capture the timed audio element and mix it into its MP4 export.",
+      "No rendering or filesystem operations were performed. No MP4 has been saved, and the animation has not been visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete editable HyperFrames HTML with eight beat-aligned scenes and an original synthesized soundtrack. MP4 rendering and saving remain for the harness.",
+    "source_sha256": "6704a9ff65c210248b797768ebbd861d1a4a7f5c2da9b27569003fa2aa921e14",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 15,
+    "source_path": "results/prasenx-693512/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Technical browser check failed; source retained for a recorded repair."
   },
   "adapted": {
     "status": "not_generated"

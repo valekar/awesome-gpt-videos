@@ -1,0 +1,57 @@
+{
+  "status": "blocked",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "518a5e4627f03f574d27be488d153532742099c3a2a1365e1f1231e807bcc3a4",
+  "input_sha256": "c8648140a9943a9c53dad22564a1e70d62d319107a94d5ef6ec6068d8c276d68",
+  "started_at": "2026-10-18T15:31:38.042644+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/pound75423-464968/baseline/schema.json",
+    "-o",
+    "$REPO/results/pound75423-464968/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 21290,
+    "cached_input_tokens": 20352,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 478,
+    "reasoning_output_tokens": 238
+  },
+  "finished_at": "2026-10-18T15:31:57.140160+00:00",
+  "assumptions": [
+    "指定形式は1280×720、30fps、MP4、30MB以内です。",
+    "楽曲未提供のため実尺は不明です。duration_secondsの0は未確定を示します。",
+    "コード生成、レンダリング、スクリーンショット確認は未実施です。"
+  ],
+  "missing_inputs": [
+    "添付楽曲の音声ファイル。BPM、拍位置、小節、セクション、全尺の解析に必要です。",
+    "使用するキャラクター画像一式。背景透過、ステッカー加工、ポーズの切り替えに必要です。",
+    "静かなカットで使用するシーン画像。",
+    "小節頭に表示する文字、または「歌詞からキーワードを選ぶ」という指定と歌詞情報。",
+    "左上のタイトルと右上の日付の表示内容。"
+  ],
+  "summary": "指定の添付素材と表示内容が不足しているため、HTMLは空です。",
+  "reason": "添付楽曲の音声ファイル。BPM、拍位置、小節、セクション、全尺の解析に必要です。; 使用するキャラクター画像一式。背景透過、ステッカー加工、ポーズの切り替えに必要です。; 静かなカットで使用するシーン画像。; 小節頭に表示する文字、または「歌詞からキーワードを選ぶ」という指定と歌詞情報。; 左上のタイトルと右上の日付の表示内容。"
+}

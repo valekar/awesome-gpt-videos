@@ -8,3 +8,5 @@ results/**/events.jsonl
 results/**/stderr.log
 
 results/**/state.lock
+
+results/**/execution.lock

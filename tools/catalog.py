@@ -42,6 +42,8 @@ def dump(path, obj):
 def adapt(v, flags):
  tech=' '.join(TECH[t] for t in v['tech_tags'] if t in TECH)
  coverage=('The upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.' if v['prompt_partial'] else 'Upstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.')
+ guidance_path=ROOT/'comparison/prompt-improvements'/f"{v['slug']}.md"
+ guidance=('\n\n## Review-derived guidance — additional to creator material\n\n'+guidance_path.read_text()) if guidance_path.exists() else ''
  return f'''# GPT-6.1 high adaptation — {v['slug']}
 
 Target model: `{MODEL}`; reasoning effort: `high`.
@@ -73,7 +75,7 @@ Deliver editable source, the exact model input, model/effort/CLI metadata, depen
 
 <creator_material>
 {v['prompt']}
-</creator_material>
+</creator_material>{guidance}
 '''
 def build():
  videos=json.loads((ROOT/'data/videos.json').read_text());readme=(ROOT/'provenance/UPSTREAM_README.md').read_text()
@@ -110,6 +112,8 @@ def build():
   'entries_with_source':sum(any(r['status'] in ('generated','rendered','reviewed') for r in v['runs'].values()) for v in entries),
   'entries_with_render':sum(any(r['status'] in ('rendered','reviewed') for r in v['runs'].values()) for v in entries),
   'model':MODEL,'reasoning_effort':'high'}
+ from readme_comparisons import refresh
+ refresh(ROOT,entries,audit)
  dump(ROOT/'data/catalog.json',entries);dump(ROOT/'data/audit.json',audit);dump(ROOT/'docs/progress.json',audit)
  (ROOT/'docs/catalog.js').write_text('window.CATALOG = '+json.dumps(entries,ensure_ascii=False)+';\nwindow.AUDIT = '+json.dumps(audit,ensure_ascii=False)+';\n')
  (ROOT/'provenance/INVENTORY.md').write_text('# Source inventory\n\nPinned upstream: `'+audit['upstream_commit']+'`.\n\n'+ '\n'.join(f'- {k}: {v}' for k,v in audit.items() if k not in ['upstream_commit','upstream'])+'\n\nAll adaptations are draft instructions. No adaptation alone establishes generation or reference fidelity.\n')

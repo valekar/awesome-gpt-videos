@@ -1,0 +1,4 @@
+{
+  "status": "not_accepted",
+  "reason": "A duplicate invocation truncated the shared raw event log. The duplicate was stopped before source output. A fresh recorded attempt was requested; this source is retained only as unaccepted history."
+}

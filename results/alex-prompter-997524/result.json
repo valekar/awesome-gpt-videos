@@ -1,0 +1,62 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "615d134af75472ea0b903e7128c51bf1c42e3c63e98b2ac263c14a1c8799cfcc",
+    "input_sha256": "a0d4b34fb42e086bbc15c619787f0d0c465912dbe8aa6ce75e92b623cdfa7b9c",
+    "started_at": "2026-10-18T15:30:46.957238+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/alex-prompter-997524/baseline/schema.json",
+      "-o",
+      "$REPO/results/alex-prompter-997524/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20589,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 298,
+      "reasoning_output_tokens": 163
+    },
+    "finished_at": "2026-10-18T15:31:02.631738+00:00",
+    "assumptions": [
+      "Proposed format: 1920×1080 landscape, with five scenes over 30 seconds.",
+      "The business-description placeholder is unfilled; no business facts or branding were invented."
+    ],
+    "missing_inputs": [
+      "Business description: what you sell and who it serves.",
+      "Customer problem your business solves.",
+      "Your three-step process.",
+      "One factual proof point approved for use.",
+      "Business or personal name for the ending.",
+      "Brand colours."
+    ],
+    "summary": "The required business details are missing. HTML generation is deferred until they are supplied.",
+    "reason": "Business description: what you sell and who it serves.; Customer problem your business solves.; Your three-step process.; One factual proof point approved for use.; Business or personal name for the ending.; Brand colours."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "e9cc14dbe8e06440f110b25217c7ffd85a1303ac30a45108f42165df7cf49d7e",
+    "input_sha256": "4981ae57a28c6ce13c5c4b512875e5f6a77289a1b191cf6e1a2f80e02568cb93",
+    "started_at": "2026-10-18T15:31:18.725908+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/marklaunches-041046/baseline/schema.json",
+      "-o",
+      "$REPO/results/marklaunches-041046/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 18969,
+      "cached_input_tokens": 12416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 384,
+      "reasoning_output_tokens": 297
+    },
+    "finished_at": "2026-10-18T15:31:36.803025+00:00",
+    "assumptions": [
+      "Proposed format: 16:9 landscape."
+    ],
+    "missing_inputs": [
+      "App name and official public URL, or a description of its purpose, audience, and key features."
+    ],
+    "summary": "App context is required to create an emotional video without inventing product details.",
+    "reason": "App name and official public URL, or a description of its purpose, audience, and key features."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

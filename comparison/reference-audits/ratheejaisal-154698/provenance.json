@@ -1,0 +1,62 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "ac72a4d3fb9b82db0a670aadf05122e07b4a9142c563fbf0a41caa1aaa3fe554",
+  "reference_evidence": {
+    "slug": "ratheejaisal-154698",
+    "width": 1280,
+    "height": 720,
+    "fps": "60/1",
+    "duration_seconds": 20.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/ratheejaisal-154698/evidence/sheet-01.jpg",
+      "work/references/ratheejaisal-154698/evidence/sheet-02.jpg"
+    ],
+    "full_frames": [
+      "work/references/ratheejaisal-154698/evidence/full-1.jpg",
+      "work/references/ratheejaisal-154698/evidence/full-2.jpg",
+      "work/references/ratheejaisal-154698/evidence/full-3.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/ratheejaisal-154698/evidence/sheet-01.jpg": "14eebb235512b0ea7f73bbce448e4145a334385ea10a2a22f35ed1f14fa214c6",
+    "work/references/ratheejaisal-154698/evidence/sheet-02.jpg": "b80453eb8911bafda205d5b8038edd4c077418796270dad495502b5b2956e3ca",
+    "work/references/ratheejaisal-154698/evidence/full-1.jpg": "1c68818198d479e7cad94c5f3cdc420b699369e237982f11e794cbd501e501e0",
+    "work/references/ratheejaisal-154698/evidence/full-2.jpg": "b52a10131a080f458b7b1ce6e19b7151a4d926b352152da6c67d7e803e90c73f",
+    "work/references/ratheejaisal-154698/evidence/full-3.jpg": "2a3f48d97e29e94ec96ecb709b97205039adf37e1890c46547f192d51b68f4a3"
+  },
+  "usage": {
+    "input_tokens": 29587,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5750,
+    "reasoning_output_tokens": 1034
+  },
+  "audio_supplied": false
+}

@@ -1,0 +1,60 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "1ffb336e626037d5dc317cf4641c1584124a6e5c79aa0d8d9ee4426e2fdb2369",
+  "reference_evidence": {
+    "slug": "parkerrex-701462",
+    "width": 1080,
+    "height": 1080,
+    "fps": "30/1",
+    "duration_seconds": 18.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/parkerrex-701462/evidence/sheet-01.jpg",
+      "work/references/parkerrex-701462/evidence/sheet-02.jpg"
+    ],
+    "full_frames": [
+      "work/references/parkerrex-701462/evidence/full-1.jpg",
+      "work/references/parkerrex-701462/evidence/full-2.jpg",
+      "work/references/parkerrex-701462/evidence/full-3.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/parkerrex-701462/evidence/sheet-01.jpg": "4512f80af664bb6c956db4e7f4984476b724271e955ee68f775b623350c5e39d",
+    "work/references/parkerrex-701462/evidence/sheet-02.jpg": "5d4835b43f9b80e62faabdd0b2fb78b12b011429ebc2c24a72e82ae27057fc72",
+    "work/references/parkerrex-701462/evidence/full-1.jpg": "7dcda761f638785d88e409f4c935ed3857b1b873ddce42731af56ff1c5a69c44",
+    "work/references/parkerrex-701462/evidence/full-2.jpg": "b4fa25c7316fa816783303200a6de146156c7adeeb544158146ca29a9f9e7e5e",
+    "work/references/parkerrex-701462/evidence/full-3.jpg": "21b9dbda63103f6e6401d93d654bcb356a16390eaf20e8b04b2ae194ed00077a"
+  },
+  "usage": {
+    "input_tokens": 30942,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5981,
+    "reasoning_output_tokens": 2070
+  },
+  "audio_supplied": false
+}

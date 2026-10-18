@@ -1,0 +1,53 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "9e73bfce7f33de1c6f62656cbf875de209842ee371a7cb522b9fc958ca160d8a",
+  "reference_evidence": {
+    "slug": "souravbhar871-477361",
+    "width": 1280,
+    "height": 720,
+    "fps": "60/1",
+    "duration_seconds": 10.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0
+    ],
+    "scene_change_times": [
+      1.05,
+      1.166667
+    ],
+    "sheets": [
+      "work/references/souravbhar871-477361/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/souravbhar871-477361/evidence/full-1.jpg",
+      "work/references/souravbhar871-477361/evidence/full-2.jpg",
+      "work/references/souravbhar871-477361/evidence/full-3.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/souravbhar871-477361/evidence/sheet-01.jpg": "9f8ca58f564e8a89e5c5500ab842dbdf97ad99881946268120f94427a040cf8b",
+    "work/references/souravbhar871-477361/evidence/full-1.jpg": "ff668be6ecfa4732423e4499c2e15b9b98f984868de448c633baefaa1a169da5",
+    "work/references/souravbhar871-477361/evidence/full-2.jpg": "55280d976a801be8eab1a49e86324a3c7069d3106d1a20f891159c50550665c2",
+    "work/references/souravbhar871-477361/evidence/full-3.jpg": "18d1747003cf72726fb0a11eb232732f0e0a02b8f78fc7a473b14b54d31f45a6"
+  },
+  "usage": {
+    "input_tokens": 26822,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4517,
+    "reasoning_output_tokens": 1552
+  },
+  "audio_supplied": false
+}

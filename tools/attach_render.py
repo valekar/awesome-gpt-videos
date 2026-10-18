@@ -11,6 +11,7 @@ if __name__=='__main__':
  probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,width,height,r_frame_rate','-of','json',str(a.video)],text=True))
  video=next(s for s in probe['streams'] if s['codec_type']=='video')
  if abs(float(probe['format']['duration'])-original['duration_seconds'])>0.1:p.error('Render duration differs from model source')
+ if abs(float(__import__('fractions').Fraction(video['r_frame_rate']))-original.get('fps',30))>.001:p.error('Render frame rate differs from recorded source')
  if (video['width'],video['height'])!=(original['width'],original['height']):p.error('Render dimensions differ from recorded source')
  dst=ROOT/'docs/media'/a.slug/a.track;dst.mkdir(parents=True,exist_ok=True)
  shutil.copyfile(a.video,dst/'video.mp4')

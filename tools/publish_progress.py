@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Publish the authorized corpus worker outputs as progress changes."""
-import argparse,json,os,pathlib,subprocess,time
+import argparse,hashlib,json,os,pathlib,subprocess,time
 from catalog import ROOT
 from github_sync import repo
-PATHS=['results','docs','data/catalog.json','data/audit.json','provenance/INVENTORY.md']
+PATHS=['README.md','results','docs','comparison','prompts/gpt-6.1-high','.agents/skills/awesome-gpt-videos','data/catalog.json','data/audit.json','provenance/INVENTORY.md']
 def command(args,**kwargs):return subprocess.run(args,cwd=ROOT,check=True,**kwargs)
 if __name__=='__main__':
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--watch',action='store_true');a=p.parse_args()
@@ -11,7 +11,7 @@ if __name__=='__main__':
  last=None
  while True:
   raw=(ROOT/'docs/progress.json').read_text();counts=json.loads(raw)
-  key=json.dumps([counts['run_counts'],counts['sampled_reviews'],counts['visual_reviewed']],sort_keys=True)
+  key=hashlib.sha256((ROOT/'docs/catalog.js').read_bytes()).hexdigest()
   if key!=last:
    branch=subprocess.check_output(['git','branch','--show-current'],cwd=ROOT,text=True).strip()
    if branch!='main':raise RuntimeError('Publication requires main')
@@ -24,10 +24,10 @@ if __name__=='__main__':
    command(['python3','tools/github_sync.py','--push'])
    last=key
   if not a.watch:break
-  progress=ROOT/'work/batch-baseline-progress.json'
+  progress=ROOT/'work/adapted-priority-progress.json'
   finished=progress.exists() and json.loads(progress.read_text()).get('finished_at')
   if finished:
    # Allow the render worker to drain; it marks render reasons for gated sources.
    entries=json.loads((ROOT/'data/catalog.json').read_text())
-   if not any(r.get('status')=='generated' and not r.get('render_queue_reason') for v in entries for t,r in v['runs'].items() if t=='baseline'):break
+   if not any(r.get('status')=='generated' and not r.get('render_queue_reason') for v in entries for t,r in v['runs'].items() if t=='adapted'):break
   time.sleep(120)

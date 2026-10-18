@@ -28,6 +28,7 @@ def make_input(v,track,brief=None,research=False):
 def run_one(v,args):
  slug=v['slug'];track=args.track;out=ROOT/'results'/slug/track;out.mkdir(parents=True,exist_ok=True)
  existing=json.loads(status_path(slug).read_text()).get(track,{}) if status_path(slug).exists() else {}
+ if existing.get('status')=='running':raise RuntimeError('Entry is already running; inspect its worker before resuming an interrupted attempt')
  if existing.get('status') in ('generated','rendered','reviewed') and not args.revise:
   print(slug,'already generated; preserving saved run',flush=True);return
  if re.search(r'\b(Blender|Manim|Raylib|Remotion|C/C\+\+)\b',v['prompt'],re.I):
@@ -38,6 +39,9 @@ def run_one(v,args):
  if v['prompt_partial'] and track=='baseline':
   record(slug,track,{'status':'blocked','reason':'Published source is partial/post only; identical original-prompt benchmark unavailable.','model':MODEL,'reasoning_effort':'high'});return
  prompt=make_input(v,track,brief_path.read_text() if track=='adapted' else None,getattr(args,'research',False))
+ reference_meta=ROOT/'work/references'/slug/'evidence.json'
+ evidence=json.loads(reference_meta.read_text()) if track=='adapted' and reference_meta.exists() else {}
+ if evidence:prompt+='\n\nAUTHORITATIVE REFERENCE MEDIA: '+json.dumps({k:evidence[k] for k in ['width','height','duration_seconds','fps','audio_streams']})+'\nPreserve this duration, aspect and frame rate. Preserve on-screen brands as reference artwork. Do not substitute model names in the film. Audio streams are not supplied as sound evidence; unresolved sound prevents full recreation acceptance.'
  restart=args.revise or (getattr(args,'retry',False) and existing.get('status') in ('blocked','failed'))
  iteration=existing.get('iteration',1) + 1 if restart else 1
  if args.revise:
@@ -48,11 +52,14 @@ def run_one(v,args):
   for name in ['index.html','metadata.json','input.txt','schema.json','response.json','events.jsonl','stderr.log','hyperframes.json']:
    if (out/name).exists():shutil.copyfile(out/name,archive/name)
  (out/'input.txt').write_text(prompt);dump(out/'schema.json',SCHEMA)
- metadata={'status':'running','model':MODEL,'reasoning_effort':'high','cli_version':'0.163.0','protocol_version':'research-v2' if getattr(args,'research',False) else 'code-only-v1','track':track,'iteration':iteration,'source_prompt_sha256':digest(v['prompt']),'input_sha256':digest(prompt),'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'tools':'none requested; read-only sandbox','reference_images_supplied':[]}
+ metadata={'status':'running','model':MODEL,'reasoning_effort':'high','cli_version':'0.163.0','protocol_version':'reference-v3' if track=='adapted' else ('research-v2' if getattr(args,'research',False) else 'code-only-v1'),'track':track,'iteration':iteration,'source_prompt_sha256':digest(v['prompt']),'input_sha256':digest(prompt),'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'tools':'none requested; read-only sandbox','reference_images_supplied':[]}
  command=['npx','--yes','@openai/codex@0.163.0','exec','--ignore-user-config','--ephemeral','--model',MODEL,'-c','model_reasoning_effort="high"','--sandbox','read-only','--json','--output-schema',str(out/'schema.json'),'-o',str(out/'response.json')]
  if getattr(args,'research',False):command.insert(3,'--search');metadata['tools']='public web search allowed; shell/file/agent tools forbidden'
  if track=='adapted' and args.image:
-  command+=['--image',str(pathlib.Path(args.image).resolve())];metadata['reference_images_supplied']=[str(pathlib.Path(args.image).name)]
+  images=args.image if isinstance(args.image,list) else [args.image]
+  for ref in images:command+=['--image',str(pathlib.Path(ref).resolve())]
+  metadata['reference_images_supplied']=[str(pathlib.Path(ref).name) for ref in images]
+  metadata['reference_image_sha256']={str(pathlib.Path(ref).name):hashlib.sha256(pathlib.Path(ref).read_bytes()).hexdigest() for ref in images}
  command+=['-'];metadata['command']=[x.replace(str(ROOT),'$REPO') for x in command];record(slug,track,metadata);print(slug,track,'generating',flush=True)
  try:
   with (out/'events.jsonl').open('w') as events,(out/'stderr.log').open('w') as err:
@@ -68,7 +75,8 @@ def run_one(v,args):
   else:
    if not all(k in reply['html'] for k in ['data-composition-id','data-duration','__timelines']):raise ValueError('Missing HyperFrames contract')
    if not (1<=reply['duration_seconds']<=1200 and 64<=reply['width']<=4096 and 64<=reply['height']<=4096):raise ValueError('Invalid duration or dimensions')
-   (out/'index.html').write_text(reply['html']);dump(out/'hyperframes.json',{'width':reply['width'],'height':reply['height'],'fps':30,'duration':reply['duration_seconds']})
+   (out/'index.html').write_text(reply['html']);metadata['fps']=float(__import__('fractions').Fraction(evidence.get('fps','30/1')))
+   dump(out/'hyperframes.json',{'width':reply['width'],'height':reply['height'],'fps':metadata['fps'],'duration':reply['duration_seconds']})
    metadata.update(status='generated',source_sha256=digest(reply['html']),width=reply['width'],height=reply['height'],duration_seconds=reply['duration_seconds'],source_path=f'results/{slug}/{track}/index.html',reason='Source generated; rendering and matched-time fidelity review pending.')
   dump(out/'metadata.json',metadata);record(slug,track,metadata)
  except (Exception,KeyboardInterrupt) as e:
@@ -77,7 +85,7 @@ def run_one(v,args):
  finally:
   subprocess.run([sys.executable,str(ROOT/'tools/catalog.py')],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('slugs',nargs='*');p.add_argument('--track',choices=['baseline','adapted'],default='baseline');p.add_argument('--all',action='store_true');p.add_argument('--showcase',action='store_true');p.add_argument('--image');p.add_argument('--research',action='store_true',help='Allow public web research, recorded separately from the code-only pilot');p.add_argument('--retry',action='store_true',help='Retry a blocked/failed run while archiving its previous attempt');p.add_argument('--revise',help='Feedback text file; archives the previous attempt before generating a revision');p.add_argument('--timeout',type=int,default=900);p.add_argument('--execute',action='store_true',help='Without this flag, print the queue only; no model usage.')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('slugs',nargs='*');p.add_argument('--track',choices=['baseline','adapted'],default='baseline');p.add_argument('--all',action='store_true');p.add_argument('--showcase',action='store_true');p.add_argument('--image',action='append',help='Repeat for all declared reference evidence images');p.add_argument('--research',action='store_true',help='Allow public web research, recorded separately from the code-only pilot');p.add_argument('--retry',action='store_true',help='Retry a blocked/failed run while archiving its previous attempt');p.add_argument('--revise',help='Feedback text file; archives the previous attempt before generating a revision');p.add_argument('--timeout',type=int,default=900);p.add_argument('--execute',action='store_true',help='Without this flag, print the queue only; no model usage.')
  a=p.parse_args();catalog=json.loads((ROOT/'data/catalog.json').read_text());known={v['slug'] for v in catalog}
  if set(a.slugs)-known:p.error('Unknown slug(s): '+', '.join(set(a.slugs)-known))
  rows=[v for v in catalog if a.all or (a.showcase and v['showcased']) or v['slug'] in a.slugs]
@@ -85,4 +93,7 @@ if __name__=='__main__':
  if a.image and len(rows)!=1:p.error('--image requires exactly one entry')
  if not a.execute:
   print(json.dumps({'model':MODEL,'reasoning_effort':'high','track':a.track,'entries':len(rows),'slugs':[v['slug'] for v in rows]},indent=2));sys.exit()
- for v in rows:run_one(v,a)
+ for v in rows:
+  lock=ROOT/'results'/v['slug']/a.track/'execution.lock';lock.parent.mkdir(parents=True,exist_ok=True)
+  with lock.open('w') as handle:
+   fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB);run_one(v,a)

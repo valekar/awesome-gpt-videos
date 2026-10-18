@@ -1,0 +1,142 @@
+# Model-drafted reference reconstruction — ratheejaisal-154698
+
+Status: sampled visual reconstruction; full timing/audio acceptance pending. Generated with GPT-6.1 Sol/high from declared reference frames.
+
+Create a NEW, code-rendered reconstruction of the observed founder.page launch film: 20.0 seconds, 1280×720, 16:9, reference frame rate 60 fps. This is inferred reference guidance, not the creator’s identical original prompt or recovered private chat. The supplied creator request establishes a fast-paced, branded launch video showing key features; the frames supply the feature sequence and visual treatment. All displayed metrics are reference artwork values, not independently verified claims.
+
+Use the complete observed sequence: logo introduction; handle claiming and founder profile; project portfolio; verified revenue; verified traffic; September revenue race; founder directory; embeddable badge; closing logo and free-claim CTA. Preserve the duration and every feature. The timeline below uses nominal scene windows anchored to the integer-second samples. Exact cuts, easing, overlaps and transition durations are unobserved between samples.
+
+Visual system: a very pale cool gray/blue background with broad, extremely subtle blue and lavender light variation; near-black typography; saturated medium-blue branding; white UI cards; restrained green verification accents; small colorful project icons and data graphics. Keep the frame spacious and clean. There is no photographic environment, live-action scene or visible 3D set. Most feature shots use bold copy on the left and one floating product card on the right. Cards have softly rounded corners, faint borders where visible and diffuse gray shadows falling below them. Keep small UI text crisp while maintaining the large whitespace around the compositions.
+
+Use a heavy, compact sans-serif for large headings and the wordmark, with tight tracking and close line spacing. Secondary copy and UI labels use a regular sans-serif. Small uppercase section labels have wide tracking and a monospaced appearance; metric units, dates and the closing URL also have a monospaced appearance. Exact typefaces are unknown. Headlines generally combine a black first phrase with a blue or green emphasized second phrase. Main feature layouts occupy roughly x=90–1200 and y=140–570 in the 1280×720 frame, with variations described below. The camera/crop appears fixed across the supplied samples; exact camera motion cannot be established.
+
+Rebuild the visuals from code, original vector geometry and separately authorized assets. Do not crop or reuse the supplied reference frames or contact sheets as output artwork. The smiley document logo is a blue rounded page with a folded upper-right corner, pale fold lines, two white circular eyes and a white curved smile. The founder portrait and project logos are separate asset requirements; their original files and provenance are unknown.
+
+Observed change across samples includes progressively revealed text, handle entry, populated project rows, changing revenue and traffic figures, an expanding traffic plot, reordered race bars, updated directory metrics and a closing pointer. These states support a reconstruction of those changes, but do not establish the precise interpolation. Use restrained, short UI reveals and text transitions as explicitly inferred implementation choices. Do not claim a particular slide direction, blur animation, spring, click, hover effect or chart interpolation was observed when only its sampled states are available.
+
+Contact-sheet interpretation: sheet 1 contains sixteen distinct tiles labeled 0.000 s through 15.000 s in four rows. Sheet 2 contains four tiles labeled 16.000 s through 19.000 s in its first row. Black timestamp strips, tile boundaries and the large black remainder of sheet 2 are evidence-sheet formatting, not film content. The three full-resolution images show the introductory logo state, the 2,759-visitor state and the final CTA state.
+
+## Observed scene samples
+- 0–2s: Introduction. At 0.000 s, the tile is an almost empty pale cool background. At 1.000 s, the founder.page logo lockup is large and horizontally centered. The full-resolution matching state places the blue document icon at approximately x=275–371, y=228–339 and the black wordmark at x=408–1020, y=243–340. The icon and lettering share a horizontal centerline. A faint, blurred-looking gray 'One' is visible below, around x=344, y=400. This is a sampled partial text state; the complete introductory subtitle is not supplied clearly. The logo therefore appears between the blank and 1-second samples, but its entry trajectory and any intermediate subtitle wording are unknown. By 2.000 s, the next feature layout is already faintly visible.
+- 2–5s: Claim a page, then show the founder profile. At 2.000 s, the next split layout is very pale: a small left section label and a right white handle-entry control are visible. At 3.000 s, left copy reads 'CLAIM YOUR PAGE', then the heavy two-line headline 'Your handle.' in black and 'Your page.' in blue, followed by 'Free, and live in about a minute.' The text block begins around x=90 and is vertically centered in the upper-middle of the frame. A long, shallow white input on the right, approximately x=640–1180 and y=328–393, contains the gray prefix 'founder.page/', the bold handle 'ratheejaisal', and a small blue 'Claim' button at its right edge. The earlier faint field lacks the fully readable handle; the samples establish a change in field content but not the typing cadence. At 4.000 s, the same left headline remains while the input has been replaced by a larger white profile card at approximately x=640–1200, y=132–438. Its top row contains a small circular black-and-white portrait, large 'Jaisal' and a blue verification badge. Below are '@ratheejaisal', '9.4k followers', 'London', the bio 'Button clicker & internet curator. 10x tiny exits.' and 'Building a portfolio of tiny startups.' Two compact buttons sit along the lower-left edge: blue 'Visit website' and light-gray 'Find me on X'. The card has rounded corners and a soft downward shadow. No submit click or specific transformation between input and card is directly sampled.
+- 5–7s: Portfolio feature. At 5.000 and 6.000 s, left text reads the small uppercase label 'EVERYTHING YOU’VE BUILT', then 'Every project.' in black and 'One link.' in blue. A tall white card occupies the right, roughly x=620–1185, y=75–580. Its heading reads 'Everything I’ve built', followed by a small project count and green monthly total. At 5 seconds, the first rows are populated and a lower row is pale; at 6 seconds, seven named rows are readable. Each row has a colorful square logo on the left, a dark project name, an optional right-aligned monthly figure and a small green 'Live' status at the far right. Rows shown: 'Tiny Startups' with '$3,281/mo'; 'clicks.page'; 'Million Dollar Keyboard' with '$300/mo'; 'Buy Sell Startups' with '$203/mo'; 'Startups.fm' with '$100/mo'; 'Domain Rating' with '$58/mo'; and 'Curate the Internet'. Tiny purple verification marks appear alongside some monetary figures. The header count appears to change from 10 to 13, and the green total appears to change from $3,034/mo to $3,978/mo; these tiny header readings need higher-resolution confirmation. Preserve the observed progression from a partly populated card to the denser list; row-entry direction and timing are not established.
+- 7–10s: Verified revenue. At 7.000 s, the left label reads 'VERIFIED REVENUE'; the main heading 'Real revenue.' is visible, with a faint green 'No' beginning below. At 8.000 and 9.000 s, the complete heading is 'Real revenue.' in black and 'No screenshots.' in green. The right card is narrower and taller than the traffic card that follows, approximately x=620–1200, y=95–595. Its header has the colorful Tiny Startups icon and name. At 7 seconds the large figure is '$654' with a small '/mo'; at 8 and 9 seconds it is '$3,281' with '/mo'. Below the completed figure is a green dot/check-style marker and 'Verified with Stripe'. The lower half contains a rectangular calendar-like grid of many tiny rounded cells in pale mint, turquoise and teal, with light empty cells. At 7 seconds the grid is barely visible; by 8 seconds it is colored. At 8 seconds, only the initial provider legend is clear; at 9 seconds, the lower legend spans two rows and includes 'Stripe', 'Paddle', 'Polar', 'Lemon Squeezy', 'Creem', 'Dodo' and 'Whop', each with a small colored marker. The samples establish changing amounts, text completion and a fuller grid/legend, but not the exact count-up curve or cell-by-cell reveal.
+- 10–12s: Verified traffic. The full-resolution 2,759-visitor frame establishes the layout precisely: left copy begins near x=94, with a blue dot and widely tracked 'VERIFIED TRAFFIC' around y=228. Below are 'Real visitors.' and 'Counted by' in very heavy black, then a large multicolored 'clicks.page' wordmark. The letters in 'clicks' alternate blue/cyan, green, yellow and pink/red tones; '.page' is gray. A white card spans approximately x=620–1197, y=164–502, with roughly 20-pixel corner rounding and a soft shadow underneath. At 10.000 s, the card reads '2,759' in very large black type and 'visitors/mo' in smaller gray monospaced text. A short blue line chart sits in the lower-left portion of the card, with translucent pale-blue fill below and a blue endpoint dot. At 11.000 s, the metric is '11,512', a small blue '▲ 24%' indicator appears at the upper right, and the line chart extends almost across the card with repeated rises and dips, ending higher on the right. The left copy stays consistent. The sampled states establish a changing number and a more complete chart; continuous drawing direction and interpolation are not directly reviewed.
+- 12–14s: September revenue race. At 12.000 and 13.000 s, the left label reads 'NEW' and 'THE REVENUE RACE', with a tiny blue marker. Below is a compact two-line black headline, 'The race' / 'is on', followed by a checkered flag symbol. On the right, a wide white rounded card, roughly x=600–1205, y=165–530, is titled 'The revenue race · September'. It contains seven ranked horizontal colored bars with small colored letter/avatar squares at their left, rank numbers further left and dollar values at their right. A small date appears at the top right, with an oversized, very pale duplicate date behind the lower-right bars. At 12 seconds the date is 'Sep 2'. The three leading bars are blue, red and yellow, with '$359', '$229' and '$218'; the next four visible values are '$166', '$162', '$158' and '$121'. At 13 seconds the date is 'Sep 27'. The leading order is now blue, yellow, red, with '$3,220', '$3,092' and '$2,781'. Purple, green/cyan and orange bars occupy lower ranks; '$1,643' and '$1,378' are legible, while one mid-ranking value and overlapping row details are uncertain. Preserve the rank-order change and growth visible between the dates. Exact intermediate dates, row crossings and bar animation cannot be recovered from the two samples.
+- 14–17s: Founder directory. At 14.000 s, the left label 'THE FOUNDER DIRECTORY' is visible with a partially appearing 'Get found'; the right is a blank-looking white rounded card. At 15.000 s, the full left headline reads 'Get found by' in black and 'the internet.' in blue. Beneath are three compact columns labeled 'FOUNDERS', 'COUNTRIES' and 'REVENUE', with '735', '76' and '$1.8M/mo'. Below those are small location filters/chips: a selected black 'Everywhere 735' chip and pale country chips. At 16.000 s, the three figures have changed to '739', '78' and '$1.9M/mo', with the selected chip reading 'Everywhere 739'. Readable country chips include 'India 92', 'United States 54', 'Germany 48', 'United Kingdom 31' and 'Remote 29'; the smallest glyphs require confirmation. The right card, approximately x=640–1235, y=180–530, contains a light-gray dotted world map. Several overlapping clusters of small colored circular avatars sit inside green/turquoise rounded pills, distributed over North America, Europe, Asia, South America, Africa/Middle East and Australia. Visible cluster counts include 235, 135, 23, 18, 11 and 4; the North American count appears around 64–65 across the samples. The map remains a compact dashboard graphic, without a full-screen zoom. The samples establish card/map population and changing statistics; individual marker motion and exact reveal order are unknown.
+- 17–18s: Embeddable badge. At 17.000 s, the left section label is 'BADGES', followed by 'Show it off' in black and 'anywhere.' in blue. On the right is a white miniature browser/site card, approximately x=620–1225, y=175–550, with rounded corners and a diffuse shadow. Its top chrome contains tiny pale controls and a domain reading 'tinystartups.com'. The mock website body is deliberately low contrast: several gray skeleton-like text lines and a small lavender/blue rectangle. Near the bottom is the high-contrast embedded founder.page badge: a tiny blue page icon, bold '$3,484' with '/mo', a small green 'VERIFIED' label, and a fine line reading 'Stripe-verified on founder.page'. No placement gesture or cursor action is visible in this sample. Its transition from the directory and into the closing lockup falls between sampled frames.
+- 18–20s: Closing brand and call to action. At 18.000 s, a centered blue smiley page icon and a partially visible black wordmark reading 'founder.p' are present. At 19.000 s, the full-resolution closing frame shows the completed lockup: icon approximately x=379–455, y=198–285 and 'founder.page' approximately x=489–973, y=209–286. Centered below is 'One page for everything you’ve built.' around y=335–366. A prominent blue rounded button spans approximately x=450–830, y=427–494 and reads 'Claim your page — free' in white. The button has a brighter blue upper region, darker blue lower edge and a soft blue/gray shadow. A black pointer with a white outline overlaps its lower-right region around x=767–789, y=482–514. Small gray monospaced 'founder.page' is centered below, around y=530–545. The background remains pale and uncluttered. The partial-to-complete wordmark supports a reveal between 18 and 19 seconds, but does not prove a typing effect. A click, press animation or subsequent navigation is not observed. The file duration is 20.0 seconds; the supplied last sample is at 19.0 seconds, so the final second’s exact hold, exit or fade is unknown.
+
+## Visible text evidence
+- founder.page
+- One
+- CLAIM YOUR PAGE
+- Your handle.
+- Your page.
+- Free, and live in about a minute.
+- founder.page/
+- ratheejaisal
+- Claim
+- Jaisal
+- @ratheejaisal
+- 9.4k followers
+- London
+- Button clicker & internet curator. 10x tiny exits.
+- Building a portfolio of tiny startups.
+- Visit website
+- Find me on X
+- EVERYTHING YOU’VE BUILT
+- Every project.
+- One link.
+- Everything I’ve built
+- Tiny Startups
+- clicks.page
+- Million Dollar Keyboard
+- Buy Sell Startups
+- Startups.fm
+- Domain Rating
+- Curate the Internet
+- $3,281/mo
+- $300/mo
+- $203/mo
+- $100/mo
+- $58/mo
+- Live
+- VERIFIED REVENUE
+- Real revenue.
+- No screenshots.
+- $654
+- $3,281
+- /mo
+- Verified with Stripe
+- Stripe
+- Paddle
+- Polar
+- Lemon Squeezy
+- Creem
+- Dodo
+- Whop
+- VERIFIED TRAFFIC
+- Real visitors.
+- Counted by
+- 2,759
+- 11,512
+- visitors/mo
+- 24%
+- NEW
+- THE REVENUE RACE
+- The race
+- is on
+- The revenue race · September
+- Sep 2
+- Sep 27
+- $359
+- $229
+- $218
+- $166
+- $162
+- $158
+- $121
+- $3,220
+- $3,092
+- $2,781
+- $1,643
+- $1,378
+- THE FOUNDER DIRECTORY
+- Get found by
+- the internet.
+- FOUNDERS
+- COUNTRIES
+- REVENUE
+- 735
+- 76
+- $1.8M/mo
+- 739
+- 78
+- $1.9M/mo
+- Everywhere 735
+- Everywhere 739
+- BADGES
+- Show it off
+- anywhere.
+- tinystartups.com
+- $3,484
+- VERIFIED
+- Stripe-verified on founder.page
+- founder.p
+- One page for everything you’ve built.
+- Claim your page — free
+
+## Declared uncertainties
+- Coverage spans the complete 20-second file through one-second samples, but is not a frame-by-frame review. No scene-change timestamps are supplied. Scene boundaries in this brief are nominal and may include transitions.
+- Entry/exit directions, easing, blur duration, number interpolation, row staggering and transition overlap cannot be determined reliably from these stills. Faint or incomplete content may represent a reveal or transition, but its mechanism is unknown.
+- The introductory subtitle is only readable as 'One' in the supplied full-resolution frame. The complete closing tagline must not be presented as a directly observed complete opening tagline.
+- The tiny portfolio header appears to show count/total pairs of 10 and $3,034/mo at 5 seconds, then 13 and $3,978/mo at 6 seconds. These readings are lower confidence and are excluded from the exact-text list pending confirmation.
+- The race card’s small avatar letters, one lower-row amount at 13 seconds and overlapping middle/lower bars are not reliably legible. Do not invent participant names or hidden values.
+- Directory country-chip counts, map-avatar letters and some cluster totals are very small. India 92, United States 54, Germany 48, United Kingdom 31 and Remote 29 are apparent readings rather than confirmed full-resolution transcriptions.
+- The badge’s fine print and miniature browser domain are legible only at contact-sheet scale and should be checked in a full-resolution 17-second frame.
+- Font identities, exact brand color values, original map geometry, project icon source files and founder portrait provenance are unknown.
+- The pointer is visible on the closing CTA, but its arrival path, hover behavior and any click are unobserved.
+- There is no sample at the 20-second endpoint. The final second’s exact treatment is unknown.
+
+Audio: Frozen metadata reports audio_streams=0. No audio listening review was performed, and no music, narration, sound effects or audible timing is inferred. The supplied reference file reports no audio stream; adding sound would be a new creative decision.

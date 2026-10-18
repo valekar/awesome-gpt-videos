@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "blocked",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,23 @@
       "-o",
       "$REPO/results/linearuncle-971663/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20537,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 953,
+      "reasoning_output_tokens": 824
+    },
+    "finished_at": "2026-10-18T15:30:16.803556+00:00",
+    "assumptions": [
+      "拟采用 1920×1080 横屏、中文讲解，以割线趋近切线和 f(x)=x² 的例子解释导数。"
+    ],
+    "missing_inputs": [
+      "必需的 edge-tts 中文配音音轨尚未提供；当前禁止执行命令，无法在本轮生成该音轨。"
+    ],
+    "summary": "缺少指定配音资产，按要求返回空 HTML；未渲染或审阅。",
+    "reason": "必需的 edge-tts 中文配音音轨尚未提供；当前禁止执行命令，无法在本轮生成该音轨。"
   },
   "adapted": {
     "status": "not_generated"

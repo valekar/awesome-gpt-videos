@@ -2130,7 +2130,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -2162,7 +2162,31 @@
           "-o",
           "$REPO/results/prasenx-693512/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20596,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 10428,
+          "reasoning_output_tokens": 3624
+        },
+        "finished_at": "2026-10-18T15:30:30.437832+00:00",
+        "assumptions": [
+          "Creative direction: original typographic showreel using paper, black, electric blue, orange and lime; no invented client, product or résumé claims.",
+          "1920×1080 at 60 fps. Eight scenes cut on four-beat boundaries at 128 BPM, totaling exactly 15 seconds.",
+          "All artwork uses Canvas and generic system fonts. No external assets or associated license gaps.",
+          "The original soundtrack is synthesized deterministically into an in-memory stereo WAV. The rendering harness must capture the timed audio element and mix it into its MP4 export.",
+          "No rendering or filesystem operations were performed. No MP4 has been saved, and the animation has not been visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable HyperFrames HTML with eight beat-aligned scenes and an original synthesized soundtrack. MP4 rendering and saving remain for the harness.",
+        "source_sha256": "6704a9ff65c210248b797768ebbd861d1a4a7f5c2da9b27569003fa2aa921e14",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/prasenx-693512/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Technical browser check failed; source retained for a recorded repair."
       },
       "adapted": {
         "status": "not_generated"
@@ -2908,7 +2932,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "blocked",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -2940,7 +2964,23 @@
           "-o",
           "$REPO/results/linearuncle-971663/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20537,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 953,
+          "reasoning_output_tokens": 824
+        },
+        "finished_at": "2026-10-18T15:30:16.803556+00:00",
+        "assumptions": [
+          "拟采用 1920×1080 横屏、中文讲解，以割线趋近切线和 f(x)=x² 的例子解释导数。"
+        ],
+        "missing_inputs": [
+          "必需的 edge-tts 中文配音音轨尚未提供；当前禁止执行命令，无法在本轮生成该音轨。"
+        ],
+        "summary": "缺少指定配音资产，按要求返回空 HTML；未渲染或审阅。",
+        "reason": "必需的 edge-tts 中文配音音轨尚未提供；当前禁止执行命令，无法在本轮生成该音轨。"
       },
       "adapted": {
         "status": "not_generated"
@@ -2985,7 +3025,10 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "reason": "Prompt mentions a native renderer; inspect and route to that workflow before using the HTML harness.",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high"
       },
       "adapted": {
         "status": "not_generated"
@@ -3344,7 +3387,65 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "316fc437f17e8b0f4483889329372221f301a153012eab910986e37a11c88a2e",
+        "input_sha256": "74c7a25ee7f9ea87dc26488c5706aa1b6f5a38e45f708422efd3e5b1b0f97dcd",
+        "started_at": "2026-10-18T15:30:17.968222+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/michaelzsguo-782312/baseline/schema.json",
+          "-o",
+          "$REPO/results/michaelzsguo-782312/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 132281,
+          "cached_input_tokens": 107520,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 14996,
+          "reasoning_output_tokens": 4136
+        },
+        "finished_at": "2026-10-18T15:37:35.774006+00:00",
+        "assumptions": [
+          "Chosen format: 1920×1080, 16:9, fifteen eight-second chapters spanning 1776–2026. This is a selective historical interpretation, with symbolic illustrations rather than documentary reconstructions.",
+          "Sand imagery, vector drawings, instrumental music, and sound effects are original procedural material. No third-party images, recordings, fonts, or asset licenses are required. GSAP is supplied by the harness; its licensing remains with that dependency.",
+          "The original soundtrack is generated as an embedded WAV data URL. HyperFrames must capture and synchronize the timed audio element during rendering; the HTML does not start playback itself.",
+          "Founding and amendment research: [National Archives founding documents](https://www.archives.gov/founding-docs), [Bill of Rights](https://www.archives.gov/milestone-documents/bill-of-rights), [milestone documents](https://www.archives.gov/milestone-documents/list), and [19th Amendment](https://www.archives.gov/milestone-documents/19th-amendment).",
+          "Removal, industrialization, and railroad research: [Library of Congress on forced removal](https://www.loc.gov/classroom-materials/immigration/native-american/removing-native-americans-from-their-land/), [industrialization](https://www.loc.gov/classroom-materials/industrial-revolution-in-the-united-states/), and [Smithsonian on Chinese railroad workers](https://www.americanhistory.si.edu/press/releases/smithsonian-marks-150th-anniversary-transcontinental-railroad-opening-forgotten).",
+          "War and Depression research: [Library of Congress on World War I](https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/progressive-era-to-new-era-1900-1929/united-states-participation-in-world-war-i/) and [the Great Depression and World War II](https://www.loc.gov/classroom-materials/united-states-history-primary-source-timeline/great-depression-and-world-war-ii-1929-1945/overview/).",
+          "Later historical research: [Civil Rights Act](https://www.archives.gov/milestone-documents/civil-rights-act), [NASA Apollo 11](https://www.nasa.gov/missions/apollo/apollo-11/apollo-11-mission-overview/), [September 11 Memorial](https://www.911memorial.org/911-faqs), [CDC pandemic timeline](https://www.cdc.gov/museum/timeline/covid19.html), and [National Archives on the 250th anniversary](https://www.archives.gov/press/press-releases/2026/nr26-3). Sources support historical context; no source assets are reproduced.",
+          "No narration was requested; large captions tell the story over an original score. This output has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable two-minute sand animation with fifteen historical chapters, deterministic particle transformations, original music, and restrained sound design.",
+        "source_sha256": "6e53f842d1929659596bf31e04ec660393925af5704a955606874b2ab2bc1d11",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 120,
+        "source_path": "results/michaelzsguo-782312/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -3481,7 +3582,53 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "445e468c63eb504d37610368a6ba87a7f42a418f07fd9b8e59c3438a789eb118",
+        "input_sha256": "e7791f4ed5a75833cd6d89a05d07d64eba630107eea2c0296e786358f5edc54d",
+        "started_at": "2026-10-18T15:30:31.131925+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/sab8a-475686/baseline/schema.json",
+          "-o",
+          "$REPO/results/sab8a-475686/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20520,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 291,
+          "reasoning_output_tokens": 209
+        },
+        "finished_at": "2026-10-18T15:30:45.957301+00:00",
+        "assumptions": [],
+        "missing_inputs": [
+          "The raw talking-head video clip with its original audio. Its dimensions and duration will determine the animation format and timing."
+        ],
+        "summary": "Provide the source clip to create the punchy edit with synchronized subtitles, graphics, and music.",
+        "reason": "The raw talking-head video clip with its original audio. Its dimensions and duration will determine the animation format and timing."
       },
       "adapted": {
         "status": "not_generated"
@@ -4261,7 +4408,61 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "615d134af75472ea0b903e7128c51bf1c42e3c63e98b2ac263c14a1c8799cfcc",
+        "input_sha256": "a0d4b34fb42e086bbc15c619787f0d0c465912dbe8aa6ce75e92b623cdfa7b9c",
+        "started_at": "2026-10-18T15:30:46.957238+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/alex-prompter-997524/baseline/schema.json",
+          "-o",
+          "$REPO/results/alex-prompter-997524/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20589,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 298,
+          "reasoning_output_tokens": 163
+        },
+        "finished_at": "2026-10-18T15:31:02.631738+00:00",
+        "assumptions": [
+          "Proposed format: 1920×1080 landscape, with five scenes over 30 seconds.",
+          "The business-description placeholder is unfilled; no business facts or branding were invented."
+        ],
+        "missing_inputs": [
+          "Business description: what you sell and who it serves.",
+          "Customer problem your business solves.",
+          "Your three-step process.",
+          "One factual proof point approved for use.",
+          "Business or personal name for the ending.",
+          "Brand colours."
+        ],
+        "summary": "The required business details are missing. HTML generation is deferred until they are supplied.",
+        "reason": "Business description: what you sell and who it serves.; Customer problem your business solves.; Your three-step process.; One factual proof point approved for use.; Business or personal name for the ending.; Brand colours."
       },
       "adapted": {
         "status": "not_generated"
@@ -5386,7 +5587,10 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "reason": "Prompt mentions a native renderer; inspect and route to that workflow before using the HTML harness.",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high"
       },
       "adapted": {
         "status": "not_generated"
@@ -5549,7 +5753,56 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "751c79308458c1f4d2b23bbac984f95caf81d1637d5a5eaabd7e2a9d4b7e0e6e",
+        "input_sha256": "60efdc226ae6912a151a84b657e8d6c75c77702ffab630e0f7d537f04d8a06a1",
+        "started_at": "2026-10-18T15:31:03.868223+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/gouthamjay8-910269/baseline/schema.json",
+          "-o",
+          "$REPO/results/gouthamjay8-910269/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20618,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 253,
+          "reasoning_output_tokens": 145
+        },
+        "finished_at": "2026-10-18T15:31:17.915143+00:00",
+        "assumptions": [
+          "[website] is an unresolved placeholder; no product or brand was selected.",
+          "Proposed format is 1920×1080 landscape, pending source context."
+        ],
+        "missing_inputs": [
+          "The actual public website URL for the SaaS product to research and feature."
+        ],
+        "summary": "Provide the product website URL so its features and official public assets can be verified before creating the animation.",
+        "reason": "The actual public website URL for the SaaS product to research and feature."
       },
       "adapted": {
         "status": "not_generated"
@@ -5593,7 +5846,55 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "e9cc14dbe8e06440f110b25217c7ffd85a1303ac30a45108f42165df7cf49d7e",
+        "input_sha256": "4981ae57a28c6ce13c5c4b512875e5f6a77289a1b191cf6e1a2f80e02568cb93",
+        "started_at": "2026-10-18T15:31:18.725908+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/marklaunches-041046/baseline/schema.json",
+          "-o",
+          "$REPO/results/marklaunches-041046/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 18969,
+          "cached_input_tokens": 12416,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 384,
+          "reasoning_output_tokens": 297
+        },
+        "finished_at": "2026-10-18T15:31:36.803025+00:00",
+        "assumptions": [
+          "Proposed format: 16:9 landscape."
+        ],
+        "missing_inputs": [
+          "App name and official public URL, or a description of its purpose, audience, and key features."
+        ],
+        "summary": "App context is required to create an emotional video without inventing product details.",
+        "reason": "App name and official public URL, or a description of its purpose, audience, and key features."
       },
       "adapted": {
         "status": "not_generated"
@@ -6417,7 +6718,78 @@
         "reason": "Product or company name and public website URL or supplied product brief.; Key features to showcase, with verified descriptions and any required screenshots or assets.; Brand guidance: logo, colors, visual style, tone, and desired closing call to action."
       },
       "adapted": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "reference-v3",
+        "track": "adapted",
+        "iteration": 1,
+        "source_prompt_sha256": "a65463cfb7945cf6c44c08291c17ec34f51b9c243e1c4bb320bc228d14500150",
+        "input_sha256": "4fb989acf53dff3338f9bdbca01f3a3c40df72789ad4079110b3908e35c07d7a",
+        "started_at": "2026-10-18T15:37:12.099441+00:00",
+        "tools": "none requested; read-only sandbox",
+        "reference_images_supplied": [
+          "sheet-01.jpg",
+          "sheet-02.jpg",
+          "full-1.jpg",
+          "full-2.jpg",
+          "full-3.jpg"
+        ],
+        "reference_image_sha256": {
+          "sheet-01.jpg": "14eebb235512b0ea7f73bbce448e4145a334385ea10a2a22f35ed1f14fa214c6",
+          "sheet-02.jpg": "b80453eb8911bafda205d5b8038edd4c077418796270dad495502b5b2956e3ca",
+          "full-1.jpg": "1c68818198d479e7cad94c5f3cdc420b699369e237982f11e794cbd501e501e0",
+          "full-2.jpg": "b52a10131a080f458b7b1ce6e19b7151a4d926b352152da6c67d7e803e90c73f",
+          "full-3.jpg": "2a3f48d97e29e94ec96ecb709b97205039adf37e1890c46547f192d51b68f4a3"
+        },
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/ratheejaisal-154698/adapted/schema.json",
+          "-o",
+          "$REPO/results/ratheejaisal-154698/adapted/response.json",
+          "--image",
+          "$REPO/work/references/ratheejaisal-154698/evidence/sheet-01.jpg",
+          "--image",
+          "$REPO/work/references/ratheejaisal-154698/evidence/sheet-02.jpg",
+          "--image",
+          "$REPO/work/references/ratheejaisal-154698/evidence/full-1.jpg",
+          "--image",
+          "$REPO/work/references/ratheejaisal-154698/evidence/full-2.jpg",
+          "--image",
+          "$REPO/work/references/ratheejaisal-154698/evidence/full-3.jpg",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 34399,
+          "cached_input_tokens": 18816,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 393,
+          "reasoning_output_tokens": 241
+        },
+        "finished_at": "2026-10-18T15:37:32.336752+00:00",
+        "assumptions": [
+          "The reconstruction preserves the supplied 16:9 format, 60 fps, 20-second duration and silent reference."
+        ],
+        "missing_inputs": [
+          "Authorized founder portrait for Jaisal’s profile card; the reference screenshots cannot be reused as output artwork.",
+          "Original or authorized project icons for Tiny Startups, clicks.page, Million Dollar Keyboard, Buy Sell Startups, Startups.fm, Domain Rating and Curate the Internet. The reconstruction brief identifies these as required assets, but none are supplied."
+        ],
+        "summary": "Essential portrait and project-icon assets are missing. No HTML was generated, rendered or visually reviewed.",
+        "reason": "Authorized founder portrait for Jaisal’s profile card; the reference screenshots cannot be reused as output artwork.; Original or authorized project icons for Tiny Startups, clicks.page, Million Dollar Keyboard, Buy Sell Startups, Startups.fm, Domain Rating and Curate the Internet. The reconstruction brief identifies these as required assets, but none are supplied."
       }
     },
     "review_status": "not_reviewed",
@@ -6925,7 +7297,10 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "reason": "Prompt mentions a native renderer; inspect and route to that workflow before using the HTML harness.",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high"
       },
       "adapted": {
         "status": "not_generated"
@@ -7010,7 +7385,61 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "518a5e4627f03f574d27be488d153532742099c3a2a1365e1f1231e807bcc3a4",
+        "input_sha256": "c8648140a9943a9c53dad22564a1e70d62d319107a94d5ef6ec6068d8c276d68",
+        "started_at": "2026-10-18T15:31:38.042644+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/pound75423-464968/baseline/schema.json",
+          "-o",
+          "$REPO/results/pound75423-464968/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 21290,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 478,
+          "reasoning_output_tokens": 238
+        },
+        "finished_at": "2026-10-18T15:31:57.140160+00:00",
+        "assumptions": [
+          "指定形式は1280×720、30fps、MP4、30MB以内です。",
+          "楽曲未提供のため実尺は不明です。duration_secondsの0は未確定を示します。",
+          "コード生成、レンダリング、スクリーンショット確認は未実施です。"
+        ],
+        "missing_inputs": [
+          "添付楽曲の音声ファイル。BPM、拍位置、小節、セクション、全尺の解析に必要です。",
+          "使用するキャラクター画像一式。背景透過、ステッカー加工、ポーズの切り替えに必要です。",
+          "静かなカットで使用するシーン画像。",
+          "小節頭に表示する文字、または「歌詞からキーワードを選ぶ」という指定と歌詞情報。",
+          "左上のタイトルと右上の日付の表示内容。"
+        ],
+        "summary": "指定の添付素材と表示内容が不足しているため、HTMLは空です。",
+        "reason": "添付楽曲の音声ファイル。BPM、拍位置、小節、セクション、全尺の解析に必要です。; 使用するキャラクター画像一式。背景透過、ステッカー加工、ポーズの切り替えに必要です。; 静かなカットで使用するシーン画像。; 小節頭に表示する文字、または「歌詞からキーワードを選ぶ」という指定と歌詞情報。; 左上のタイトルと右上の日付の表示内容。"
       },
       "adapted": {
         "status": "not_generated"
@@ -7129,7 +7558,57 @@
         "source_modified_after_generation": false
       },
       "adapted": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "reference-v3",
+        "track": "adapted",
+        "iteration": 2,
+        "source_prompt_sha256": "7bd7ddf6ff03c0a36187b6a32b7e3f1c8bfbf3f7780526a48767873203810d54",
+        "input_sha256": "fa71e4b2cc835b5996fec2b4428d107f622f64e72c5a05cc5a41941b2ebd5ef2",
+        "started_at": "2026-10-18T15:41:26.185063+00:00",
+        "tools": "none requested; read-only sandbox",
+        "reference_images_supplied": [
+          "sheet-01.jpg",
+          "full-1.jpg",
+          "full-2.jpg",
+          "full-3.jpg"
+        ],
+        "reference_image_sha256": {
+          "sheet-01.jpg": "9f8ca58f564e8a89e5c5500ab842dbdf97ad99881946268120f94427a040cf8b",
+          "full-1.jpg": "ff668be6ecfa4732423e4499c2e15b9b98f984868de448c633baefaa1a169da5",
+          "full-2.jpg": "55280d976a801be8eab1a49e86324a3c7069d3106d1a20f891159c50550665c2",
+          "full-3.jpg": "18d1747003cf72726fb0a11eb232732f0e0a02b8f78fc7a473b14b54d31f45a6"
+        },
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/souravbhar871-477361/adapted/schema.json",
+          "-o",
+          "$REPO/results/souravbhar871-477361/adapted/response.json",
+          "--image",
+          "$REPO/work/references/souravbhar871-477361/evidence/sheet-01.jpg",
+          "--image",
+          "$REPO/work/references/souravbhar871-477361/evidence/full-1.jpg",
+          "--image",
+          "$REPO/work/references/souravbhar871-477361/evidence/full-2.jpg",
+          "--image",
+          "$REPO/work/references/souravbhar871-477361/evidence/full-3.jpg",
+          "-"
+        ]
       }
     },
     "review_status": "not_reviewed",
@@ -7578,7 +8057,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "85e7aeadae84703dac0b61834329bfdf95f7d17ae1d9222efc592f2a682c5f79",
+        "input_sha256": "21570e9ef46f11ef91fef41283f9fa7d160f75d3f0ecc8f7e2444259ef11369b",
+        "started_at": "2026-10-18T15:31:57.966941+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/tak3sh8-441895/baseline/schema.json",
+          "-o",
+          "$REPO/results/tak3sh8-441895/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 49233,
+          "cached_input_tokens": 40704,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 823,
+          "reasoning_output_tokens": 577
+        },
+        "finished_at": "2026-10-18T15:32:37.907538+00:00",
+        "assumptions": [
+          "Proposed format: 60-second, 16:9 whiteboard explainer with English narration.",
+          "Scientific reference: Nobel Prize background on the SK model, overlaps and replica symmetry breaking: https://www.nobelprize.org/uploads/2021/10/sciback_fy_en_21.pdf",
+          "No third-party artwork or audio used; no asset license gaps identified."
+        ],
+        "missing_inputs": [
+          "A narration audio file with reuse permission. No narration was supplied, and speech generation is unavailable through the accessible tools."
+        ],
+        "summary": "The required narration asset is missing, so HTML is empty as instructed. No animation or MP4 was rendered or reviewed.",
+        "reason": "A narration audio file with reuse permission. No narration was supplied, and speech generation is unavailable through the accessible tools."
       },
       "adapted": {
         "status": "not_generated"

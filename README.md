@@ -4,6 +4,66 @@ A GPT-6.1 Sol / **high reasoning** adaptation and reproduction lab inspired by [
 
 **This is work in progress. The 703 prompts have been inventoried and adapted as drafts; they have not all been generated, rendered or visually validated.** Never interpret a draft prompt or a linked upstream remake as a successful GPT test.
 
+<!-- COMPARISONS:START -->
+## Comparisons and progress
+
+**Priority: adapted recreations with GPT-6.1 Sol / high.** 2 adapted recreations rendered; 34 original-prompt baselines rendered. 3 entries have sampled review notes; 0 have a full review recorded.
+
+References, extra inputs, supplied assets and revisions are disclosed. Sampled reviews do not establish visual parity or a model ranking. The [live comparison gallery](https://valekar.github.io/awesome-gpt-videos/) contains both tracks and their current evidence.
+
+### Adapted recreations
+
+| Case | Original creator output | GPT-6.1/high recreation | Recorded differences |
+| --- | --- | --- | --- |
+| Ror_Fly · ror-fly-880547<br>[Adapted prompt](prompts/gpt-6.1-high/ror-fly-880547.md) · [timed brief](comparison/matched-briefs/ror-fly-880547.md) | [![Original by @Ror_Fly](https://media.skillry.dev/opus-5-5/ror-fly-880547/original.59f728b077.webp)](https://media.skillry.dev/opus-5-5/ror-fly-880547/original.mp4) | [![GPT recreation](docs/media/ror-fly-880547/adapted/poster.jpg)](https://valekar.github.io/awesome-gpt-videos/#ror-fly-880547)<br>2 recorded attempt(s) · [Review](comparison/reviews/ror-fly-880547.json) | Bangers/Caveat differ from the original unknown typography; heading slant, glyph shapes and fine spacing remain different. |
+| Sarut0biSasuke · sarut0bisasuke-069973<br>[Adapted prompt](prompts/gpt-6.1-high/sarut0bisasuke-069973.md) · [timed brief](comparison/matched-briefs/sarut0bisasuke-069973.md) | [![Original by @Sarut0biSasuke](https://media.skillry.dev/opus-5-5/sarut0bisasuke-069973/original.7731d87533.webp)](https://media.skillry.dev/opus-5-5/sarut0bisasuke-069973/original.mp4) | [![GPT recreation](docs/media/sarut0bisasuke-069973/adapted/poster.jpg)](https://valekar.github.io/awesome-gpt-videos/#sarut0bisasuke-069973)<br>3 recorded attempt(s) · [Review](comparison/reviews/sarut0bisasuke-069973.json) | Pencil geometry, container silhouettes, cube contours and paper texture are procedural approximations. |
+
+<details>
+<summary>Rendered original-prompt baselines</summary>
+
+These use the published creator material plus the common renderer contract. A rendered baseline is not a reference-guided recreation.
+
+| Creator / case | Result | Fidelity evidence |
+| --- | --- | --- |
+| deedydas · deedydas-252537 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#deedydas-252537) | [sampled notes](comparison/reviews/deedydas-252537.json) |
+| prasad_pilla · prasad-pilla-496049 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#prasad-pilla-496049) | not compared yet |
+| itsolelehmann · itsolelehmann-762215 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#itsolelehmann-762215) | not compared yet |
+| 0xfemyn · 0xfemyn-137833 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#0xfemyn-137833) | not compared yet |
+| pankajkumar_dev · pankajkumar-dev-718609 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#pankajkumar-dev-718609) | not compared yet |
+| nolkeeg · nolkeeg-635633 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#nolkeeg-635633) | not compared yet |
+| 1littlecoder · 1littlecoder-378066 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#1littlecoder-378066) | not compared yet |
+| lukasersil · lukasersil-726495 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#lukasersil-726495) | not compared yet |
+| songkeys · songkeys-384673 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#songkeys-384673) | not compared yet |
+| viktoroddy · viktoroddy-402509 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#viktoroddy-402509) | not compared yet |
+| monokern · monokern-832979 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#monokern-832979) | not compared yet |
+| zheke · zheke-622583 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#zheke-622583) | not compared yet |
+| AxtonLiu · axtonliu-290566 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#axtonliu-290566) | not compared yet |
+| emollick · emollick-019567 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#emollick-019567) | not compared yet |
+| ChatGptAstra · chatgptastra-807540 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#chatgptastra-807540) | not compared yet |
+| kloss_xyz · kloss-xyz-067876 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#kloss-xyz-067876) | not compared yet |
+| SPEARwtf · spearwtf-029058 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#spearwtf-029058) | not compared yet |
+| MajorBaguette · majorbaguette-834228 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#majorbaguette-834228) | not compared yet |
+| miskinho_ · miskinho-956105 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#miskinho-956105) | not compared yet |
+| felipemoller · felipemoller-936736 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#felipemoller-936736) | not compared yet |
+| mdaman010 · mdaman010-111079 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#mdaman010-111079) | not compared yet |
+| MiaAI_lab · miaai-lab-774895 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#miaai-lab-774895) | not compared yet |
+| TrigLyceee · triglyceee-161719 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#triglyceee-161719) | not compared yet |
+| robvjourney · robvjourney-237474 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#robvjourney-237474) | not compared yet |
+| AmitSingha89 · amitsingha89-780553 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#amitsingha89-780553) | not compared yet |
+| souravbhar871 · souravbhar871-477361 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#souravbhar871-477361) | not compared yet |
+| bizibeast · bizibeast-505124 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#bizibeast-505124) | not compared yet |
+| Xanderwow_A · xanderwow-a-597063 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#xanderwow-a-597063) | not compared yet |
+| manuelogomigo · manuelogomigo-052364 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#manuelogomigo-052364) | not compared yet |
+| chrisjdimarco · chrisjdimarco-808196 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#chrisjdimarco-808196) | not compared yet |
+| BuildFastWithAI · buildfastwithai-597035 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#buildfastwithai-597035) | not compared yet |
+| Sarut0biSasuke · sarut0bisasuke-069973 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#sarut0bisasuke-069973) | [sampled notes](comparison/reviews/sarut0bisasuke-069973.json) |
+| anirockshady · anirockshady-032809 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#anirockshady-032809) | not compared yet |
+| ishuagra02 · ishuagra02-678129 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#ishuagra02-678129) | not compared yet |
+
+</details>
+
+<!-- COMPARISONS:END -->
+
 ## Collection
 
 | Inventory | Count |
@@ -82,3 +142,7 @@ The repository-local skill now explicitly requires full-resolution reference ins
 `python3 tools/github_sync.py --push` uses Git's configured credential helper and verifies the remote commit. Run tests and commit reviewed publication artifacts first. The generation/render workers update local state; a Git push is what updates the published Pages gallery.
 
 `python3 tools/publish_progress.py --watch` publishes corpus run/render output changes to the configured `valekar/awesome-gpt-videos` destination after tests. It stops if the branch/destination changes or unrelated staged work exists. It does not assign visual acceptance.
+
+## Adapted-first queue
+
+New baseline dispatch is paused while reference-guided recreation takes priority. Run `python3 tools/adapted_queue.py` to inspect the complete stage inventory without model usage. `python3 tools/workers.py start` now starts the adapted generation/comparison queue and publisher. Use `python3 tools/workers.py status` for actual PID health. The queue includes a decoded comparison and up to one recorded repair per ready case. Audio, interactive controls, explicit native renderers and missing references keep their own pending stages. The comparison table above updates automatically from saved run/review evidence.

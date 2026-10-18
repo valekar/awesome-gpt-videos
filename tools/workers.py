@@ -23,7 +23,7 @@ def archive_interrupted():
   history=ROOT/'work/batch-history';history.mkdir(exist_ok=True);shutil.copyfile(progress,history/f'{stamp}.json')
  for p in (ROOT/'results').glob('*/result.json'):
   for track,r in json.loads(p.read_text()).items():
-   if r.get('status')!='running':continue
+   if r.get('status')!='running' or track!='adapted':continue
    folder=p.parent/track;archive=folder/'iterations'/('interrupted-'+stamp);archive.mkdir(parents=True,exist_ok=False)
    for name in ['input.txt','schema.json','events.jsonl','stderr.log','metadata.json','response.json']:
     if (folder/name).exists():shutil.copyfile(folder/name,archive/name)
@@ -35,17 +35,17 @@ def start(roles=None):
  with (ROOT/'work/workers-start.lock').open('w') as lock:
   fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
   process_text=subprocess.check_output(['ps','-eo','args='],text=True)
-  if any(re.search(r'python[^ ]* (?:[^ ]*/)?tools/'+script+r'(?: |$)',process_text) for script in [{'generation':'batch_generate.py','render':'render_queue.py','publication':'publish_progress.py'}[r] for r in (roles or ['generation','render','publication'])]):
+  if any(re.search(r'python[^ ]* (?:[^ ]*/)?tools/'+script+r'(?: |$)',process_text) for script in [{'generation':'adapted_queue.py','render':'render_queue.py','publication':'publish_progress.py'}[r] for r in (roles or ['generation','publication'])]):
    raise RuntimeError('A corpus worker already exists; inspect it before starting another set.')
   if not roles or 'generation' in roles:archive_interrupted()
   subprocess.run([sys.executable,str(ROOT/'tools/catalog.py')],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
   jobs={
-   'generation':['tools/batch_generate.py','--track','baseline','--workers','2','--research','--execute'],
+   'generation':['tools/adapted_queue.py','--execute','--max-revisions','1'],
    'render':['tools/render_queue.py','--watch'],
    'publication':['tools/publish_progress.py','--watch']}
   registry=json.loads(REGISTRY.read_text()) if REGISTRY.exists() else {}
   for role,args in jobs.items():
-   if roles and role not in roles:continue
+   if role not in (roles or ['generation','publication']):continue
    log=ROOT/'work'/f'worker-{role}.log'
    with log.open('a') as out:
     out.write('\nWorker launched '+utc()+'\n');out.flush()

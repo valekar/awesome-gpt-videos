@@ -18,7 +18,7 @@ if __name__=='__main__':
  shutil.copyfile(source/'index.html',project/'index.html')
  shutil.copyfile(ROOT/'node_modules/gsap/dist/gsap.min.js',project/'gsap.min.js')
  for font in (ROOT/'assets/fonts').glob('*.ttf'):shutil.copyfile(font,project/font.name)
- config=json.loads((project/'hyperframes.json').read_text());config.update(width=metadata['width'],height=metadata['height'],fps=30,duration=metadata['duration_seconds']);dump(project/'hyperframes.json',config)
+ config=json.loads((project/'hyperframes.json').read_text());config.update(width=metadata['width'],height=metadata['height'],fps=metadata.get('fps',30),duration=metadata['duration_seconds']);dump(project/'hyperframes.json',config)
  (project/'BRIEF.md').write_text(f'''---
 workflow: general-video
 flow: automation

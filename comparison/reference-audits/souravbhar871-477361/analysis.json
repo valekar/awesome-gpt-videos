@@ -1,0 +1,89 @@
+{
+  "brief_markdown": "Create a NEW, inferred code-rendered recreation of the observed 10.0-second motion graphic at 1280×720, 16:9, 60 fps. This brief reconstructs visible evidence; it is not the creator’s identical original prompt or original chat. Render 600 frames and preserve the complete duration. Draw all artwork, lettering, paths and logo geometry anew; reference images must not become output artwork.\n\nThe supplied creator material asks for a dynamic introduction as “Opus 5.5,” avoiding decorative frames and corner text. The observed film uses large central typography, warm ivory, near-black and burnt orange, with alternating sparse and dense compositions. Do not add “Opus 5.5” to the visible reconstruction without further evidence: the final sampled subtitle only visibly reaches “Opu.”\n\nUse approximately ivory #F1EFDF, near-black #1B1C13 and orange #C35D3D as visual starting points, not measured color values. Surfaces appear flat and matte with slight image texture; the available stills cannot establish whether that texture belongs to the source artwork or encoding. The camera remains a straight-on view of a full-frame graphic plane in every observed sample. No photographic subject, perspective camera move or surrounding frame is visible. The pronounced depth on “I build with you.” comes from offset letter extrusion.\n\nRead the contact sheet as four columns: 0, 1, 2 and 3 seconds on the first row; 4, 5, 6 and 7 on the second; 8 and 9 on the third. Its dark timestamp strips and unused dark area are evidence-sheet furniture, not video artwork. Each actual tile is a separate 16:9 image. The three full-resolution frames clarify the greeting, scattered-letter composition and closing identity card.\n\nPreserve the observed progression: partial greeting at 0 seconds; completed “Hi.” at 1; dense reading collage at 2; dark frame with a small orange dot at 3; branching thought diagram at 4; scattered letters spelling “straight” at 5; aligned “straight” crossed by an ivory rule at 6; extruded collaboration statement at 7; partial “I’m” reveal at 8; and the Claude identity lockup with partial orange subtitle at 9. These are sampled states, not verified one-second shot boundaries. Detected changes at 1.050000 and 1.166667 seconds suggest additional rapid visual changes in the greeting-to-reading interval, but their images and transition mechanics are unknown.\n\nMotion guidance must remain evidence-limited. The greeting changes from partial to complete; the letters of “straight” change from scattered to aligned; the closing identity changes from a partial phrase to a larger lockup. Those differences support staged reveals and a letter arrangement change, but do not establish trajectories, easing, overshoot, drawing direction, camera movement or exact entry/exit times. Any implementation choices filling those gaps must be labeled inferred. Do not invent an additional scene or a final completed subtitle.\n\nRequired follow-up: inspect consecutive source frames around every sampled-state change, especially 1.05–1.166667 seconds, the 2–4-second interval, the 5–6-second letter alignment and the last second through 10.0. Obtain readable crops of the dense text collage and the actual final frame. Verify transition timing, path animation, subtitle completion and any source texture before claiming a matched reconstruction. Compare the recreation against reference frames at the supplied timestamps, keeping technical rendering checks separate from visual review.",
+  "observed_scenes": [
+    {
+      "start_seconds": 0,
+      "end_seconds": 0,
+      "description": "Sampled opening state. Warm ivory fills the frame. Only two narrow, dark, rounded vertical strokes are visible near the lower edge, approximately x=420–455 and x=545–585 in full-frame coordinates, beginning around y=620 and continuing beyond the bottom crop. The rest is empty. These marks are consistent with a partial greeting reveal when compared with 1 second, but their exact identity and movement cannot be established from this frame alone. No corner labels or borders belong to the artwork."
+    },
+    {
+      "start_seconds": 1,
+      "end_seconds": 1,
+      "description": "Completed greeting on ivory. The full-resolution reference shows oversized near-black “Hi” and a separate orange circular period. The complete group occupies approximately x=310–935 and y=165–565, centered with generous negative space. The H has two very thick irregular upright masses and a broad connecting bar; its contour is soft and slightly hand-shaped rather than geometric. The lowercase i has a large detached circular dot around x=722, y=207 and a thick, irregular stem below. The orange period is approximately 100 pixels across, centered near x=884, y=507. There is no outline, shadow or visible dimensional extrusion. Entry from the opening partial strokes and exit toward the reading composition are not directly observed."
+    },
+    {
+      "start_seconds": 2,
+      "end_seconds": 2,
+      "description": "Dense reading composition on burnt orange. Large ivory display text reads “I read” above “every word.” and occupies the central majority of the frame, approximately x=85–1010 and y=205–515. The lettering is extremely heavy, with softened, irregular display shapes. The terminal period appears near-black. Behind it, many horizontal lines of much smaller text run nearly edge to edge, with lines cropped at the frame boundaries. They mix prose, programming syntax, mathematical/statistical notation and multilingual greetings. Most background lines are dark, with occasional ivory lines. The main phrase overlays and obscures the small text. Recognizable fragments include a letter salutation, cooking instructions, greetings, code-like words and numerical notation; a complete exact transcription is not possible at this evidence resolution. Two detected scene changes occur earlier at 1.05 and 1.166667 seconds, but no corresponding full images establish their content."
+    },
+    {
+      "start_seconds": 3,
+      "end_seconds": 3,
+      "description": "Sparse near-black field containing one small burnt-orange circular dot in the upper-right portion of the image, approximately center x=973, y=131, radius 14 pixels. This is inside the composition, well away from the corner. No legible text or other shape is visible. Its relationship to the prior greeting period, later thought diagram or any transition cannot be established from this still."
+    },
+    {
+      "start_seconds": 4,
+      "end_seconds": 4,
+      "description": "Thought-diagram composition on near-black. Large ivory slab/monospaced-looking text “I think” sits in the upper-left region, approximately x=95–630 and y=105–210. “it through.” spans the lower-right region, approximately x=385–1180 and y=480–610; the terminal dot is orange. Fine ivory curves lead from two small pale endpoint dots on the left toward an orange junction near x=335, y=380. An orange path extends rightward through a small loop and curves toward the upper-right. Another portion bends down from the junction, rounds the lower-left of the second phrase and sweeps underneath it toward its orange terminal dot. The lines are thin, gently irregular and unfilled, contrasting with the heavy text. This frame establishes the branching and looping geometry, but not whether the lines draw on, move or remain still."
+    },
+    {
+      "start_seconds": 5,
+      "end_seconds": 5,
+      "description": "Scattered-letter typography on burnt orange, clarified by the full-resolution second reference. “I tell it” appears in dark, relatively light monospaced/typewriter-like lettering at approximately x=175–550, y=190–275. Beneath and to the right, seven individually styled letters spell “straight” in reading order. They occupy a broad irregular rising arrangement: s at lower left; a thick tilted t adjacent to it; a thin, italic-like r; a large thin a near the bottom; a small slanted i; a heavy overlapping g and h higher on the right; and the final t isolated near the upper-right around x=935–1050, y=115–270. Individual glyphs vary markedly in weight, size and rotation. The group spans approximately x=175–1055 and y=115–535. Some letters overlap, particularly around g/h. No horizontal rule is visible in this sample. Exact letter entry order and motion are unknown."
+    },
+    {
+      "start_seconds": 6,
+      "end_seconds": 6,
+      "description": "Aligned version of the orange typography composition. “I tell it” remains above, approximately x=180, y=190. The word “straight” is now a single level arrangement in very large, heavy near-black type, occupying approximately x=170–1060 and y=285–520. A thin ivory horizontal rule extends across the entire frame at approximately y=448, visibly crossing in front of the lower portion of the dark letters. The contrast with 5 seconds demonstrates a change from scattered glyphs to an aligned word; the sampled evidence does not establish the intermediate paths, whether font shapes morph, or how the rule enters."
+    },
+    {
+      "start_seconds": 7,
+      "end_seconds": 7,
+      "description": "Ivory collaboration card with large near-black text on two lines: “I build” above “with you.” The group occupies approximately x=175–1150 and y=180–570. The second line is shifted to the right relative to the first. Letters use an irregular, very heavy, rounded display treatment. Substantial orange/red extrusion extends diagonally down and right behind the dark front faces, forming layered sidewalls rather than a soft blurred shadow. Depth is especially visible beneath the first-line letters and behind the lower-right edges of “you.” The camera is front-facing and the background remains empty. No entrance, extrusion growth or exit motion is directly observed."
+    },
+    {
+      "start_seconds": 8,
+      "end_seconds": 8,
+      "description": "Near-black identity reveal in progress. Only ivory “I’m” is visible toward the left-middle, beginning approximately x=160, y=330. The phrase appears vertically incomplete, with a horizontal clipping boundary cutting off its lower portion. No Claude wordmark, orange emblem or subtitle is visible in this sample. A masked or cropped reveal is a plausible implementation inference, but the actual mechanism, movement direction and timing are unknown."
+    },
+    {
+      "start_seconds": 9,
+      "end_seconds": 9,
+      "description": "Closing identity lockup on near-black, clarified by the full-resolution third reference. Large ivory “I’m Claude” runs approximately x=180–940 and y=245–365. “I’m” uses a thinner monospaced/slab-like style; “Claude” is much heavier, with rounded, irregular display forms. An orange radial asterisk/starburst sits immediately to the right, approximately x=960–1110 and y=220–380. It comprises numerous uneven, round-ended spokes converging near its center; the supplied image does not support a reliable exact spoke count. Below the main line, orange typewriter-like text visibly reads “Opu,” around x=465–575 and y=415–480. Its first character is rounded and somewhat zero-like. This is a partial subtitle state; no supplied frame proves that it completes to “Opus 5.5.” The remaining interval to 10.0 seconds is unsampled, so the final hold, completion and exit are unknown."
+    }
+  ],
+  "exact_visible_text": [
+    "Hi.",
+    "I read every word.",
+    "I think",
+    "it through.",
+    "I tell it",
+    "straight",
+    "I build",
+    "with you.",
+    "I’m",
+    "I’m Claude",
+    "Opu"
+  ],
+  "uncertainties": [
+    "The evidence samples the full duration at one-second intervals; it is not a frame-by-frame review. Actual shot boundaries, intermediate states and transition durations remain unknown.",
+    "Scene-change detections at 1.05 and 1.166667 seconds provide timing metadata but no visible content for those exact instants.",
+    "The last supplied sample is at 9.0 seconds. The final second, actual last frame and any completed model subtitle are unobserved.",
+    "Small background text at 2 seconds is only partly readable. Exact punctuation, line counts, full strings, languages and numerical values cannot be reliably preserved without higher-resolution evidence.",
+    "The principal reading statement appears to end with a dark period; its small size and background overlap limit certainty about its exact contour.",
+    "The orange closing subtitle visually reads “Opu”; the initial O has a zero-like shape.",
+    "Exact fonts, font files, source assets, brand construction geometry and the closing emblem’s spoke count are unknown.",
+    "Color codes and pixel bounds in the brief are approximate visual estimates.",
+    "Changes between samples support reveals and rearrangement, but do not establish easing, trajectories, overshoot, drawing direction or continuous movement.",
+    "The slight texture may be source styling, compression or both.",
+    "Visible reference statements and values are visual evidence only, not independently verified factual claims."
+  ],
+  "missing_inputs": [
+    "Consecutive decoded frames or the source video for precise transition and animation analysis.",
+    "Readable full-resolution evidence of the dense reading collage at 2 seconds.",
+    "Frames covering 9.0–10.0 seconds, including the exact final frame.",
+    "Original typography assets and precise brand geometry, if exact matching is required; otherwise these must be approximated with newly authored artwork.",
+    "Any private creator inputs, original chat context or implementation details remain unknown. The supplied creator instruction and these visual observations support an inferred reconstruction brief."
+  ],
+  "audio_review": "Frozen metadata reports audio_streams=0. No audio was supplied or reviewed, and this brief specifies no narration, music or sound effects."
+}

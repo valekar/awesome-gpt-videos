@@ -53,6 +53,77 @@
     "reason": "Product or company name and public website URL or supplied product brief.; Key features to showcase, with verified descriptions and any required screenshots or assets.; Brand guidance: logo, colors, visual style, tone, and desired closing call to action."
   },
   "adapted": {
-    "status": "not_generated"
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "reference-v3",
+    "track": "adapted",
+    "iteration": 1,
+    "source_prompt_sha256": "a65463cfb7945cf6c44c08291c17ec34f51b9c243e1c4bb320bc228d14500150",
+    "input_sha256": "4fb989acf53dff3338f9bdbca01f3a3c40df72789ad4079110b3908e35c07d7a",
+    "started_at": "2026-10-18T15:37:12.099441+00:00",
+    "tools": "none requested; read-only sandbox",
+    "reference_images_supplied": [
+      "sheet-01.jpg",
+      "sheet-02.jpg",
+      "full-1.jpg",
+      "full-2.jpg",
+      "full-3.jpg"
+    ],
+    "reference_image_sha256": {
+      "sheet-01.jpg": "14eebb235512b0ea7f73bbce448e4145a334385ea10a2a22f35ed1f14fa214c6",
+      "sheet-02.jpg": "b80453eb8911bafda205d5b8038edd4c077418796270dad495502b5b2956e3ca",
+      "full-1.jpg": "1c68818198d479e7cad94c5f3cdc420b699369e237982f11e794cbd501e501e0",
+      "full-2.jpg": "b52a10131a080f458b7b1ce6e19b7151a4d926b352152da6c67d7e803e90c73f",
+      "full-3.jpg": "2a3f48d97e29e94ec96ecb709b97205039adf37e1890c46547f192d51b68f4a3"
+    },
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/ratheejaisal-154698/adapted/schema.json",
+      "-o",
+      "$REPO/results/ratheejaisal-154698/adapted/response.json",
+      "--image",
+      "$REPO/work/references/ratheejaisal-154698/evidence/sheet-01.jpg",
+      "--image",
+      "$REPO/work/references/ratheejaisal-154698/evidence/sheet-02.jpg",
+      "--image",
+      "$REPO/work/references/ratheejaisal-154698/evidence/full-1.jpg",
+      "--image",
+      "$REPO/work/references/ratheejaisal-154698/evidence/full-2.jpg",
+      "--image",
+      "$REPO/work/references/ratheejaisal-154698/evidence/full-3.jpg",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 34399,
+      "cached_input_tokens": 18816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 393,
+      "reasoning_output_tokens": 241
+    },
+    "finished_at": "2026-10-18T15:37:32.336752+00:00",
+    "assumptions": [
+      "The reconstruction preserves the supplied 16:9 format, 60 fps, 20-second duration and silent reference."
+    ],
+    "missing_inputs": [
+      "Authorized founder portrait for Jaisal’s profile card; the reference screenshots cannot be reused as output artwork.",
+      "Original or authorized project icons for Tiny Startups, clicks.page, Million Dollar Keyboard, Buy Sell Startups, Startups.fm, Domain Rating and Curate the Internet. The reconstruction brief identifies these as required assets, but none are supplied."
+    ],
+    "summary": "Essential portrait and project-icon assets are missing. No HTML was generated, rendered or visually reviewed.",
+    "reason": "Authorized founder portrait for Jaisal’s profile card; the reference screenshots cannot be reused as output artwork.; Original or authorized project icons for Tiny Startups, clicks.page, Million Dollar Keyboard, Buy Sell Startups, Startups.fm, Domain Rating and Curate the Internet. The reconstruction brief identifies these as required assets, but none are supplied."
   }
 }

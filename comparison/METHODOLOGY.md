@@ -59,3 +59,9 @@ The code-only pilot is preserved. New calls may use `--research` (protocol `rese
 `tools/reference_frames.py` records actual decoded timestamps, full-resolution details and detected scene-change times. `tools/analyze_reference.py` uses GPT-6.1/high to draft attributed reconstruction briefs from those declared images. These are model-generated sampled analyses, not human frame-by-frame acceptance. An audio stream alone is not an audio review: images cannot establish narration, music or sound effects.
 
 GitHub publication uses the existing configured Git credential helper. A separate `gh auth` login may be absent even when Git is authenticated. Credentials are never printed, stored in repository files or embedded in remote URLs.
+
+## Adapted-first priority
+
+The adapted queue now takes priority over further baseline dispatch. `docs/adapted-queue.json` records every entry, including resource and owning-workflow follow-up. Its ready subset begins with silent cached references; audio-bearing films require actual sound review before complete recreation. This staging choice does not establish corpus coverage or equal case difficulty.
+
+Protocol `reference-v3` supplies all declared reference sheets and full-resolution details, separately supplied fonts, a reference media contract, and the decoded frame rate. Sampled model comparisons use original/new MP4 frames at identical requested timestamps, including detected cut boundaries and final frames. Every automatic comparison identifies GPT-6.1 Sol/high and records image/input hashes. It is not a human or frame-by-frame acceptance audit. One recorded visual/technical repair is the default queue budget; remaining differences remain visible after that budget. Per-case prompt improvements feed only the adapted prompt. README previews and findings refresh from saved evidence.
