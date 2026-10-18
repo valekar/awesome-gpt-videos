@@ -1,0 +1,63 @@
+{
+  "baseline": {
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "27ee54955bfeb127cb084975f210cc78f5f8af8e0af27885d62b3271728043ae",
+    "input_sha256": "8a768deb736e20b9dd0e12ad4335dccb1ec38fea5bae0c77274748aa3d71edc4",
+    "started_at": "2026-10-18T14:34:28.246583+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/aisongman-461057/baseline/schema.json",
+      "-o",
+      "$REPO/results/aisongman-461057/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 18983,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 9977,
+      "reasoning_output_tokens": 3624
+    },
+    "finished_at": "2026-10-18T14:38:43.987178+00:00",
+    "assumptions": [
+      "Creative choice: Ember Duel is an original fictional card game with invented characters, card values and rules, inspired by the requested one-on-one genre.",
+      "Chosen format: 1280×720, 32-second silent pixel art demonstration with playable controls, opponent AI, mana, combat, spells, taunt, victory and restart.",
+      "All artwork is generated directly in Canvas; no external assets, fonts or third-party character artwork are used. GSAP is supplied locally by the harness.",
+      "This source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable pixel art card battler with a deterministic demonstration and interactive one-on-one gameplay.",
+    "source_sha256": "6cff1ed275e5dcb572cc321d4b51e72a0877e9d27177c12e8d78a975457dfb9c",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 32,
+    "source_path": "results/aisongman-461057/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quetzal — Form, Flow, Flight</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#101715}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="15">
+<canvas id="art" class="clip" data-start="0" data-duration="15" width="1920" height="1080" role="img" aria-label="An original Quetzal motion design showreel: colorful feathers transform through form, flow and flight."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(() => {
+'use strict';
+const canvas=document.getElementById('art');
+const c=canvas.getContext('2d');
+const W=1920,H=1080,TAU=Math.PI*2;
+// Editable creative controls. All geometry and motion are computed from time.
+const P={ink:'#101715',paper:'#F3F1E7',lime:'#DBFF50',jade:'#00BD89',blue:'#2344F5',pink:'#FF639F',orange:'#FF743E'};
+const starts=[0,3.05,6.15,9.25,12.2];
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const mix=(a,b,t)=>a+(b-a)*t;
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const out=v=>1-Math.pow(1-clamp(v),4);
+const back=v=>{v=clamp(v)-1;return 1+2.70158*v*v*v+1.70158*v*v};
+function bg(color){c.fillStyle=color;c.fillRect(0,0,W,H)}
+function circle(x,y,r,color){if(r<=0)return;c.beginPath();c.arc(x,y,r,0,TAU);c.fillStyle=color;c.fill()}
+function line(x1,y1,x2,y2,color,width=2){c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.strokeStyle=color;c.lineWidth=width;c.stroke()}
+function text(s,x,y,size,color,maxWidth,align='left'){
+ c.save();c.font=`900 ${size}px Arial, Helvetica, sans-serif`;c.textAlign=align;c.textBaseline='alphabetic';c.fillStyle=color;
+ const width=c.measureText(s).width;const scale=maxWidth?Math.min(1,maxWidth/width):1;
+ c.translate(x,y);c.scale(scale,1);c.fillText(s,0,0);c.restore();
+}
+function spaced(s,x,y,size,color,tracking=7){
+ c.save();c.font=`700 ${size}px Arial, Helvetica, sans-serif`;c.fillStyle=color;
+ const widths=[...s].map(ch=>c.measureText(ch).width);let at=x-(widths.reduce((a,b)=>a+b,0)+(s.length-1)*tracking)/2;
+ [...s].forEach((ch,i)=>{c.fillText(ch,at,y);at+=widths[i]+tracking});c.restore();
+}
+function petal(length,width,color){
+ c.beginPath();c.moveTo(0,0);c.bezierCurveTo(length*.25,-width*.78,length*.83,-width*.57,length,0);
+ c.bezierCurveTo(length*.8,width*.57,length*.2,width*.52,0,0);c.fillStyle=color;c.fill();
+}
+function ring(x,y,r,width,color,start=0,end=TAU){
+ if(r<=0)return;c.beginPath();c.arc(x,y,r,start,end);c.strokeStyle=color;c.lineWidth=width;c.stroke();
+}
+function star(x,y,r,rotation,color){
+ c.save();c.translate(x,y);c.rotate(rotation);c.beginPath();
+ for(let i=0;i<16;i++){const a=i*TAU/16,rr=i%2?r*.43:r;i?c.lineTo(Math.cos(a)*rr,Math.sin(a)*rr):c.moveTo(Math.cos(a)*rr,Math.sin(a)*rr)}
+ c.closePath();c.fillStyle=color;c.fill();c.restore();
+}
+// Original abstract bird mark: seven articulated feathers per wing and flowing tail.
+function bird(x,y,s,t,opening=1){
+ c.save();c.translate(x,y);c.scale(s,s);
+ const colors=[P.lime,P.jade,P.paper,P.blue,P.pink,P.orange,P.jade];
+ for(let side of [-1,1]){
+  c.save();c.scale(side,1);
+  for(let i=6;i>=0;i--){
+   const fan=mix(.06,-1.10+i*.185,opening)+Math.sin(t*2.1+i*.42)*.025*opening;
+   c.save();c.translate(0,48+i*9);c.rotate(fan);petal((475-i*25)*opening+30,88-i*4,colors[i]);c.restore();
+  }c.restore();
+ }
+ for(let j=0;j<3;j++){
+  c.beginPath();c.moveTo(-22+j*24,92);
+  c.bezierCurveTo(-80+j*60,220,155+j*42,245,70+j*64,400);
+  c.strokeStyle=[P.jade,P.lime,P.pink][j];c.lineWidth=22-j*4;c.lineCap='round';c.stroke();
+ }
+ c.save();c.rotate(-.1);c.fillStyle=P.jade;c.beginPath();c.ellipse(0,56,46,99,0,0,TAU);c.fill();
+ c.fillStyle=P.paper;c.beginPath();c.ellipse(8,85,22,57,0,0,TAU);c.fill();c.restore();
+ circle(0,-39,48,P.jade);circle(15,-47,6,P.ink);
+ c.beginPath();c.moveTo(41,-46);c.lineTo(83,-30);c.lineTo(41,-20);c.closePath();c.fillStyle=P.orange;c.fill();
+ for(let j=0;j<3;j++){c.save();c.translate(-21+j*16,-72);c.rotate(-1.9+j*.2);petal(68-j*9,21,P.lime);c.restore()}
+ c.restore();
+}
+function revealWord(word,x,y,size,width,t,color,stagger=.055){
+ c.save();c.font=`900 ${size}px Arial, Helvetica, sans-serif`;const glyphs=[...word];
+ const full=c.measureText(word).width,scale=Math.min(1,width/full);c.translate(x,y);c.scale(scale,1);
+ c.beginPath();c.rect(-25,-size*1.12,full+50,size*1.22);c.clip();let xx=0;
+ glyphs.forEach((ch,i)=>{const p=out((t-i*stagger)/.6);c.save();c.translate(xx,(1-p)*size*1.2);c.rotate((1-p)*.12);c.fillStyle=color;c.fillText(ch,0,0);c.restore();xx+=c.measureText(ch).width});c.restore();
+}
+function intro(t){
+ bg(P.ink);
+ const enter=out(t/.9),open=out((t-.12)/1.15);
+ // Expanding rings establish the wing's radial motion.
+ c.save();c.globalAlpha=.28*(1-smooth((t-1.3)/1));
+ for(let i=0;i<4;i++)ring(960,390,Math.max(1,(t*.7+i*.22)*250),2,P.jade);
+ c.restore();
+ c.save();c.translate(960,410);c.rotate((1-enter)*-.65);c.scale(.12+.88*enter,.12+.88*enter);c.translate(-960,-410);
+ bird(960,340,.92,t,open);c.restore();
+ const p=out((t-.55)/.8);c.save();c.globalAlpha=p;
+ revealWord('QUETZAL',257,954,235,1406,t-.55,P.paper,.045);c.restore();
+ const dash=out((t-1.4)/.7);line(258,1000,258+1404*dash,1000,P.jade,5);
+ // One precise accent crosses behind the lockup.
+ star(1570,215,40*enter,t*.7,P.lime);
+}
+function form(t){
+ bg(P.paper);
+ const p=out(t/.7);
+ revealWord('FORM',105,645,310,850,t-.06,P.ink,.07);
+ line(115,701,115+790*out((t-.5)/.8),701,P.ink,4);
+ // Four graphic cells build on staggered beats, then share one rotation.
+ const cells=[{x:1225,y:337,col:P.blue},{x:1590,y:337,col:P.jade},{x:1225,y:702,col:P.orange},{x:1590,y:702,col:P.ink}];
+ cells.forEach((cell,i)=>{
+  const e=back((t-.12-i*.12)/.7);if(e<=0)return;
+  c.save();c.translate(cell.x,cell.y);c.scale(e,e);c.rotate((1-out((t-i*.12)/.9))*.6);
+  if(i===0){
+   circle(0,0,164,P.blue);circle(0,0,91,P.paper);circle(Math.cos(t*1.3)*107,Math.sin(t*1.3)*107,36,P.orange);
+  }else if(i===1){
+   c.rotate(t*.22);for(let j=0;j<8;j++){c.save();c.rotate(j*TAU/8);petal(162,65,j%2?P.jade:P.ink);c.restore()}circle(0,0,31,P.lime);
+  }else if(i===2){
+   c.rotate(-.22+Math.sin(t)*.08);for(let j=0;j<5;j++){c.save();c.translate(-135+j*54,0);c.rotate(-.5);c.fillStyle=j%2?P.pink:P.orange;c.fillRect(-17,-143,34,286);c.restore()}
+  }else{
+   c.rotate(-t*.25);star(0,0,171,0,P.ink);circle(0,0,56,P.lime);
+  }c.restore();
+ });
+ // A small feather supplies continuity with the opening mark.
+ c.save();c.translate(130,233);c.rotate(-.23);c.scale(p,p);petal(285,90,P.jade);c.restore();
+}
+function flow(t){
+ bg(P.lime);
+ revealWord('FLOW',103,337,292,1260,t-.05,P.ink,.07);
+ // Parallel cubic ribbons share a moving field; every point is a function of t.
+ const entry=out(t/.8);const phase=t*1.55;
+ c.save();c.beginPath();c.rect(0,388,W,H-388);c.clip();
+ for(let k=13;k>=0;k--){
+  const y=526+k*32;
+  c.beginPath();
+  for(let x=-160;x<=W+160;x+=20){
+   const norm=x/W;
+   const wave=Math.sin(norm*TAU*.9-phase+k*.075)*105+Math.sin(norm*TAU*1.65+phase*.55)*30;
+   const yy=y+wave*entry+(1-entry)*(H+400);
+   x===-160?c.moveTo(x,yy):c.lineTo(x,yy);
+  }
+  c.strokeStyle=k%5===0?P.blue:P.ink;c.lineWidth=14;c.lineCap='round';c.stroke();
+ }c.restore();
+ const bx=mix(1500,1670,smooth(t/3.1)),by=260+Math.sin(t*2)*30;
+ circle(bx,by,96*back((t-.35)/.7),P.paper);
+ c.save();c.translate(bx,by);c.rotate(-t*.75);star(0,0,48*out((t-.55)/.5),0,P.blue);c.restore();
+ // The colored segment travels along the same ribbon field.
+ const lead=clamp((t-.65)/2.3)*W;
+ circle(lead,790+Math.sin(lead/W*TAU*.9-phase+.45)*105,24,P.pink);
+}
+function flight(t){
+ bg(P.blue);
+ // A continuous fan of enlarged feathers sweeps across the composition.
+ const entry=out(t/.85);
+ for(let side of [-1,1]){
+  for(let i=12;i>=0;i--){
+   const a=-1.17+i*.105;
+   c.save();c.translate(960,540);c.scale(side,1);c.rotate(a+(1-entry)*1.4+Math.sin(t*.8)*.06);
+   c.translate(110+(1-entry)*450,0);
+   const length=720-i*25;
+   petal(length,105-i*3,[P.jade,P.lime,P.paper,P.pink][i%4]);c.restore();
+  }
+ }
+ // A crisp central plate allows the type to read through the moving wings.
+ c.save();c.translate(960,545);c.rotate(-.045);c.fillStyle=P.blue;c.fillRect(-834,-148,1668,302);c.restore();
+ c.save();c.translate(960,545);c.rotate(-.045);
+ const word='FLIGHT';c.font='900 262px Arial, Helvetica, sans-serif';const ww=c.measureText(word).width;
+ revealWord(word,-ww/2,93,262,1500,t-.28,P.paper,.055);c.restore();
+ // Twin tail strokes lead the eye toward the final circular transition.
+ const tail=out((t-.6)/1.2);
+ c.save();c.beginPath();c.rect(0,740,1920*tail,340);c.clip();
+ for(let j=0;j<3;j++){
+  c.beginPath();c.moveTo(-100,950+j*28);c.bezierCurveTo(450,640+j*20,1270,1140-j*40,2020,830+j*24);
+  c.strokeStyle=[P.pink,P.lime,P.jade][j];c.lineWidth=14-j*3;c.stroke();
+ }c.restore();
+}
+function finale(t){
+ bg(P.ink);
+ const enter=out(t/.75),settle=smooth((t-.8)/.9);
+ const markScale=mix(.56,.48,settle);
+ bird(960,mix(253,265,settle),markScale,t+12,enter);
+ revealWord('QUETZAL',245,775,240,1430,t-.13,P.paper,.045);
+ const rule=out((t-.7)/.7);line(255,829,255+1410*rule,829,P.jade,4);
+ c.save();c.globalAlpha=out((t-1.05)/.65);spaced('FORM. FLOW. FLIGHT.',960,917,43,P.lime,8);c.restore();
+ // Motion resolves into a clean, readable closing hold.
+}
+const scenes=[intro,form,flow,flight,finale];
+function draw(time){
+ const t=clamp(time,0,15);c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.lineCap='butt';
+ let index=0;for(let i=1;i<starts.length;i++)if(t>=starts[i])index=i;
+ const local=t-starts[index];
+ if(index>0&&local<.52){
+  scenes[index-1](t-starts[index-1]);
+  const origins=[[960,540],[1540,340],[360,700],[960,540],[960,330]];
+  const origin=origins[index];const radius=2300*out(local/.52);
+  c.save();c.beginPath();c.arc(origin[0],origin[1],Math.max(.01,radius),0,TAU);c.clip();scenes[index](local);c.restore();
+ }else scenes[index](local);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:15,duration:15,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+})();
+</script>
+</body>
+</html>

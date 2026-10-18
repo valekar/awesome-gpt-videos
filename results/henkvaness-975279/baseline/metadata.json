@@ -1,0 +1,51 @@
+{
+  "status": "blocked",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "c3fbced6f1fa555e357ec07e448c45efca4958ac46c7c84514ffad3dbfd26ff2",
+  "input_sha256": "12d935804a3d879c3cc1205884a5199937b84e47a578a73443d47697431fa362",
+  "started_at": "2026-10-18T14:28:43.317337+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/henkvaness-975279/baseline/schema.json",
+    "-o",
+    "$REPO/results/henkvaness-975279/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 20508,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 222,
+    "reasoning_output_tokens": 141
+  },
+  "finished_at": "2026-10-18T14:28:56.586195+00:00",
+  "assumptions": [
+    "Provisional format: 1920×1080 landscape; duration depends on the article."
+  ],
+  "missing_inputs": [
+    "Article text or a public article URL to adapt."
+  ],
+  "summary": "The source article is required before creating the educational animation.",
+  "reason": "Article text or a public article URL to adapt."
+}

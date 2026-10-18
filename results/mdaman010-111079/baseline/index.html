@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inside an AI data centre</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080f18}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#080f18}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="40">
+<canvas id="world" class="clip" data-start="0" data-duration="40" width="1280" height="720" role="img" aria-label="An animated illustrated tour of an AI data centre: server racks, request routing, accelerators and memory, training and inference, networking and storage, electricity and cooling, and the response journey."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(function(){
+'use strict';
+/* Editable story, palette and timings. All artwork is original procedural Canvas.
+   Diagrams are conceptual; counts, spacing and pulse speeds are illustrative. */
+const W=1280,H=720,DURATION=40;
+const C={bg:'#080f18',panel:'#101f2d',edge:'#294354',white:'#f1f6f5',muted:'#a7bac4',cyan:'#69e2ef',lime:'#c3f27a',heat:'#ff9271',power:'#f5ce77',deep:'#162c3b'};
+const STORY=[
+ {start:0,end:5,title:'Inside an AI data centre',sub:'A physical journey behind a digital answer.'},
+ {start:5,end:10.5,title:'A request becomes work.',sub:'Software routes input to servers running a trained model.'},
+ {start:10.5,end:17,title:'The work happens in parallel.',sub:'Accelerators calculate. Memory holds weights and working data.'},
+ {start:17,end:23,title:'Two jobs. The same building.',sub:'Training learns model weights. Inference uses them on new input.'},
+ {start:23,end:29,title:'Machines work as a cluster.',sub:'Networks move data. Storage keeps datasets and model files.'},
+ {start:29,end:35,title:'Computation becomes heat.',sub:'Electricity powers the hardware. Cooling carries its heat away.'},
+ {start:35,end:40,title:'An answer, powered by a building.',sub:'Compute, memory, networks, power and cooling work together.'}
+];
+const canvas=document.getElementById('world');
+const g=canvas.getContext('2d');
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=v=>{v=clamp(v);return v*v*(3-2*v)};
+const mix=(a,b,t)=>a+(b-a)*t;
+const phase=v=>v-Math.floor(v);
+function rr(x,y,w,h,r=12,fill=C.panel,stroke=null,lw=1){
+ g.beginPath();g.roundRect(x,y,w,h,r);if(fill){g.fillStyle=fill;g.fill()}if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke()}
+}
+function line(points,color=C.edge,width=2){g.beginPath();points.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.strokeStyle=color;g.lineWidth=width;g.lineCap='round';g.lineJoin='round';g.stroke()}
+function circle(x,y,r,fill,stroke=null,lw=1){g.beginPath();g.arc(x,y,r,0,Math.PI*2);if(fill){g.fillStyle=fill;g.fill()}if(stroke){g.strokeStyle=stroke;g.lineWidth=lw;g.stroke()}}
+function txt(s,x,y,size=24,color=C.white,weight=400,align='left'){
+ g.fillStyle=color;g.font=weight+' '+size+'px Arial, Helvetica, sans-serif';g.textAlign=align;g.textBaseline='alphabetic';g.fillText(s,x,y)
+}
+function poly(points,fill,stroke=C.edge){g.beginPath();points.forEach((p,i)=>i?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]));g.closePath();g.fillStyle=fill;g.fill();if(stroke){g.strokeStyle=stroke;g.lineWidth=1.4;g.stroke()}}
+function arrow(x,y,angle,color,size=9){g.save();g.translate(x,y);g.rotate(angle);poly([[0,0],[-size,-size*.55],[-size,size*.55]],color,null);g.restore()}
+function atPath(points,p){
+ let lengths=[],total=0;for(let i=1;i<points.length;i++){let n=Math.hypot(points[i][0]-points[i-1][0],points[i][1]-points[i-1][1]);lengths.push(n);total+=n}
+ let d=clamp(p)*total;for(let i=0;i<lengths.length;i++){if(d<=lengths[i]||i===lengths.length-1){let k=lengths[i]?d/lengths[i]:0;return [mix(points[i][0],points[i+1][0],k),mix(points[i][1],points[i+1][1],k)]}d-=lengths[i]}
+ return points[0]
+}
+function route(points,t,color=C.cyan,count=4,speed=.16){
+ line(points,C.edge,3);for(let j=0;j<count;j++){
+  let p=phase(t*speed+j/count),q=atPath(points,p),tail=atPath(points,Math.max(0,p-.035));
+  line([tail,q],color,4);circle(q[0],q[1],4.2,color)
+ }
+}
+function glow(x,y,r,color){let z=g.createRadialGradient(x,y,0,x,y,r);z.addColorStop(0,color);z.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=z;g.fillRect(x-r,y-r,r*2,r*2)}
+function title(scene,u){
+ let a=ease(u/.6);g.save();g.globalAlpha*=a;let y=14*(1-a);
+ txt(scene.title,64,91+y,48,C.white,700);txt(scene.sub,66,140+y,24,C.muted);g.restore()
+}
+function footer(s,color=C.muted){txt(s,640,670,23,color,400,'center')}
+function tag(s,x,y,color=C.cyan){let w=s.length*12.4+30;rr(x-w/2,y-25,w,38,19,C.bg,color,1);txt(s,x,y+1,21,color,600,'center')}
+function server(x,y,w,h,t,color=C.cyan){
+ rr(x,y,w,h,8,'#102330',C.edge,2);rr(x+7,y+7,w-14,h-14,4,'#0b1722');
+ let slots=5;for(let j=0;j<slots;j++){let yy=y+15+j*(h-28)/slots;rr(x+13,yy,w-26,(h-35)/slots-4,3,'#1b3040');for(let k=0;k<3;k++){let a=.3+.7*(.5+.5*Math.sin(t*3+j*1.4+k*2));g.save();g.globalAlpha*=a;circle(x+w-22-k*8,yy+7,2,color);g.restore()}line([[x+20,yy+7],[x+w*.45,yy+7]],'#3c5463',2)}
+}
+function packet(x,y,color=C.cyan){rr(x-13,y-9,26,18,5,C.bg,color,2);line([[x-5,y],[x+5,y]],color,2)}
+function iso(x,y,z=0){return [640+(x-y)*.86,465+(x+y)*.34-z]}
+function block(x,y,w,d,h,t,i){
+ const p=(a,b,c)=>iso(a,b,c);
+ poly([p(x,y,h),p(x+w,y,h),p(x+w,y+d,h),p(x,y+d,h)],'#28414f','#42606c');
+ poly([p(x,y+d,0),p(x+w,y+d,0),p(x+w,y+d,h),p(x,y+d,h)],'#10212e','#39515e');
+ poly([p(x+w,y,0),p(x+w,y+d,0),p(x+w,y+d,h),p(x+w,y,h)],'#172d3b','#39515e');
+ for(let j=0;j<8;j++){
+  let z=14+j*14,a=p(x+7,y+d+.4,z),b=p(x+w-7,y+d+.4,z);
+  line([a,b],'#334d5e',5);let q=p(x+w-12,y+d+1,z+2);
+  g.save();g.globalAlpha*=.35+.65*(.5+.5*Math.sin(t*2.5+i*2+j));circle(q[0],q[1],2.3,C.cyan);g.restore()
+ }
+ const a=p(x+8,y+8,h+.6),b=p(x+w-8,y+8,h+.6);line([a,b],C.cyan,2)
+}
+function hall(t,scale=1,dx=0,dy=0){
+ g.save();g.translate(640+dx,460+dy);g.scale(scale,scale);g.translate(-640,-460);
+ glow(640,450,380,'rgba(51,136,151,.12)');
+ poly([iso(-310,-270),iso(310,-270),iso(310,270),iso(-310,270)],'#0e1c27','#2b4553');
+ for(let j=-300;j<=300;j+=60)line([iso(j,-270),iso(j,270)],'#18303e',1);
+ for(let j=-240;j<=240;j+=60)line([iso(-310,j),iso(310,j)],'#18303e',1);
+ let racks=[];for(let row=0;row<2;row++)for(let col=0;col<4;col++)racks.push({x:-215+col*115,y:-140+row*220,i:row*4+col});
+ racks.sort((a,b)=>(a.x+a.y)-(b.x+b.y));racks.forEach(r=>block(r.x,r.y,72,58,137,t,r.i));
+ const a=iso(-245,15,4),b=iso(245,15,4);route([a,b],t,C.cyan,5,.09);
+ g.restore()
+}
+function sceneHall(t,u){
+ let s=1+.04*ease(u/5);hall(t,s,0,9);
+ g.save();g.globalAlpha*=ease((u-.6)/.8);tag('Server racks',1010,379);line([[939,380],[879,380],[838,423]],C.muted,1.5);
+ tag('Network links',240,525);line([[328,525],[384,525],[463,491]],C.muted,1.5);g.restore();
+ footer('A room full of connected computers.');
+}
+function sceneRequest(t,u){
+ const input=[[285,401],[444,401],[444,372],[563,372]],out=[[717,372],[846,372],[846,401],[950,401]];
+ route(input,t,C.cyan,3,.19);route(out,t,C.cyan,3,.19);
+ rr(96,320,188,162,18,C.panel,C.edge,2);rr(121,344,138,85,8,'#1a3443');
+ line([[150,450],[230,450]],C.muted,4);line([[190,431],[190,450]],C.muted,4);
+ for(let j=0;j<3;j++)rr(143,364+j*17,92-j*18,5,2,j===0?C.cyan:'#5b798b');
+ txt('Input',190,530,26,C.white,600,'center');
+ glow(640,374,170,'rgba(105,226,239,.08)');rr(563,302,154,140,22,'#142d3c',C.cyan,2);
+ const k=.5+.5*Math.sin(t*2);circle(640,370,32+3*k,null,'#3f6a7b',2);
+ line([[618,371],[640,349],[661,371],[640,393],[618,371]],C.cyan,3);
+ txt('Routing',640,490,26,C.white,600,'center');txt('Software selects the work',640,524,21,C.muted,400,'center');
+ server(950,287,204,225,t);txt('Model server',1052,554,26,C.white,600,'center');
+ footer('For an AI response, this is inference.');
+}
+function matrix(x,y,t,color){
+ for(let a=0;a<6;a++)for(let b=0;b<6;b++){let v=.2+.7*(.5+.5*Math.sin(t*2+a*.8-b*.5));g.save();g.globalAlpha*=v;rr(x+b*16,y+a*16,11,11,2,color);g.restore()}
+}
+function sceneCompute(t,u){
+ route([[254,416],[438,416]],t,C.cyan,3,.2);route([[857,416],[1020,416]],t,C.lime,3,.2);
+ matrix(147,368,t,C.cyan);txt('Data',194,520,25,C.white,600,'center');
+ rr(438,234,419,365,20,'#132735','#375667',2);
+ for(let j=0;j<5;j++){
+  line([[465,268+j*58],[533,268+j*58],[533,327+j*13],[571,327+j*13]],'#2a4b5a',2);
+  line([[710,330+j*15],[767,330+j*15],[767,267+j*60],[827,267+j*60]],'#2a4b5a',2)
+ }
+ const cx=647,cy=412;
+ for(let j=0;j<10;j++){let p=-68+j*15;line([[cx+p,cy-89],[cx+p,cy-105]],C.muted,3);line([[cx+p,cy+89],[cx+p,cy+105]],C.muted,3);line([[cx-89,cy+p],[cx-105,cy+p]],C.muted,3);line([[cx+89,cy+p],[cx+105,cy+p]],C.muted,3)}
+ rr(cx-88,cy-88,176,176,11,'#1c3c41',C.lime,2);rr(cx-67,cy-67,134,134,6,'#12282c','#466b58');
+ for(let a=0;a<6;a++)for(let b=0;b<6;b++){
+  let light=.2+.8*(.5+.5*Math.sin(t*4-a*.7-b*.3));g.save();g.globalAlpha*=light;rr(cx-51+b*18,cy-51+a*18,11,11,2,C.lime);g.restore()
+ }
+ for(let j=0;j<3;j++){rr(465+j*135,253,107,32,4,'#203b4a','#4e7789');for(let k=0;k<6;k++)line([[477+j*135+k*14,260],[477+j*135+k*14,278]],'#7297a0',2)}
+ tag('Memory',650,213,C.cyan);line([[650,226],[650,250]],C.cyan,1.5);
+ matrix(1034,368,t+2,C.lime);txt('Results',1082,520,25,C.white,600,'center');
+ txt('GPU / AI accelerator',648,643,26,C.lime,600,'center');
+}
+function networkModel(x,y,t,training){
+ const rows=[3,4,3],nodes=[];
+ for(let col=0;col<3;col++)for(let row=0;row<rows[col];row++)nodes.push({col,row,x:x+col*112,y:y+(row-(rows[col]-1)/2)*51});
+ for(let col=0;col<2;col++){
+  const a=nodes.filter(n=>n.col===col),b=nodes.filter(n=>n.col===col+1);
+  for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++){
+   const change=training?(.5+.5*Math.sin(t*1.5+i*2+j)):0.5;
+   line([[a[i].x,a[i].y],[b[j].x,b[j].y]],training?'#6f654d':'#355563',1+change*1.7)
+  }
+ }
+ for(let col=0;col<2;col++){
+  let p=phase(t*.6-col*.3),a=nodes.find(n=>n.col===col&&n.row===1),b=nodes.find(n=>n.col===col+1&&n.row===1);
+  circle(mix(a.x,b.x,p),mix(a.y,b.y,p),4,training?C.power:C.cyan)
+ }
+ nodes.forEach(n=>circle(n.x,n.y,10,'#142736',training?C.power:C.cyan,2));
+}
+function sceneJobs(t,u){
+ line([[640,230],[640,590]],C.edge,1);
+ txt('Training',330,257,34,C.power,700,'center');txt('Inference',950,257,34,C.cyan,700,'center');
+ networkModel(218,390,t,true);networkModel(838,390,t,false);
+ route([[137,390],[205,390]],t,C.power,2,.2);route([[457,390],[526,390]],t,C.power,2,.2);
+ route([[755,390],[825,390]],t,C.cyan,2,.2);route([[1076,390],[1144,390]],t,C.cyan,2,.2);
+ const back=[[485,477],[485,525],[195,525],[195,457]];route(back,t,C.power,3,.13);arrow(195,457,-Math.PI/2,C.power);
+ txt('Examples → weight updates',330,588,25,C.white,600,'center');
+ txt('New input → model output',950,588,25,C.white,600,'center');
+ footer('A response does not require retraining the model.');
+}
+function storage(x,y){
+ for(let j=2;j>=0;j--){let yy=y+j*28;rr(x,yy,144,51,9,'#193342','#416375',1.5);g.beginPath();g.ellipse(x+72,yy+5,72,16,0,0,Math.PI*2);g.fillStyle='#254657';g.fill();g.strokeStyle='#416375';g.stroke();circle(x+122,yy+25,3,C.cyan)}
+}
+function sceneNetwork(t,u){
+ const sw=[662,362];
+ route([[295,368],[440,368],[440,362],[sw[0]-88,362]],t,C.cyan,4,.14);
+ route([[sw[0]-40,327],[sw[0]-40,263],[456,263]],t,C.cyan,3,.13);
+ route([[sw[0]+40,327],[sw[0]+40,263],[1030,263]],t,C.lime,3,.13);
+ route([[sw[0]-40,398],[sw[0]-40,538],[456,538]],t,C.lime,3,.13);
+ route([[sw[0]+40,398],[sw[0]+40,538],[1030,538]],t,C.cyan,3,.13);
+ storage(151,320);txt('Storage',222,479,27,C.white,600,'center');
+ server(371,213,85,113,t);server(1030,213,85,113,t+1);server(371,488,85,113,t+2);server(1030,488,85,113,t+3);
+ rr(sw[0]-88,327,176,71,10,'#1b3544',C.cyan,2);
+ for(let j=0;j<10;j++)rr(sw[0]-72+j*15,352,10,17,2,j%3===0?C.cyan:'#426776');
+ txt('Network switch',sw[0],453,27,C.white,600,'center');
+ txt('Compute servers',1080,443,23,C.muted,400,'center');
+ footer('Shared work depends on moving data between machines.');
+}
+function fan(x,y,r,t){
+ circle(x,y,r,'#102533','#416575',2);g.save();g.translate(x,y);g.rotate(t*1.4);
+ for(let j=0;j<5;j++){g.save();g.rotate(j*Math.PI*2/5);g.beginPath();g.moveTo(0,0);g.bezierCurveTo(8,-r*.8,r*.8,-r*.6,r*.65,-r*.1);g.bezierCurveTo(r*.5,r*.2,r*.1,r*.2,0,0);g.fillStyle='#406476';g.fill();g.restore()}
+ g.restore();circle(x,y,7,C.cyan)
+}
+function sceneCooling(t,u){
+ const cold=[[180,399],[547,399]],warm=[[733,399],[1006,399]];
+ route(cold,t,C.cyan,7,.12);route(warm,t,C.heat,6,.12);
+ server(547,265,186,264,t,C.lime);txt('Server rack',640,572,25,C.white,600,'center');
+ txt('Cool air',310,330,27,C.cyan,600,'center');txt('Warm air',865,330,27,C.heat,600,'center');
+ rr(1006,270,145,263,12,'#162d3c','#496777',2);fan(1079,345,45,t);fan(1079,456,45,t);
+ txt('Heat exchanger',1079,579,23,C.white,600,'center');
+ // A schematic chilled-water circuit transports heat to a separate facility system.
+ route([[1134,292],[1180,292],[1180,219],[1100,219]],t,C.heat,2,.16);
+ route([[1026,219],[975,219],[975,510],[1006,510]],t,C.cyan,3,.13);
+ rr(1026,190,74,57,7,'#223748','#7b8b91');
+ for(let j=0;j<4;j++)line([[1036+j*16,202],[1036+j*16,235]],C.muted,2);
+ for(let j=0;j<3;j++){
+  let p=phase(t*.3+j/3);g.save();g.globalAlpha*=1-p;line([[1050+j*17,182-p*18],[1054+j*17,170-p*18]],C.heat,2);g.restore()
+ }
+ txt('Heat leaves',1064,164,21,C.heat,400,'center');
+ const power=[[166,585],[166,612],[510,612],[510,488],[547,488]];
+ route(power,t,C.power,5,.12);
+ poly([[157,538],[143,563],[156,563],[148,583],[174,555],[160,555]],C.power,null);
+ txt('Electricity',270,650,25,C.power,600,'center');
+ txt('Example: air cooling with a chilled-water loop',864,650,21,C.muted,400,'center');
+}
+function sceneFinish(t,u){
+ hall(t,.76,-190,23);
+ route([[794,452],[883,452],[883,392],[969,392]],t,C.cyan,3,.13);
+ let a=ease((u-.35)/.8);g.save();g.globalAlpha*=a;g.translate(0,12*(1-a));
+ rr(969,312,238,163,20,'#132f3c',C.cyan,2);poly([[996,474],[996,496],[1025,474]],'#132f3c',C.cyan);
+ txt('Response',1088,359,29,C.white,600,'center');
+ for(let j=0;j<3;j++)rr(998,383+j*23,174-j*24,7,3,j===0?C.cyan:'#4f7585');g.restore();
+ footer('The digital result comes from a physical system.',C.white);
+}
+const SCENES=[sceneHall,sceneRequest,sceneCompute,sceneJobs,sceneNetwork,sceneCooling,sceneFinish];
+function background(){
+ g.fillStyle=C.bg;g.fillRect(0,0,W,H);
+ const wash=g.createRadialGradient(760,385,0,760,385,670);wash.addColorStop(0,'#102433');wash.addColorStop(1,C.bg);g.fillStyle=wash;g.fillRect(0,0,W,H);
+ // Quiet static texture; no random state or time-dependent accumulation.
+ for(let y=200;y<700;y+=32)for(let x=32;x<1260;x+=32){g.fillStyle='rgba(130,180,196,.045)';g.fillRect(x,y,1,1)}
+}
+function draw(time){
+ const t=clamp(time,0,DURATION);g.setTransform(1,0,0,1,0,0);g.globalAlpha=1;g.clearRect(0,0,W,H);background();
+ let i=0;for(let j=1;j<STORY.length;j++)if(t>=STORY[j].start)i=j;
+ const s=STORY[i],u=t-s.start;
+ // A short dip between chapters, calculated directly from absolute time.
+ let alpha=i===0?1:ease(u/.34);
+ if(i<STORY.length-1)alpha*=ease((s.end-t)/.25);
+ g.save();g.globalAlpha=alpha;SCENES[i](t,u);title(s,u);g.restore();
+}
+const clock={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(clock,{t:DURATION,duration:DURATION,ease:'none',onUpdate:function(){draw(clock.t)}},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+})();
+</script>
+</body>
+</html>

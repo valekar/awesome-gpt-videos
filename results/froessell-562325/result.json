@@ -1,0 +1,64 @@
+{
+  "baseline": {
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "3fa693c55142d52531629ca63d1a2c7bfbe68d5f145d6d9c39221cacf4ae04cf",
+    "input_sha256": "6407c7674fc244e96c5826766164544b71ddf9f8c1f54a7e08f72dfd9b0cf2e2",
+    "started_at": "2026-10-18T14:29:22.339204+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/froessell-562325/baseline/schema.json",
+      "-o",
+      "$REPO/results/froessell-562325/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 87271,
+      "cached_input_tokens": 51840,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 13520,
+      "reasoning_output_tokens": 3716
+    },
+    "finished_at": "2026-10-18T14:34:27.231796+00:00",
+    "assumptions": [
+      "Chosen format: 1080×1920 portrait, with a 167-second chase, opening title and final Busted/replay screen.",
+      "This is an authored HyperFrames gameplay visualization. Pursuit, collisions, joystick movement and damage are deterministic choreography, not a playable Unity prototype. AGAIN resets the paused timeline for host-controlled replay.",
+      "All desert scenery, toy vehicles, effects and synthesized audio are original procedural artwork. Scoring uses the supplied example values; displayed totals are calculated from the authored events.",
+      "Official reference consulted: https://topdown-engine.moremountains.com/. No More Mountains assets, screenshots or engine code are included; their redistribution rights were not established.",
+      "GSAP is supplied locally as gsap.min.js. HyperFrames must control timeline advancement and audio playback. No render, visual review, device performance test or Unity integration is claimed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable three-minute desert chase animation with escalating police, interceptors, drifting, pileups, score, hull, procedural sound and a replay control.",
+    "source_sha256": "8cdbe9c1800ce08eb308dada7c4908bda896a81c1e6335c48b32aeaba4236a83",
+    "width": 1080,
+    "height": 1920,
+    "duration_seconds": 180,
+    "source_path": "results/froessell-562325/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

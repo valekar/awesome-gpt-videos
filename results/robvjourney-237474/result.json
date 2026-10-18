@@ -1,0 +1,83 @@
+{
+  "baseline": {
+    "status": "rendered",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "8236a77f6e3a358b654a333aa86db7b908a5f47217e859153b25391b7b6f7c9a",
+    "input_sha256": "8c999fb34e270da9822da67c0118c12a85bae6cb25f3baae97145c92656c9e6d",
+    "started_at": "2026-10-18T14:32:48.059697+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/robvjourney-237474/baseline/schema.json",
+      "-o",
+      "$REPO/results/robvjourney-237474/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 43588,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6970,
+      "reasoning_output_tokens": 2146
+    },
+    "finished_at": "2026-10-18T14:35:33.305373+00:00",
+    "assumptions": [
+      "Official research source: https://nohandslabs.com/. The company describes AI-operated businesses and a target of 95% AI work and 5% human work; the animation identifies this as a target.",
+      "Creative choices: 16:9 landscape, acid-yellow and charcoal art direction, kinetic typography, assembling procedural cubes, agent workflow and a segmented target ring.",
+      "Original procedural artwork and system fonts; no external brand artwork, screenshots, music or other licensed media. No external asset license gaps identified.",
+      "Silent animation using the supplied local gsap.min.js. Source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete editable 15-second Nohandslabs motion graphic with five scenes, deterministic canvas artwork and one paused GSAP timeline.",
+    "source_sha256": "a67477aa3d884faed44da76a1eda7eb75821139f29e4d3eea0186d0e1d0145f0",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 15,
+    "source_path": "results/robvjourney-237474/baseline/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/robvjourney-237474/baseline/video.mp4",
+    "poster_url": "media/robvjourney-237474/baseline/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "15.000000"
+      }
+    },
+    "staged_source_sha256": "a67477aa3d884faed44da76a1eda7eb75821139f29e4d3eea0186d0e1d0145f0",
+    "source_modified_after_generation": false
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

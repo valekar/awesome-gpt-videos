@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,49 @@
       "-o",
       "$REPO/results/chatgptastra-807540/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20520,
+      "cached_input_tokens": 18816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5943,
+      "reasoning_output_tokens": 2588
+    },
+    "finished_at": "2026-10-18T14:15:02.430611+00:00",
+    "assumptions": [
+      "开放式创作，自选16:9横屏、无声、三幕抽象动态图形方向：秩序、节奏、想象。",
+      "原创程序化几何、中文文案及配色；仅使用本地提供的gsap.min.js和通用系统字体，无外部素材或素材授权缺口。",
+      "所有画面由同一个暂停的GSAP时间轴驱动，可确定性跳转；HTML未经过渲染或视觉审查。"
+    ],
+    "missing_inputs": [],
+    "summary": "15秒高级感动态图形：立体扭结、柔光材质、遮罩排字与横向色场转场，完整可编辑。",
+    "source_sha256": "01d30f148a3136627bdc79bde34ec0c2e886950932be3948f420ef1514e92b77",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 15,
+    "source_path": "results/chatgptastra-807540/baseline/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/chatgptastra-807540/baseline/video.mp4",
+    "poster_url": "media/chatgptastra-807540/baseline/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "15.000000"
+      }
+    },
+    "staged_source_sha256": "01d30f148a3136627bdc79bde34ec0c2e886950932be3948f420ef1514e92b77",
+    "source_modified_after_generation": false
   },
   "adapted": {
     "status": "not_generated"

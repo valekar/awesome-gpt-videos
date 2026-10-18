@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Key moments in AI</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f1eee5}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1600" data-height="900" data-duration="60">
+<canvas id="art" class="clip" data-start="0" data-duration="60" width="1600" height="900" role="img" aria-label="Eight animated milestones in the history of artificial intelligence, from Turing in 1950 to ChatGPT in 2022."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+/* Edit the milestone copy, colors, timing, and illustrations here.
+   All illustrations are conceptual originals, not historical screenshots,
+   actual game positions, measured networks, or product interfaces. */
+const milestones=[
+ {year:'1950',title:['Can machines','think?'],body:['Alan Turing proposes the imitation game:','a way to explore machine intelligence','through conversation.'],kind:'turing'},
+ {year:'1956',title:['A field takes','shape.'],body:['The Dartmouth summer research project','helps establish artificial intelligence','as a field of study.'],kind:'dartmouth'},
+ {year:'1966',title:['Conversation,','by rules.'],body:['Joseph Weizenbaum publishes ELIZA.','It uses keywords and scripted rules','to generate conversational replies.'],kind:'eliza'},
+ {year:'1997',title:['A landmark','on the board.'],body:['IBM’s Deep Blue defeats reigning world','chess champion Garry Kasparov','in a six-game match.'],kind:'chess'},
+ {year:'2012',title:['Learning','to recognize.'],body:['AlexNet wins the ImageNet competition,','demonstrating the power of deep','convolutional neural networks.'],kind:'vision'},
+ {year:'2016',title:['A new move','in Go.'],body:['DeepMind’s AlphaGo defeats Lee Sedol.','Deep neural networks and search','meet a formidable strategic game.'],kind:'go'},
+ {year:'2017',title:['Attention changes','the architecture.'],body:['“Attention Is All You Need” introduces','the Transformer: a neural architecture','built around attention.'],kind:'attention'},
+ {year:'2022',title:['AI enters','the conversation.'],body:['OpenAI releases ChatGPT','as a public research preview','on November 30.'],kind:'chat'}
+];
+const C={paper:'#f1eee5',ink:'#202b2b',muted:'#63706b',line:'#cecfc1',accent:'#cf512e',mint:'#a8bb9c',pale:'#e4e6da',white:'#faf8f1'};
+const canvas=document.getElementById('art'),ctx=canvas.getContext('2d');
+const W=1600,H=900,INTRO=4,SPAN=6.5,END=56;
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const ease=v=>{v=clamp(v);return 1-Math.pow(1-v,3)};
+function text(s,x,y,size=30,color=C.ink,font='sans-serif',weight=400,align='left'){
+ ctx.font=weight+' '+size+'px '+font;ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(s,x,y);
+}
+function line(x1,y1,x2,y2,color=C.line,width=2){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
+function circle(x,y,r,fill,stroke,width=2){ctx.beginPath();ctx.arc(x,y,Math.max(0,r),0,Math.PI*2);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke()}}
+function box(x,y,w,h,fill,stroke,r=15){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
+function path(points,color,width=2){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
+function arrow(x1,y1,x2,y2,color=C.accent){line(x1,y1,x2,y2,color,3);let a=Math.atan2(y2-y1,x2-x1);path([[x2-11*Math.cos(a-.5),y2-11*Math.sin(a-.5)],[x2,y2],[x2-11*Math.cos(a+.5),y2-11*Math.sin(a+.5)]],color,3)}
+function reveal(p,fn){ctx.save();ctx.globalAlpha*=ease(p);ctx.translate(0,24*(1-ease(p)));fn();ctx.restore()}
+function network(cx,cy,r,t){
+ let pts=Array.from({length:12},(_,i)=>{let a=i*Math.PI/6+t*.035;return[cx+Math.cos(a)*r,cy+Math.sin(a)*r]});
+ for(let i=0;i<12;i++)for(let j=i+1;j<12;j++)if((i+j)%3===0)line(...pts[i],...pts[j],C.line,1.5);
+ pts.forEach((p,i)=>circle(...p,i%3===0?10:6,i%3===0?C.accent:C.ink));
+ circle(cx,cy,52,C.paper,C.ink,2);text('AI',cx,cy+17,48,C.ink,'serif',400,'center');
+}
+function rail(t,active){
+ const x0=110,x1=1490,y=782;
+ line(x0,y,x1,y,C.line,2);
+ let progress=clamp((t-INTRO)/(END-INTRO));line(x0,y,x0+(x1-x0)*progress,y,C.accent,3);
+ milestones.forEach((m,i)=>{let x=x0+(x1-x0)*i/7;let selected=i===active;circle(x,y,selected?9:5,i<=active?C.accent:C.paper,i<=active?C.accent:C.muted,2);text(m.year,x,y+43,23,selected?C.accent:C.muted,'sans-serif',selected?700:400,'center')});
+}
+function terminal(x,y,label){box(x,y,212,160,C.white,C.ink);text(label,x+24,y+39,24,C.muted);for(let i=0;i<3;i++)line(x+24,y+76+i*22,x+95+(i%2)*57,y+76+i*22,C.ink,3)}
+function art(kind,u){
+ const p=ease(u/.95),q=ease((u-1)/1.4);
+ ctx.save();ctx.translate(900,182);
+ if(kind==='turing'){
+  reveal(u/.8,()=>terminal(0,10,'A'));
+  reveal((u-.3)/.8,()=>terminal(298,10,'B'));
+  line(106,182,106,246,C.line,3);line(404,182,404,246,C.line,3);line(106,246,404,246,C.line,3);line(255,246,255,300,C.accent,3);
+  circle(255,365,64,C.ink);text('?',255,386,65,C.paper,'serif',400,'center');
+  circle(106+298*((Math.sin(u*1.5)+1)/2),246,7,C.accent);
+  text('THE IMITATION GAME',255,482,25,C.muted,'sans-serif',600,'center');
+ }else if(kind==='dartmouth'){
+  const pts=[[255,55],[463,220],[384,431],[126,431],[47,220]];
+  pts.forEach((a,i)=>{let b=pts[(i+2)%5];line(a[0],a[1],a[0]+(b[0]-a[0])*p,a[1]+(b[1]-a[1])*p,C.line,2)});
+  pts.forEach((a,i)=>{circle(a[0],a[1],15*p,i%2?C.accent:C.ink);circle(a[0],a[1],28*p,null,C.line)});
+  box(83,183,344,122,C.ink);text('ARTIFICIAL',255,232,34,C.paper,'sans-serif',600,'center');text('INTELLIGENCE',255,275,34,C.paper,'sans-serif',600,'center');
+  text('A SHARED RESEARCH AGENDA',255,516,23,C.muted,'sans-serif',600,'center');
+ }else if(kind==='eliza'){
+  const labels=['WORDS','RULES','REPLY'];
+  labels.forEach((s,i)=>{let y=27+i*167;reveal((u-i*.45)/.8,()=>{box(70,y,370,103,i===1?C.ink:C.white,C.ink);text(s,255,y+64,34,i===1?C.paper:C.ink,'sans-serif',600,'center')});if(i<2)arrow(255,y+113,255,y+153)});
+  for(let i=0;i<3;i++){let y=145+i*167;if(i<2)circle(255,y+19*((u*.6)%1),5,C.accent)}
+ }else if(kind==='chess'){
+  const s=52,ox=47,oy=22;
+  for(let y=0;y<8;y++)for(let x=0;x<8;x++){ctx.fillStyle=(x+y)%2?C.mint:C.white;ctx.fillRect(ox+x*s,oy+y*s,s,s)}
+  ctx.strokeStyle=C.ink;ctx.lineWidth=2;ctx.strokeRect(ox,oy,416,416);
+  // Stylized king and rook: an illustrative position, not a recorded move.
+  function king(x,y,color){ctx.save();ctx.translate(x,y);path([[-17,17],[-12,-10],[12,-10],[17,17]],color,8);line(-21,22,21,22,color,8);line(0,-17,0,-38,color,6);line(-11,-28,11,-28,color,6);ctx.restore()}
+  function rook(x,y,color){ctx.save();ctx.translate(x,y);box(-15,-14,30,35,color,null,0);line(-21,25,21,25,color,7);line(-19,-19,19,-19,color,10);for(let j=-1;j<2;j++)line(j*16,-20,j*16,-30,color,7);ctx.restore()}
+  king(ox+5.5*s,oy+2.5*s,C.ink);rook(ox+1.5*s+2*s*q,oy+5.5*s,C.accent);
+  text('DEEP BLUE  ×  KASPAROV',255,500,25,C.muted,'sans-serif',600,'center');
+ }else if(kind==='vision'){
+  box(5,144,152,185,C.white,C.line,8);
+  // Original geometric image flowing through abstract feature layers.
+  ctx.fillStyle=C.accent;ctx.beginPath();ctx.moveTo(29,258);ctx.lineTo(122,179);ctx.lineTo(96,262);ctx.lineTo(54,289);ctx.closePath();ctx.fill();
+  for(let i=0;i<4;i++){let x=195+i*55,h=227-i*35;ctx.save();ctx.globalAlpha*=.45+i*.12;box(x,235-h/2,30,h,C.mint,C.ink,3);ctx.restore()}
+  arrow(164,235,184,235);arrow(403,235,438,235);
+  reveal((u-1)/1,()=>{circle(479,235,36,C.accent);path([[463,235],[475,247],[496,222]],C.paper,5)});
+  text('IMAGE',81,370,23,C.muted,'sans-serif',600,'center');text('LEARNED FEATURES',295,403,22,C.muted,'sans-serif',600,'center');
+  text('DEEP LEARNING',255,500,25,C.ink,'sans-serif',600,'center');
+ }else if(kind==='go'){
+  box(28,12,454,454,'#dfcba6',C.ink,3);
+  for(let i=0;i<9;i++){line(51+i*51,35,51+i*51,443,'#8d8069',1.5);line(51,35+i*51,459,35+i*51,'#8d8069',1.5)}
+  const stones=[[2,3,0],[3,3,1],[4,4,0],[5,4,1],[4,5,0],[6,2,1],[2,6,0],[6,6,1]];
+  stones.forEach((s,i)=>{let a=ease((u-.2-i*.13)/.6);ctx.save();ctx.globalAlpha*=a;circle(51+s[0]*51,35+s[1]*51,20*a,s[2]?C.white:C.ink,C.ink,1.5);ctx.restore()});
+  let a=ease((u-2.4)/.8);circle(51+5*51,35+2*51,20*a,C.accent);circle(51+5*51,35+2*51,29+4*Math.sin(u*2),null,C.accent,2);
+  text('NETWORKS + SEARCH',255,516,25,C.muted,'sans-serif',600,'center');
+ }else if(kind==='attention'){
+  const labels=['The','machine','learns'];
+  labels.forEach((s,i)=>{let x=5+i*172;box(x,45,158,72,C.white,C.ink,9);text(s,x+79,91,25,C.ink,'sans-serif',500,'center');box(x,354,158,72,C.ink);circle(x+79,389,8,C.paper)});
+  for(let i=0;i<3;i++)for(let j=0;j<3;j++){let x=84+i*172,xx=84+j*172;ctx.save();ctx.globalAlpha*=(i===j?.8:.22+.12*Math.sin(u+i+j));ctx.beginPath();ctx.moveTo(x,125);ctx.bezierCurveTo(x,226,xx,250,xx,346);ctx.strokeStyle=i===j?C.accent:C.ink;ctx.lineWidth=i===j?4:2;ctx.stroke();ctx.restore()}
+  box(110,203,294,64,C.paper,C.line,32);text('ATTENTION',257,246,28,C.accent,'sans-serif',600,'center');
+  text('RELATING TOKENS IN CONTEXT',255,516,22,C.muted,'sans-serif',600,'center');
+ }else if(kind==='chat'){
+  reveal(u/.8,()=>{box(79,27,412,141,C.ink);text('Prompt',109,75,25,C.mint,'sans-serif',600);line(109,110,445,110,C.paper,4);line(109,134,345,134,C.paper,4)});
+  reveal((u-.7)/.8,()=>{box(6,218,412,203,C.white,C.ink);text('Response',36,269,25,C.accent,'sans-serif',600);for(let i=0;i<4;i++){let w=(i===3?180:330)*ease((u-1-i*.18)/.7);line(36,304+i*24,36+w,304+i*24,C.ink,3)}});
+  arrow(285,178,285,204);text('A PUBLIC RESEARCH PREVIEW',255,516,23,C.muted,'sans-serif',600,'center');
+ }
+ ctx.restore();
+}
+function intro(t){
+ const a=ease(t/.9);ctx.save();ctx.globalAlpha=a;ctx.translate(0,35*(1-a));
+ text('A HISTORY OF',105,204,28,C.accent,'sans-serif',700);
+ text('Artificial',98,341,116,C.ink,'serif');text('intelligence.',98,465,116,C.ink,'serif');
+ text('Eight moments that helped shape the field.',105,554,32,C.muted);
+ network(1220,360,224,t);line(105,650,1495,650,C.line,2);
+ text('1950',105,705,30,C.ink);text('2022',1495,705,30,C.ink,'sans-serif',400,'right');
+ line(240,695,1360,695,C.accent,3);circle(240+1120*clamp(t/4),695,7,C.accent);
+ ctx.restore();
+}
+function scene(m,u,i){
+ let a=ease(u/.65)*(1-ease((u-(SPAN-.4))/.4));ctx.save();ctx.globalAlpha=a;
+ ctx.save();ctx.translate(-32*(1-ease(u/.8)),0);
+ text(m.year,98,267,166,C.accent,'serif');
+ m.title.forEach((s,j)=>text(s,104,371+j*75,62,C.ink,'sans-serif',600));
+ m.body.forEach((s,j)=>text(s,107,548+j*43,29,C.muted));
+ ctx.restore();
+ line(834,174,834,687,C.line,2);art(m.kind,u);ctx.restore();
+ rail(INTRO+i*SPAN+u,i);
+}
+function outro(t){
+ const u=t-END;ctx.save();ctx.globalAlpha=ease(u/.7);
+ text('A history of ideas.',104,294,92,C.ink,'serif');
+ text('Still being written.',104,406,92,C.ink,'serif');
+ text('Questions. Rules. Learning. Conversation.',109,505,32,C.muted);
+ network(1260,340,164,t);
+ rail(END,7);ctx.restore();
+}
+function draw(t){
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.fillStyle=C.paper;ctx.fillRect(0,0,W,H);
+ // Deterministic fine paper pattern; no random state.
+ ctx.fillStyle='rgba(32,43,43,.035)';for(let y=10;y<H;y+=22)for(let x=10;x<W;x+=22)ctx.fillRect(x+(y%44?5:0),y,1,1);
+ if(t<INTRO){intro(t)}else if(t<END){let i=Math.min(7,Math.floor((t-INTRO)/SPAN));scene(milestones[i],t-INTRO-i*SPAN,i)}else{outro(t)}
+}
+const clock={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(clock,{t:60,duration:60,ease:'none',onUpdate:()=>draw(clock.t)},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+</script>
+</body>
+</html>

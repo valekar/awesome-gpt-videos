@@ -1,0 +1,85 @@
+{
+  "baseline": {
+    "status": "rendered",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "0bd0e2c658d69654e51ce584d7b51c44006255eee95c0f6a9d7ad4b82e071124",
+    "input_sha256": "b4f9ff92317bd2a658514777da09b98bff53ff13b4739c53b66e6f4f1fb758ed",
+    "started_at": "2026-10-18T14:19:57.637797+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/mdaman010-111079/baseline/schema.json",
+      "-o",
+      "$REPO/results/mdaman010-111079/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 78739,
+      "cached_input_tokens": 45056,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 8837,
+      "reasoning_output_tokens": 2203
+    },
+    "finished_at": "2026-10-18T14:24:05.075881+00:00",
+    "assumptions": [
+      "Chosen format: a 40-second, silent, 16:9 illustrated explainer with seven chapters. Generic hardware, layouts, counts and pulse speeds are conceptual, not measurements or a depiction of a specific facility.",
+      "Infrastructure research: [NVIDIA reference architectures](https://docs.nvidia.com/reference-architectures/) supports the compute, networking, storage and software overview.",
+      "Training and inference research: [NVIDIA technical overview](https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/tesla-product-literature/inference-technical-overview.pdf) supports the distinction between updating model weights and applying a trained model.",
+      "Cooling research: [U.S. Department of Energy](https://www.energy.gov/cmei/femp/cooling-water-efficiency-opportunities-federal-data-centers) describes rack heat, air cooling and transfer to chilled water. The illustrated cooling arrangement is one example; actual facilities vary.",
+      "All artwork is procedural Canvas; no third-party visual assets, logos, screenshots or fonts are used. Research sources are paraphrased, and no third-party asset license is required. GSAP is supplied locally by the harness.",
+      "The HTML has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable, deterministic HyperFrames animation touring request routing, accelerators, memory, training, inference, networks, storage, power and cooling.",
+    "source_sha256": "7659b8885ae2a3ed2097c84f2f28d2592bd3abd58260836360b3906d93be16ed",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 40,
+    "source_path": "results/mdaman010-111079/baseline/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/mdaman010-111079/baseline/video.mp4",
+    "poster_url": "media/mdaman010-111079/baseline/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "40.000000"
+      }
+    },
+    "staged_source_sha256": "7659b8885ae2a3ed2097c84f2f28d2592bd3abd58260836360b3906d93be16ed",
+    "source_modified_after_generation": false
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

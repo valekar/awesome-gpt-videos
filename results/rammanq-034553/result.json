@@ -1,0 +1,66 @@
+{
+  "baseline": {
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "b8de7a133a35c5535b13d64b9eaf8549303922f24ee2407f377e52e7abead478",
+    "input_sha256": "1d13d5112a5c35b8c5e3bc0513caa56724843384e85b3a6ee631096135d2cbd9",
+    "started_at": "2026-10-18T14:29:38.495150+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/rammanq-034553/baseline/schema.json",
+      "-o",
+      "$REPO/results/rammanq-034553/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 117865,
+      "cached_input_tokens": 82944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7461,
+      "reasoning_output_tokens": 1129
+    },
+    "finished_at": "2026-10-18T14:32:32.377587+00:00",
+    "assumptions": [
+      "Creative choice: a silent 30-second, 16:9 promotional motion graphic with dark green, lime, kinetic typography, connected pathways and abstract orbital artwork.",
+      "Product capabilities were verified against the official website: [AllInvestView](https://www.allinvestview.com/) and [Help Center](https://www.allinvestview.com/help/). Copy avoids investment-return claims and invented numerical metrics.",
+      "The official promotional dashboard image is referenced at https://www.allinvestview.com/static/tablets_v2_compressed.png, verified through the official homepage. Its displayed information belongs to the supplied promotional image; no interface or portfolio figures were fabricated.",
+      "The official image and AllInvestView name retain their owners' rights. Public availability does not establish a reuse license; promotional reuse permission was not verified.",
+      "The calendar, document and orbital graphics are conceptual illustrations of verified features, not screenshots, financial data or simulation results. The product name is typeset text, not a recreated official logo.",
+      "The harness supplies gsap.min.js and freezes the referenced official image. No additional fonts or libraries are required.",
+      "This source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable six-scene AllInvestView promotion featuring an official product image, verified capabilities and deterministic GSAP animation.",
+    "source_sha256": "507ed79091afb80f3b4e133f5540f92468ec1a68e16a1e21da69659a1141c23d",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 30,
+    "source_path": "results/rammanq-034553/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "External runtime dependencies must be reviewed and frozen locally before rendering."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

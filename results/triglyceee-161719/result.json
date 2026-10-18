@@ -1,0 +1,88 @@
+{
+  "baseline": {
+    "status": "rendered",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "c5ee6f0198f68a9eafc21c5d10a02039b1a147ee68e96e70a279645493ae37b2",
+    "input_sha256": "c4922ffaac7670163b5bc2d974f71050da11b56235e84f6428bc9bcfa9559d9b",
+    "started_at": "2026-10-18T14:24:25.791175+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/triglyceee-161719/baseline/schema.json",
+      "-o",
+      "$REPO/results/triglyceee-161719/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 255959,
+      "cached_input_tokens": 190720,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 12780,
+      "reasoning_output_tokens": 4681
+    },
+    "finished_at": "2026-10-18T14:29:37.542316+00:00",
+    "assumptions": [
+      "Format choisi : 16:9, 158 secondes, français, sans narration ni musique. Synthèse sélective allant jusqu’à octobre 2026 ; illustrations symboliques originales, sans portraits, cartes ni graphiques quantitatifs.",
+      "Indépendance : [dates historiques du portail Maroc.ma](https://www.maroc.ma/fr/histoire-du-maroc/dates-cles?page=11). Institutions, alternance de 1998 et principales évolutions politiques : [Larousse](https://www.larousse.fr/encyclopedie/divers/Maroc/187075) et [ConstitutionNet](https://constitutionnet.org/country/morocco).",
+      "Répression, état d’exception de 1965 et tentatives de coup d’État : [rapport Amnesty International de 1991](https://www.amnesty.org/en/wp-content/uploads/2021/06/mde290011991en.pdf). La période des années de plomb dépasse les seules dates mises en avant dans cette séquence.",
+      "Sahara occidental : [historique du différend](https://www.lemonde.fr/international/article/2024/07/31/le-conflit-sahraoui-cinq-decennies-d-impuissance-de-l-onu_6262934_3210.html), [mandat de la MINURSO](https://minurso.unmissions.org/en/node/519) et [statut auprès de l’ONU](https://www.un.org/dppa/decolonization/fr/node/2206). Le cessez-le-feu est présenté comme un événement de 1991, sans supposer sa continuité jusqu’en 2026.",
+      "Réformes de 2004 : [OCDE sur la Moudawana](https://www.oecd.org/fr/publications/l-autonomisation-economique-des-femmes-au-maroc_d4312bd3-fr/full-report/component-6.html) et [CNDH sur l’Instance équité et réconciliation](https://www.cndh.ma/fr/instance-equite-et-reconciliation). Institutions de 2011 : [Constitution publiée par le SGG](https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf), notamment articles 5, 41, 42 et 47.",
+      "Hirak : [Human Rights Watch, novembre 2018](https://www.hrw.org/fr/news/2018/11/30/maroc-des-verdicts-entaches-par-des-soupcons-de-torture). Coalition de 2021 : [SNRT News](https://snrtnews.com/fr/article/akhannouch-forme-sa-coalition-19248).",
+      "Actualité de 2026 : [nomination officielle de Fatima Ezzahra El Mansouri le 29 septembre](https://www.maroc.ma/fr/actualites/sm-le-roi-nomme-fatima-ezzahra-el-mansouri-cheffe-du-gouvernement-et-la-charge-de-former-le-nouveau), [première femme nommée à ce poste](https://www.lemonde.fr/en/international/article/2026/09/29/morocco-appoints-its-first-woman-prime-minister-fatima-ezzahra-el-mansouri_6758088_4.html) et [installation du gouvernement le 16 octobre](https://www.lemonde.fr/en/international/article/2026/10/17/morocco-forms-new-government-but-except-for-women-very-little-changes_6758713_4.html).",
+      "Aucun média public externe n’est incorporé : les pages citées servent à la vérification factuelle, sans reprise de photographies ou de captures. GSAP est fourni localement par le harnais ; sa licence de redistribution n’a pas été vérifiée.",
+      "HTML fourni sans exécution, rendu ni revue visuelle."
+    ],
+    "missing_inputs": [],
+    "summary": "Animation éditable en 13 séquences sur la vie politique marocaine depuis l’indépendance, avec chronologie et illustrations Canvas déterministes.",
+    "source_sha256": "2912f436b7fef01bf4fdd6008f9058c40670665654a672a7caaae8c440e4e6a0",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 158,
+    "source_path": "results/triglyceee-161719/baseline/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/triglyceee-161719/baseline/video.mp4",
+    "poster_url": "media/triglyceee-161719/baseline/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "158.000000"
+      }
+    },
+    "staged_source_sha256": "2912f436b7fef01bf4fdd6008f9058c40670665654a672a7caaae8c440e4e6a0",
+    "source_modified_after_generation": false
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

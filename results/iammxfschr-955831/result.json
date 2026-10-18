@@ -1,0 +1,58 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "3c78971f06d518c6ffcc26067f302b8076edcbe683b33f27ddbf65fe8f18440e",
+    "input_sha256": "71e8224acbdea05ece1def7e0906689132dd65ee7382558b9f4843bd6db1008d",
+    "started_at": "2026-10-18T14:47:01.583535+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/iammxfschr-955831/baseline/schema.json",
+      "-o",
+      "$REPO/results/iammxfschr-955831/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20604,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 541,
+      "reasoning_output_tokens": 411
+    },
+    "finished_at": "2026-10-18T14:47:27.354323+00:00",
+    "assumptions": [
+      "Proposed format: 30-second landscape launch video with German copy, punchy typography, restrained colors, and contemporary background music.",
+      "The Anthropic reference describes a visual direction; no affiliation is assumed."
+    ],
+    "missing_inputs": [
+      "The startup/product name and what is being released.",
+      "Verified product capabilities and the main launch message. No product information or supporting material was supplied."
+    ],
+    "summary": "The launch video requires product context before it can be created without inventing a brand or product claims.",
+    "reason": "The startup/product name and what is being released.; Verified product capabilities and the main launch message. No product information or supporting material was supplied."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

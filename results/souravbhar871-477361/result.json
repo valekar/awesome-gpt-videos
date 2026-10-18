@@ -1,0 +1,83 @@
+{
+  "baseline": {
+    "status": "rendered",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "7bd7ddf6ff03c0a36187b6a32b7e3f1c8bfbf3f7780526a48767873203810d54",
+    "input_sha256": "2c735ddd8310329c5e925a27a444ac647c55a9f1907dc126c4a0516e289a8d03",
+    "started_at": "2026-10-18T14:38:39.160859+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/souravbhar871-477361/baseline/schema.json",
+      "-o",
+      "$REPO/results/souravbhar871-477361/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20546,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5115,
+      "reasoning_output_tokens": 1552
+    },
+    "finished_at": "2026-10-18T14:41:06.711328+00:00",
+    "assumptions": [
+      "Chose a 1920×1080 landscape format and a silent, five-beat kinetic portrait with ivory, ink, vermilion and electric blue.",
+      "“Opus 5.5” is treated as the requested artistic persona; the animation makes no verified product, capability or model-identity claims.",
+      "Artwork is procedural Canvas with generic system fonts. No external assets, factual research or asset licenses are required; GSAP is supplied by the harness.",
+      "This source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "A complete editable 10-second animation: expanding typography, orbital questions, fractured patterns, flowing possibilities and a bold Opus 5.5 finale.",
+    "source_sha256": "2e7532917b4a9c0ad300abc0acbf4d1090d24f1d7eb29f382823829b3c6a848a",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 10,
+    "source_path": "results/souravbhar871-477361/baseline/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/souravbhar871-477361/baseline/video.mp4",
+    "poster_url": "media/souravbhar871-477361/baseline/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1920,
+          "height": 1080,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "10.000000"
+      }
+    },
+    "staged_source_sha256": "2e7532917b4a9c0ad300abc0acbf4d1090d24f1d7eb29f382823829b3c6a848a",
+    "source_modified_after_generation": false
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

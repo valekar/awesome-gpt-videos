@@ -1,0 +1,56 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "f9ba83ffca2fe29df23183671ce114a1285f74775cc5cc626b9af2814b0908ee",
+    "input_sha256": "04aa72f9aa88e116af1cb7c222d38d029c623bebbb0df6b46f575928acb63b6e",
+    "started_at": "2026-10-18T14:24:05.861949+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/kmasiff-549880/baseline/schema.json",
+      "-o",
+      "$REPO/results/kmasiff-549880/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20556,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 426,
+      "reasoning_output_tokens": 320
+    },
+    "finished_at": "2026-10-18T14:24:24.674052+00:00",
+    "assumptions": [
+      "Proposed format: 1920×1080 landscape, since no aspect ratio was supplied."
+    ],
+    "missing_inputs": [
+      "The email verification tool’s name and official public URL, or a product brief identifying the tool and its verified features and supported use cases."
+    ],
+    "summary": "Product context is required to create the promo without inventing features, claims, or branding.",
+    "reason": "The email verification tool’s name and official public URL, or a product brief identifying the tool and its verified features and supported use cases."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "91014458bbd8bea2127bf9708130bcda35b86fbc2ca66ee079eee51a7111fea6",
+    "input_sha256": "5980e341e6debe906e6d9f5e55f16c9e6f7b693b9543d55b85e6ecd174f43678",
+    "started_at": "2026-10-18T14:28:25.227798+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/mounnna-497266/baseline/schema.json",
+      "-o",
+      "$REPO/results/mounnna-497266/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20554,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 325,
+      "reasoning_output_tokens": 213
+    },
+    "finished_at": "2026-10-18T14:28:42.464889+00:00",
+    "assumptions": [
+      "Proposed format: 1920×1080 landscape. No animation was generated."
+    ],
+    "missing_inputs": [
+      "Logo artwork or a precise logo specification for the wireframe and faceted assembly.",
+      "App icon background artwork or its color, shape, and corner radius.",
+      "Exact brand name to type at the end."
+    ],
+    "summary": "Required brand identity inputs are missing; inventing them is not authorized.",
+    "reason": "Logo artwork or a precise logo specification for the wireframe and faceted assembly.; App icon background artwork or its color, shape, and corner radius.; Exact brand name to type at the end."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "87cac477d984ebefd74386c16c962fb3fec0ce110f0f21a18ed4d56c547292f2",
+  "input_sha256": "bb3acfe4e8736729a993fc3065c6bff2d998583ece08bdeda64ad80a2e6efd39",
+  "started_at": "2026-10-18T14:41:07.563382+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/bizibeast-505124/baseline/schema.json",
+    "-o",
+    "$REPO/results/bizibeast-505124/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 116356,
+    "cached_input_tokens": 82304,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 9165,
+    "reasoning_output_tokens": 2200
+  },
+  "finished_at": "2026-10-18T14:44:47.135706+00:00",
+  "assumptions": [
+    "Chose a silent 1920×1080, 16:9 film with eight scenes, original geometric artwork, kinetic typography, and cream, acid lime, blue, and coral colors. This is an independent creative direction, not a reconstruction of Bento’s brand guidelines.",
+    "Product research: [Bento official homepage](https://bento.surf/) supports AI-assisted drafting with user review, scheduling, DM automation, digital products, courses, bookings, memberships, and the connected creator workspace.",
+    "Creator-page research: [Bento Link in Bio](https://bento.surf/features/link-in-bio) supports arranging links, media, products, and bookings into a creator website.",
+    "All cards and workflows are conceptual illustrations rather than screenshots. No customer identities, pricing, performance statistics, or outcome guarantees are depicted.",
+    "No external imagery, fonts, or official logo files are used. The geometric motif is original, and the brand name uses system typography. Public research does not establish a trademark endorsement or brand-asset license.",
+    "Uses the harness-provided gsap.min.js. Output has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Editable 40-second Bento motion graphic with eight scenes and one deterministic, paused GSAP timeline.",
+  "source_sha256": "59eb45dcdcec01827ac2ddee6e50e22fa52ddb4c386268d9af00b775781df6ff",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 40,
+  "source_path": "results/bizibeast-505124/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/bizibeast-505124/baseline/video.mp4",
+  "poster_url": "media/bizibeast-505124/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "40.000000"
+    }
+  },
+  "staged_source_sha256": "59eb45dcdcec01827ac2ddee6e50e22fa52ddb4c386268d9af00b775781df6ff",
+  "source_modified_after_generation": false
+}

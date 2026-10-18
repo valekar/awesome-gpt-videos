@@ -1,0 +1,80 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "76df3ddef561a8c86441bd39ace31e71e3e23516da691f53267f6540066bc765",
+  "input_sha256": "a7dd2ee41b6c55b133bf0e4c72820d2782604cd31ba5d60647c0b9f2a1db832f",
+  "started_at": "2026-10-18T14:35:34.056374+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/amitsingha89-780553/baseline/schema.json",
+    "-o",
+    "$REPO/results/amitsingha89-780553/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 146815,
+    "cached_input_tokens": 128768,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 7796,
+    "reasoning_output_tokens": 1205
+  },
+  "finished_at": "2026-10-18T14:38:37.822101+00:00",
+  "assumptions": [
+    "Chosen format: 48-second, 16:9, text-led explainer without narration or music; neither was supplied or required.",
+    "Product scope and custom development are supported by Anuprerna’s official homepage: https://anuprerna.com/ .",
+    "Bengal artisan relationships and textile traditions are supported by the official brand page: https://anuprerna.com/content/about-us/about-the-brand/56485 .",
+    "Swatch options are supported by https://anuprerna.com/content/wholesale/order-fabric-swatches/59195 ; custom consultation, sampling and production by https://anuprerna.com/content/wholesale/custom-clothing-accessories-homewares/703160 . These are brand descriptions, not independently verified impact claims.",
+    "All textile patterns, loom diagrams and product silhouettes are original schematic artwork, not catalog products or website screenshots. Anuprerna is typeset as text, not reproduced as an official logo. No external visual assets or fonts are used; no third-party visual asset licensing gaps were introduced.",
+    "The harness supplies gsap.min.js. This source has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Editable six-scene HyperFrames explainer introducing Anuprerna, its craft, collections, swatches and custom production.",
+  "source_sha256": "2deba9b2582c6fdf219d2aa672d801966fc9d1d0281c46865d4ea773d04638fb",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 48,
+  "source_path": "results/amitsingha89-780553/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/amitsingha89-780553/baseline/video.mp4",
+  "poster_url": "media/amitsingha89-780553/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "48.000000"
+    }
+  },
+  "staged_source_sha256": "2deba9b2582c6fdf219d2aa672d801966fc9d1d0281c46865d4ea773d04638fb",
+  "source_modified_after_generation": false
+}

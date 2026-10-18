@@ -3781,7 +3781,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -3813,7 +3813,50 @@
           "-o",
           "$REPO/results/axtonliu-290566/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20598,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 22510,
+          "reasoning_output_tokens": 8003
+        },
+        "finished_at": "2026-10-18T14:15:46.298292+00:00",
+        "assumptions": [
+          "Creative choices: a silent, 24-second, 16:9 illustrated tracking shot through coastal wetlands at golden hour.",
+          "Original procedural Canvas artwork includes articulated webbed feet, coordinated bicycle mechanics, engraved plumage, a flowing scarf, woven flower basket, layered landscape and deterministic camera movement.",
+          "The pelican's wings holding the handlebars are an intentional artistic interpretation.",
+          "No external assets, product claims or reference footage are used. GSAP is supplied locally by the harness; its redistribution license has not been independently verified."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable HyperFrames HTML animation of a richly detailed pelican riding a bicycle. Not rendered or visually reviewed.",
+        "source_sha256": "f413fbbf2ff9cf3d9e631473973667f9eaf9e9b2a5b672cf83dc03f5d169d131",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 24,
+        "source_path": "results/axtonliu-290566/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/axtonliu-290566/baseline/video.mp4",
+        "poster_url": "media/axtonliu-290566/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "24.000000"
+          }
+        },
+        "staged_source_sha256": "f413fbbf2ff9cf3d9e631473973667f9eaf9e9b2a5b672cf83dc03f5d169d131",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4152,7 +4195,81 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "d86d335b4020ef3b12bc5986c0dc2dce8dc3e0d1e3f15f2c53cedca33840e476",
+        "input_sha256": "92d5a4b2b5f35cb96a3e86553f83367ed795afd9dc2537c1a061c02bf7ff3621",
+        "started_at": "2026-10-18T14:12:47.397756+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/chatgptastra-807540/baseline/schema.json",
+          "-o",
+          "$REPO/results/chatgptastra-807540/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20520,
+          "cached_input_tokens": 18816,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5943,
+          "reasoning_output_tokens": 2588
+        },
+        "finished_at": "2026-10-18T14:15:02.430611+00:00",
+        "assumptions": [
+          "开放式创作，自选16:9横屏、无声、三幕抽象动态图形方向：秩序、节奏、想象。",
+          "原创程序化几何、中文文案及配色；仅使用本地提供的gsap.min.js和通用系统字体，无外部素材或素材授权缺口。",
+          "所有画面由同一个暂停的GSAP时间轴驱动，可确定性跳转；HTML未经过渲染或视觉审查。"
+        ],
+        "missing_inputs": [],
+        "summary": "15秒高级感动态图形：立体扭结、柔光材质、遮罩排字与横向色场转场，完整可编辑。",
+        "source_sha256": "01d30f148a3136627bdc79bde34ec0c2e886950932be3948f420ef1514e92b77",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/chatgptastra-807540/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/chatgptastra-807540/baseline/video.mp4",
+        "poster_url": "media/chatgptastra-807540/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "15.000000"
+          }
+        },
+        "staged_source_sha256": "01d30f148a3136627bdc79bde34ec0c2e886950932be3948f420ef1514e92b77",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4195,7 +4312,84 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "d95c1ace0d58448f6d25e8eef4ccdc007f5b7f2497ceac48a5940eae532ffe8b",
+        "input_sha256": "6cb2c7eed8efad94b3e502a0346cf9a806a441f1214a0df61589562063784650",
+        "started_at": "2026-10-18T14:15:03.240365+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/kloss-xyz-067876/baseline/schema.json",
+          "-o",
+          "$REPO/results/kloss-xyz-067876/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 132098,
+          "cached_input_tokens": 86400,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6270,
+          "reasoning_output_tokens": 965
+        },
+        "finished_at": "2026-10-18T14:17:28.177457+00:00",
+        "assumptions": [
+          "Creative choice: a silent 60-second, 16:9 editorial animation with eight selected milestones ending in 2022. This is a selective history, not a comprehensive or current survey. Timeline markers are equally spaced by scene, not elapsed historical time.",
+          "All illustrations are original conceptual drawings. Chess and Go positions are illustrative; networks are schematic; conversation graphics are not product screenshots. No external visual assets or named fonts are required. No third-party visual-asset license gaps apply; the harness supplies GSAP.",
+          "1950: [Turing’s original paper](https://academic.oup.com/mind/article/LIX/236/433/986238). 1956: [Dartmouth’s history](https://ai.dartmouth.edu/founding-and-future-ai). 1966: [Weizenbaum’s ELIZA paper](https://doi.org/10.1145/365153.365168).",
+          "1997: [IBM’s Deep Blue history](https://www.ibm.com/history/deep-blue). 2012: [Original ImageNet paper](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf). 2016: [Google DeepMind’s AlphaGo account](https://deepmind.google/research/alphago/).",
+          "2017: [Attention Is All You Need](https://arxiv.org/abs/1706.03762). 2022: [OpenAI’s ChatGPT announcement](https://openai.com/index/chatgpt/).",
+          "This HTML has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable standalone animation highlighting eight moments in AI history, with deterministic Canvas artwork and one paused GSAP timeline.",
+        "source_sha256": "79d32be2ccaa003f3681c4ab6efddd8c4340d387e618dadd209836993029930b",
+        "width": 1600,
+        "height": 900,
+        "duration_seconds": 60,
+        "source_path": "results/kloss-xyz-067876/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/kloss-xyz-067876/baseline/video.mp4",
+        "poster_url": "media/kloss-xyz-067876/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1600,
+              "height": 900,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "60.000000"
+          }
+        },
+        "staged_source_sha256": "79d32be2ccaa003f3681c4ab6efddd8c4340d387e618dadd209836993029930b",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4237,7 +4431,83 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "567cb64159b9724b04dbbd8d9a5ce2e25346729adbc1491b0d42fac035900850",
+        "input_sha256": "bcacdc4eff2df236e33117396e61cd6454171b2144539d132ecee33af9824d2c",
+        "started_at": "2026-10-18T14:15:47.345054+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/spearwtf-029058/baseline/schema.json",
+          "-o",
+          "$REPO/results/spearwtf-029058/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 78730,
+          "cached_input_tokens": 48768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4514,
+          "reasoning_output_tokens": 608
+        },
+        "finished_at": "2026-10-18T14:17:33.223740+00:00",
+        "assumptions": [
+          "Chosen format: 1920×1080 landscape, 30 seconds, silent kinetic typography with original SVG artwork and an editorial lime/charcoal palette; no official visual identity was supplied.",
+          "Product research source: https://www.chain.wtf/casino — its official page describes on-chain entertainment, verifiable outcomes, public wagers and payouts, self-custody play, and a live devnet. Those statements support the film’s copy; availability and performance claims beyond them are omitted.",
+          "The supplied handle is associated with Chain.wtf in public search results. The final CTA explicitly refers to the devnet.",
+          "No external images, screenshots, official logo files, fonts, or audio are used. The chain-link symbol is original illustrative artwork, not a verified official logo. No third-party asset license is asserted; brand-name and trademark permissions were not supplied.",
+          "Uses the harness-provided gsap.min.js. This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 30-second Chain pitch featuring on-chain verification, transparency, self-custody, and a devnet CTA.",
+        "source_sha256": "a366a54a603a523bb23c7c7c61665527f178f2036ec2f85b606932470deda4ce",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 30,
+        "source_path": "results/spearwtf-029058/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/spearwtf-029058/baseline/video.mp4",
+        "poster_url": "media/spearwtf-029058/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "30.000000"
+          }
+        },
+        "staged_source_sha256": "a366a54a603a523bb23c7c7c61665527f178f2036ec2f85b606932470deda4ce",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4278,7 +4548,84 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "6a4c04c3887819823ae3d31512c956f6cc82c47e06665499db6e503afa914769",
+        "input_sha256": "ce341ffc56e14eb4e4dcdff2aebce24f8ab570ca313d24848de2651380f0de61",
+        "started_at": "2026-10-18T14:17:28.967615+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/majorbaguette-834228/baseline/schema.json",
+          "-o",
+          "$REPO/results/majorbaguette-834228/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 49292,
+          "cached_input_tokens": 20480,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7184,
+          "reasoning_output_tokens": 1125
+        },
+        "finished_at": "2026-10-18T14:19:55.175696+00:00",
+        "assumptions": [
+          "Brieform refers to the AI form builder at https://brieform.app/. Product workflow verified using its official homepage and https://brieform.app/mcp.",
+          "Chosen format: 1920×1080 landscape, 30 seconds, silent presentation with five scenes.",
+          "Cream, blue and sage art direction is an original presentation treatment. Editable vector workflow illustrations are conceptual diagrams, not product screenshots; no customer data or performance figures are represented.",
+          "Product claims cover creating forms in supported AI clients, publishing and sharing forms, and reading responses or exporting CSV. Sources: [Official homepage](https://brieform.app/) and [Official MCP overview](https://brieform.app/mcp).",
+          "No external imagery, logos, fonts or audio assets are used. Brieform and third-party product names retain their owners’ trademark rights; no brand license was supplied. GSAP is supplied locally by the harness.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable 30-second Brieform presentation with researched product messaging and one paused GSAP timeline.",
+        "source_sha256": "b32d41706f1521f24c3dcf9ad5ab1459315717f3b017dabe272ee3f332f2896b",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 30,
+        "source_path": "results/majorbaguette-834228/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/majorbaguette-834228/baseline/video.mp4",
+        "poster_url": "media/majorbaguette-834228/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "30.000000"
+          }
+        },
+        "staged_source_sha256": "b32d41706f1521f24c3dcf9ad5ab1459315717f3b017dabe272ee3f332f2896b",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4320,7 +4667,82 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "966c092acf538cd85b31bc24b185663569a3e17db7faa78a590d5f9eb3ad76ac",
+        "input_sha256": "bcf6767e391af20af49f8def72ebe5d3d9edc3a611db14db85d4862379591913",
+        "started_at": "2026-10-18T14:17:34.065918+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/miskinho-956105/baseline/schema.json",
+          "-o",
+          "$REPO/results/miskinho-956105/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20537,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6037,
+          "reasoning_output_tokens": 1940
+        },
+        "finished_at": "2026-10-18T14:19:52.548993+00:00",
+        "assumptions": [
+          "Creative choice: 16:9, five-scene showreel using original abstract quetzal artwork, kinetic typography, flowing ribbons and feather geometry.",
+          "Quetzal is treated as the supplied name; the palette, bird mark and 'Form. Flow. Flight.' copy are speculative creative choices, not an established brand identity.",
+          "Artwork is generated entirely in Canvas with generic system fonts. No external assets or associated license gaps; gsap.min.js is supplied by the harness.",
+          "The composition has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "A complete editable 15-second Quetzal showreel with deterministic motion and one paused GSAP timeline.",
+        "source_sha256": "7a864ebda9d6633b9c1df99f7295c1543bf57cdb7181fa93f41105fb39d811e3",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/miskinho-956105/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/miskinho-956105/baseline/video.mp4",
+        "poster_url": "media/miskinho-956105/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "15.000000"
+          }
+        },
+        "staged_source_sha256": "7a864ebda9d6633b9c1df99f7295c1543bf57cdb7181fa93f41105fb39d811e3",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4363,7 +4785,84 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "049e318317ebb49779b1afbd5f729514a890d776d4697d47a73a6e40ba1a9eb5",
+        "input_sha256": "c759730c26689ba8638ebfe1d6ed722a7796ef2054aaaca45c57c57434021587",
+        "started_at": "2026-10-18T14:19:54.042081+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/felipemoller-936736/baseline/schema.json",
+          "-o",
+          "$REPO/results/felipemoller-936736/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 111580,
+          "cached_input_tokens": 97664,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5789,
+          "reasoning_output_tokens": 1556
+        },
+        "finished_at": "2026-10-18T14:22:52.722822+00:00",
+        "assumptions": [
+          "Formato solicitado: 9:16. Duração criativa escolhida: 24 segundos, sem áudio.",
+          "A página https://lp.meuorbe.com.br não ficou acessível pela pesquisa. O contexto do produto foi confirmado no site oficial [Meu Orbe](https://meuorbe.com.br/), que descreve organização de despesas e lançamentos por texto.",
+          "Mercado, posto e restaurante aparecem em uma simulação gráfica de registro de gastos, sem valores monetários inventados. As ilustrações são conceituais; não representam capturas da interface do produto.",
+          "Paleta e direção visual são escolhas criativas, sem alegação de reproduzir a identidade oficial. Não foram incorporados imagens, logotipos ou outros arquivos públicos com licença pendente.",
+          "A composição usa JavaScript, Canvas e o GSAP local exigido pelo experimento. Captura com Playwright e montagem com FFmpeg ficam a cargo do harness; nenhum comando foi executado.",
+          "O HTML não foi renderizado nem revisado visualmente."
+        ],
+        "missing_inputs": [],
+        "summary": "Animação vertical editável com três cenas de gastos cotidianos, organização no Orbe e chamada final.",
+        "source_sha256": "5466ee3db576a7ddb00ccb3fd760bbd0f7e838d2d2206af1e962a73961e68d66",
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 24,
+        "source_path": "results/felipemoller-936736/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/felipemoller-936736/baseline/video.mp4",
+        "poster_url": "media/felipemoller-936736/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1080,
+              "height": 1920,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "24.000000"
+          }
+        },
+        "staged_source_sha256": "5466ee3db576a7ddb00ccb3fd760bbd0f7e838d2d2206af1e962a73961e68d66",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4406,7 +4905,84 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "0bd0e2c658d69654e51ce584d7b51c44006255eee95c0f6a9d7ad4b82e071124",
+        "input_sha256": "b4f9ff92317bd2a658514777da09b98bff53ff13b4739c53b66e6f4f1fb758ed",
+        "started_at": "2026-10-18T14:19:57.637797+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/mdaman010-111079/baseline/schema.json",
+          "-o",
+          "$REPO/results/mdaman010-111079/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 78739,
+          "cached_input_tokens": 45056,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8837,
+          "reasoning_output_tokens": 2203
+        },
+        "finished_at": "2026-10-18T14:24:05.075881+00:00",
+        "assumptions": [
+          "Chosen format: a 40-second, silent, 16:9 illustrated explainer with seven chapters. Generic hardware, layouts, counts and pulse speeds are conceptual, not measurements or a depiction of a specific facility.",
+          "Infrastructure research: [NVIDIA reference architectures](https://docs.nvidia.com/reference-architectures/) supports the compute, networking, storage and software overview.",
+          "Training and inference research: [NVIDIA technical overview](https://www.nvidia.com/content/dam/en-zz/Solutions/Data-Center/tesla-product-literature/inference-technical-overview.pdf) supports the distinction between updating model weights and applying a trained model.",
+          "Cooling research: [U.S. Department of Energy](https://www.energy.gov/cmei/femp/cooling-water-efficiency-opportunities-federal-data-centers) describes rack heat, air cooling and transfer to chilled water. The illustrated cooling arrangement is one example; actual facilities vary.",
+          "All artwork is procedural Canvas; no third-party visual assets, logos, screenshots or fonts are used. Research sources are paraphrased, and no third-party asset license is required. GSAP is supplied locally by the harness.",
+          "The HTML has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable, deterministic HyperFrames animation touring request routing, accelerators, memory, training, inference, networks, storage, power and cooling.",
+        "source_sha256": "7659b8885ae2a3ed2097c84f2f28d2592bd3abd58260836360b3906d93be16ed",
+        "width": 1280,
+        "height": 720,
+        "duration_seconds": 40,
+        "source_path": "results/mdaman010-111079/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/mdaman010-111079/baseline/video.mp4",
+        "poster_url": "media/mdaman010-111079/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1280,
+              "height": 720,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "40.000000"
+          }
+        },
+        "staged_source_sha256": "7659b8885ae2a3ed2097c84f2f28d2592bd3abd58260836360b3906d93be16ed",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4536,7 +5112,83 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "bf1945bbf411d63ab0838cd7fd57b6afc414865a9547187798646c463ec5159a",
+        "input_sha256": "3627d698f440f2d1d1bafda7f4f2c76817c53bc74729478c521bc04150d1b2b0",
+        "started_at": "2026-10-18T14:22:53.645138+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/miaai-lab-774895/baseline/schema.json",
+          "-o",
+          "$REPO/results/miaai-lab-774895/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20593,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12809,
+          "reasoning_output_tokens": 6565
+        },
+        "finished_at": "2026-10-18T14:28:24.278262+00:00",
+        "assumptions": [
+          "Creative choice: a silent, widescreen sculpture film titled The Shape of a Fold.",
+          "An ivory filament develops pleated surfaces, folds into a copper-lined trefoil, fills the frame during a close camera approach, and settles into a final sculptural portrait.",
+          "Artwork, geometry, lighting, shadows and grain are generated procedurally; no external assets, product facts or third-party asset licenses are involved.",
+          "Requires WebGL and the harness-provided gsap.min.js. One paused GSAP timeline controls all state deterministically.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "A complete editable 24-second film: one fine filament becomes an intricate, physically shaded porcelain-and-copper sculpture.",
+        "source_sha256": "e7011b3f86e4b2c558d5966cf19a052d6edffc23ec80bfcbc71dd8697814f4dc",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 24,
+        "source_path": "results/miaai-lab-774895/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/miaai-lab-774895/baseline/video.mp4",
+        "poster_url": "media/miaai-lab-774895/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "24.000000"
+          }
+        },
+        "staged_source_sha256": "e7011b3f86e4b2c558d5966cf19a052d6edffc23ec80bfcbc71dd8697814f4dc",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4665,7 +5317,55 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "f9ba83ffca2fe29df23183671ce114a1285f74775cc5cc626b9af2814b0908ee",
+        "input_sha256": "04aa72f9aa88e116af1cb7c222d38d029c623bebbb0df6b46f575928acb63b6e",
+        "started_at": "2026-10-18T14:24:05.861949+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/kmasiff-549880/baseline/schema.json",
+          "-o",
+          "$REPO/results/kmasiff-549880/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20556,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 426,
+          "reasoning_output_tokens": 320
+        },
+        "finished_at": "2026-10-18T14:24:24.674052+00:00",
+        "assumptions": [
+          "Proposed format: 1920×1080 landscape, since no aspect ratio was supplied."
+        ],
+        "missing_inputs": [
+          "The email verification tool’s name and official public URL, or a product brief identifying the tool and its verified features and supported use cases."
+        ],
+        "summary": "Product context is required to create the promo without inventing features, claims, or branding.",
+        "reason": "The email verification tool’s name and official public URL, or a product brief identifying the tool and its verified features and supported use cases."
       },
       "adapted": {
         "status": "not_generated"
@@ -4752,7 +5452,87 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "c5ee6f0198f68a9eafc21c5d10a02039b1a147ee68e96e70a279645493ae37b2",
+        "input_sha256": "c4922ffaac7670163b5bc2d974f71050da11b56235e84f6428bc9bcfa9559d9b",
+        "started_at": "2026-10-18T14:24:25.791175+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/triglyceee-161719/baseline/schema.json",
+          "-o",
+          "$REPO/results/triglyceee-161719/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 255959,
+          "cached_input_tokens": 190720,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12780,
+          "reasoning_output_tokens": 4681
+        },
+        "finished_at": "2026-10-18T14:29:37.542316+00:00",
+        "assumptions": [
+          "Format choisi : 16:9, 158 secondes, français, sans narration ni musique. Synthèse sélective allant jusqu’à octobre 2026 ; illustrations symboliques originales, sans portraits, cartes ni graphiques quantitatifs.",
+          "Indépendance : [dates historiques du portail Maroc.ma](https://www.maroc.ma/fr/histoire-du-maroc/dates-cles?page=11). Institutions, alternance de 1998 et principales évolutions politiques : [Larousse](https://www.larousse.fr/encyclopedie/divers/Maroc/187075) et [ConstitutionNet](https://constitutionnet.org/country/morocco).",
+          "Répression, état d’exception de 1965 et tentatives de coup d’État : [rapport Amnesty International de 1991](https://www.amnesty.org/en/wp-content/uploads/2021/06/mde290011991en.pdf). La période des années de plomb dépasse les seules dates mises en avant dans cette séquence.",
+          "Sahara occidental : [historique du différend](https://www.lemonde.fr/international/article/2024/07/31/le-conflit-sahraoui-cinq-decennies-d-impuissance-de-l-onu_6262934_3210.html), [mandat de la MINURSO](https://minurso.unmissions.org/en/node/519) et [statut auprès de l’ONU](https://www.un.org/dppa/decolonization/fr/node/2206). Le cessez-le-feu est présenté comme un événement de 1991, sans supposer sa continuité jusqu’en 2026.",
+          "Réformes de 2004 : [OCDE sur la Moudawana](https://www.oecd.org/fr/publications/l-autonomisation-economique-des-femmes-au-maroc_d4312bd3-fr/full-report/component-6.html) et [CNDH sur l’Instance équité et réconciliation](https://www.cndh.ma/fr/instance-equite-et-reconciliation). Institutions de 2011 : [Constitution publiée par le SGG](https://www.sgg.gov.ma/Portals/0/constitution/constitution_2011_Fr.pdf), notamment articles 5, 41, 42 et 47.",
+          "Hirak : [Human Rights Watch, novembre 2018](https://www.hrw.org/fr/news/2018/11/30/maroc-des-verdicts-entaches-par-des-soupcons-de-torture). Coalition de 2021 : [SNRT News](https://snrtnews.com/fr/article/akhannouch-forme-sa-coalition-19248).",
+          "Actualité de 2026 : [nomination officielle de Fatima Ezzahra El Mansouri le 29 septembre](https://www.maroc.ma/fr/actualites/sm-le-roi-nomme-fatima-ezzahra-el-mansouri-cheffe-du-gouvernement-et-la-charge-de-former-le-nouveau), [première femme nommée à ce poste](https://www.lemonde.fr/en/international/article/2026/09/29/morocco-appoints-its-first-woman-prime-minister-fatima-ezzahra-el-mansouri_6758088_4.html) et [installation du gouvernement le 16 octobre](https://www.lemonde.fr/en/international/article/2026/10/17/morocco-forms-new-government-but-except-for-women-very-little-changes_6758713_4.html).",
+          "Aucun média public externe n’est incorporé : les pages citées servent à la vérification factuelle, sans reprise de photographies ou de captures. GSAP est fourni localement par le harnais ; sa licence de redistribution n’a pas été vérifiée.",
+          "HTML fourni sans exécution, rendu ni revue visuelle."
+        ],
+        "missing_inputs": [],
+        "summary": "Animation éditable en 13 séquences sur la vie politique marocaine depuis l’indépendance, avec chronologie et illustrations Canvas déterministes.",
+        "source_sha256": "2912f436b7fef01bf4fdd6008f9058c40670665654a672a7caaae8c440e4e6a0",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 158,
+        "source_path": "results/triglyceee-161719/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/triglyceee-161719/baseline/video.mp4",
+        "poster_url": "media/triglyceee-161719/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "158.000000"
+          }
+        },
+        "staged_source_sha256": "2912f436b7fef01bf4fdd6008f9058c40670665654a672a7caaae8c440e4e6a0",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4793,7 +5573,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "91014458bbd8bea2127bf9708130bcda35b86fbc2ca66ee079eee51a7111fea6",
+        "input_sha256": "5980e341e6debe906e6d9f5e55f16c9e6f7b693b9543d55b85e6ecd174f43678",
+        "started_at": "2026-10-18T14:28:25.227798+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/mounnna-497266/baseline/schema.json",
+          "-o",
+          "$REPO/results/mounnna-497266/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20554,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 325,
+          "reasoning_output_tokens": 213
+        },
+        "finished_at": "2026-10-18T14:28:42.464889+00:00",
+        "assumptions": [
+          "Proposed format: 1920×1080 landscape. No animation was generated."
+        ],
+        "missing_inputs": [
+          "Logo artwork or a precise logo specification for the wireframe and faceted assembly.",
+          "App icon background artwork or its color, shape, and corner radius.",
+          "Exact brand name to type at the end."
+        ],
+        "summary": "Required brand identity inputs are missing; inventing them is not authorized.",
+        "reason": "Logo artwork or a precise logo specification for the wireframe and faceted assembly.; App icon background artwork or its color, shape, and corner radius.; Exact brand name to type at the end."
       },
       "adapted": {
         "status": "not_generated"
@@ -4834,7 +5664,55 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "c3fbced6f1fa555e357ec07e448c45efca4958ac46c7c84514ffad3dbfd26ff2",
+        "input_sha256": "12d935804a3d879c3cc1205884a5199937b84e47a578a73443d47697431fa362",
+        "started_at": "2026-10-18T14:28:43.317337+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/henkvaness-975279/baseline/schema.json",
+          "-o",
+          "$REPO/results/henkvaness-975279/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20508,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 222,
+          "reasoning_output_tokens": 141
+        },
+        "finished_at": "2026-10-18T14:28:56.586195+00:00",
+        "assumptions": [
+          "Provisional format: 1920×1080 landscape; duration depends on the article."
+        ],
+        "missing_inputs": [
+          "Article text or a public article URL to adapt."
+        ],
+        "summary": "The source article is required before creating the educational animation.",
+        "reason": "Article text or a public article URL to adapt."
       },
       "adapted": {
         "status": "not_generated"
@@ -4877,7 +5755,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "24a6dca5d12a71e57876dd64e0ee5f6faa7c73a553df7ca810d11313806bbc82",
+        "input_sha256": "c95efc9608dde82b8e2b8c9bb387362e01f02711a1d2d640ec25c6e42ef7cf75",
+        "started_at": "2026-10-18T14:28:57.481389+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/johnsavage-ai-427263/baseline/schema.json",
+          "-o",
+          "$REPO/results/johnsavage-ai-427263/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20563,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 549,
+          "reasoning_output_tokens": 428
+        },
+        "finished_at": "2026-10-18T14:29:20.717274+00:00",
+        "assumptions": [
+          "The requested 16:9 format is interpreted as 1920×1080.",
+          "The film will use retro-futuristic motion, film grain, and CRT effects."
+        ],
+        "missing_inputs": [
+          "The referenced style/vibe image was not attached.",
+          "Confirm the product identity for “Opus 5.5” or provide its official public product URL."
+        ],
+        "summary": "The reference image and product identity are needed before creating the launch animation.",
+        "reason": "The referenced style/vibe image was not attached.; Confirm the product identity for “Opus 5.5” or provide its official public product URL."
       },
       "adapted": {
         "status": "not_generated"
@@ -4921,7 +5849,63 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "3fa693c55142d52531629ca63d1a2c7bfbe68d5f145d6d9c39221cacf4ae04cf",
+        "input_sha256": "6407c7674fc244e96c5826766164544b71ddf9f8c1f54a7e08f72dfd9b0cf2e2",
+        "started_at": "2026-10-18T14:29:22.339204+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/froessell-562325/baseline/schema.json",
+          "-o",
+          "$REPO/results/froessell-562325/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 87271,
+          "cached_input_tokens": 51840,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 13520,
+          "reasoning_output_tokens": 3716
+        },
+        "finished_at": "2026-10-18T14:34:27.231796+00:00",
+        "assumptions": [
+          "Chosen format: 1080×1920 portrait, with a 167-second chase, opening title and final Busted/replay screen.",
+          "This is an authored HyperFrames gameplay visualization. Pursuit, collisions, joystick movement and damage are deterministic choreography, not a playable Unity prototype. AGAIN resets the paused timeline for host-controlled replay.",
+          "All desert scenery, toy vehicles, effects and synthesized audio are original procedural artwork. Scoring uses the supplied example values; displayed totals are calculated from the authored events.",
+          "Official reference consulted: https://topdown-engine.moremountains.com/. No More Mountains assets, screenshots or engine code are included; their redistribution rights were not established.",
+          "GSAP is supplied locally as gsap.min.js. HyperFrames must control timeline advancement and audio playback. No render, visual review, device performance test or Unity integration is claimed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable three-minute desert chase animation with escalating police, interceptors, drifting, pileups, score, hull, procedural sound and a replay control.",
+        "source_sha256": "8cdbe9c1800ce08eb308dada7c4908bda896a81c1e6335c48b32aeaba4236a83",
+        "width": 1080,
+        "height": 1920,
+        "duration_seconds": 180,
+        "source_path": "results/froessell-562325/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
       },
       "adapted": {
         "status": "not_generated"
@@ -4963,7 +5947,65 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "b8de7a133a35c5535b13d64b9eaf8549303922f24ee2407f377e52e7abead478",
+        "input_sha256": "1d13d5112a5c35b8c5e3bc0513caa56724843384e85b3a6ee631096135d2cbd9",
+        "started_at": "2026-10-18T14:29:38.495150+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/rammanq-034553/baseline/schema.json",
+          "-o",
+          "$REPO/results/rammanq-034553/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 117865,
+          "cached_input_tokens": 82944,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7461,
+          "reasoning_output_tokens": 1129
+        },
+        "finished_at": "2026-10-18T14:32:32.377587+00:00",
+        "assumptions": [
+          "Creative choice: a silent 30-second, 16:9 promotional motion graphic with dark green, lime, kinetic typography, connected pathways and abstract orbital artwork.",
+          "Product capabilities were verified against the official website: [AllInvestView](https://www.allinvestview.com/) and [Help Center](https://www.allinvestview.com/help/). Copy avoids investment-return claims and invented numerical metrics.",
+          "The official promotional dashboard image is referenced at https://www.allinvestview.com/static/tablets_v2_compressed.png, verified through the official homepage. Its displayed information belongs to the supplied promotional image; no interface or portfolio figures were fabricated.",
+          "The official image and AllInvestView name retain their owners' rights. Public availability does not establish a reuse license; promotional reuse permission was not verified.",
+          "The calendar, document and orbital graphics are conceptual illustrations of verified features, not screenshots, financial data or simulation results. The product name is typeset text, not a recreated official logo.",
+          "The harness supplies gsap.min.js and freezes the referenced official image. No additional fonts or libraries are required.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable six-scene AllInvestView promotion featuring an official product image, verified capabilities and deterministic GSAP animation.",
+        "source_sha256": "507ed79091afb80f3b4e133f5540f92468ec1a68e16a1e21da69659a1141c23d",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 30,
+        "source_path": "results/rammanq-034553/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "External runtime dependencies must be reviewed and frozen locally before rendering."
       },
       "adapted": {
         "status": "not_generated"
@@ -5005,7 +6047,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "a65463cfb7945cf6c44c08291c17ec34f51b9c243e1c4bb320bc228d14500150",
+        "input_sha256": "2d8e7cd729d2f1963d2e6cd49739a82dec9633e8efd3f2d39900dc27f7d85af7",
+        "started_at": "2026-10-18T14:32:33.086786+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/ratheejaisal-154698/baseline/schema.json",
+          "-o",
+          "$REPO/results/ratheejaisal-154698/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20527,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 320,
+          "reasoning_output_tokens": 194
+        },
+        "finished_at": "2026-10-18T14:32:47.188013+00:00",
+        "assumptions": [
+          "Proposed format: 1920×1080 landscape, up to 20 seconds."
+        ],
+        "missing_inputs": [
+          "Product or company name and public website URL or supplied product brief.",
+          "Key features to showcase, with verified descriptions and any required screenshots or assets.",
+          "Brand guidance: logo, colors, visual style, tone, and desired closing call to action."
+        ],
+        "summary": "Product, feature, and brand context are required to create the launch video without inventing details.",
+        "reason": "Product or company name and public website URL or supplied product brief.; Key features to showcase, with verified descriptions and any required screenshots or assets.; Brand guidance: logo, colors, visual style, tone, and desired closing call to action."
       },
       "adapted": {
         "status": "not_generated"
@@ -5093,7 +6185,82 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "8236a77f6e3a358b654a333aa86db7b908a5f47217e859153b25391b7b6f7c9a",
+        "input_sha256": "8c999fb34e270da9822da67c0118c12a85bae6cb25f3baae97145c92656c9e6d",
+        "started_at": "2026-10-18T14:32:48.059697+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/robvjourney-237474/baseline/schema.json",
+          "-o",
+          "$REPO/results/robvjourney-237474/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 43588,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6970,
+          "reasoning_output_tokens": 2146
+        },
+        "finished_at": "2026-10-18T14:35:33.305373+00:00",
+        "assumptions": [
+          "Official research source: https://nohandslabs.com/. The company describes AI-operated businesses and a target of 95% AI work and 5% human work; the animation identifies this as a target.",
+          "Creative choices: 16:9 landscape, acid-yellow and charcoal art direction, kinetic typography, assembling procedural cubes, agent workflow and a segmented target ring.",
+          "Original procedural artwork and system fonts; no external brand artwork, screenshots, music or other licensed media. No external asset license gaps identified.",
+          "Silent animation using the supplied local gsap.min.js. Source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable 15-second Nohandslabs motion graphic with five scenes, deterministic canvas artwork and one paused GSAP timeline.",
+        "source_sha256": "a67477aa3d884faed44da76a1eda7eb75821139f29e4d3eea0186d0e1d0145f0",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/robvjourney-237474/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/robvjourney-237474/baseline/video.mp4",
+        "poster_url": "media/robvjourney-237474/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "15.000000"
+          }
+        },
+        "staged_source_sha256": "a67477aa3d884faed44da76a1eda7eb75821139f29e4d3eea0186d0e1d0145f0",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -5136,7 +6303,62 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "27ee54955bfeb127cb084975f210cc78f5f8af8e0af27885d62b3271728043ae",
+        "input_sha256": "8a768deb736e20b9dd0e12ad4335dccb1ec38fea5bae0c77274748aa3d71edc4",
+        "started_at": "2026-10-18T14:34:28.246583+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/aisongman-461057/baseline/schema.json",
+          "-o",
+          "$REPO/results/aisongman-461057/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 18983,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9977,
+          "reasoning_output_tokens": 3624
+        },
+        "finished_at": "2026-10-18T14:38:43.987178+00:00",
+        "assumptions": [
+          "Creative choice: Ember Duel is an original fictional card game with invented characters, card values and rules, inspired by the requested one-on-one genre.",
+          "Chosen format: 1280×720, 32-second silent pixel art demonstration with playable controls, opponent AI, mana, combat, spells, taunt, victory and restart.",
+          "All artwork is generated directly in Canvas; no external assets, fonts or third-party character artwork are used. GSAP is supplied locally by the harness.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable pixel art card battler with a deterministic demonstration and interactive one-on-one gameplay.",
+        "source_sha256": "6cff1ed275e5dcb572cc321d4b51e72a0877e9d27177c12e8d78a975457dfb9c",
+        "width": 1280,
+        "height": 720,
+        "duration_seconds": 32,
+        "source_path": "results/aisongman-461057/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
       },
       "adapted": {
         "status": "not_generated"
@@ -5222,7 +6444,84 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "76df3ddef561a8c86441bd39ace31e71e3e23516da691f53267f6540066bc765",
+        "input_sha256": "a7dd2ee41b6c55b133bf0e4c72820d2782604cd31ba5d60647c0b9f2a1db832f",
+        "started_at": "2026-10-18T14:35:34.056374+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/amitsingha89-780553/baseline/schema.json",
+          "-o",
+          "$REPO/results/amitsingha89-780553/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 146815,
+          "cached_input_tokens": 128768,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7796,
+          "reasoning_output_tokens": 1205
+        },
+        "finished_at": "2026-10-18T14:38:37.822101+00:00",
+        "assumptions": [
+          "Chosen format: 48-second, 16:9, text-led explainer without narration or music; neither was supplied or required.",
+          "Product scope and custom development are supported by Anuprerna’s official homepage: https://anuprerna.com/ .",
+          "Bengal artisan relationships and textile traditions are supported by the official brand page: https://anuprerna.com/content/about-us/about-the-brand/56485 .",
+          "Swatch options are supported by https://anuprerna.com/content/wholesale/order-fabric-swatches/59195 ; custom consultation, sampling and production by https://anuprerna.com/content/wholesale/custom-clothing-accessories-homewares/703160 . These are brand descriptions, not independently verified impact claims.",
+          "All textile patterns, loom diagrams and product silhouettes are original schematic artwork, not catalog products or website screenshots. Anuprerna is typeset as text, not reproduced as an official logo. No external visual assets or fonts are used; no third-party visual asset licensing gaps were introduced.",
+          "The harness supplies gsap.min.js. This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable six-scene HyperFrames explainer introducing Anuprerna, its craft, collections, swatches and custom production.",
+        "source_sha256": "2deba9b2582c6fdf219d2aa672d801966fc9d1d0281c46865d4ea773d04638fb",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 48,
+        "source_path": "results/amitsingha89-780553/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/amitsingha89-780553/baseline/video.mp4",
+        "poster_url": "media/amitsingha89-780553/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "48.000000"
+          }
+        },
+        "staged_source_sha256": "2deba9b2582c6fdf219d2aa672d801966fc9d1d0281c46865d4ea773d04638fb",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -5435,7 +6734,82 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "7bd7ddf6ff03c0a36187b6a32b7e3f1c8bfbf3f7780526a48767873203810d54",
+        "input_sha256": "2c735ddd8310329c5e925a27a444ac647c55a9f1907dc126c4a0516e289a8d03",
+        "started_at": "2026-10-18T14:38:39.160859+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/souravbhar871-477361/baseline/schema.json",
+          "-o",
+          "$REPO/results/souravbhar871-477361/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20546,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 5115,
+          "reasoning_output_tokens": 1552
+        },
+        "finished_at": "2026-10-18T14:41:06.711328+00:00",
+        "assumptions": [
+          "Chose a 1920×1080 landscape format and a silent, five-beat kinetic portrait with ivory, ink, vermilion and electric blue.",
+          "“Opus 5.5” is treated as the requested artistic persona; the animation makes no verified product, capability or model-identity claims.",
+          "Artwork is procedural Canvas with generic system fonts. No external assets, factual research or asset licenses are required; GSAP is supplied by the harness.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "A complete editable 10-second animation: expanding typography, orbital questions, fractured patterns, flowing possibilities and a bold Opus 5.5 finale.",
+        "source_sha256": "2e7532917b4a9c0ad300abc0acbf4d1090d24f1d7eb29f382823829b3c6a848a",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 10,
+        "source_path": "results/souravbhar871-477361/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/souravbhar871-477361/baseline/video.mp4",
+        "poster_url": "media/souravbhar871-477361/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "10.000000"
+          }
+        },
+        "staged_source_sha256": "2e7532917b4a9c0ad300abc0acbf4d1090d24f1d7eb29f382823829b3c6a848a",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -5477,7 +6851,63 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "a3fcea1f4e13dfdb870f9c39172ecfeed76beb92c19076f2f6da5d99c9b436a3",
+        "input_sha256": "4d1b947389bf986a39bc2583dd61a5a4d4f6983231c05641ba7fe870c4e77ff9",
+        "started_at": "2026-10-18T14:38:45.795044+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/ved-cj-066575/baseline/schema.json",
+          "-o",
+          "$REPO/results/ved-cj-066575/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20522,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9191,
+          "reasoning_output_tokens": 2070
+        },
+        "finished_at": "2026-10-18T14:42:19.609834+00:00",
+        "assumptions": [
+          "Interpreted the brief as an animated gameplay concept. Multiplayer movement, shooting and eliminations are scripted; this is not a playable networked game.",
+          "Chose an original, unbranded top-down arena, three-player squads and a 1280×720 landscape format.",
+          "Proximity chat is demonstrated with scripted speech bubbles, voice rings and nearby-speaker indicators; no audio or microphone access is included.",
+          "All artwork is original procedural Canvas drawing. Names, dialogue, scores and ammunition values are fictional gameplay details. No external assets or associated license gaps.",
+          "Uses the harness-provided local gsap.min.js. This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 22-second arena-shooter animation featuring squad proximity chat, shooting, exploding cover and a coordinated victory.",
+        "source_sha256": "e484f0a3da3229dc6f80dcb783bc879e5e012c7e5aa08f2374a1f6e717f07c25",
+        "width": 1280,
+        "height": 720,
+        "duration_seconds": 22,
+        "source_path": "results/ved-cj-066575/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
       },
       "adapted": {
         "status": "not_generated"
@@ -5609,7 +7039,84 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "87cac477d984ebefd74386c16c962fb3fec0ce110f0f21a18ed4d56c547292f2",
+        "input_sha256": "bb3acfe4e8736729a993fc3065c6bff2d998583ece08bdeda64ad80a2e6efd39",
+        "started_at": "2026-10-18T14:41:07.563382+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/bizibeast-505124/baseline/schema.json",
+          "-o",
+          "$REPO/results/bizibeast-505124/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 116356,
+          "cached_input_tokens": 82304,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9165,
+          "reasoning_output_tokens": 2200
+        },
+        "finished_at": "2026-10-18T14:44:47.135706+00:00",
+        "assumptions": [
+          "Chose a silent 1920×1080, 16:9 film with eight scenes, original geometric artwork, kinetic typography, and cream, acid lime, blue, and coral colors. This is an independent creative direction, not a reconstruction of Bento’s brand guidelines.",
+          "Product research: [Bento official homepage](https://bento.surf/) supports AI-assisted drafting with user review, scheduling, DM automation, digital products, courses, bookings, memberships, and the connected creator workspace.",
+          "Creator-page research: [Bento Link in Bio](https://bento.surf/features/link-in-bio) supports arranging links, media, products, and bookings into a creator website.",
+          "All cards and workflows are conceptual illustrations rather than screenshots. No customer identities, pricing, performance statistics, or outcome guarantees are depicted.",
+          "No external imagery, fonts, or official logo files are used. The geometric motif is original, and the brand name uses system typography. Public research does not establish a trademark endorsement or brand-asset license.",
+          "Uses the harness-provided gsap.min.js. Output has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 40-second Bento motion graphic with eight scenes and one deterministic, paused GSAP timeline.",
+        "source_sha256": "59eb45dcdcec01827ac2ddee6e50e22fa52ddb4c386268d9af00b775781df6ff",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 40,
+        "source_path": "results/bizibeast-505124/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/bizibeast-505124/baseline/video.mp4",
+        "poster_url": "media/bizibeast-505124/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "40.000000"
+          }
+        },
+        "staged_source_sha256": "59eb45dcdcec01827ac2ddee6e50e22fa52ddb4c386268d9af00b775781df6ff",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -5651,7 +7158,66 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "dc046ff3791ce8368bde3e379c8c1179133abe91cbea17056e1b445604f58043",
+        "input_sha256": "57895dd75c5de76eafa897b9156d2964ea3d351e49163e84c29c474876b4f755",
+        "started_at": "2026-10-18T14:42:21.184746+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/groundcontrol-230877/baseline/schema.json",
+          "-o",
+          "$REPO/results/groundcontrol-230877/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 87593,
+          "cached_input_tokens": 69632,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 11300,
+          "reasoning_output_tokens": 2998
+        },
+        "finished_at": "2026-10-18T14:46:50.176041+00:00",
+        "assumptions": [
+          "Chosen format: 1920×1080 widescreen, twelve 15-second scenes, English captions, and an original instrumental score without narration.",
+          "Research scope is the completed June–August 2026 summer, rather than the whole calendar year. National anomalies, rankings and trend come from [JMA seasonal temperatures](https://www.data.jma.go.jp/cpdinfo/temp/sum_jpn.html).",
+          "Regional contrasts come from [JMA’s summer 2026 weather summary](https://www.data.jma.go.jp/cpd/longfcst/seasonal/202608/202608s.html).",
+          "Heat mechanisms and cumulative extreme-temperature observations are attributed to [JMA’s September analysis](https://www.jma.go.jp/jma/press/2609/01c/kentoukai20260901.html) and [August heat release](https://www.jma.go.jp/jma/press/2608/03b/japan_hot20260803.html). Station-days count repeated observations, not unique locations.",
+          "All artwork is original Canvas drawing. Geography and atmospheric diagrams are schematic; decorative marks do not represent additional measurements. Chromatic offsets are confined to drawn strokes.",
+          "The JavaScript synthesizer deterministically generates an embedded 180-second WAV for the framework-owned audio clip. HyperFrames must include that clip in its audio mix.",
+          "No third-party images, fonts, logos or recordings are used. JMA factual data are attributed; JMA reuse terms have not been independently audited.",
+          "This source has not been rendered, listened to or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable three-minute pencil-style heat visualization with researched JMA comparisons, atmospheric explanations and an original JavaScript-synthesized score.",
+        "source_sha256": "c7b36007914a11fda7331e6694ab1fe0db00a832bb79f672233d94974884caaa",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 180,
+        "source_path": "results/groundcontrol-230877/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Technical browser check failed; source retained for a recorded repair."
       },
       "adapted": {
         "status": "not_generated"
@@ -5737,7 +7303,63 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "d1d7a44f48f081199661244a41eaf274b66a531958a0922251158e3755dddb79",
+        "input_sha256": "daa59f456d2ef12366d0cba0de212201982e42a81396620fb58f69de14ae00e8",
+        "started_at": "2026-10-18T14:44:48.068882+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/ceowinkz-683602/baseline/schema.json",
+          "-o",
+          "$REPO/results/ceowinkz-683602/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20538,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6203,
+          "reasoning_output_tokens": 1034
+        },
+        "finished_at": "2026-10-18T14:47:00.826828+00:00",
+        "assumptions": [
+          "Chosen format: 1920×1080 landscape, silent, with four scenes over 15 seconds.",
+          "The lime, ink and coral identity and W monogram are original creative proposals, not supplied company branding.",
+          "The pitch presents a proposed partnership approach; it invents no company credentials, product facts, performance figures or existing brand relationships.",
+          "No external assets are required. Generic system fonts and the harness-provided gsap.min.js are used.",
+          "No rendering or visual review was performed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 15-second Winkz Enterprises pitch featuring kinetic typography, dimensional artwork, proposed partnership principles and a wholesale invitation.",
+        "source_sha256": "27a363ab7f88b82b56ef5f355b242023e36dfaa8a71673ab60a1867632ed34d2",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/ceowinkz-683602/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Technical browser check failed; source retained for a recorded repair."
       },
       "adapted": {
         "status": "not_generated"
@@ -5778,7 +7400,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "927d346dffe7f510179929ecaab7a942d5135f932a3b7e12afd45139ef27a773",
+        "input_sha256": "7b5c41ffcd4eae41f1472916db5115f77230bb126e705bdb4f0d16c0d666682c",
+        "started_at": "2026-10-18T14:46:51.094478+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/xanderwow-a-597063/baseline/schema.json",
+          "-o",
+          "$REPO/results/xanderwow-a-597063/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"
@@ -5908,7 +7562,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "3c78971f06d518c6ffcc26067f302b8076edcbe683b33f27ddbf65fe8f18440e",
+        "input_sha256": "71e8224acbdea05ece1def7e0906689132dd65ee7382558b9f4843bd6db1008d",
+        "started_at": "2026-10-18T14:47:01.583535+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/iammxfschr-955831/baseline/schema.json",
+          "-o",
+          "$REPO/results/iammxfschr-955831/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20604,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 541,
+          "reasoning_output_tokens": 411
+        },
+        "finished_at": "2026-10-18T14:47:27.354323+00:00",
+        "assumptions": [
+          "Proposed format: 30-second landscape launch video with German copy, punchy typography, restrained colors, and contemporary background music.",
+          "The Anthropic reference describes a visual direction; no affiliation is assumed."
+        ],
+        "missing_inputs": [
+          "The startup/product name and what is being released.",
+          "Verified product capabilities and the main launch message. No product information or supporting material was supplied."
+        ],
+        "summary": "The launch video requires product context before it can be created without inventing a brand or product claims.",
+        "reason": "The startup/product name and what is being released.; Verified product capabilities and the main launch message. No product information or supporting material was supplied."
       },
       "adapted": {
         "status": "not_generated"
@@ -5995,7 +7699,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "2f2ab8226feb455d084dfd64f4d5634668df33aade7eb709cc02fcd3d1285e97",
+        "input_sha256": "06c12c2de0590edfa6d45d299fbb52f865378f755ef23eb7d866000b01e8c98b",
+        "started_at": "2026-10-18T14:47:28.108934+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/manuelogomigo-052364/baseline/schema.json",
+          "-o",
+          "$REPO/results/manuelogomigo-052364/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"

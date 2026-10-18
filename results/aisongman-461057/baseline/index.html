@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ember Duel</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#10141e}body{font-family:monospace}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#10141e}.clip{position:absolute;inset:0}canvas{display:block;width:100%;height:100%;image-rendering:pixelated;image-rendering:crisp-edges;outline:none;touch-action:manipulation}.accessible{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="32">
+<div class="clip" data-start="0" data-duration="32"><canvas id="game" width="640" height="360" tabindex="0" role="application" aria-label="Ember Duel. Click cards to summon creatures. Select your ready creature, then an enemy to attack. Select Spark, then an enemy to deal three damage. Shields indicate taunt: these creatures must be attacked first. Click End Turn or press E. Press R to restart."></canvas></div>
+<p class="accessible">A playable original pixel art card duel. The recorded demonstration runs for 32 seconds. Click anywhere to take control of the current position. The upper-right button restarts a live match.</p>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+'use strict';
+// EDITABLE GAME DATA. All characters, values, sprites and rules are original.
+const CARDS={
+ squire:{name:'ASH SQUIRE',cost:1,atk:2,hp:3,sprite:'knight',color:'#b7a37b'},
+ fox:{name:'EMBER FOX',cost:1,atk:3,hp:1,sprite:'fox',color:'#e58745'},
+ oak:{name:'OAK GUARD',cost:2,atk:2,hp:5,taunt:true,sprite:'oak',color:'#84aa65'},
+ spark:{name:'SPARK',cost:2,spell:true,damage:3,sprite:'flame',color:'#edb758'},
+ brute:{name:'FROST OGRE',cost:3,atk:3,hp:4,sprite:'ogre',color:'#83b4c1'},
+ imp:{name:'THORN IMP',cost:1,atk:1,hp:2,sprite:'imp',color:'#af7cb1'},
+ guard:{name:'IRON ROOT',cost:2,atk:2,hp:3,taunt:true,sprite:'oak',color:'#8c9295'}
+};
+const SPRITES={
+ fox:['............','..o......o..','..oo....oo..','..owooooow..','...oooooo...','..ooKooKoo..','..ooowwooo..','...wwKww....','....ooo..oo.','...oooo.ooo.','..ooooooow..','...K..K.....'],
+ knight:['....ssss....','...sSSSSs...','...sSSSSs...','...sKKSKs...','....sss.....','...bSSSb....','..sbSSSbs.s.','..sbSSSbsSs.','...bSSSb..s.','....SSS...s.','...sS.Ss....','...KK.KK....'],
+ oak:['....gggg....','..ggGggGgg..','.gGGgGGgGgg.','..gGggggGg..','....bbbb....','...bbKbKb...','..bbbLbLbb..','.bb.bbbb.bb.','.b..bbbb..b.','....bbbb....','...bb..bb...','..bbb..bbb..'],
+ imp:['..p......p..','..pp....pp..','...pppppp...','..ppPppPpp..','..pKppppKp..','...ppwwpp...','....pppp....','..pppppppp..','.p..pppp..p.','....pppp....','...pp..pp...','...KK..KK...'],
+ ogre:['....cccc....','..ccCccCcc..','.ccCccccCcc.','.ccKccccKcc.','..ccwwwwcc..','...cccccc...','..ccbbbbcc..','.cccbbbbccc.','.cc.bbbb.cc.','....bbbb....','...cc..cc...','...KK..KK...'],
+ flame:['......y.....','.....yy.....','....ywy.....','...yywyy....','..oywwwyo...','..oywwwyoo..','.ooywwwwyoo.','.ooyywwyyoo.','..ooywwyoo..','...ooyyoo...','....oooo....','............'],
+ mage:['....pppp....','...ppPppp...','..ppPPpppp..','.ppPPPPpppp.','...ssssss...','...sKsKss...','....swws....','...ppsspp...','..ppPppPpp..','.pppPppPppp.','...pppppp...','..pppppppp..']
+};
+const PALETTE={o:'#d77436',w:'#fff1c1',K:'#242333',s:'#859aa4',S:'#d4e0d8',b:'#67513d',g:'#477450',G:'#8bb65f',L:'#bba46e',p:'#75518f',P:'#b78fc6',c:'#628eaa',C:'#a4d9d7',y:'#f3c764'};
+const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');
+ctx.imageSmoothingEnabled=false;
+const clock={t:0};
+let live=false,game=null,selected=null,hover={x:-100,y:-100},hits=[];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const copy=s=>JSON.parse(JSON.stringify(s));
+function unit(s,key,ready,at){const c=CARDS[key];return{id:s.next++,key,hp:c.hp,ready,born:at};}
+function initial(){const s={next:1,turn:1,hp:20,enemyHp:20,mana:3,maxMana:3,hand:['fox','oak','spark'],board:[],enemy:[],draw:0,message:'YOUR TURN · THREE MANA',winner:null};s.board.push(unit(s,'squire',true,-20));s.enemy.push(unit(s,'imp',true,-20),unit(s,'guard',true,-20));return s;}
+function settle(s){s.board=s.board.filter(u=>u.hp>0);s.enemy=s.enemy.filter(u=>u.hp>0);if(s.enemyHp<=0){s.enemyHp=0;s.winner='VICTORY';s.message='VICTORY · THE GROVE IS YOURS';}else if(s.hp<=0){s.hp=0;s.winner='DEFEAT';s.message='DEFEAT · TRY A DIFFERENT HAND';}}
+function play(s,key,at,target){if(s.winner)return false;const i=s.hand.indexOf(key),c=CARDS[key];if(i<0)return false;if(c.cost>s.mana){s.message='NOT ENOUGH MANA';return false;}if(c.spell){if(!target){s.message='SPARK · CHOOSE AN ENEMY';return false;}if(target==='hero')s.enemyHp-=c.damage;else{const u=s.enemy.find(u=>u.id===target);if(!u)return false;u.hp-=c.damage;}s.message='SPARK · THREE DAMAGE';}else{if(s.board.length>=5){s.message='YOUR BOARD IS FULL';return false;}s.board.push(unit(s,key,false,at));s.message=c.name+' ENTERS THE FIELD';}s.mana-=c.cost;s.hand.splice(i,1);settle(s);return true;}
+function attack(s,id,target){if(s.winner)return false;const a=s.board.find(u=>u.id===id);if(!a)return false;if(!a.ready){s.message='THIS CREATURE MUST WAIT A TURN';return false;}const guards=s.enemy.filter(u=>CARDS[u.key].taunt);if(guards.length&&!guards.some(u=>u.id===target)){s.message='ATTACK THE SHIELD CREATURE FIRST';return false;}if(target==='hero'){s.enemyHp-=CARDS[a.key].atk;s.message='A DIRECT HIT ON THE HEX WARDEN';}else{const b=s.enemy.find(u=>u.id===target);if(!b)return false;a.hp-=CARDS[b.key].atk;b.hp-=CARDS[a.key].atk;s.message='CREATURES TRADE BLOWS';}a.ready=false;settle(s);return true;}
+function endTurn(s,at){if(s.winner)return;for(const a of [...s.enemy]){if(s.winner)break;const b=s.board.find(u=>CARDS[u.key].taunt)||s.board[0];if(b){b.hp-=CARDS[a.key].atk;a.hp-=CARDS[b.key].atk;}else s.hp-=CARDS[a.key].atk;settle(s);}if(s.winner)return;let budget=Math.min(7,s.turn+3);for(const key of ['brute','imp','guard']){if(CARDS[key].cost<=budget&&s.enemy.length<5){s.enemy.push(unit(s,key,false,at));budget-=CARDS[key].cost;}}s.turn++;s.maxMana=Math.min(10,s.maxMana+1);s.mana=s.maxMana;s.board.forEach(u=>u.ready=true);if(s.hand.length<5){const deck=['spark','fox','oak','spark','squire'];s.hand.push(deck[s.draw%deck.length]);s.draw++;}s.message='YOUR TURN · MANA REFILLED';}
+const DEMO=[
+ {t:2,type:'play',key:'fox'},
+ {t:4,type:'spell',key:'spark',target:'guard'},
+ {t:6.5,type:'attack',key:'squire',target:'imp'},
+ {t:9,type:'end'},
+ {t:12,type:'play',key:'oak'},
+ {t:15,type:'attack',key:'squire',target:'imp'},
+ {t:18,type:'attack',key:'fox',target:'hero'},
+ {t:21,type:'spell',key:'spark',target:'brute'},
+ {t:24,type:'end'}
+];
+function demo(t){const s=initial();for(const e of DEMO){if(e.t>t)break;if(e.type==='end')endTurn(s,e.t);else if(e.type==='play')play(s,e.key,e.t);else{const target=e.target==='hero'?'hero':s.enemy.find(u=>u.key===e.target)?.id;if(e.type==='spell')play(s,e.key,e.t,target);else{const a=s.board.find(u=>u.key===e.key);if(a&&target)attack(s,a.id,target);}}}if(t>=27)s.message='YOUR MOVE · CLICK TO TAKE CONTROL';return s;}
+function box(x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h));}
+function text(str,x,y,size=10,color='#f2e5c9',align='left'){ctx.fillStyle=color;ctx.font='bold '+size+'px monospace';ctx.textAlign=align;ctx.textBaseline='middle';ctx.fillText(str,Math.round(x),Math.round(y));}
+function panel(x,y,w,h,fill,edge='#886543'){box(x,y,w,h,'#141923');box(x+2,y+2,w-4,h-4,edge);box(x+4,y+4,w-8,h-8,fill);box(x+4,y+4,w-8,2,'#ffffff16');box(x+4,y+h-6,w-8,2,'#00000045');}
+function sprite(name,x,y,scale=2){const rows=SPRITES[name];rows.forEach((row,j)=>[...row].forEach((p,i)=>{if(PALETTE[p])box(x+i*scale,y+j*scale,scale,scale,PALETTE[p]);}));}
+function gem(x,y,color,size=7){box(x+2,y,size-4,size,color);box(x,y+2,size,size-4,color);box(x+2,y+1,2,2,'#ffffff75');}
+function heart(x,y,scale=1){const map=['.rr.rr.','rrrrrrr','rrrrrrr','.rrrrr.','..rrr..','...r...'];map.forEach((r,j)=>[...r].forEach((p,i)=>{if(p==='r')box(x+i*scale,y+j*scale,scale,scale,'#dd6c66');}));}
+function badge(value,x,y,color){box(x-10,y-9,20,18,'#15202b');box(x-8,y-7,16,14,color);text(String(value),x,y+1,12,'#fff4d5','center');}
+function hit(type,x,y,w,h,data){hits.push({type,x,y,w,h,...data});}
+function inRect(p,r){return p.x>=r.x&&p.x<=r.x+r.w&&p.y>=r.y&&p.y<=r.y+r.h;}
+function boardX(i,n){return 294+(i-(n-1)/2)*76;}
+function drawBackground(t){box(0,0,640,360,'#141b26');for(let row=0;row<12;row++){const y=row*32;box(0,y,640,30,row%2?'#342a29':'#3c302a');box(0,y+30,640,2,'#201f25');for(let j=0;j<14;j++){const x=(j*49+row*23)%640;box(x,y+6+(j*7%18),20+(j*13%26),1,'#51392d');}}box(0,0,640,84,'#131d2bd9');box(0,247,640,113,'#131d2bd9');panel(15,86,610,162,'#554234','#947348');panel(24,95,592,144,'#28363a','#27313a');box(32,102,501,57,'#2d313c');box(32,180,501,51,'#2b3b3c');for(let i=0;i<20;i++){const x=40+i*25;box(x,166,14,1,'#9a86534d');}for(const side of [0,1]){const x=side?621:12;panel(x-7,118,14,76,'#5b4830','#b7914e');gem(x-3,132,'#df9753');gem(x-3,168,'#df9753');}text('EMBER',22,22,15,'#f2d69c');text('DUEL',22,39,15,'#e58c58');box(22,52,60,2,'#a36744');for(let i=0;i<7;i++){const x=31+i*93,y=76-Math.sin(t*.7+i*2)*6;box(x,y,2,2,i%2?'#99704d':'#b58a52');}}
+function drawBacks(){for(let i=0;i<6;i++){const x=187+i*34;panel(x,18+(i%2)*3,27,35,'#604961','#ad9072');box(x+7,26+(i%2)*3,13,17,'#302c46');gem(x+10,31+(i%2)*3,'#a48abb',7);}}
+function portrait(x,y,isEnemy,hp,t){panel(x-23,y-23,46,46,isEnemy?'#45354e':'#344c4c',isEnemy?'#9d799f':'#b7a675');sprite(isEnemy?'mage':'knight',x-18,y-18,3);box(x-27,y-8,4,16,'#c19d61');box(x+23,y-8,4,16,'#c19d61');heart(x+27,y+4,1);badge(hp,x+43,y+13,'#8e414d');if(isEnemy)hit('enemyHero',x-25,y-25,73,51,{});}
+function drawUnit(u,i,n,enemy,t,selection){const c=CARDS[u.key],cx=boardX(i,n),baseY=enemy?99:181;const age=clamp((t-u.born)/.45,0,1);const y=baseY+(1-age)*(1-age)*16;const active=selection?.kind==='unit'&&selection.id===u.id;const r={x:cx-29,y:y-2,w:58,h:57};const over=inRect(hover,r);if(c.taunt){box(cx-31,y-5,62,56,'#16222c');box(cx-32,y+1,64,42,'#a2b5aa');box(cx-29,y-2,58,50,'#546b68');box(cx-23,y+48,46,3,'#a2b5aa');box(cx-14,y+51,28,3,'#a2b5aa');}else if(!enemy&&u.ready){box(cx-29,y-3,58,57,'#558f83');}panel(cx-26,y,52,48,enemy?'#464050':'#3c514b',active?'#ffe9a4':over?'#dcbd85':c.color);box(cx-21,y+5,42,34,enemy?'#2b2a3c':'#233c38');sprite(c.sprite,cx-18,y+5,3);badge(c.atk,cx-20,y+46,'#9b713b');badge(u.hp,cx+20,y+46,'#914d58');if(c.taunt){box(cx-5,y-5,10,9,'#a2b5aa');box(cx-3,y-3,6,5,'#42555a');}if(!enemy&&!u.ready){text('z',cx+16,y+7,10,'#a2b3b0','center');}if(active){text('▼',cx,y-10,11,'#ffe9a4','center');}hit(enemy?'enemyUnit':'unit',r.x,r.y,r.w,r.h,{id:u.id});}
+function drawHand(s,selection){const n=s.hand.length,w=Math.min(98,490/Math.max(n,1)-9),gap=9,total=n*w+(n-1)*gap,left=(640-total)/2;for(let i=0;i<n;i++){const key=s.hand[i],c=CARDS[key],x=left+i*(w+gap),base=294;const over=inRect(hover,{x,y:base-5,w,h:66}),chosen=selection?.kind==='spell'&&selection.index===i,y=base-(over||chosen?5:0),can=c.cost<=s.mana;box(x+3,y+4,w,61,'#0a131b');panel(x,y,w,61,'#e1c89b',chosen?'#e8a5cf':can?'#c3a975':'#665e58');box(x+5,y+5,w-10,22,c.spell?'#66445e':'#4c6256');sprite(c.sprite,x+w/2-12,y+3,2);badge(c.cost,x+10,y+12,can?'#357fa5':'#5b6571');text(c.name,x+w/2,y+35,9,'#352d2d','center');if(c.spell)text('DEAL 3 DAMAGE',x+w/2,y+49,8,'#6e384e','center');else{badge(c.atk,x+12,y+49,'#976c32');badge(c.hp,x+w-12,y+49,'#914d58');text(c.taunt?'TAUNT':'CREATURE',x+w/2,y+49,7,'#554932','center');}hit('card',x,y,w,61,{index:i,key});}}
+function drawControls(s,t){const top={x:532,y:14,w:88,h:26};panel(top.x,top.y,top.w,top.h,inRect(hover,top)?'#5f6654':'#3f4c48','#a59269');text(live?'RESTART':'PLAY LIVE',576,28,10,'#f1e2bd','center');hit('restart',top.x,top.y,top.w,top.h,{});panel(544,148,65,40,s.winner?'#3a4348':inRect(hover,{x:544,y:148,w:65,h:40})?'#bd9953':'#94733e','#dfbe74');text('END',576,160,11,'#fff1c8','center');text('TURN',576,174,11,'#fff1c8','center');hit('end',544,148,65,40,{});text('TURN '+s.turn,576,204,9,'#b9b29f','center');text('HEX WARDEN',100,64,10,'#c9aed1');text('OPPONENT',100,76,7,'#8f91a5');text('YOU',231,263,11,'#e5d5b1','center');text(s.mana+' / '+s.maxMana+' MANA',34,260,10,'#9cd7e2');for(let i=0;i<s.maxMana;i++)gem(34+i*12,272,i<s.mana?'#57b8d1':'#3b515c',8);for(let i=0;i<3;i++)panel(573+i*3,255-i*2,22,26,'#624e68','#b69b72');text('DECK',589,288,7,'#b9b3a0','center');text('PLAY A CARD · SELECT A CREATURE TO ATTACK',320,286,8,'#b7c4bc','center');}
+function render(){const t=clock.t,s=live?game:demo(t);hits=[];let selection=selected;if(!live){const next=DEMO.find(e=>e.t>t&&e.t-t<.8);if(next?.type==='attack'){const u=s.board.find(u=>u.key===next.key);if(u)selection={kind:'unit',id:u.id};}else if(next?.type==='spell')selection={kind:'spell',index:s.hand.indexOf(next.key)};}ctx.clearRect(0,0,640,360);drawBackground(t);drawBacks();portrait(320,49,true,s.enemyHp,t);s.enemy.forEach((u,i)=>drawUnit(u,i,s.enemy.length,true,t,selection));s.board.forEach((u,i)=>drawUnit(u,i,s.board.length,false,t,selection));box(70,160,455,17,'#1c252b');text(s.message,297,169,9,'#ead5a7','center');portrait(320,264,false,s.hp,t);drawControls(s,t);drawHand(s,selection);if(!live){const last=[...DEMO].reverse().find(e=>e.t<=t);if(last&&t-last.t<.38){const p=(t-last.t)/.38;if(last.type==='spell'){const cx=294;for(let i=0;i<8;i++){const a=i*Math.PI/4,r=7+35*p;box(cx+Math.cos(a)*r,123+Math.sin(a)*r,4*(1-p)+1,4*(1-p)+1,'#ffdb88');}}else if(last.type==='attack'){const y=last.target==='hero'?49:126,x=last.target==='hero'?320:294;box(x-24-9*p,y-2,15*(1-p),4,'#fff2c0');box(x+9+9*p,y+4,15*(1-p),4,'#fff2c0');}}}if(selection?.kind==='spell'&&live){text('SELECT AN ENEMY TARGET',320,77,9,'#f0abd2','center');}if(s.winner){panel(147,126,346,91,'#24343d','#d6b574');text(s.winner,320,154,26,'#f1d18b','center');text('CLICK RESTART TO PLAY AGAIN',320,188,11,'#d8d6bf','center');}}
+function position(e){const r=canvas.getBoundingClientRect();return{x:(e.clientX-r.left)*640/r.width,y:(e.clientY-r.top)*360/r.height};}
+canvas.addEventListener('pointermove',e=>{hover=position(e);render();canvas.style.cursor=hits.some(h=>inRect(hover,h))?'pointer':'default';});
+canvas.addEventListener('pointerleave',()=>{hover={x:-100,y:-100};render();});
+canvas.addEventListener('pointerdown',e=>{e.preventDefault();canvas.focus();const p=position(e),h=[...hits].reverse().find(h=>inRect(p,h));if(!live){game=demo(clock.t);live=true;selected=null;if(h?.type==='restart'){game.message='YOUR TURN · PLAY A CARD';render();return;}}else if(h?.type==='restart'){game=initial();selected=null;render();return;}if(!h||game.winner){selected=null;render();return;}if(h.type==='end'){endTurn(game,clock.t);selected=null;}else if(h.type==='card'){const c=CARDS[h.key];if(c.cost>game.mana)game.message='NOT ENOUGH MANA';else if(c.spell){selected={kind:'spell',index:h.index};game.message='SPARK · CHOOSE AN ENEMY';}else{play(game,h.key,clock.t);selected=null;}}else if(h.type==='unit'){const u=game.board.find(u=>u.id===h.id);if(u?.ready){selected={kind:'unit',id:h.id};game.message='CHOOSE AN ENEMY TO ATTACK';}else game.message='THIS CREATURE MUST WAIT A TURN';}else if(h.type==='enemyUnit'||h.type==='enemyHero'){const target=h.type==='enemyHero'?'hero':h.id;if(selected?.kind==='spell'){if(play(game,game.hand[selected.index],clock.t,target))selected=null;}else if(selected?.kind==='unit'){if(attack(game,selected.id,target))selected=null;}else game.message='SELECT YOUR CREATURE OR A SPELL FIRST';}render();});
+canvas.addEventListener('keydown',e=>{const key=e.key.toLowerCase();if(key!=='e'&&key!=='r'&&key!=='escape')return;e.preventDefault();if(!live){game=demo(clock.t);live=true;}if(key==='r')game=initial();else if(key==='e')endTurn(game,clock.t);selected=null;render();});
+// One deterministic, seekable timeline. The harness controls playback.
+const timeline=gsap.timeline({paused:true});
+timeline.to(clock,{t:32,duration:32,ease:'none',onUpdate:render},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang='fr'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Maroc — La vie politique depuis l’indépendance</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f3ecdf}body{font-family:sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden}.clip{position:absolute;inset:0;width:100%;height:100%}canvas{display:block;width:100%;height:100%;object-fit:contain}.transcript{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+</style>
+<script src='gsap.min.js'></script>
+</head>
+<body>
+<div id='root' data-composition-id='main' data-width='1920' data-height='1080' data-duration='158'>
+<div class='clip' data-start='0' data-duration='158' data-track-index='0'><canvas id='stage' width='1920' height='1080' role='img' aria-label='Chronologie animée de la vie politique au Maroc, de 1956 à octobre 2026.'></canvas></div>
+<div id='transcript' class='transcript'></div>
+</div>
+<script>
+'use strict';
+// EDITING: change the scene text, start/end times, palette or illustration functions below.
+// All illustrated institutions and people are symbolic; no chart encodes electoral quantities.
+const DURATION=158;
+const SCENES=[
+ {start:0,end:8,date:'1956 — 2026',title:'MAROC',body:'La vie politique depuis l’indépendance',note:'Monarchie · Partis · Société',art:'intro'},
+ {start:8,end:20,date:'1956',title:'L’indépendance,\nun État à construire',body:'Le protectorat français prend fin le 2 mars. Mohammed V et le mouvement national, notamment l’Istiqlal, jouent un rôle majeur dans l’indépendance.',note:'La monarchie au cœur du nouvel État',art:'independence'},
+ {start:20,end:32,date:'1961 — 1963',title:'Hassan II installe\nles institutions',body:'Hassan II succède à Mohammed V en 1961. La Constitution de 1962 et les élections de 1963 organisent un système multipartite dominé par le roi.',note:'Un Parlement, une forte autorité royale',art:'constitution'},
+ {start:32,end:45,date:'1965 — ANNÉES 1970',title:'Les années\nde plomb',body:'L’état d’exception est proclamé en 1965. Les tentatives de coup d’État de 1971 et 1972 échouent. L’opposition subit emprisonnements, torture et disparitions forcées.',note:'Une période de répression politique',art:'repression'},
+ {start:45,end:59,date:'1975 — 1991',title:'Le Sahara occidental,\nun enjeu central',body:'En 1975, Hassan II lance la Marche verte. Le conflit oppose le Maroc au Front Polisario, qui réclame l’indépendance. Un cessez-le-feu intervient en 1991 sous l’égide de l’ONU.',note:'Un territoire inscrit comme non autonome à l’ONU',art:'sahara'},
+ {start:59,end:71,date:'1996 — 1998',title:'L’ouverture\net l’alternance',body:'Après la révision constitutionnelle de 1996, Abderrahmane Youssoufi, dirigeant de l’USFP, conduit en 1998 un gouvernement d’alternance issu de l’opposition.',note:'Le changement se fait sous la monarchie',art:'alternance'},
+ {start:71,end:84,date:'1999 — 2004',title:'Mohammed VI :\nréformes et mémoire',body:'Mohammed VI accède au trône en 1999. En 2004, la réforme du Code de la famille élargit les droits des femmes ; l’Instance équité et réconciliation examine les violations de 1956 à 1999.',note:'Droits des femmes · Justice transitionnelle',art:'reforms'},
+ {start:84,end:99,date:'2011',title:'La rue réclame\ndes réformes',body:'Dans le contexte des soulèvements arabes, le Mouvement du 20 février mobilise. Une nouvelle Constitution est approuvée le 1er juillet : le gouvernement est renforcé et l’amazighe devient langue officielle.',note:'Le roi conserve des pouvoirs majeurs',art:'reform2011'},
+ {start:99,end:111,date:'2011 — 2017',title:'Le PJD dirige\ndes coalitions',body:'Le Parti de la justice et du développement, à référence islamiste, arrive en tête en 2011 et 2016. Abdelilah Benkirane, puis Saadeddine El Othmani en 2017, dirigent le gouvernement.',note:'Les partis gouvernent dans le cadre royal',art:'pjd'},
+ {start:111,end:123,date:'2016 — 2018',title:'Le Hirak du Rif :\nla question sociale',body:'Né en 2016, le mouvement dénonce la marginalisation du Rif et réclame de meilleures conditions de vie. Des arrestations en 2017 puis de lourdes condamnations en 2018 marquent sa répression.',note:'Les libertés et les inégalités en débat',art:'hirak'},
+ {start:123,end:134,date:'2021',title:'Le RNI prend\nla tête du gouvernement',body:'Le Rassemblement national des indépendants remporte les législatives. Aziz Akhannouch forme une coalition avec le Parti authenticité et modernité et l’Istiqlal, après le recul du PJD.',note:'Une nouvelle majorité gouvernementale',art:'coalition'},
+ {start:134,end:147,date:'SEPTEMBRE — OCTOBRE 2026',title:'Une première femme\nà la tête du gouvernement',body:'Après la victoire du PAM aux législatives, Mohammed VI nomme Fatima Ezzahra El Mansouri cheffe du gouvernement le 29 septembre. Le nouveau gouvernement est installé le 16 octobre.',note:'Une nouvelle étape dans l’histoire institutionnelle',art:'2026'},
+ {start:147,end:158,date:'1956 — OCTOBRE 2026',title:'Des changements,\nun pouvoir royal central',body:'Les gouvernements alternent et les institutions évoluent. La monarchie garde un rôle décisif. Représentation politique, libertés et justice sociale restent au cœur des débats.',note:'Une histoire d’équilibres toujours discutés',art:'conclusion'}
+];
+const C={paper:'#f3ecdf',ink:'#172f30',green:'#29685a',red:'#a5313b',gold:'#b38646',line:'#d6c9b6',light:'#fffaf1',muted:'#65736a',dark:'#283438'};
+const canvas=document.getElementById('stage');
+const ctx=canvas.getContext('2d');
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const reveal=(u,delay=0,length=1)=>smooth((u-delay)/length);
+function font(size,weight=400,serif=false){ctx.font=weight+' '+size+'px '+(serif?'serif':'sans-serif')}
+function text(s,x,y,size=32,color=C.ink,align='left',weight=400,serif=false){ctx.fillStyle=color;ctx.textAlign=align;ctx.textBaseline='alphabetic';font(size,weight,serif);ctx.fillText(s,x,y)}
+function multiline(s,x,y,size=32,color=C.ink,align='left',leading=1.25,weight=400,serif=false){s.split('\n').forEach((v,i)=>text(v,x,y+i*size*leading,size,color,align,weight,serif))}
+function wrap(s,width,size=37){font(size);const out=[];let row='';for(const word of s.split(' ')){const candidate=row?row+' '+word:word;if(ctx.measureText(candidate).width>width&&row){out.push(row);row=word}else row=candidate}if(row)out.push(row);return out}
+function line(x1,y1,x2,y2,color=C.ink,width=3,p=1){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x1+(x2-x1)*clamp(p),y1+(y2-y1)*clamp(p));ctx.stroke()}
+function circle(x,y,r,fill,stroke,width=3){ctx.beginPath();ctx.arc(x,y,Math.max(.01,r),0,Math.PI*2);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke()}}
+function box(x,y,w,h,fill=C.light,stroke=C.line,r=16){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
+function pill(s,x,y,w,color=C.green,fill=C.paper){box(x-w/2,y-32,w,64,fill,color,32);text(s,x,y+10,29,color,'center',600)}
+function arrow(x1,y1,x2,y2,p=1,color=C.green){line(x1,y1,x2,y2,color,4,p);if(p>.92){const a=Math.atan2(y2-y1,x2-x1);line(x2,y2,x2-16*Math.cos(a-.5),y2-16*Math.sin(a-.5),color,4);line(x2,y2,x2-16*Math.cos(a+.5),y2-16*Math.sin(a+.5),color,4)}}
+function crown(x,y,scale=1,color=C.gold){ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(-70,12);ctx.lineTo(-88,-56);ctx.lineTo(-38,-28);ctx.lineTo(0,-85);ctx.lineTo(38,-28);ctx.lineTo(88,-56);ctx.lineTo(70,12);ctx.closePath();ctx.fill();box(-70,24,140,16,color,null,3);[-88,0,88].forEach((v,i)=>circle(v,i===1?-94:-65,7,color));ctx.restore()}
+function person(x,y,color=C.green,scale=1){ctx.save();ctx.translate(x,y);ctx.scale(scale,scale);circle(0,-42,22,color);ctx.fillStyle=color;ctx.beginPath();ctx.moveTo(-35,50);ctx.lineTo(-30,6);ctx.quadraticCurveTo(0,-18,30,6);ctx.lineTo(35,50);ctx.closePath();ctx.fill();ctx.restore()}
+function paper(x,y,w=220,h=280,title='CONSTITUTION',year='1962',p=1){ctx.save();ctx.translate(x,y);box(-w/2,-h/2,w,h,C.light,C.gold,8);text(title,0,-h/2+49,title.length>12?22:26,C.ink,'center',600);line(-w/2+30,-h/2+74,w/2-30,-h/2+74,C.gold,3,p);text(year,0,31,60,C.red,'center',400,true);for(let i=0;i<3;i++)line(-w/2+30,70+i*24,w/2-30,70+i*24,C.line,3,clamp(p*2-i*.18));ctx.restore()}
+function building(x,y,p=1){ctx.save();ctx.translate(x,y);ctx.strokeStyle=C.green;ctx.lineWidth=4;ctx.beginPath();ctx.moveTo(-155,-65);ctx.lineTo(0,-145);ctx.lineTo(155,-65);ctx.closePath();ctx.stroke();for(let i=0;i<5;i++){const xx=-110+i*55;line(xx,-40,xx,110,C.green,11,p)}line(-165,130,165,130,C.green,7,p);line(-145,-50,145,-50,C.green,7,p);ctx.restore()}
+function star(x,y,r,p=1,color=C.green){const vertices=[];for(let i=0;i<5;i++){const a=-Math.PI/2+i*Math.PI*2/5;vertices.push([x+r*Math.cos(a),y+r*Math.sin(a)])}const order=[0,2,4,1,3,0];let remaining=clamp(p)*5;ctx.strokeStyle=color;ctx.lineWidth=10;ctx.lineJoin='round';ctx.beginPath();ctx.moveTo(...vertices[0]);for(let i=0;i<5&&remaining>0;i++){const a=vertices[order[i]],b=vertices[order[i+1]],q=Math.min(1,remaining);ctx.lineTo(a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q);remaining-=1}ctx.stroke()}
+function rosette(x,y,r,angle,color){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.strokeStyle=color;ctx.lineWidth=1.4;for(let j=0;j<2;j++){ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4+j*Math.PI/8;const xx=Math.cos(a)*r,yy=Math.sin(a)*r;i?ctx.lineTo(xx,yy):ctx.moveTo(xx,yy)}ctx.closePath();ctx.stroke()}circle(0,0,r*.72,null,color,1.4);ctx.restore()}
+function backdrop(t){ctx.fillStyle=C.paper;ctx.fillRect(0,0,1920,1080);ctx.save();ctx.globalAlpha=.45;rosette(1870,60,265,.1+t*.0007,C.line);rosette(20,1050,210,.3-t*.0004,C.line);ctx.restore();line(110,899,1810,899,C.line,2);for(let i=0;i<15;i++)circle(1110+i*44,135,2,C.line)}
+function artFrame(u,progress){ctx.save();ctx.globalAlpha=.65;ctx.strokeStyle=C.line;ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,0,305,-Math.PI*.9,Math.PI*.9);ctx.stroke();ctx.strokeStyle=C.gold;ctx.lineWidth=4;ctx.beginPath();ctx.arc(0,0,305,-Math.PI/2,-Math.PI/2+Math.PI*1.65*progress);ctx.stroke();ctx.restore()}
+function drawArt(s,u){const p=reveal(u,.1,1.4),q=reveal(u,1.2,1.4),r=reveal(u,2.4,1.3),progress=clamp(u/(s.end-s.start));ctx.save();ctx.translate(1440,490+20*(1-p));ctx.scale(.94+.06*p,.94+.06*p);artFrame(u,progress);
+ switch(s.art){
+ case 'intro':{
+ circle(0,0,225*p,C.red);star(0,0,130,reveal(u,.6,2));ctx.save();ctx.globalAlpha=.8;rosette(0,0,278,-.05+u*.009,C.gold);ctx.restore();text('1956',-250,315,38,C.ink,'center',400,true);text('2026',250,315,38,C.ink,'center',400,true);arrow(-170,300,170,300,q,C.gold);break;
+ }
+ case 'independence':{
+ ctx.strokeStyle=C.green;ctx.lineWidth=8;ctx.beginPath();ctx.moveTo(-205,205);ctx.lineTo(-205,-45);ctx.bezierCurveTo(-205,-245,205,-245,205,-45);ctx.lineTo(205,205);ctx.stroke();line(-225,215,225,215,C.green,7,p);const door=155*(1-q);box(-door-25,-90,door+25,295,C.red,null,4);box(0,-90,door+25,295,C.red,null,4);ctx.save();ctx.globalAlpha=q;circle(0,-65,70,C.gold);crown(0,-72,.52,C.paper);text('Mohammed V',0,65,37,C.ink,'center',600);text('Mouvement national',0,123,29,C.green,'center');ctx.restore();break;
+ }
+ case 'constitution':{
+ crown(0,-205,.65);arrow(0,-140,0,-103,q,C.gold);paper(0,40,245,300,'CONSTITUTION','1962',p);ctx.save();ctx.globalAlpha=r;pill('Parlement',0,240,260);text('Premières élections : 1963',0,297,27,C.ink,'center');ctx.restore();break;
+ }
+ case 'repression':{
+ box(-260,-235,520,470,C.dark,null,120);ctx.save();ctx.beginPath();ctx.roundRect(-260,-235,520,470,120);ctx.clip();ctx.fillStyle=C.gold;ctx.globalAlpha=.12;ctx.beginPath();ctx.moveTo(-200,-235);ctx.lineTo(210,235);ctx.lineTo(-130,235);ctx.closePath();ctx.fill();ctx.globalAlpha=1;person(0,65,C.paper,1.25);for(let i=0;i<7;i++){const xx=-210+i*70;line(xx,-235,xx,-235+470*p,C.red,10)}ctx.restore();pill('1965',-180,280,130,C.red);pill('1971',0,280,130,C.red);pill('1972',180,280,130,C.red);break;
+ }
+ case 'sahara':{
+ ctx.save();ctx.globalAlpha=.45;for(let i=0;i<4;i++){ctx.strokeStyle=C.gold;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-285,100+i*28);ctx.bezierCurveTo(-80,-5+i*35,65,200+i*15,285,70+i*35);ctx.stroke()}ctx.restore();pill('Maroc',-155,-105,220,C.green);pill('Front Polisario',155,-15,280,C.red);arrow(-155,-65,-155,85,q,C.green);arrow(155,25,155,85,q,C.red);line(-155,85,155,85,C.gold,3,r);circle(0,85,51,C.paper,C.gold,3);text('ONU',0,95,29,C.ink,'center',600);multiline('1975\nMarche verte',-165,210,29,C.ink,'center',1.45,500);multiline('1991\nCessez-le-feu',165,210,29,C.ink,'center',1.45,500);break;
+ }
+ case 'alternance':{
+ crown(0,-205,.65);pill('USFP',-172,-25,205);ctx.save();ctx.globalAlpha=q;arrow(-58,-25,48,-25,r);building(168,8,.75);ctx.restore();text('Opposition',-172,130,28,C.green,'center');text('Gouvernement',168,190,28,C.green,'center');text('1998',0,285,70,C.red,'center',400,true);break;
+ }
+ case 'reforms':{
+ crown(0,-220,.65);text('Mohammed VI',0,-132,38,C.ink,'center',600);ctx.save();ctx.globalAlpha=q;paper(-145,65,235,290,'MOUDАWANA','2004',p);ctx.restore();ctx.save();ctx.globalAlpha=r;paper(145,65,235,290,'MÉMOIRE','IER',p);ctx.restore();text('Famille',-145,265,29,C.green,'center',600);text('Réconciliation',145,265,29,C.green,'center',600);break;
+ }
+ case 'reform2011':{
+ for(let i=0;i<5;i++){const x=-200+i*100;ctx.save();ctx.globalAlpha=p;person(x,175+25*(1-p),i%2?C.red:C.green,.8);ctx.restore()}paper(0,-70,255,290,'CONSTITUTION','2011',q);ctx.save();ctx.globalAlpha=r;pill('Amazighe',-190,-265,225,C.green);pill('Gouvernement',130,268,295,C.green);ctx.restore();break;
+ }
+ case 'pjd':{
+ box(-125,-205,250,180,C.light,C.green);line(-70,-165,70,-165,C.green,7,p);ctx.save();ctx.translate(0,-220+65*q);ctx.rotate(-.16*(1-q));box(-47,-62,94,76,C.paper,C.gold,3);line(-24,-30,-5,-12,C.green,5,q);line(-5,-12,29,-47,C.green,5,q);ctx.restore();text('PJD',0,-83,58,C.green,'center',700);arrow(0,-13,0,45,r);line(-185,45,185,45,C.gold,3,r);line(-185,45,-185,95,C.gold,3,r);line(185,45,185,95,C.gold,3,r);multiline('Benkirane\n2011',-170,146,32,C.ink,'center',1.65,600);multiline('El Othmani\n2017',170,146,32,C.ink,'center',1.65,600);text('Gouvernements de coalition',0,280,29,C.green,'center');break;
+ }
+ case 'hirak':{
+ ctx.save();ctx.globalAlpha=q;pill('Dignité sociale',0,-195,340,C.green);line(0,-162,0,-100,C.green,3,p);ctx.restore();for(let i=0;i<5;i++){const pp=reveal(u,.25+i*.12,1);person(-200+i*100,55+55*(1-pp),i%2?C.gold:C.green,.9)}ctx.save();ctx.globalAlpha=.65*r;for(let i=0;i<6;i++)line(-250+i*100,-75,-250+i*100,175,C.red,7,r);ctx.restore();text('Mobilisation',-145,260,30,C.green,'center',600);text('Répression',150,260,30,C.red,'center',600);break;
+ }
+ case 'coalition':{
+ pill('RNI',0,-165,255,C.red,C.light);arrow(0,-128,0,-55,p,C.gold);line(-200,-55,200,-55,C.gold,3,q);line(-200,-55,-200,45,C.gold,3,q);line(200,-55,200,45,C.gold,3,q);ctx.save();ctx.globalAlpha=q;pill('PAM',-195,85,215,C.green,C.light);pill('Istiqlal',195,85,215,C.green,C.light);ctx.restore();ctx.save();ctx.globalAlpha=r;box(-255,175,510,106,C.green,null,12);text('Aziz Akhannouch',0,237,40,C.light,'center',600);ctx.restore();break;
+ }
+ case '2026':{
+ pill('PAM',0,-205,240,C.green);arrow(0,-165,0,-90,q,C.gold);ctx.save();ctx.globalAlpha=q;box(-285,-55,570,205,C.light,C.gold,16);multiline('Fatima Ezzahra\nEl Mansouri',0,20,44,C.ink,'center',1.25,600,true);ctx.restore();ctx.save();ctx.globalAlpha=r;text('29 septembre 2026',0,225,33,C.red,'center',600);text('Première cheffe du gouvernement',0,280,27,C.green,'center');ctx.restore();break;
+ }
+ case 'conclusion':{
+ crown(0,-205,.7);pill('Monarchie',0,-110,285,C.gold);arrow(0,-72,-170,25,q,C.gold);arrow(0,-72,170,25,q,C.gold);pill('Gouvernement',-160,80,290,C.green);pill('Parlement',170,175,250,C.green);line(-160,114,170,141,C.green,3,r);text('Citoyennes et citoyens',0,290,32,C.ink,'center',600);break;
+ }
+ }
+ ctx.restore();
+}
+function drawTimeline(t){const first=110,last=1810,y=965;line(first,y,last,y,C.line,3);const progress=clamp(t/DURATION);line(first,y,first+(last-first)*progress,y,C.red,4);SCENES.forEach((s,i)=>{const x=first+(last-first)*i/(SCENES.length-1);const passed=t>=s.start;circle(x,y,passed?6:4,passed?C.red:C.line)});text('1956',first,1024,30,C.muted);text('2026',last,1024,30,C.muted,'right');const active=SCENES.findIndex(s=>t>=s.start&&t<s.end);if(active>=0){const s=SCENES[active];text(s.date,960,1024,26,C.muted,'center',500)}}
+function drawScene(s,t,index){const u=t-s.start;const enter=index===0?1:reveal(u,-.35,.7);const leave=index===SCENES.length-1?0:reveal(t-s.end,-.35,.7);const opacity=enter*(1-leave);if(opacity<=0)return;ctx.save();ctx.globalAlpha=opacity;ctx.translate(0,32*(1-enter)-22*leave);
+ if(index===0){text('1956 — OCTOBRE 2026',110,190,30,C.red,'left',600);text('MAROC',100,405,188,C.ink,'left',400,true);multiline('La vie politique\ndepuis l’indépendance',110,512,65,C.ink,'left',1.23,400,true);line(110,714,800,714,C.gold,3,reveal(u,.4,1.6));text(s.note,110,789,35,C.green);drawArt(s,u)}
+ else {text(s.date,110,160,s.date.length>22?28:33,C.red,'left',600);multiline(s.title,106,268,index===11?60:66,C.ink,'left',1.12,400,true);const rows=wrap(s.body,850,37);rows.forEach((row,i)=>{ctx.save();ctx.globalAlpha*=reveal(u,.3+i*.12,.55);text(row,110,465+i*51,37,C.ink);ctx.restore()});ctx.save();ctx.globalAlpha*=reveal(u,1.4,.8);line(110,777,172,777,C.gold,4);text(s.note,110,832,29,C.green,'left',600);ctx.restore();drawArt(s,u)}ctx.restore()}
+function draw(t){t=clamp(t,0,DURATION);ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,1920,1080);backdrop(t);SCENES.forEach((s,i)=>drawScene(s,t,i));drawTimeline(t)}
+document.getElementById('transcript').textContent=SCENES.map(s=>s.date+'. '+s.title.replace(/\n/g,' ')+'. '+s.body+' '+s.note+'.').join('\n\n');
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:DURATION,duration:DURATION,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>

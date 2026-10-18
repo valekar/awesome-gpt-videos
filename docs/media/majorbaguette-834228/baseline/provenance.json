@@ -1,0 +1,80 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "6a4c04c3887819823ae3d31512c956f6cc82c47e06665499db6e503afa914769",
+  "input_sha256": "ce341ffc56e14eb4e4dcdff2aebce24f8ab570ca313d24848de2651380f0de61",
+  "started_at": "2026-10-18T14:17:28.967615+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/majorbaguette-834228/baseline/schema.json",
+    "-o",
+    "$REPO/results/majorbaguette-834228/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 49292,
+    "cached_input_tokens": 20480,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 7184,
+    "reasoning_output_tokens": 1125
+  },
+  "finished_at": "2026-10-18T14:19:55.175696+00:00",
+  "assumptions": [
+    "Brieform refers to the AI form builder at https://brieform.app/. Product workflow verified using its official homepage and https://brieform.app/mcp.",
+    "Chosen format: 1920×1080 landscape, 30 seconds, silent presentation with five scenes.",
+    "Cream, blue and sage art direction is an original presentation treatment. Editable vector workflow illustrations are conceptual diagrams, not product screenshots; no customer data or performance figures are represented.",
+    "Product claims cover creating forms in supported AI clients, publishing and sharing forms, and reading responses or exporting CSV. Sources: [Official homepage](https://brieform.app/) and [Official MCP overview](https://brieform.app/mcp).",
+    "No external imagery, logos, fonts or audio assets are used. Brieform and third-party product names retain their owners’ trademark rights; no brand license was supplied. GSAP is supplied locally by the harness.",
+    "This source has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Complete editable 30-second Brieform presentation with researched product messaging and one paused GSAP timeline.",
+  "source_sha256": "b32d41706f1521f24c3dcf9ad5ab1459315717f3b017dabe272ee3f332f2896b",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 30,
+  "source_path": "results/majorbaguette-834228/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/majorbaguette-834228/baseline/video.mp4",
+  "poster_url": "media/majorbaguette-834228/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "30.000000"
+    }
+  },
+  "staged_source_sha256": "b32d41706f1521f24c3dcf9ad5ab1459315717f3b017dabe272ee3f332f2896b",
+  "source_modified_after_generation": false
+}

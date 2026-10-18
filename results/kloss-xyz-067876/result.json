@@ -1,0 +1,85 @@
+{
+  "baseline": {
+    "status": "rendered",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "d95c1ace0d58448f6d25e8eef4ccdc007f5b7f2497ceac48a5940eae532ffe8b",
+    "input_sha256": "6cb2c7eed8efad94b3e502a0346cf9a806a441f1214a0df61589562063784650",
+    "started_at": "2026-10-18T14:15:03.240365+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/kloss-xyz-067876/baseline/schema.json",
+      "-o",
+      "$REPO/results/kloss-xyz-067876/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 132098,
+      "cached_input_tokens": 86400,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 6270,
+      "reasoning_output_tokens": 965
+    },
+    "finished_at": "2026-10-18T14:17:28.177457+00:00",
+    "assumptions": [
+      "Creative choice: a silent 60-second, 16:9 editorial animation with eight selected milestones ending in 2022. This is a selective history, not a comprehensive or current survey. Timeline markers are equally spaced by scene, not elapsed historical time.",
+      "All illustrations are original conceptual drawings. Chess and Go positions are illustrative; networks are schematic; conversation graphics are not product screenshots. No external visual assets or named fonts are required. No third-party visual-asset license gaps apply; the harness supplies GSAP.",
+      "1950: [Turing’s original paper](https://academic.oup.com/mind/article/LIX/236/433/986238). 1956: [Dartmouth’s history](https://ai.dartmouth.edu/founding-and-future-ai). 1966: [Weizenbaum’s ELIZA paper](https://doi.org/10.1145/365153.365168).",
+      "1997: [IBM’s Deep Blue history](https://www.ibm.com/history/deep-blue). 2012: [Original ImageNet paper](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf). 2016: [Google DeepMind’s AlphaGo account](https://deepmind.google/research/alphago/).",
+      "2017: [Attention Is All You Need](https://arxiv.org/abs/1706.03762). 2022: [OpenAI’s ChatGPT announcement](https://openai.com/index/chatgpt/).",
+      "This HTML has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable standalone animation highlighting eight moments in AI history, with deterministic Canvas artwork and one paused GSAP timeline.",
+    "source_sha256": "79d32be2ccaa003f3681c4ab6efddd8c4340d387e618dadd209836993029930b",
+    "width": 1600,
+    "height": 900,
+    "duration_seconds": 60,
+    "source_path": "results/kloss-xyz-067876/baseline/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/kloss-xyz-067876/baseline/video.mp4",
+    "poster_url": "media/kloss-xyz-067876/baseline/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1600,
+          "height": 900,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "60.000000"
+      }
+    },
+    "staged_source_sha256": "79d32be2ccaa003f3681c4ab6efddd8c4340d387e618dadd209836993029930b",
+    "source_modified_after_generation": false
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}
