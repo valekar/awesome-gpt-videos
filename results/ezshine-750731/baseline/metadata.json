@@ -1,0 +1,53 @@
+{
+  "status": "blocked",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "1709ac09cfa0f5bb9f03f84b275340c70c79d33fb69e77a966b040b0128e13c5",
+  "input_sha256": "58764b3c7920b8deede6ab247a49f3058f3dc685ba97283a073e0a1c56f1093c",
+  "started_at": "2026-10-18T15:29:20.311932+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/ezshine-750731/baseline/schema.json",
+    "-o",
+    "$REPO/results/ezshine-750731/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 20534,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 417,
+    "reasoning_output_tokens": 279
+  },
+  "finished_at": "2026-10-18T15:29:38.308339+00:00",
+  "assumptions": [
+    "按要求采用16:9画幅，预设分辨率为1920×1080。",
+    "“本项目”缺少明确指向，不能据此编造产品信息。"
+  ],
+  "missing_inputs": [
+    "项目名称及公开网址，或可核实的项目介绍。",
+    "需要展示的功能特性及对应说明；如需演示真实界面，请提供截图或演示素材。"
+  ],
+  "summary": "缺少项目资料，暂无法制作准确的产品宣传动画。",
+  "reason": "项目名称及公开网址，或可核实的项目介绍。; 需要展示的功能特性及对应说明；如需演示真实界面，请提供截图或演示素材。"
+}

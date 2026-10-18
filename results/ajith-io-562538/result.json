@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,33 @@
       "-o",
       "$REPO/results/ajith-io-562538/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 83577,
+      "cached_input_tokens": 49024,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 12359,
+      "reasoning_output_tokens": 4422
+    },
+    "finished_at": "2026-10-18T15:29:19.638126+00:00",
+    "assumptions": [
+      "Chose 16:9 landscape and an original charcoal, ivory, orange and cyan art direction for the open-ended showreel brief.",
+      "Product grounding: DistilBook converts documents into narrated animated explainers and permits narration-script review before generation. Source: [official DistilBook website](https://distilbook.com/). No pricing, performance metrics or customer claims appear.",
+      "All illustrations, document diagrams, editorial cards and the page emblem are original conceptual artwork, not product screenshots or an official logo.",
+      "The original 40-second score uses accumulating pulses, synthesized sustained tones and bass impacts as broad cinematic inspiration. It contains no sampled recording or intentionally quoted Oppenheimer melody.",
+      "The score is generated synchronously as an embedded WAV audio source. The rendering host must play or capture the timed audio clip; JavaScript starts no playback.",
+      "No third-party visual, font or music assets require licensing. DistilBook remains its owner's trademark; no endorsement or trademark permission is inferred.",
+      "Uses the supplied local gsap.min.js. Source has not been executed, rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete editable 40-second animation with seven connected sequences and an original synthesized cinematic score.",
+    "source_sha256": "ffb39d915c3aa9b23efa49e8e807b06b5491a174172a3693af18c1431ac34233",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 40,
+    "source_path": "results/ajith-io-562538/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Technical browser check failed; source retained for a recorded repair."
   },
   "adapted": {
     "status": "not_generated"
