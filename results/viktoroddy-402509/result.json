@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,30 @@
       "-o",
       "$REPO/results/viktoroddy-402509/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 80018,
+      "cached_input_tokens": 69376,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5276,
+      "reasoning_output_tokens": 1151
+    },
+    "finished_at": "2026-10-18T14:03:33.521819+00:00",
+    "assumptions": [
+      "Chosen format: 24-second, 16:9, silent launch-milestone film with original vector artwork and editable text.",
+      "The one-million-monthly-visitors milestone and eight-month interval are creator-supplied claims; they were not independently verified. No intermediate traffic figures are depicted.",
+      "Product identity and prompt-based workflow were researched on the [official homepage](https://motionsites.ai/) and [official product overview](https://motionsites.ai/motionsite).",
+      "The palette and typeset brand name are creative treatments, not a verified brand system. No official logos, screenshots, third-party media or fonts are reproduced; no external asset licensing is required.",
+      "Uses the harness-supplied gsap.min.js dependency. This output has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "A complete 24-second MotionSites AI milestone film featuring sculptural motion, eight-month markers, a one-million visitor reveal, the prompt workflow and a closing CTA.",
+    "source_sha256": "f25f46a7287f4286e6aa80a6694b33a46a4040b71d8bd0851e66e14643aa6024",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 24,
+    "source_path": "results/viktoroddy-402509/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   },
   "adapted": {
     "status": "not_generated"

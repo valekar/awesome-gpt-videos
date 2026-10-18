@@ -1,0 +1,79 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "d02c7c0c6467ffe9f7b2f5798be6e16dcd4a96f23547c66e062943c9a60071b9",
+  "input_sha256": "e89b0e2f5e804e3b699cf9a47ef3e8bdf9111a66247da4568645b08e97027a52",
+  "started_at": "2026-10-18T13:57:11.021849+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/songkeys-384673/baseline/schema.json",
+    "-o",
+    "$REPO/results/songkeys-384673/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 20607,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 9663,
+    "reasoning_output_tokens": 1552
+  },
+  "finished_at": "2026-10-18T14:00:53.724961+00:00",
+  "assumptions": [
+    "Chosen format: silent 60-second animation in 16:9, with eight narrative chapters and minimal text.",
+    "Civilization is represented through poetic, generalized inventions and communities rather than a comprehensive historical chronology.",
+    "Opus 5.5 is used solely as the creator-supplied name for an imagined paper AI character; no release status, capabilities, or assistant identity are asserted.",
+    "All artwork is original procedural Canvas drawing. No external assets, product screenshots, or named fonts are used; GSAP is supplied by the harness.",
+    "The HTML has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Editable, deterministic paper-doodle animation following humanity from birth through civilization to AI and the hatching of Opus 5.5.",
+  "source_sha256": "5056ae197862dc5277f3d37dfd52011aa32bd31b70a0f14b5d4f54bd192e194a",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 60,
+  "source_path": "results/songkeys-384673/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/songkeys-384673/baseline/video.mp4",
+  "poster_url": "media/songkeys-384673/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "60.000000"
+    }
+  },
+  "staged_source_sha256": "5056ae197862dc5277f3d37dfd52011aa32bd31b70a0f14b5d4f54bd192e194a",
+  "source_modified_after_generation": false
+}
