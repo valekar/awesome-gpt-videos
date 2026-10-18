@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recursion, recursively explained</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#101014}*{box-sizing:border-box}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="36">
+<canvas id="art" class="clip" data-start="0" data-duration="36" width="1920" height="1080" role="img" aria-label="An animated explanation of recursion through cinema, paper art, a code terminal, a pixel game, graphic mathematics, and recursively nested screens."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+/* Editable scene boundaries, in seconds. All visuals are recomputed from time. */
+const scenes=[
+ {start:0,end:4,draw:cinema},
+ {start:4,end:10,draw:paper},
+ {start:10,end:16,draw:terminal},
+ {start:16,end:21,draw:game},
+ {start:21,end:27,draw:returns},
+ {start:27,end:34,draw:recursiveScreens},
+ {start:34,end:36,draw:ending}
+];
+const canvas=document.getElementById('art');
+const c=canvas.getContext('2d');
+const W=1920,H=1080;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const enter=(t,start,d=.65)=>ease((t-start)/d);
+const mix=(a,b,p)=>a+(b-a)*p;
+const sans='Arial, Helvetica, sans-serif';
+const serif='Georgia, Times, serif';
+const mono='monospace';
+function rect(x,y,w,h,color,r=0){c.fillStyle=color;c.beginPath();if(r)c.roundRect(x,y,w,h,r);else c.rect(x,y,w,h);c.fill()}
+function text(s,x,y,size=60,color='#fff',weight=700,font=sans,align='left'){c.font=weight+' '+size+'px '+font;c.fillStyle=color;c.textAlign=align;c.textBaseline='alphabetic';c.fillText(s,x,y)}
+function line(x1,y1,x2,y2,color,width=3){c.beginPath();c.moveTo(x1,y1);c.lineTo(x2,y2);c.strokeStyle=color;c.lineWidth=width;c.stroke()}
+function circle(x,y,r,color){c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=color;c.fill()}
+function arrow(x1,y1,x2,y2,color,width=5){line(x1,y1,x2,y2,color,width);const a=Math.atan2(y2-y1,x2-x1);line(x2,y2,x2-19*Math.cos(a-.5),y2-19*Math.sin(a-.5),color,width);line(x2,y2,x2-19*Math.cos(a+.5),y2-19*Math.sin(a+.5),color,width)}
+function reveal(t,start,fn){const p=enter(t,start);c.save();c.globalAlpha=p;c.translate(0,30*(1-p));fn(p);c.restore()}
+function cinema(t){
+ rect(0,0,W,H,'#101014');
+ const glow=c.createRadialGradient(960,520,20,960,520,900);glow.addColorStop(0,'#33313a');glow.addColorStop(1,'#101014');rect(0,0,W,H,glow);
+ // Restrained, deterministic film texture and projector beams.
+ for(let i=0;i<80;i++){const x=(i*277+Math.sin(t*.3+i)*15)%W;const y=(i*137)%H;c.globalAlpha=.025;rect(x,y,2,10,'#fff')}c.globalAlpha=1;
+ c.save();c.translate(960,510);const z=1+.035*clamp(t/4);c.scale(z,z);
+ reveal(t,.1,()=>text('TO EXPLAIN',0,-110,80,'#eee8d9',400,serif,'center'));
+ reveal(t,.35,()=>text('RECURSION',0,65,178,'#eee8d9',700,sans,'center'));
+ line(-630,110,630,110,'#827a70',2);
+ reveal(t,1.65,()=>text('we need to explain recursion.',0,220,54,'#eee8d9',400,serif,'center'));
+ c.restore();
+ if(t>3.25){const p=enter(t,3.25,.65);c.save();c.translate(960,870);c.rotate(-.035);c.globalAlpha=p;rect(-365,-52,730,104,'#ff563d');text('Okay. Start smaller.',0,20,53,'#101014',700,sans,'center');c.restore()}
+ rect(0,0,W,68,'#08080a');rect(0,1012,W,68,'#08080a');
+}
+function paper(t){
+ rect(0,0,W,H,'#eee6d4');
+ for(let i=0;i<210;i++){const x=(i*431)%W,y=(i*179)%H;line(x,y,x+6+(i%5),y+2,'rgba(112,84,53,.085)',1)}
+ text('Same question. Smaller input.',100,130,82,'#203c35',700,serif);
+ text('Add the numbers from n down to 1.',105,213,43,'#536458',400,sans);
+ const colors=['#246a58','#55906b','#91ac70','#d5bb77','#f8d483'];
+ for(let i=0;i<5;i++){
+  const p=enter(t,.25+i*.58,.7);if(p<=0)continue;
+  const r=335-i*65;
+  c.save();c.translate(610,655+70*(1-p));c.scale(.82+.18*p,.82+.18*p);c.globalAlpha=p;
+  circle(8,11,r+2,'rgba(42,45,31,.15)');circle(0,0,r,colors[i]);
+  if(i<4)text('sum('+String(4-i)+')',0,-r+47,35,i<2?'#fff9e9':'#273b2f',700,mono,'center');
+  else{text('sum(0)',0,-3,30,'#273b2f',700,mono,'center');text('0',0,42,39,'#273b2f',700,mono,'center')}
+  c.restore();
+ }
+ reveal(t,.7,()=>{text('A function calls',1110,432,55,'#203c35',400,serif);text('itself with a',1110,505,55,'#203c35',400,serif);text('smaller problem.',1110,578,55,'#203c35',700,serif)});
+ reveal(t,2.4,()=>{rect(1078,666,722,132,'#fbf5e7',9);text('sum(4) = 4 + sum(3)',1439,746,43,'#203c35',700,mono,'center')});
+ reveal(t,4.6,()=>{line(1110,861,1740,861,'#b0aa94',2);text('But it cannot shrink forever.',1110,925,39,'#536458',400,serif)});
+}
+function terminal(t){
+ rect(0,0,W,H,'#071713');
+ for(let x=0;x<W;x+=48)line(x,0,x,H,'#0c241d',1);
+ for(let y=0;y<H;y+=48)line(0,y,W,y,'#0c241d',1);
+ text('RECURSION, IN CODE.',95,128,72,'#b6ffab',700,mono);
+ rect(85,202,1140,650,'#0a211a',20);rect(85,202,1140,65,'#16392b',20);rect(85,239,1140,28,'#16392b');
+ ['#ff766b','#f7d26b','#a0df8a'].forEach((v,i)=>circle(124+i*33,235,8,v));
+ const rows=[['function sum(n) {','#e4f6df'],['  if (n === 0)','#f9d681'],['    return 0;','#f9d681'],['  return n + sum(n - 1);','#b6ffab'],['}','#e4f6df']];
+ const active=t<1.7?0:t<2.5?1:t<3.2?3:t<4.2?3:2;
+ rect(111,303+active*88,1088,75,active===2?'#3b4b20':'#163e2c',8);
+ rows.forEach((r,i)=>{reveal(t,.12+i*.17,()=>{text(String(i+1),130,355+i*88,28,'#47755b',400,mono);text(r[0],194,355+i*88,43,r[1],400,mono)})});
+ text('CALL STACK',1320,253,34,'#71a582',700,mono);
+ const depth=Math.min(4,Math.floor(Math.max(0,t-.6)/.65));
+ for(let i=0;i<=depth;i++){
+  const p=enter(t,.6+i*.65,.35);c.save();c.globalAlpha=p;c.translate(35*(1-p),0);
+  rect(1310,292+i*105,510,83,i===4?'#e9f89b':'#163e2c',8);
+  text('sum('+String(4-i)+')',1345,347+i*105,43,i===4?'#0b2419':'#d8f4cc',700,mono);
+  if(i<depth)text('↓',1760,350+i*105,43,'#71a582',400,mono);
+  c.restore();
+ }
+ reveal(t,4.15,()=>{rect(1310,845,510,96,'#e9f89b',8);text('BASE CASE → 0',1565,906,37,'#0b2419',700,mono,'center')});
+ text('The call waits while the smaller call works.',100,989,43,'#92b79c',400,mono);
+}
+function pixelRect(x,y,w,h,color){rect(Math.round(x/8)*8,Math.round(y/8)*8,Math.round(w/8)*8,Math.round(h/8)*8,color)}
+function character(x,y){
+ const sprite=['..YYYY..','.YYYYYY.','..KKKK..','.RRRRRR.','RRRRRRRR','..BBBB..','.BB..BB.','KK....KK'];
+ const palette={Y:'#ffe66c',K:'#251d53',R:'#ff6375',B:'#e8f0ff'};
+ sprite.forEach((row,iy)=>[...row].forEach((v,ix)=>{if(palette[v])rect(x+ix*10,y+iy*10,10,10,palette[v])}));
+}
+function game(t){
+ rect(0,0,W,H,'#211b51');
+ for(let i=0;i<45;i++){const x=80+(i*337)%1780,y=220+(i*173)%650;pixelRect(x,y,8,i%3===0?16:8,i%2?'#68648f':'#9e97c3')}
+ text('EVERY RECURSION NEEDS',960,125,57,'#e5defb',700,mono,'center');
+ text('A BASE CASE',960,241,112,'#ffe66c',900,mono,'center');
+ const pts=[];
+ for(let i=0;i<5;i++){
+  const x=180+i*338,y=490+i*68;pts.push({x,y});
+  pixelRect(x-10,y+12,230,34,'#100e32');pixelRect(x,y,212,32,i===4?'#ffe66c':'#6e6cc5');pixelRect(x,y+32,212,32,i===4?'#c18f39':'#45428c');
+  text(String(4-i),x+106,y-28,56,i===4?'#ffe66c':'#c5c0ed',700,mono,'center');
+ }
+ const travel=clamp((t-.25)/2.6)*4;
+ const a=Math.min(3,Math.floor(travel)),f=travel-a;
+ const x=mix(pts[a].x,pts[a+1].x,f)+65;
+ const y=mix(pts[a].y,pts[a+1].y,f)-80-Math.sin(f*Math.PI)*85;
+ character(x,y);
+ if(t>2.9){
+  const p=enter(t,2.9,.3);c.save();c.globalAlpha=p;
+  pixelRect(1515,446,260,100,'#ff6375');text('STOP',1645,516,53,'#211b51',900,mono,'center');
+  c.restore();
+ }
+ reveal(t,2.95,()=>{rect(120,925,1680,91,'#100e32');text('At n = 0, return 0. Make no new call.',960,986,45,'#fff5cf',700,mono,'center')});
+}
+function returns(t){
+ rect(0,0,W,H,'#f3f0e8');
+ text('NOW, RETURN.',95,163,122,'#e63923',900,sans);
+ text('Each waiting call adds its number.',102,252,53,'#252721',400,sans);
+ const values=[0,1,3,6,10];
+ const input=[0,1,2,3,4];
+ for(let i=0;i<5;i++){
+  const x=105+i*345;
+  text('sum('+input[i]+')',x+145,419,37,'#72756b',400,mono,'center');
+  const p=enter(t,.25+i*.78,.5);
+  rect(x,467,290,245,'#e3e2d7',8);
+  c.save();c.beginPath();c.rect(x,467,290,245);c.clip();rect(x,712-245*p,290,245*p,i===4?'#e63923':'#244d3e');
+  c.globalAlpha=p;text(String(values[i]),x+145,635+50*(1-p),126,'#fffdf2',700,sans,'center');c.restore();
+  if(i<4){const ap=enter(t,.7+i*.78,.4);c.save();c.globalAlpha=ap;arrow(x+297,580,x+338,580,'#e63923',5);text('+'+String(i+1),x+316,530,28,'#252721',700,mono,'center');c.restore()}
+ }
+ reveal(t,4.05,()=>{line(105,798,1810,798,'#252721',3);text('4 + 3 + 2 + 1 + 0 = 10',960,906,76,'#252721',700,mono,'center')});
+ reveal(t,5,()=>text('The last call finishes first.',960,1006,40,'#66715f',400,sans,'center'));
+}
+/* Recursive artwork renderer. Every nested explanation gets another genre.
+   Its own base case terminates at depth 5. */
+function nestedFrame(depth,x,y,w,h,count,t){
+ c.save();
+ const palette=['#101014','#e8dfc6','#071713','#211b51','#f3f0e8','#ffe66c'];
+ rect(x+9,y+12,w,h,'rgba(8,0,30,.28)',10);
+ rect(x,y,w,h,palette[depth],10);
+ c.beginPath();c.roundRect(x,y,w,h,10);c.clip();
+ const size=Math.max(12,w*.04);
+ if(depth===0){
+  text('TO EXPLAIN RECURSION…',x+w*.5,y+h*.17,size,'#eee8d9',700,serif,'center');
+  line(x+w*.07,y+h*.23,x+w*.93,y+h*.23,'#706b69',1);
+ }else if(depth===1){
+  circle(x+w*.14,y+h*.18,w*.05,'#246a58');circle(x+w*.14,y+h*.18,w*.031,'#91ac70');
+  text('SAME QUESTION. SMALLER INPUT.',x+w*.57,y+h*.18,size*.78,'#203c35',700,serif,'center');
+ }else if(depth===2){
+  text('return n + sum(n - 1);',x+w*.5,y+h*.18,size,'#b6ffab',400,mono,'center');
+ }else if(depth===3){
+  for(let i=0;i<9;i++)rect(x+w*.06+i*w*.1,y+h*.25,w*.05,h*.035,'#6e6cc5');
+  text('FIND THE BASE CASE',x+w*.5,y+h*.18,size,'#ffe66c',700,mono,'center');
+ }else if(depth===4){
+  text('SMALLER → STOP → RETURN',x+w*.5,y+h*.18,size,'#e63923',700,sans,'center');
+ }else{
+  text('STOP.',x+w*.5,y+h*.63,w*.23,'#211b51',900,sans,'center');
+  c.restore();return;
+ }
+ if(depth<count){
+  const p=enter(t,.6+depth*.7,.55);
+  const nw=w*(.78+.08*(1-p)),nh=h*.68;
+  c.save();c.globalAlpha=p;
+  nestedFrame(depth+1,x+(w-nw)/2,y+h*.29+20*(1-p),nw,nh,count,t);
+  c.restore();
+ }else{
+  text('…another explanation.',x+w*.5,y+h*.66,size*1.3,depth===1||depth===4?'#203c35':'#eee8d9',700,depth===2?mono:serif,'center');
+ }
+ c.restore();
+}
+function recursiveScreens(t){
+ rect(0,0,W,H,'#5b31cf');
+ for(let i=0;i<8;i++){c.save();c.globalAlpha=.08;line(-200+i*390,1080,250+i*390,0,'#fff',2);c.restore()}
+ reveal(t,0,()=>text('This explanation contains',960,124,77,'#fff9e9',700,sans,'center'));
+ reveal(t,.35,()=>text('another explanation.',960,216,77,'#fff9e9',700,sans,'center'));
+ const count=Math.min(5,Math.max(0,Math.floor((t-.45)/.7)+1));
+ const p=enter(t,0,.6);
+ c.save();c.globalAlpha=p;c.translate(0,50*(1-p));nestedFrame(0,190,285,1540,625,count,t);c.restore();
+ reveal(t,4.6,()=>text('Even this joke has a base case.',960,1001,43,'#efe5ff',400,serif,'center'));
+}
+function ending(t){
+ rect(0,0,W,H,'#ffe66c');
+ const p=enter(t,0,.35);
+ c.save();c.translate(0,55*(1-p));c.globalAlpha=p;
+ text('RECURSION.',100,267,183,'#211b51',900,sans);
+ line(105,326,1805,326,'#211b51',5);
+ const words=['SMALLER.','STOP.','RETURN.'];
+ words.forEach((word,i)=>{const k=enter(t,.1+i*.24,.35);c.save();c.globalAlpha=k;text(word,105,496+i*160,133,i===1?'#e63923':'#211b51',900,sans);c.restore()});
+ c.restore();
+ const q=enter(t,.8,.4);c.save();c.globalAlpha=q;c.translate(1530,750);c.rotate(-.1);rect(-180,-150,360,300,'#211b51',14);text('sum(4)',0,-37,48,'#ffe66c',700,mono,'center');text('= 10',0,70,86,'#fff9e9',700,mono,'center');c.restore();
+}
+function draw(time){
+ const t=clamp(time,0,36);
+ c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.clearRect(0,0,W,H);
+ const scene=scenes.find(s=>t>=s.start&&t<s.end)||scenes[scenes.length-1];
+ c.save();scene.draw(t-scene.start);c.restore();
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:36,duration:36,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>

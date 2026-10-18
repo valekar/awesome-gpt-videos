@@ -14,9 +14,9 @@ Pinned upstream: `92aee2f586ac0715cb3cbcb6384834f98a33383d`.
 - unique_prompt_texts: 684
 - visual_reviewed: 0
 - sampled_reviews: 3
-- run_counts: {'baseline': {'blocked': 9, 'not_generated': 675, 'rendered': 13, 'generated': 4, 'running': 2}, 'adapted': {'rendered': 2, 'not_generated': 701}}
-- entries_with_source: 18
-- entries_with_render: 14
+- run_counts: {'baseline': {'blocked': 9, 'not_generated': 674, 'rendered': 14, 'generated': 4, 'running': 2}, 'adapted': {'rendered': 2, 'not_generated': 701}}
+- entries_with_source: 19
+- entries_with_render: 15
 - model: gpt-6.1-sol
 - reasoning_effort: high
 

@@ -3942,7 +3942,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -3974,7 +3974,51 @@
           "-o",
           "$REPO/results/emollick-019567/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20530,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7065,
+          "reasoning_output_tokens": 1839
+        },
+        "finished_at": "2026-10-18T14:10:43.256526+00:00",
+        "assumptions": [
+          "Creative choice: 36-second, 16:9, silent animation with large explanatory text.",
+          "Seven visual styles: cinematic titles, paper art, terminal, pixel game, graphic mathematics, nested screens, and a bold typographic finale.",
+          "Uses sum(4) as a concrete example, covering smaller recursive calls, a base case, and returning results.",
+          "All artwork is procedural Canvas; only the supplied local gsap.min.js dependency is required. No external assets or associated license gaps.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "An editable, deterministic recursion explainer that repeatedly changes visual style and recursively nests its own explanations.",
+        "source_sha256": "6c647c8fd17897f6298413ceaa82412d07dfefcc564cc2efec2ad12d3edc5b39",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 36,
+        "source_path": "results/emollick-019567/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/emollick-019567/baseline/video.mp4",
+        "poster_url": "media/emollick-019567/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "36.000000"
+          }
+        },
+        "staged_source_sha256": "6c647c8fd17897f6298413ceaa82412d07dfefcc564cc2efec2ad12d3edc5b39",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -4015,7 +4059,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "3075b9a2c16603d1e10d86b2ae5d6293cd52f7eb7d0e3f29563a7e08f7520c01",
+        "input_sha256": "6be94c1ea6e422b64192c3d39ed68886ed15439872ae2b9515379615ba4ddb2d",
+        "started_at": "2026-10-18T14:10:44.842583+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/dale-vaz-879074/baseline/schema.json",
+          "-o",
+          "$REPO/results/dale-vaz-879074/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"
