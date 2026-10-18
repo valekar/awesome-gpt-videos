@@ -79,6 +79,117 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "not_generated"
+    "status": "rendered",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "reference-v3",
+    "track": "adapted",
+    "iteration": 1,
+    "source_prompt_sha256": "b3a5b67874a1bbc62f438f4a212a3f878df87ebadd305fef7c91833f017c28e3",
+    "input_sha256": "46d8e85fd9730a48d2a28cd4781bf4aee8280639fe43ffb537e3897be455e6cd",
+    "started_at": "2026-10-18T17:06:03.090129+00:00",
+    "tools": "none requested; read-only sandbox",
+    "reference_images_supplied": [
+      "sheet-01.jpg",
+      "sheet-02.jpg",
+      "sheet-03.jpg",
+      "sheet-04.jpg",
+      "full-1.jpg",
+      "full-2.jpg",
+      "full-3.jpg",
+      "full-4.jpg"
+    ],
+    "reference_image_sha256": {
+      "sheet-01.jpg": "4c8eb7e5e84624c8eb316cf28c1db49df71e5050f42562f5c77269bb8d1e7fb8",
+      "sheet-02.jpg": "c5572a10feee170dddc92693449fd839b7fcd33f24b02d359af3d4319527f565",
+      "sheet-03.jpg": "e2e3d352729d8b49a02f882766ead773406cd080bed5a65a62c2b88f34bab665",
+      "sheet-04.jpg": "9496bcea0b07a157590a910b2a233333a1046b50104a80e62fb294fb43dc88ad",
+      "full-1.jpg": "f32b7e0c2a4fb6ab1866f5ebf06bfc6b5ba66b13382bf098cb4bab416349183f",
+      "full-2.jpg": "fea3cc0a4401e231c8c44942fd02939512462cf70d0df99ea5807f7c8c434217",
+      "full-3.jpg": "d96290ff2f68d5507aca7b98eebd07648d8ce0b929f12050e7895bb1fc93097e",
+      "full-4.jpg": "e61c09ecf75ab40bb0c0d05b22885d22fac10bb2b7ede89a87bc1352370542e4"
+    },
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/anirockshady-032809/adapted/schema.json",
+      "-o",
+      "$REPO/results/anirockshady-032809/adapted/response.json",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/sheet-01.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/sheet-02.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/sheet-03.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/sheet-04.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/full-1.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/full-2.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/full-3.jpg",
+      "--image",
+      "$REPO/work/references/anirockshady-032809/evidence/full-4.jpg",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 41637,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 12583,
+      "reasoning_output_tokens": 4142
+    },
+    "finished_at": "2026-10-18T17:10:15.182586+00:00",
+    "assumptions": [
+      "Reconstructed from the supplied visual evidence; terrain equations, materials, camera interpolation, fades and continuous trajectories are inferred.",
+      "Generic serif and sans-serif fonts approximate the unknown reference typography.",
+      "Displayed step and loss values follow the supplied reference labels; the geometry is illustrative rather than a recovered optimizer.",
+      "Silent composition, intended for capture at 30 fps. No closing fade is added.",
+      "Editable source only; rendering, browser/GPU verification and matched-time visual review have not been performed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete seekable portrait HyperFrames animation with procedural WebGL terrain, depth-tested spheres and paths, classification, loss chart, learning-rate comparison, use cases and concluding metaphor.",
+    "fps": 30.0,
+    "source_sha256": "d2b8dbcfecb7657a8bea685a7b8a293ae0c622781e97668db1ba1de68802d869",
+    "width": 720,
+    "height": 1280,
+    "duration_seconds": 56.966667,
+    "source_path": "results/anirockshady-032809/adapted/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/anirockshady-032809/adapted/video.mp4",
+    "poster_url": "media/anirockshady-032809/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 720,
+          "height": 1280,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "56.966667"
+      }
+    },
+    "staged_source_sha256": "d2b8dbcfecb7657a8bea685a7b8a293ae0c622781e97668db1ba1de68802d869",
+    "source_modified_after_generation": false
   }
 }
