@@ -21109,8 +21109,8 @@
     "dependency_cues": [],
     "source_prompt_sha256": "5d261c564a82c6444a4572c966a225dae6eea63c21c294ae9f97e0d2d3a8043b",
     "source_file_sha256": "5a57e32079b7f789245abce3aa5d3bcb07b857a874d2293905190d01810e40ea",
-    "adapted_prompt_sha256": "2bf371b5b48b3423f9f99d7979bb18b396c306c8efbed4bb12507b0594798697",
-    "adapted_prompt": "# GPT-6.1 high adaptation — vectorcrossprod-436573\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @VectorCrossProd. Source: https://x.com/VectorCrossProd/status/2104093497561436573\nReference page: https://skillry.dev/ai-videos/opus-5-5/vectorcrossprod-436573\nOriginal prompt SHA-256: `5d261c564a82c6444a4572c966a225dae6eea63c21c294ae9f97e0d2d3a8043b`.\n\n## Source completeness\n\nThe upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.\nDependency cues found by automated text inspection: none detected; manual reference review still required.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve geometry, materials, lighting, camera path, subject scale, scene density and physical interactions. Inspect near and far surfaces and important occlusions.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): threejs, canvas, svg. Use a fixed timestep or analytic scene state, seeded randomness, and a reproducible camera. Recompute Canvas state from time; reset transforms and compositing on every frame. Keep vector geometry and typography sharp at the reference viewport.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nClaude Opus 5.5 continues to amaze me. Claude Opus 5.5 created a 3D printable enclosure for an existing PCB.  Then it created this promo video for it. \nThe PCB, the printable STLs and this animation are 100% just from prompting in Claude Code.\n</creator_material>\n",
+    "adapted_prompt_sha256": "6f31670f8eeab3052f0da00b53e076d14174d9fd6f921d0a6ab7dfbe07043c6d",
+    "adapted_prompt": "# GPT-6.1 high adaptation — vectorcrossprod-436573\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @VectorCrossProd. Source: https://x.com/VectorCrossProd/status/2104093497561436573\nReference page: https://skillry.dev/ai-videos/opus-5-5/vectorcrossprod-436573\nOriginal prompt SHA-256: `5d261c564a82c6444a4572c966a225dae6eea63c21c294ae9f97e0d2d3a8043b`.\n\n## Source completeness\n\nThe upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.\nDependency cues found by automated text inspection: none detected; manual reference review still required.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve geometry, materials, lighting, camera path, subject scale, scene density and physical interactions. Inspect near and far surfaces and important occlusions.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): threejs, canvas, svg. Use a fixed timestep or analytic scene state, seeded randomness, and a reproducible camera. Recompute Canvas state from time; reset transforms and compositing on every frame. Keep vector geometry and typography sharp at the reference viewport.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nClaude Opus 5.5 continues to amaze me. Claude Opus 5.5 created a 3D printable enclosure for an existing PCB.  Then it created this promo video for it. \nThe PCB, the printable STLs and this animation are 100% just from prompting in Claude Code.\n</creator_material>\n\n## Review-derived guidance — additional to creator material\n\n\n\n## Matched-time review of attempt 1\n\nRevise the existing independently authored procedural reconstruction while preserving its correct scene coverage, callout wording, connector counts and dark technical aesthetic.\n\n- At **2.000s**, place the lid nearly against the shell and largely conceal the PCB.\n- At **3–6s**, match the observed housing silhouette, top/front proportions, screen placement and lid-edge slant. Give the lower shell and recessed front opening sufficient lighting separation.\n- Model **two adjacent pale front sockets inside one horizontal recess**. Preserve their visibility in subsequent views. At **5–6s**, show both the red A and yellow B indicator points without inventing blinking.\n- At **8.000s**, reproduce the visibly tilted enclosure pose. Treat interpolation between supplied poses as inferred.\n- At **9.000s and 9.850s**, keep the silver rail below the red mounting part. Its raised lips must not cross the front wall or cover the sockets.\n- At **9.850s**, retain the readable left-side “KOOKABUS-01” title, gold rule, gold “Built to be bolted down.” and smaller gray “Desk or DIN rail · XT60 in and out”. Maintain enough illumination and product scale to match the supplied ending sample.\n\nUse newly authored geometry and text; reference imagery remains inspection evidence only.\n\n",
     "reference": {
       "status": "reachable",
       "video_url": "https://media.skillry.dev/opus-5-5/vectorcrossprod-436573/original.mp4",
@@ -21124,7 +21124,7 @@
         "status": "not_generated"
       },
       "adapted": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -21202,11 +21202,255 @@
         "height": 720,
         "duration_seconds": 10,
         "source_path": "results/vectorcrossprod-436573/adapted/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/vectorcrossprod-436573/adapted/video.mp4",
+        "poster_url": "media/vectorcrossprod-436573/adapted/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1280,
+              "height": 720,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "10.000000"
+          }
+        },
+        "staged_source_sha256": "afe9347f1acec1ad57297ea4d6f8d96ea23e7fa16df5c4ac40178be463207c57",
+        "source_modified_after_generation": false
       }
     },
-    "review_status": "not_reviewed",
-    "review": {}
+    "review_status": "sampled",
+    "review": {
+      "slug": "vectorcrossprod-436573",
+      "status": "sampled",
+      "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+      "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+      "adapted": {
+        "attempts": 1,
+        "observations": [
+          "Both films are black at 0.000 seconds.",
+          "The sampled sequence preserves exploded assembly, lid fastening, wired interfaces and DIN-rail mounting.",
+          "The charcoal enclosure, teal-black background, yellow connectors, red/black cables, red mounting part and silver slotted rail are recognizable.",
+          "Most explanatory text matches, including the four-screw quantity, battery/load labels and mounting captions.",
+          "The two left battery connections and single right load connection are present.",
+          "White callouts, elbowed leaders, yellow endpoints and the opening lower-left title broadly follow the reference."
+        ],
+        "remaining_differences": [
+          "The ORIGINAL lid is nearly seated, largely concealing the PCB. GPT retains a substantial open gap with exposed components, so the assembly state lags at this timestamp.",
+          "The closed GPT enclosure sits farther right and presents a different lid angle. Across the 3–6-second samples, its wider, flatter appearance and opposite lid-edge slant change the camera presentation and balance of top versus front surfaces.",
+          "The detailed ORIGINAL front opening contains two adjacent pale sockets within one horizontal recess. GPT shows an offset, asymmetric combination of pale slivers and a small square socket rather than that paired opening. The mismatch persists in later views.",
+          "The ORIGINAL detail visibly shows a red A indicator and yellow B indicator. GPT shows the yellow point but lacks the corresponding visible red A point, weakening the subsequent status-LED explanation.",
+          "GPT has flatter surface lighting, a more prominent light lid seam and less definition in the front recess. The ORIGINAL gives the black lower shell, bevels and pale sockets stronger dimensional separation.",
+          "The ORIGINAL enclosure is conspicuously tilted in the oblique mounting view. GPT remains nearly level, omitting this sampled mounting pose. The stills establish the pose difference, not the intervening pivot motion.",
+          "GPT places the optional-clip caption lower and farther right, with a longer diagonal leader. The ORIGINAL uses a more compact leader and label beside the mounting assembly.",
+          "GPT's rail lips extend across the enclosure's front face and obscure its socket area, appearing to intersect the housing. In the ORIGINAL, the rail remains beneath the red mounting part and leaves the front opening visible. This incorrect layering also appears at 9.850 seconds.",
+          "The ORIGINAL ending retains a readable title, gold underline, “Built to be bolted down.” and “Desk or DIN rail · XT60 in and out”. GPT shows only a much dimmer title, omits the supporting copy and rule, and makes the product smaller and substantially darker."
+        ]
+      },
+      "adapted_review_history": [
+        {
+          "iteration": 1,
+          "summary": "The GPT version covers the main assembly, connector and mounting scenes, but needs revision for assembly timing, camera and housing geometry, front sockets, rail occlusion and the final title card.",
+          "matches": [
+            "Both films are black at 0.000 seconds.",
+            "The sampled sequence preserves exploded assembly, lid fastening, wired interfaces and DIN-rail mounting.",
+            "The charcoal enclosure, teal-black background, yellow connectors, red/black cables, red mounting part and silver slotted rail are recognizable.",
+            "Most explanatory text matches, including the four-screw quantity, battery/load labels and mounting captions.",
+            "The two left battery connections and single right load connection are present.",
+            "White callouts, elbowed leaders, yellow endpoints and the opening lower-left title broadly follow the reference."
+          ],
+          "differences": [
+            {
+              "time_seconds": 2,
+              "description": "The ORIGINAL lid is nearly seated, largely concealing the PCB. GPT retains a substantial open gap with exposed components, so the assembly state lags at this timestamp.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 3,
+              "description": "The closed GPT enclosure sits farther right and presents a different lid angle. Across the 3–6-second samples, its wider, flatter appearance and opposite lid-edge slant change the camera presentation and balance of top versus front surfaces.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 5,
+              "description": "The detailed ORIGINAL front opening contains two adjacent pale sockets within one horizontal recess. GPT shows an offset, asymmetric combination of pale slivers and a small square socket rather than that paired opening. The mismatch persists in later views.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 5,
+              "description": "The ORIGINAL detail visibly shows a red A indicator and yellow B indicator. GPT shows the yellow point but lacks the corresponding visible red A point, weakening the subsequent status-LED explanation.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 5,
+              "description": "GPT has flatter surface lighting, a more prominent light lid seam and less definition in the front recess. The ORIGINAL gives the black lower shell, bevels and pale sockets stronger dimensional separation.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 8,
+              "description": "The ORIGINAL enclosure is conspicuously tilted in the oblique mounting view. GPT remains nearly level, omitting this sampled mounting pose. The stills establish the pose difference, not the intervening pivot motion.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 8,
+              "description": "GPT places the optional-clip caption lower and farther right, with a longer diagonal leader. The ORIGINAL uses a more compact leader and label beside the mounting assembly.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 9,
+              "description": "GPT's rail lips extend across the enclosure's front face and obscure its socket area, appearing to intersect the housing. In the ORIGINAL, the rail remains beneath the red mounting part and leaves the front opening visible. This incorrect layering also appears at 9.850 seconds.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 9.85,
+              "description": "The ORIGINAL ending retains a readable title, gold underline, “Built to be bolted down.” and “Desk or DIN rail · XT60 in and out”. GPT shows only a much dimmer title, omits the supporting copy and rule, and makes the product smaller and substantially darker.",
+              "severity": "major",
+              "actionable": true
+            }
+          ],
+          "revision_feedback": "Preserve the existing scene sequence, matched explanatory copy, connector counts and overall palette. Prioritize seating the lid by 2 seconds; correcting the sampled camera poses and housing proportions; rebuilding the paired front sockets and both colored indicators; and keeping the rail beneath the red mount throughout the mounting section. Restore the tilted 8-second pose and the complete, readable ending at 9.850 seconds. Recheck these specific timestamps after revision.",
+          "should_revise": true,
+          "prompt_improvement_markdown": "Revise the existing independently authored procedural reconstruction while preserving its correct scene coverage, callout wording, connector counts and dark technical aesthetic.\n\n- At **2.000s**, place the lid nearly against the shell and largely conceal the PCB.\n- At **3–6s**, match the observed housing silhouette, top/front proportions, screen placement and lid-edge slant. Give the lower shell and recessed front opening sufficient lighting separation.\n- Model **two adjacent pale front sockets inside one horizontal recess**. Preserve their visibility in subsequent views. At **5–6s**, show both the red A and yellow B indicator points without inventing blinking.\n- At **8.000s**, reproduce the visibly tilted enclosure pose. Treat interpolation between supplied poses as inferred.\n- At **9.000s and 9.850s**, keep the silver rail below the red mounting part. Its raised lips must not cross the front wall or cover the sockets.\n- At **9.850s**, retain the readable left-side “KOOKABUS-01” title, gold rule, gold “Built to be bolted down.” and smaller gray “Desk or DIN rail · XT60 in and out”. Maintain enough illumination and product scale to match the supplied ending sample.\n\nUse newly authored geometry and text; reference imagery remains inspection evidence only.",
+          "limitations": [
+            "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+            "Only the supplied decoded images and metadata were assessed. Continuous motion, easing, insertion paths, snap mechanics and exact transition boundaries cannot be established between samples.",
+            "Requested seek times are quantized to stream frame rates; the sheets and details do not establish exact continuous synchronization.",
+            "Fine lettering, fastener visibility and material details are constrained by image resolution. Exact font identity is uncertain and is not treated as a major defect.",
+            "Displayed electrical values, mounting specifications and product claims are visual reference content, not independently verified facts.",
+            "No audio was supplied and no listening review occurred. Reference metadata reports zero audio streams, technically indicating a silent reference. The supplied GPT render probe lists only a video stream, and its attempt notes declare a silent composition.",
+            "The reported technical pass does not establish visual fidelity or text readability; its contrast audit inspected zero text samples."
+          ],
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "input_sha256": "d7747992b08e7a417749c53b960a46723eac3931601ce6978e10df446f7e5e34",
+          "image_sha256": {
+            "work/comparison-evidence/vectorcrossprod-436573/001/sheet-01.jpg": "85a7c2d22265c39ab3e83939b2890ca1e1348ac0315e73440e71633c3ac61004",
+            "work/comparison-evidence/vectorcrossprod-436573/001/sheet-02.jpg": "4046520b33a31187e35388b9d7bf0e5b7c826b952ea53b5d9fa7437d988022e2",
+            "work/comparison-evidence/vectorcrossprod-436573/001/detail-0000.jpg": "8cb65ac5efd62b596544361221ade097881cf86d805781ac700d5646247b4bf6",
+            "work/comparison-evidence/vectorcrossprod-436573/001/detail-0005.jpg": "b6b5c81dea82bd5fff3a6019459b9ad9fc9333077e913e3d1ba8e83412c86ae8",
+            "work/comparison-evidence/vectorcrossprod-436573/001/detail-0010.jpg": "8a8683da4cd67073dc25503435e022a4ab986d023338e3e468e13e7cb8756cde"
+          },
+          "evidence": {
+            "times": [
+              0.0,
+              1.0,
+              2.0,
+              3.0,
+              4.0,
+              5.0,
+              6.0,
+              7.0,
+              8.0,
+              9.0,
+              9.85
+            ],
+            "reference_metadata": {
+              "slug": "vectorcrossprod-436573",
+              "width": 1280,
+              "height": 720,
+              "fps": "30/1",
+              "duration_seconds": 10.0,
+              "audio_streams": 0,
+              "sample_times": [
+                0.0,
+                1.0,
+                2.0,
+                3.0,
+                4.0,
+                5.0,
+                6.0,
+                7.0,
+                8.0,
+                9.0
+              ],
+              "scene_change_times": [],
+              "sheets": [
+                "work/references/vectorcrossprod-436573/evidence/sheet-01.jpg"
+              ],
+              "full_frames": [
+                "work/references/vectorcrossprod-436573/evidence/full-1.jpg",
+                "work/references/vectorcrossprod-436573/evidence/full-2.jpg",
+                "work/references/vectorcrossprod-436573/evidence/full-3.jpg",
+                "work/references/vectorcrossprod-436573/evidence/full-4.jpg"
+              ],
+              "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+            },
+            "sheets": [
+              "work/comparison-evidence/vectorcrossprod-436573/001/sheet-01.jpg",
+              "work/comparison-evidence/vectorcrossprod-436573/001/sheet-02.jpg"
+            ],
+            "details": [
+              "work/comparison-evidence/vectorcrossprod-436573/001/detail-0000.jpg",
+              "work/comparison-evidence/vectorcrossprod-436573/001/detail-0005.jpg",
+              "work/comparison-evidence/vectorcrossprod-436573/001/detail-0010.jpg"
+            ],
+            "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+          },
+          "usage": {
+            "input_tokens": 35030,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3518,
+            "reasoning_output_tokens": 2070
+          }
+        }
+      ],
+      "summary": "The GPT version covers the main assembly, connector and mounting scenes, but needs revision for assembly timing, camera and housing geometry, front sockets, rail occlusion and the final title card.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Only the supplied decoded images and metadata were assessed. Continuous motion, easing, insertion paths, snap mechanics and exact transition boundaries cannot be established between samples.",
+        "Requested seek times are quantized to stream frame rates; the sheets and details do not establish exact continuous synchronization.",
+        "Fine lettering, fastener visibility and material details are constrained by image resolution. Exact font identity is uncertain and is not treated as a major defect.",
+        "Displayed electrical values, mounting specifications and product claims are visual reference content, not independently verified facts.",
+        "No audio was supplied and no listening review occurred. Reference metadata reports zero audio streams, technically indicating a silent reference. The supplied GPT render probe lists only a video stream, and its attempt notes declare a silent composition.",
+        "The reported technical pass does not establish visual fidelity or text readability; its contrast audit inspected zero text samples."
+      ],
+      "reference": {
+        "slug": "vectorcrossprod-436573",
+        "width": 1280,
+        "height": 720,
+        "fps": "30/1",
+        "duration_seconds": 10.0,
+        "audio_streams": 0,
+        "sample_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0
+        ],
+        "scene_change_times": [],
+        "sheets": [
+          "work/references/vectorcrossprod-436573/evidence/sheet-01.jpg"
+        ],
+        "full_frames": [
+          "work/references/vectorcrossprod-436573/evidence/full-1.jpg",
+          "work/references/vectorcrossprod-436573/evidence/full-2.jpg",
+          "work/references/vectorcrossprod-436573/evidence/full-3.jpg",
+          "work/references/vectorcrossprod-436573/evidence/full-4.jpg"
+        ],
+        "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+      }
+    }
   },
   {
     "slug": "sanjay-khadka07-620029",

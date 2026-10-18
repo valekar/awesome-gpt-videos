@@ -1,0 +1,224 @@
+{
+  "slug": "vectorcrossprod-436573",
+  "status": "sampled",
+  "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+  "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+  "adapted": {
+    "attempts": 1,
+    "observations": [
+      "Both films are black at 0.000 seconds.",
+      "The sampled sequence preserves exploded assembly, lid fastening, wired interfaces and DIN-rail mounting.",
+      "The charcoal enclosure, teal-black background, yellow connectors, red/black cables, red mounting part and silver slotted rail are recognizable.",
+      "Most explanatory text matches, including the four-screw quantity, battery/load labels and mounting captions.",
+      "The two left battery connections and single right load connection are present.",
+      "White callouts, elbowed leaders, yellow endpoints and the opening lower-left title broadly follow the reference."
+    ],
+    "remaining_differences": [
+      "The ORIGINAL lid is nearly seated, largely concealing the PCB. GPT retains a substantial open gap with exposed components, so the assembly state lags at this timestamp.",
+      "The closed GPT enclosure sits farther right and presents a different lid angle. Across the 3–6-second samples, its wider, flatter appearance and opposite lid-edge slant change the camera presentation and balance of top versus front surfaces.",
+      "The detailed ORIGINAL front opening contains two adjacent pale sockets within one horizontal recess. GPT shows an offset, asymmetric combination of pale slivers and a small square socket rather than that paired opening. The mismatch persists in later views.",
+      "The ORIGINAL detail visibly shows a red A indicator and yellow B indicator. GPT shows the yellow point but lacks the corresponding visible red A point, weakening the subsequent status-LED explanation.",
+      "GPT has flatter surface lighting, a more prominent light lid seam and less definition in the front recess. The ORIGINAL gives the black lower shell, bevels and pale sockets stronger dimensional separation.",
+      "The ORIGINAL enclosure is conspicuously tilted in the oblique mounting view. GPT remains nearly level, omitting this sampled mounting pose. The stills establish the pose difference, not the intervening pivot motion.",
+      "GPT places the optional-clip caption lower and farther right, with a longer diagonal leader. The ORIGINAL uses a more compact leader and label beside the mounting assembly.",
+      "GPT's rail lips extend across the enclosure's front face and obscure its socket area, appearing to intersect the housing. In the ORIGINAL, the rail remains beneath the red mounting part and leaves the front opening visible. This incorrect layering also appears at 9.850 seconds.",
+      "The ORIGINAL ending retains a readable title, gold underline, “Built to be bolted down.” and “Desk or DIN rail · XT60 in and out”. GPT shows only a much dimmer title, omits the supporting copy and rule, and makes the product smaller and substantially darker."
+    ]
+  },
+  "adapted_review_history": [
+    {
+      "iteration": 1,
+      "summary": "The GPT version covers the main assembly, connector and mounting scenes, but needs revision for assembly timing, camera and housing geometry, front sockets, rail occlusion and the final title card.",
+      "matches": [
+        "Both films are black at 0.000 seconds.",
+        "The sampled sequence preserves exploded assembly, lid fastening, wired interfaces and DIN-rail mounting.",
+        "The charcoal enclosure, teal-black background, yellow connectors, red/black cables, red mounting part and silver slotted rail are recognizable.",
+        "Most explanatory text matches, including the four-screw quantity, battery/load labels and mounting captions.",
+        "The two left battery connections and single right load connection are present.",
+        "White callouts, elbowed leaders, yellow endpoints and the opening lower-left title broadly follow the reference."
+      ],
+      "differences": [
+        {
+          "time_seconds": 2,
+          "description": "The ORIGINAL lid is nearly seated, largely concealing the PCB. GPT retains a substantial open gap with exposed components, so the assembly state lags at this timestamp.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 3,
+          "description": "The closed GPT enclosure sits farther right and presents a different lid angle. Across the 3–6-second samples, its wider, flatter appearance and opposite lid-edge slant change the camera presentation and balance of top versus front surfaces.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 5,
+          "description": "The detailed ORIGINAL front opening contains two adjacent pale sockets within one horizontal recess. GPT shows an offset, asymmetric combination of pale slivers and a small square socket rather than that paired opening. The mismatch persists in later views.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 5,
+          "description": "The ORIGINAL detail visibly shows a red A indicator and yellow B indicator. GPT shows the yellow point but lacks the corresponding visible red A point, weakening the subsequent status-LED explanation.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 5,
+          "description": "GPT has flatter surface lighting, a more prominent light lid seam and less definition in the front recess. The ORIGINAL gives the black lower shell, bevels and pale sockets stronger dimensional separation.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 8,
+          "description": "The ORIGINAL enclosure is conspicuously tilted in the oblique mounting view. GPT remains nearly level, omitting this sampled mounting pose. The stills establish the pose difference, not the intervening pivot motion.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 8,
+          "description": "GPT places the optional-clip caption lower and farther right, with a longer diagonal leader. The ORIGINAL uses a more compact leader and label beside the mounting assembly.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9,
+          "description": "GPT's rail lips extend across the enclosure's front face and obscure its socket area, appearing to intersect the housing. In the ORIGINAL, the rail remains beneath the red mounting part and leaves the front opening visible. This incorrect layering also appears at 9.850 seconds.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9.85,
+          "description": "The ORIGINAL ending retains a readable title, gold underline, “Built to be bolted down.” and “Desk or DIN rail · XT60 in and out”. GPT shows only a much dimmer title, omits the supporting copy and rule, and makes the product smaller and substantially darker.",
+          "severity": "major",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "Preserve the existing scene sequence, matched explanatory copy, connector counts and overall palette. Prioritize seating the lid by 2 seconds; correcting the sampled camera poses and housing proportions; rebuilding the paired front sockets and both colored indicators; and keeping the rail beneath the red mount throughout the mounting section. Restore the tilted 8-second pose and the complete, readable ending at 9.850 seconds. Recheck these specific timestamps after revision.",
+      "should_revise": true,
+      "prompt_improvement_markdown": "Revise the existing independently authored procedural reconstruction while preserving its correct scene coverage, callout wording, connector counts and dark technical aesthetic.\n\n- At **2.000s**, place the lid nearly against the shell and largely conceal the PCB.\n- At **3–6s**, match the observed housing silhouette, top/front proportions, screen placement and lid-edge slant. Give the lower shell and recessed front opening sufficient lighting separation.\n- Model **two adjacent pale front sockets inside one horizontal recess**. Preserve their visibility in subsequent views. At **5–6s**, show both the red A and yellow B indicator points without inventing blinking.\n- At **8.000s**, reproduce the visibly tilted enclosure pose. Treat interpolation between supplied poses as inferred.\n- At **9.000s and 9.850s**, keep the silver rail below the red mounting part. Its raised lips must not cross the front wall or cover the sockets.\n- At **9.850s**, retain the readable left-side “KOOKABUS-01” title, gold rule, gold “Built to be bolted down.” and smaller gray “Desk or DIN rail · XT60 in and out”. Maintain enough illumination and product scale to match the supplied ending sample.\n\nUse newly authored geometry and text; reference imagery remains inspection evidence only.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Only the supplied decoded images and metadata were assessed. Continuous motion, easing, insertion paths, snap mechanics and exact transition boundaries cannot be established between samples.",
+        "Requested seek times are quantized to stream frame rates; the sheets and details do not establish exact continuous synchronization.",
+        "Fine lettering, fastener visibility and material details are constrained by image resolution. Exact font identity is uncertain and is not treated as a major defect.",
+        "Displayed electrical values, mounting specifications and product claims are visual reference content, not independently verified facts.",
+        "No audio was supplied and no listening review occurred. Reference metadata reports zero audio streams, technically indicating a silent reference. The supplied GPT render probe lists only a video stream, and its attempt notes declare a silent composition.",
+        "The reported technical pass does not establish visual fidelity or text readability; its contrast audit inspected zero text samples."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "d7747992b08e7a417749c53b960a46723eac3931601ce6978e10df446f7e5e34",
+      "image_sha256": {
+        "work/comparison-evidence/vectorcrossprod-436573/001/sheet-01.jpg": "85a7c2d22265c39ab3e83939b2890ca1e1348ac0315e73440e71633c3ac61004",
+        "work/comparison-evidence/vectorcrossprod-436573/001/sheet-02.jpg": "4046520b33a31187e35388b9d7bf0e5b7c826b952ea53b5d9fa7437d988022e2",
+        "work/comparison-evidence/vectorcrossprod-436573/001/detail-0000.jpg": "8cb65ac5efd62b596544361221ade097881cf86d805781ac700d5646247b4bf6",
+        "work/comparison-evidence/vectorcrossprod-436573/001/detail-0005.jpg": "b6b5c81dea82bd5fff3a6019459b9ad9fc9333077e913e3d1ba8e83412c86ae8",
+        "work/comparison-evidence/vectorcrossprod-436573/001/detail-0010.jpg": "8a8683da4cd67073dc25503435e022a4ab986d023338e3e468e13e7cb8756cde"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          9.85
+        ],
+        "reference_metadata": {
+          "slug": "vectorcrossprod-436573",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration_seconds": 10.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0
+          ],
+          "scene_change_times": [],
+          "sheets": [
+            "work/references/vectorcrossprod-436573/evidence/sheet-01.jpg"
+          ],
+          "full_frames": [
+            "work/references/vectorcrossprod-436573/evidence/full-1.jpg",
+            "work/references/vectorcrossprod-436573/evidence/full-2.jpg",
+            "work/references/vectorcrossprod-436573/evidence/full-3.jpg",
+            "work/references/vectorcrossprod-436573/evidence/full-4.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/vectorcrossprod-436573/001/sheet-01.jpg",
+          "work/comparison-evidence/vectorcrossprod-436573/001/sheet-02.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/vectorcrossprod-436573/001/detail-0000.jpg",
+          "work/comparison-evidence/vectorcrossprod-436573/001/detail-0005.jpg",
+          "work/comparison-evidence/vectorcrossprod-436573/001/detail-0010.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 35030,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3518,
+        "reasoning_output_tokens": 2070
+      }
+    }
+  ],
+  "summary": "The GPT version covers the main assembly, connector and mounting scenes, but needs revision for assembly timing, camera and housing geometry, front sockets, rail occlusion and the final title card.",
+  "limitations": [
+    "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+    "Only the supplied decoded images and metadata were assessed. Continuous motion, easing, insertion paths, snap mechanics and exact transition boundaries cannot be established between samples.",
+    "Requested seek times are quantized to stream frame rates; the sheets and details do not establish exact continuous synchronization.",
+    "Fine lettering, fastener visibility and material details are constrained by image resolution. Exact font identity is uncertain and is not treated as a major defect.",
+    "Displayed electrical values, mounting specifications and product claims are visual reference content, not independently verified facts.",
+    "No audio was supplied and no listening review occurred. Reference metadata reports zero audio streams, technically indicating a silent reference. The supplied GPT render probe lists only a video stream, and its attempt notes declare a silent composition.",
+    "The reported technical pass does not establish visual fidelity or text readability; its contrast audit inspected zero text samples."
+  ],
+  "reference": {
+    "slug": "vectorcrossprod-436573",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "duration_seconds": 10.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/vectorcrossprod-436573/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/vectorcrossprod-436573/evidence/full-1.jpg",
+      "work/references/vectorcrossprod-436573/evidence/full-2.jpg",
+      "work/references/vectorcrossprod-436573/evidence/full-3.jpg",
+      "work/references/vectorcrossprod-436573/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  }
+}
