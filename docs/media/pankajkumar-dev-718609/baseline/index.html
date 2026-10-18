@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Break the Frame</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#e9e5dc}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#e9e5dc}.clip{position:absolute;inset:0;width:100%;height:100%}canvas{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1440" data-height="1080" data-duration="12">
+<canvas id="art" class="clip" data-start="0" data-duration="12" width="1440" height="1080" aria-label="A sculpted typographic poster bends forward, shatters its black frame and floats free."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+'use strict';
+// Editable art direction. All artwork is generated locally from these values.
+const DESIGN={width:1440,height:1080,duration:12,paperWidth:580,paperHeight:760,paper:'#f5efdf',ink:'#191b19',accent:'#f04425',background:'#e9e5dc'};
+const canvas=document.getElementById('art');
+const ctx=canvas.getContext('2d');
+const texture=document.createElement('canvas');
+texture.width=1160;texture.height=1520;
+const pctx=texture.getContext('2d');
+pctx.scale(2,2);
+
+function makePoster(){
+ const g=pctx.createLinearGradient(0,0,580,760);
+ g.addColorStop(0,'#fcf6e6');g.addColorStop(0.6,DESIGN.paper);g.addColorStop(1,'#e9dfca');
+ pctx.fillStyle=g;pctx.fillRect(0,0,580,760);
+ pctx.fillStyle=DESIGN.accent;
+ pctx.beginPath();pctx.arc(400,473,244,0,Math.PI*2);pctx.fill();
+ // Oversized, deliberately cropped circular geometry belongs to the poster.
+ pctx.save();pctx.translate(400,473);
+ for(let i=0;i<23;i++){
+  const a=(i/23)*Math.PI*2;
+  pctx.save();pctx.rotate(a);pctx.fillStyle=DESIGN.paper;
+  pctx.fillRect(188,-2.1,58,4.2);pctx.restore();
+ }
+ pctx.restore();
+ pctx.strokeStyle=DESIGN.ink;pctx.lineWidth=2;
+ pctx.beginPath();pctx.moveTo(38,47);pctx.lineTo(542,47);pctx.stroke();
+ pctx.fillStyle=DESIGN.ink;pctx.textBaseline='alphabetic';
+ pctx.font='900 119px Arial, Helvetica, sans-serif';
+ pctx.fillText('BREAK',31,181,518);
+ pctx.font='900 119px Arial, Helvetica, sans-serif';
+ pctx.fillText('THE',31,301,515);
+ pctx.save();pctx.translate(31,431);pctx.scale(0.91,1);
+ pctx.font='900 119px Arial, Helvetica, sans-serif';pctx.fillText('FRAME',0,0);pctx.restore();
+ // An offset arrow points beyond the printed edge before the paper escapes.
+ pctx.save();pctx.translate(119,540);pctx.rotate(-Math.PI/4);
+ pctx.fillStyle=DESIGN.ink;pctx.fillRect(-19,-2,38,136);
+ pctx.beginPath();pctx.moveTo(0,-75);pctx.lineTo(73,0);pctx.lineTo(-73,0);pctx.closePath();pctx.fill();pctx.restore();
+ pctx.fillStyle=DESIGN.ink;pctx.font='700 27px Arial, Helvetica, sans-serif';
+ pctx.fillText('NOTHING STAYS',38,685);pctx.fillText('INSIDE.',38,719);
+ pctx.lineWidth=2;pctx.beginPath();pctx.moveTo(38,737);pctx.lineTo(542,737);pctx.stroke();
+}
+makePoster();
+
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const smooth=(a,b,t)=>{const x=clamp((t-a)/(b-a));return x*x*(3-2*x);};
+const mix=(a,b,x)=>a+(b-a)*x;
+const TAU=Math.PI*2;
+
+// The frame is eight physical sections. Their destinations are authored, not random.
+const rails=[
+ {x:-163,y:-408,w:326,h:38,dx:-275,dy:-195,r:-0.73},
+ {x:163,y:-408,w:326,h:38,dx:265,dy:-185,r:0.64},
+ {x:-163,y:408,w:326,h:38,dx:-230,dy:203,r:0.52},
+ {x:163,y:408,w:326,h:38,dx:285,dy:230,r:-0.59},
+ {x:-308,y:-204,w:38,h:408,dx:-285,dy:-10,r:-0.42},
+ {x:-308,y:204,w:38,h:408,dx:-310,dy:135,r:0.52},
+ {x:308,y:-204,w:38,h:408,dx:320,dy:-30,r:0.47},
+ {x:308,y:204,w:38,h:408,dx:295,dy:155,r:-0.57}
+];
+const chips=[
+ [-304,-403,-378,-206,17,9,2.3], [302,-402,407,-280,13,8,-2.8],
+ [-306,20,-425,-60,24,8,-3.1], [307,-2,438,12,19,10,3.7],
+ [-301,402,-320,283,18,7,2.6], [300,403,397,303,12,9,-3.3],
+ [10,-407,126,-333,12,5,4.2], [-5,406,-94,364,20,6,-2.1]
+];
+
+function railShape(w,h,broken){
+ ctx.beginPath();
+ if(w>h){
+  ctx.moveTo(-w/2,-h/2);ctx.lineTo(w/2,-h/2);
+  ctx.lineTo(w/2-4*broken,-5);ctx.lineTo(w/2+7*broken,3);
+  ctx.lineTo(w/2-3*broken,h/2);ctx.lineTo(-w/2,h/2);
+ }else{
+  ctx.moveTo(-w/2,-h/2);ctx.lineTo(w/2,-h/2);
+  ctx.lineTo(w/2,h/2);ctx.lineTo(5,h/2-6*broken);
+  ctx.lineTo(-4,h/2+6*broken);ctx.lineTo(-w/2,h/2);
+ }
+ ctx.closePath();
+}
+
+function drawFrame(t,shake){
+ const f=smooth(3.48,6.5,t),travel=1-Math.pow(1-f,2.6);
+ ctx.save();ctx.translate(720+shake,531);
+ for(let i=0;i<rails.length;i++){
+  const r=rails[i];
+  ctx.save();ctx.translate(r.x+r.dx*travel,r.y+r.dy*travel+35*f*f);
+  ctx.rotate(r.r*travel);
+  ctx.shadowColor='rgba(28,24,18,0.24)';ctx.shadowBlur=13+14*f;ctx.shadowOffsetX=7;ctx.shadowOffsetY=13+18*f;
+  railShape(r.w,r.h,smooth(3.36,3.55,t));ctx.fillStyle='#242623';ctx.fill();
+  ctx.shadowColor='transparent';
+  const grad=ctx.createLinearGradient(-r.w/2,-r.h/2,r.w/2,r.h/2);
+  grad.addColorStop(0,'#55574f');grad.addColorStop(.17,'#373a33');grad.addColorStop(.33,'#1b1d1a');grad.addColorStop(.9,'#252722');grad.addColorStop(1,'#10120f');
+  railShape(r.w,r.h,smooth(3.36,3.55,t));ctx.fillStyle=grad;ctx.fill();
+  ctx.strokeStyle='rgba(236,228,208,0.25)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(-r.w/2+3,-r.h/2+2);ctx.lineTo(r.w/2-3,-r.h/2+2);ctx.stroke();
+  ctx.restore();
+ }
+ ctx.restore();
+}
+
+function point(u,v,t){
+ const load=smooth(1.0,3.4,t),release=smooth(3.45,4.6,t),flight=smooth(3.45,6.55,t);
+ const flutter=smooth(3.45,3.8,t)*(1-smooth(5.3,8.7,t));
+ const corner=Math.pow(u,3)*Math.pow(1-v,2);
+ const curl=112*smooth(2.05,3.4,t)*(1-smooth(5.25,7.4,t));
+ let x=(u-.5)*DESIGN.paperWidth-corner*curl*.35;
+ let y=(v-.5)*DESIGN.paperHeight+corner*curl*.24;
+ let z=10+112*flight+52*Math.sin(flight*Math.PI);
+ z+=116*load*(1-release)*Math.sin(Math.PI*u)*Math.sin(Math.PI*v);
+ z+=corner*curl;
+ z+=flutter*26*Math.sin(v*7.5-t*7.2)*Math.pow(Math.abs(u-.5)*2,2);
+ z+=flutter*12*Math.sin(u*6+t*5)*Math.sin(Math.PI*v);
+ const rx=.18*Math.sin(flight*Math.PI)-.025*flight;
+ const ry=-.29*Math.sin(flight*Math.PI)-.065*flight;
+ const settle=t>6.55?Math.exp(-(t-6.55)*1.6)*Math.sin((t-6.55)*5)*.016:0;
+ const rz=-.115*flight+settle;
+ let qy=y*Math.cos(rx)-z*Math.sin(rx),qz=y*Math.sin(rx)+z*Math.cos(rx);y=qy;z=qz;
+ let qx=x*Math.cos(ry)+z*Math.sin(ry);qz=-x*Math.sin(ry)+z*Math.cos(ry);x=qx;z=qz;
+ qx=x*Math.cos(rz)-y*Math.sin(rz);qy=x*Math.sin(rz)+y*Math.cos(rz);x=qx;y=qy;
+ const perspective=1320/(1320-z);
+ return {x:720+32*flight+x*perspective,y:531-13*flight+y*perspective,z:z};
+}
+
+function outline(t){
+ ctx.beginPath();
+ for(let i=0;i<=18;i++){const p=point(i/18,0,t);i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}
+ for(let i=1;i<=24;i++){const p=point(1,i/24,t);ctx.lineTo(p.x,p.y);}
+ for(let i=17;i>=0;i--){const p=point(i/18,1,t);ctx.lineTo(p.x,p.y);}
+ for(let i=23;i>=0;i--){const p=point(0,i/24,t);ctx.lineTo(p.x,p.y);}
+ ctx.closePath();
+}
+
+function triangle(a,b,c,sa,sb,sc,shade){
+ // Affine texture mapping on a deterministic paper mesh.
+ const det=sa.x*(sb.y-sc.y)+sb.x*(sc.y-sa.y)+sc.x*(sa.y-sb.y);
+ if(Math.abs(det)<.001)return;
+ const ax=(a.x*(sb.y-sc.y)+b.x*(sc.y-sa.y)+c.x*(sa.y-sb.y))/det;
+ const bx=(a.y*(sb.y-sc.y)+b.y*(sc.y-sa.y)+c.y*(sa.y-sb.y))/det;
+ const cx=(a.x*(sc.x-sb.x)+b.x*(sa.x-sc.x)+c.x*(sb.x-sa.x))/det;
+ const dx=(a.y*(sc.x-sb.x)+b.y*(sa.x-sc.x)+c.y*(sb.x-sa.x))/det;
+ const ex=(a.x*(sb.x*sc.y-sc.x*sb.y)+b.x*(sc.x*sa.y-sa.x*sc.y)+c.x*(sa.x*sb.y-sb.x*sa.y))/det;
+ const fx=(a.y*(sb.x*sc.y-sc.x*sb.y)+b.y*(sc.x*sa.y-sa.x*sc.y)+c.y*(sa.x*sb.y-sb.x*sa.y))/det;
+ const mx=(a.x+b.x+c.x)/3,my=(a.y+b.y+c.y)/3;
+ const grow=p=>{const vx=p.x-mx,vy=p.y-my,len=Math.hypot(vx,vy)||1;return {x:p.x+.42*vx/len,y:p.y+.42*vy/len};};
+ const aa=grow(a),bb=grow(b),cc=grow(c);
+ ctx.save();ctx.beginPath();ctx.moveTo(aa.x,aa.y);ctx.lineTo(bb.x,bb.y);ctx.lineTo(cc.x,cc.y);ctx.closePath();ctx.clip();
+ ctx.transform(ax,bx,cx,dx,ex,fx);ctx.drawImage(texture,0,0);
+ if(shade>0){ctx.fillStyle='rgba(48,29,14,'+shade+')';ctx.fillRect(0,0,texture.width,texture.height);}
+ ctx.restore();
+}
+
+function drawPaper(t){
+ const lift=smooth(3.45,6.55,t);
+ ctx.save();ctx.translate(5+12*lift,12+24*lift);
+ ctx.shadowColor='rgba(38,28,17,0.30)';ctx.shadowBlur=22+38*lift;
+ outline(t);ctx.fillStyle='rgba(45,32,19,0.19)';ctx.fill();ctx.restore();
+ outline(t);ctx.fillStyle=DESIGN.paper;ctx.fill();
+ const cols=14,rows=20,grid=[];
+ for(let j=0;j<=rows;j++){
+  const row=[];for(let i=0;i<=cols;i++)row.push(point(i/cols,j/rows,t));grid.push(row);
+ }
+ // Clip to the outside contour so expanded texture triangles leave a clean edge.
+ ctx.save();outline(t);ctx.clip();
+ for(let j=0;j<rows;j++)for(let i=0;i<cols;i++){
+  const a=grid[j][i],b=grid[j][i+1],c=grid[j+1][i+1],d=grid[j+1][i];
+  const x=i/cols*texture.width,y=j/rows*texture.height;
+  const xx=(i+1)/cols*texture.width,yy=(j+1)/rows*texture.height;
+  const shade=clamp(((d.z-a.z)+(c.z-b.z))/75,0,.15);
+  triangle(a,b,c,{x:x,y:y},{x:xx,y:y},{x:xx,y:yy},shade);
+  triangle(a,c,d,{x:x,y:y},{x:xx,y:yy},{x:x,y:yy},shade);
+ }
+ ctx.restore();
+ outline(t);ctx.strokeStyle='rgba(255,252,237,.72)';ctx.lineWidth=1.25;ctx.stroke();
+}
+
+function drawChips(t){
+ const f=smooth(3.48,5.9,t);if(f<=0)return;
+ const alpha=1-smooth(6.4,8.3,t);
+ ctx.save();ctx.globalAlpha=alpha;
+ for(let i=0;i<chips.length;i++){
+  const c=chips[i],q=1-Math.pow(1-f,2);
+  ctx.save();ctx.translate(720+c[0]+c[2]*q,531+c[1]+c[3]*q+85*f*f);
+  ctx.rotate(c[6]*q);ctx.fillStyle=i%3===0?'#d9c8a3':'#292c25';
+  ctx.beginPath();ctx.moveTo(-c[4]/2,-c[5]/2);ctx.lineTo(c[4]/2,-c[5]/3);ctx.lineTo(c[4]/4,c[5]/2);ctx.lineTo(-c[4]/2,c[5]/3);ctx.closePath();ctx.fill();ctx.restore();
+ }
+ ctx.restore();
+}
+
+// Every visible state is reconstructed from composition time. There is no playback clock.
+function draw(t){
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.shadowColor='transparent';ctx.clearRect(0,0,1440,1080);
+ const bg=ctx.createRadialGradient(660,420,50,720,540,960);
+ bg.addColorStop(0,'#faf7ef');bg.addColorStop(.6,DESIGN.background);bg.addColorStop(1,'#d9d4c9');
+ ctx.fillStyle=bg;ctx.fillRect(0,0,1440,1080);
+ // Soft pools of light ground the object without adding scenery or labels.
+ const glow=smooth(2.1,3.5,t)*(1-smooth(5.6,8,t));
+ const warm=ctx.createRadialGradient(760,565,30,760,565,530);
+ warm.addColorStop(0,'rgba(240,68,37,'+(glow*.13)+')');warm.addColorStop(1,'rgba(240,68,37,0)');
+ ctx.fillStyle=warm;ctx.fillRect(0,0,1440,1080);
+ const shadow=ctx.createRadialGradient(744,988,5,744,988,360);
+ shadow.addColorStop(0,'rgba(57,44,28,.16)');shadow.addColorStop(1,'rgba(57,44,28,0)');
+ ctx.save();ctx.translate(0,741);ctx.scale(1,.25);ctx.fillStyle=shadow;ctx.fillRect(200,700,1100,600);ctx.restore();
+ const shake=smooth(2.4,3.4,t)*(1-smooth(3.45,3.9,t))*Math.sin(t*48)*1.7;
+ // The subtle backing board is exposed as the sheet peels forward.
+ const escape=smooth(3.45,5.8,t);
+ ctx.save();ctx.translate(720+shake,531);
+ ctx.fillStyle='#c8c0ae';ctx.fillRect(-291,-381,582,762);
+ const well=ctx.createLinearGradient(-290,-380,290,380);well.addColorStop(0,'#c2bba9');well.addColorStop(1,'#ddd5c3');
+ ctx.globalAlpha=escape;ctx.fillStyle=well;ctx.fillRect(-291,-381,582,762);ctx.restore();
+ // The board travels out with the broken frame, revealing the wall.
+ if(escape>0){ctx.save();ctx.globalAlpha=escape;ctx.fillStyle=bg;ctx.fillRect(428,149,584,764);ctx.restore();}
+ drawFrame(t,shake);
+ drawPaper(t);
+ drawChips(t);
+}
+
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:DESIGN.duration,duration:DESIGN.duration,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>

@@ -80,3 +80,5 @@ The repository-local skill now explicitly requires full-resolution reference ins
 `python3 tools/render_queue.py --watch` watches completed baseline sources, stages self-contained movies, runs actual browser checks, renders and verifies MP4s, and refreshes the local gallery. It leaves visual fidelity pending. External runtime assets and interactive controls require separate checks; their source is retained with a reason. Native renderer requests are routed separately. Downloaded reference movies and raw diagnostics remain local and ignored.
 
 `python3 tools/github_sync.py --push` uses Git's configured credential helper and verifies the remote commit. Run tests and commit reviewed publication artifacts first. The generation/render workers update local state; a Git push is what updates the published Pages gallery.
+
+`python3 tools/publish_progress.py --watch` publishes corpus run/render output changes to the configured `valekar/awesome-gpt-videos` destination after tests. It stops if the branch/destination changes or unrelated staged work exists. It does not assign visual acceptance.

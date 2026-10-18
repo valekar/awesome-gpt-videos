@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,30 @@
       "-o",
       "$REPO/results/nolkeeg-635633/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 24541,
+      "cached_input_tokens": 20480,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5906,
+      "reasoning_output_tokens": 0
+    },
+    "finished_at": "2026-10-18T13:53:43.676214+00:00",
+    "assumptions": [
+      "Creative choice: AFTERIMAGE, an original abstract film featuring a metallic knot, orange filaments, fractured typography, and particle reconstruction.",
+      "Chosen format: 1920×1080 landscape, 24 seconds, silent.",
+      "Artwork is generated with Canvas and generic system fonts. No external assets, product claims, or third-party asset licenses are required.",
+      "The harness supplies gsap.min.js locally. One paused GSAP timeline drives deterministic, seekable rendering.",
+      "This source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable standalone motion graphic with a morphing metallic sculpture, kinetic typography, fracture effects, and particle lettering.",
+    "source_sha256": "e6a75e1721ac0a50a54c661caf0c6b450c04ac397cb7ff12742a92b0364e7958",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 24,
+    "source_path": "results/nolkeeg-635633/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   },
   "adapted": {
     "status": "not_generated"

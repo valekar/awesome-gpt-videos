@@ -1,0 +1,55 @@
+{
+  "baseline": {
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "d801603a8d27aabbe6a80545f3ff825d8fdddde72cedd0c37c8c9de1a61b284b",
+    "input_sha256": "a7fb131128930129bfc32525c9ad15058d6ceb65f3f5b475d90c2d7975815a3d",
+    "started_at": "2026-10-18T13:53:44.755825+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/bthreeagency-827092/baseline/schema.json",
+      "-o",
+      "$REPO/results/bthreeagency-827092/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 19047,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 284,
+      "reasoning_output_tokens": 188
+    },
+    "finished_at": "2026-10-18T13:54:02.879779+00:00",
+    "assumptions": [],
+    "missing_inputs": [
+      "The referenced Figma frame URL or an exported design, including the badge assets, typography, lighting and layout.",
+      "Animation duration and target dimensions, if not specified in the Figma frame."
+    ],
+    "summary": "The referenced Figma frame was not supplied. Exact-match animation requires the design and its assets.",
+    "reason": "The referenced Figma frame URL or an exported design, including the badge assets, typography, lighting and layout.; Animation duration and target dimensions, if not specified in the Figma frame."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

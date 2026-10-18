@@ -13,7 +13,7 @@ function title(v){const text=v.prompt.replace(/<[^>]*>/g,' ').replace(/\s+/g,' '
 function player(v,track){
  const run=v.runs[track]||{status:'not_generated'};
  if(run.video_url)return `<video controls playsinline preload="none" src="${safeURL(run.video_url)}" ${run.poster_url?`poster="${safeURL(run.poster_url)}"`:''}></video>`;
- return `<div class="empty"><div class="symbol" aria-hidden="true">${run.status==='not_generated'?'↗':'○'}</div><strong>${esc(labels[run.status]||run.status)}</strong><p>${esc(run.reason||'The draft prompt is ready. A generated, rendered and reviewed GPT recreation will appear here when evidence is saved.')}</p></div>`;
+ return `<div class="empty"><div class="symbol" aria-hidden="true">${run.status==='not_generated'?'↗':'○'}</div><strong>${esc(labels[run.status]||run.status)}</strong><p>${esc(run.render_queue_reason||run.reason||'The draft prompt is ready. A generated, rendered and reviewed GPT recreation will appear here when evidence is saved.')}</p></div>`;
 }
 function render(){
  document.querySelectorAll('video').forEach(v=>v.pause());

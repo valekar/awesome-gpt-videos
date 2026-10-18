@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "status": "running",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "2f65441a1725d6639fe7b96c62175bb743b99338a137210067d7167cfdb4db6f",
+    "input_sha256": "dafc7f61d09f639151680316fe9929d8ac775dab4808a78f6c2e87b79f2ac42a",
+    "started_at": "2026-10-18T13:54:04.146558+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/zacxbt-944604/baseline/schema.json",
+      "-o",
+      "$REPO/results/zacxbt-944604/baseline/response.json",
+      "-"
+    ]
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

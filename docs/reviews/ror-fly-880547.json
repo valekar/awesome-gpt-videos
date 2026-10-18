@@ -1,0 +1,39 @@
+{
+  "slug": "ror-fly-880547",
+  "status": "sampled",
+  "reviewed_on": "2026-10-18",
+  "reviewer": "Codex visual inspection",
+  "method": "Original sampled at1s spacing across30s; original full-resolution t15s; iteration1 decoded samples and iteration2 preview at1.667,8.333,15,21.667,28.333s. Decoded iteration2 verification recorded separately after render. Full transition acceptance remains pending.",
+  "reference": {
+    "width": 1080,
+    "height": 1080,
+    "fps": 30,
+    "duration_seconds": 30,
+    "audio_streams": 0
+  },
+  "baseline": {
+    "status": "blocked",
+    "reason": "Published creator text does not specify the cocktail or ingredients. No recipe was invented for the identical-material baseline."
+  },
+  "adapted": {
+    "attempts": 2,
+    "shared_assets": [
+      "Bangers.ttf and Caveat.ttf, separately supplied SIL OFL font approximations; original families unknown.",
+      "GSAP@3.14.2 supplied timeline runtime."
+    ],
+    "observations": [
+      "Iteration1 preserves six recipe stages, quantities, glass/card layout and30s silent square format but uses generic sans-serif, pale cubes and small progress nodes.",
+      "Iteration2 explicitly loads supplied fonts and waits for readiness, strengthens irregular outlines, adds procedural paper specks, enlarges progress nodes and tints floating ice with the drink.",
+      "At matched15s the new version now has completed the Campari pour and withdrawing bottle, closer to the original state; first attempt was still pouring.",
+      "Three equal1oz pours, compressed20-second stirring timer, peel and final1:1:1/CIN CIN card are retained."
+    ],
+    "remaining_differences": [
+      "Bangers/Caveat differ from the original unknown typography; heading slant, glyph shapes and fine spacing remain different.",
+      "Glass/liquid geometry, highlights, ice bevels, bottle silhouettes and peel are code approximations.",
+      "Font/paper assets and reference-derived recipe add information beyond the short original prompt.",
+      "Exact transitions and continuous motion are not fully audited; sampled resemblance is not parity."
+    ]
+  },
+  "comparison_claim": "Reference guidance and a recorded revision improve this reconstruction. Extra evidence and supplied fonts prevent a controlled model-ranking or single-shot equivalence claim.",
+  "decoded_verification": "Iteration2 encoded MP4 inspected using a full-duration5s contact sheet and decoded full-resolution frames at15s and28.333s; matches the preview samples. Full transition acceptance remains pending."
+}

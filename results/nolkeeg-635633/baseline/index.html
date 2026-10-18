@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AFTERIMAGE</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080a0d}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#080a0d}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="24">
+<canvas id="art" class="clip" data-start="0" data-duration="24" width="1920" height="1080" aria-label="Afterimage: a metallic knot bends, fractures, becomes typography, and reforms."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(() => {
+'use strict';
+// EDITABLE ART DIRECTION
+const DESIGN={duration:24,width:1920,height:1080,orange:'#ff641f',cream:'#f1eee5',background:'#080a0d',segments:216,sides:14};
+const canvas=document.getElementById('art');
+const ctx=canvas.getContext('2d');
+const W=DESIGN.width,H=DESIGN.height,PI=Math.PI,TAU=PI*2;
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const mix=(a,b,t)=>a+(b-a)*t;
+const smooth=(a,b,t)=>{const x=clamp((t-a)/(b-a));return x*x*(3-2*x)};
+const envelope=(t,a,b,inTime=.45,outTime=.45)=>smooth(a,a+inTime,t)*(1-smooth(b-outTime,b,t));
+const hash=n=>{const v=Math.sin(n*127.1+311.7)*43758.5453123;return v-Math.floor(v)};
+const norm=a=>{const l=Math.hypot(...a)||1;return a.map(v=>v/l)};
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+const font=s=>`900 ${s}px Arial, Helvetica, sans-serif`;
+
+// Static, reproducible grain and glyph targets. No external artwork or fonts.
+const grain=document.createElement('canvas');grain.width=192;grain.height=108;
+const gc=grain.getContext('2d');const noise=gc.createImageData(192,108);
+for(let i=0;i<noise.data.length;i+=4){const v=Math.floor(hash(i/4)*255);noise.data[i]=v;noise.data[i+1]=v;noise.data[i+2]=v;noise.data[i+3]=255}gc.putImageData(noise,0,0);
+const mask=document.createElement('canvas');mask.width=W;mask.height=H;
+const mc=mask.getContext('2d',{willReadFrequently:true});
+function becomeType(c){c.save();c.translate(960,650);c.scale(1.15,1);c.font=font(260);c.textAlign='center';c.fillText('BECOME',0,0);c.restore()}
+mc.fillStyle='#fff';becomeType(mc);
+const bitmap=mc.getImageData(0,0,W,H).data;
+const targets=[];
+for(let y=410;y<665;y+=9)for(let x=190;x<1730;x+=9)if(bitmap[(y*W+x)*4+3]>160)targets.push({x,y,id:targets.length});
+
+function rotate(v,ax,ay,az){
+ let [x,y,z]=v;let c=Math.cos(ax),s=Math.sin(ax);[y,z]=[y*c-z*s,y*s+z*c];
+ c=Math.cos(ay);s=Math.sin(ay);[x,z]=[x*c+z*s,-x*s+z*c];
+ c=Math.cos(az);s=Math.sin(az);return[x*c-y*s,x*s+y*c,z];
+}
+function background(t){
+ ctx.fillStyle=DESIGN.background;ctx.fillRect(0,0,W,H);
+ const climax=envelope(t,8.8,16,1.2,1.7);
+ const cx=mix(1110,1390,smooth(20,22,t));
+ const halo=ctx.createRadialGradient(cx,510,0,cx,510,900);
+ halo.addColorStop(0,`rgba(66,82,105,${.21-climax*.08})`);
+ halo.addColorStop(.46,'rgba(19,28,42,.15)');halo.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.fillStyle=halo;ctx.fillRect(0,0,W,H);
+ const amber=ctx.createRadialGradient(960,600,0,960,600,750);
+ amber.addColorStop(0,`rgba(180,49,7,${.035+climax*.15})`);amber.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=amber;ctx.fillRect(0,0,W,H);
+ ctx.save();ctx.globalAlpha=.17;
+ for(let i=0;i<92;i++){
+  const x=hash(i+20)*W,y=hash(i+250)*H,r=.6+hash(i+500)*1.2;
+  ctx.fillStyle=i%6===0?DESIGN.orange:'#8192a5';ctx.fillRect(x,y,r,r);
+ }
+ ctx.restore();
+ // Moving ellipses establish a continuous orbital space through every scene.
+ ctx.save();ctx.translate(cx,550);ctx.rotate(-.35+.12*Math.sin(t*.25));
+ const orbitAlpha=.13+envelope(t,5,12)*.12;
+ for(let i=0;i<5;i++){
+  ctx.beginPath();ctx.ellipse(0,0,450+i*113,160+i*39,0,0,TAU);
+  ctx.strokeStyle=i===1?`rgba(255,100,31,${orbitAlpha})`:`rgba(116,140,162,${orbitAlpha*.38})`;
+  ctx.lineWidth=1;ctx.stroke();
+ }
+ ctx.restore();
+ // Perspective streaks surge through the fracture instead of cutting scenes.
+ const warp=envelope(t,10.3,15.8,.8,1.4);
+ if(warp>0){ctx.save();ctx.globalAlpha=warp;
+  for(let i=0;i<100;i++){
+   const a=hash(i+40)*TAU,r=110+((hash(i+80)+t*.31)%1)**2*1300;
+   const len=(25+r*.18)*(1+warp),xx=Math.cos(a),yy=Math.sin(a)*.67;
+   const g=ctx.createLinearGradient(960+xx*r,540+yy*r,960+xx*(r+len),540+yy*(r+len));
+   g.addColorStop(0,'rgba(255,100,31,0)');g.addColorStop(1,i%4===0?'rgba(255,121,65,.7)':'rgba(173,195,215,.26)');
+   ctx.strokeStyle=g;ctx.lineWidth=i%9===0?2:1;ctx.beginPath();ctx.moveTo(960+xx*r,540+yy*r);ctx.lineTo(960+xx*(r+len),540+yy*(r+len));ctx.stroke();
+  }ctx.restore();
+ }
+}
+function intro(t){
+ const a=envelope(t,.45,4.5,.7,.6);if(a<=0)return;
+ ctx.save();ctx.globalAlpha=a;ctx.translate(120,0);
+ for(let line=0;line<2;line++){
+  const word=line?'IMPULSE.':'ONE';const start=.55+line*.13;
+  let x=0;ctx.font=font(112);ctx.textAlign='left';ctx.fillStyle=DESIGN.cream;
+  for(let i=0;i<word.length;i++){
+   const p=smooth(start+i*.035,start+.6+i*.035,t);
+   ctx.save();ctx.translate(x,231+line*116+(1-p)*90);ctx.scale(1,.25+.75*p);ctx.globalAlpha=a*p;ctx.fillText(word[i],0,0);ctx.restore();
+   x+=ctx.measureText(word[i]).width-4;
+  }
+ }
+ ctx.globalAlpha=a;ctx.fillStyle=DESIGN.orange;ctx.fillRect(0,392,410*smooth(.9,1.7,t),5);ctx.restore();
+}
+function kinetic(word,t,start,end,size,y){
+ const a=envelope(t,start,end,.65,.65);if(a<=0)return;
+ ctx.save();ctx.font=font(size);ctx.textAlign='left';
+ const widths=[...word].map(c=>ctx.measureText(c).width-13);let x=(W-widths.reduce((s,v)=>s+v,0))/2;
+ for(let i=0;i<word.length;i++){
+  const enter=smooth(start+i*.075,start+.65+i*.075,t);
+  const leave=smooth(end-.65+i*.035,end+i*.035,t);
+  const bend=Math.sin(i*.9+t*1.4)*19*a;
+  ctx.save();ctx.translate(x,y+(1-enter)*260-leave*180+bend);ctx.transform(1,0,.16*(1-enter)-.08*leave,1,0,0);
+  ctx.scale(1,.2+.8*enter);ctx.globalAlpha=a*enter*.88;
+  ctx.fillStyle=DESIGN.cream;ctx.fillText(word[i],0,0);ctx.restore();x+=widths[i];
+ }
+ ctx.restore();
+}
+function fractureType(t){
+ const a=envelope(t,8.5,12.1,.55,.65);if(a<=0)return;
+ const split=smooth(9,11.9,t);ctx.save();ctx.font=font(335);ctx.textAlign='center';
+ for(let i=0;i<18;i++){
+  const yy=355+i*23;const shift=Math.sin(i*2.35+t*2.6)*split*(40+i*7);
+  ctx.save();ctx.beginPath();ctx.rect(0,yy,W,22);ctx.clip();
+  ctx.globalAlpha=a*.9;ctx.fillStyle=i%5===0?DESIGN.orange:DESIGN.cream;
+  ctx.fillText('BREAK',960+shift,718+(i%2?1:-1)*split*8);ctx.restore();
+ }ctx.restore();
+}
+function curve(u,m){
+ // A torus knot gradually opens into a spherical winding.
+ const r=.78+.29*Math.cos(3*u);
+ const knot=[r*Math.cos(2*u),r*Math.sin(2*u),.33*Math.sin(3*u)];
+ const sphere=[Math.cos(u)*Math.cos(3*u)*1.05,Math.sin(u)*1.05,Math.cos(u)*Math.sin(3*u)*1.05];
+ return knot.map((v,i)=>mix(v,sphere[i],m));
+}
+function sculpture(t){
+ const exit=1-smooth(13.1,15.9,t),reenter=smooth(20,21.5,t);
+ const alpha=Math.max(exit,reenter)*smooth(.05,1.2,t);if(alpha<.001)return;
+ const final=smooth(19.8,21.8,t);
+ const opening=smooth(0,2.4,t);
+ const shape=smooth(4.5,7.8,t)*(1-smooth(20,22,t));
+ const blast=smooth(8.9,11.7,t)*(1-smooth(19,21.5,t));
+ const scale=mix(mix(100,390,opening),300,final)*(1+.07*Math.sin(t*1.2)*(1-final));
+ const centerX=mix(mix(1230,960,smooth(3.2,5.6,t)),1385,final);
+ const centerY=mix(566,535,final);
+ const ax=.38+Math.sin(t*.39)*.3,ay=t*.36+.25*Math.sin(t*.3),az=-.25+.26*Math.sin(t*.51);
+ const tube=mix(.009,.148,smooth(.5,2.2,t));
+ const light=norm([-.5,-.8,-.6]);
+ const project=v=>{const d=4.6/(4.6+v[2]);return{x:centerX+v[0]*scale*d,y:centerY+v[1]*scale*d,z:v[2],d}};
+ const ring=[];const normals=[];
+ for(let i=0;i<=DESIGN.segments;i++){
+  const u=i/DESIGN.segments*TAU;
+  const p=curve(u,shape),next=curve(u+.001,shape),prev=curve(u-.001,shape);
+  const tangent=norm(next.map((v,k)=>v-prev[k]));
+  const n=norm(cross(tangent,[0,0,1])),b=norm(cross(tangent,n));
+  const sector=Math.floor((i%DESIGN.segments)/12),ba=sector*2.399963;
+  const push=blast*(.3+hash(sector+22)*1.2);
+  const displacement=[Math.cos(ba)*push,Math.sin(ba)*push,Math.sin(ba*1.7)*push*1.3];
+  const row=[],nr=[];
+  for(let j=0;j<=DESIGN.sides;j++){
+   const v=j/DESIGN.sides*TAU+u*.55;
+   const normal=n.map((x,k)=>x*Math.cos(v)+b[k]*Math.sin(v));
+   const breathing=1+.045*Math.sin(u*9-t*2);
+   let pos=p.map((x,k)=>x+normal[k]*tube*breathing+displacement[k]);
+   pos=rotate(pos,ax,ay,az);row.push(project(pos));nr.push(rotate(normal,ax,ay,az));
+  }ring.push(row);normals.push(nr);
+ }
+ const faces=[];
+ for(let i=0;i<DESIGN.segments;i++){
+  if(blast>.03&&i%12===11)continue;
+  for(let j=0;j<DESIGN.sides;j++){
+   const pts=[ring[i][j],ring[i+1][j],ring[i+1][j+1],ring[i][j+1]];
+   const n=normals[i][j];
+   const diffuse=Math.max(0,dot(n,light));
+   const reflection=Math.pow(.5+.5*Math.sin(n[0]*7+n[1]*4+n[2]*2),13);
+   const rim=Math.pow(1-Math.abs(n[2]),3);
+   const spec=Math.pow(diffuse,18);
+   const lum=clamp(.085+diffuse*.28+reflection*.65+spec*.9+rim*.2);
+   const copper=j>=10&&j<=12;
+   let color;
+   if(copper){const v=.28+lum*.72;color=`rgb(${Math.round(255*v)},${Math.round(39+126*lum)},${Math.round(13+73*lum)})`}
+   else{const v=Math.round(21+222*lum);color=`rgb(${v},${Math.min(255,v+5)},${Math.min(255,v+12)})`}
+   faces.push({pts,z:pts.reduce((s,p)=>s+p.z,0)/4,color,glint:spec});
+  }
+ }
+ faces.sort((a,b)=>b.z-a.z);
+ ctx.save();ctx.globalAlpha=alpha;
+ const shadow=ctx.createRadialGradient(centerX,890,5,centerX,890,470);
+ shadow.addColorStop(0,'rgba(0,0,0,.55)');shadow.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.save();ctx.translate(0,730);ctx.scale(1,.18);ctx.fillStyle=shadow;ctx.fillRect(centerX-500,300,1000,1000);ctx.restore();
+ for(const f of faces){ctx.beginPath();f.pts.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=f.color;ctx.fill();ctx.strokeStyle=f.color;ctx.lineWidth=.55;ctx.stroke()}
+ // A moving filament traces the knot, then tears apart with its surface.
+ ctx.globalCompositeOperation='screen';ctx.lineWidth=2;
+ for(let i=0;i<DESIGN.segments;i++){
+  const hot=Math.pow(.5+.5*Math.cos(i/DESIGN.segments*TAU-t*2.1),28);
+  if(hot<.04||(blast>.03&&i%12===11))continue;
+  const a=ring[i][11],b=ring[i+1][11];ctx.strokeStyle=`rgba(255,164,88,${hot*.9})`;
+  ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();
+ }
+ ctx.restore();
+}
+function impulse(t){
+ const a=envelope(t,0,2.1,.14,.65);if(a<=0)return;
+ ctx.save();ctx.globalCompositeOperation='screen';
+ const x=1230,y=566,r=95+60*smooth(0,1.6,t);
+ for(let i=55;i>=0;i--){
+  const angle=t*4.2-i*.026,px=x+Math.cos(angle)*r,py=y+Math.sin(angle)*r*.54;
+  const fade=(1-i/56)*a;ctx.globalAlpha=fade;ctx.fillStyle=i===0?DESIGN.cream:DESIGN.orange;
+  ctx.beginPath();ctx.arc(px,py,i===0?7:2.5,0,TAU);ctx.fill();
+ }
+ ctx.restore();
+}
+function shockwaves(t){
+ ctx.save();ctx.globalCompositeOperation='screen';
+ for(let i=0;i<3;i++){
+  const p=clamp((t-(9.35+i*.28))/1.8);if(p<=0||p>=1)continue;
+  ctx.save();ctx.translate(960,540);ctx.rotate(-.3);ctx.scale(1,.64);
+  ctx.strokeStyle=`rgba(255,111,49,${(1-p)**2*.7})`;ctx.lineWidth=3*(1-p)+.5;
+  ctx.beginPath();ctx.arc(0,0,90+1250*(1-(1-p)**3),0,TAU);ctx.stroke();ctx.restore();
+ }ctx.restore();
+}
+function become(t){
+ const appear=smooth(12.1,13,t),gone=1-smooth(20.5,21.3,t);if(appear*gone<=0)return;
+ const solid=envelope(t,16.4,20.05,.75,.55);
+ if(solid>0){
+  ctx.save();ctx.globalAlpha=solid;
+  for(let i=12;i>0;i--){ctx.save();ctx.translate(i*.85,i*1.3);ctx.fillStyle=i>7?'#63250f':'#d54b18';becomeType(ctx);ctx.restore()}
+  ctx.fillStyle=DESIGN.cream;becomeType(ctx);
+  ctx.save();ctx.globalCompositeOperation='source-atop';ctx.restore();
+  ctx.restore();
+ }
+ ctx.save();ctx.globalCompositeOperation='screen';
+ for(const p of targets){
+  const h=hash(p.id+12),a=hash(p.id+800)*TAU+t*.24;
+  const radial=180+hash(p.id+1400)*570;
+  const fromX=960+Math.cos(a)*radial,fromY=540+Math.sin(a*1.27)*radial*.68;
+  const form=smooth(12.75+h*.7,16.1+h*.7,t);
+  const release=smooth(19.45+h*.35,21.1+h*.25,t);
+  const bend=Math.sin(p.x*.007+t*2.3)*(1-form)*90;
+  let x=mix(fromX,p.x,form),y=mix(fromY,p.y+bend,form);
+  const toX=1385+Math.cos(a*3+t)*75*(1-release),toY=535+Math.sin(a*3+t)*75*(1-release);
+  x=mix(x,toX,release);y=mix(y,toY,release);
+  const alpha=appear*gone*(1-solid*.72)*(.45+h*.55);
+  ctx.globalAlpha=alpha;ctx.fillStyle=p.id%5===0?DESIGN.orange:DESIGN.cream;
+  const sz=(1.8+h*2.4)*(1+Math.sin(form*PI)*.4);
+  if(form>.07&&form<.94){
+   ctx.strokeStyle=p.id%5===0?'#ff641f':'#b9c8d7';ctx.lineWidth=1;
+   ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+(fromX-p.x)*.024*Math.sin(form*PI),y+(fromY-p.y)*.024*Math.sin(form*PI));ctx.stroke();
+  }
+  ctx.fillRect(x-sz/2,y-sz/2,sz,sz);
+ }
+ // A narrow highlight travels across the reconstructed letterforms.
+ if(solid>.1){
+  ctx.save();ctx.globalAlpha=solid*.55;
+  const sweep=260+smooth(17,19.1,t)*1450;
+  ctx.beginPath();ctx.rect(sweep-8,370,16,320);ctx.clip();ctx.fillStyle='#fff';becomeType(ctx);ctx.restore();
+ }
+ ctx.restore();
+}
+function finalTitle(t){
+ const a=smooth(20.2,21.4,t);if(a<=0)return;
+ ctx.save();ctx.font=font(190);ctx.textAlign='left';
+ const lines=['AFTER','IMAGE'];
+ for(let l=0;l<2;l++){
+  let x=120;
+  for(let i=0;i<lines[l].length;i++){
+   const p=smooth(20.25+l*.12+i*.055,21.1+l*.12+i*.055,t);
+   ctx.save();ctx.globalAlpha=p;ctx.translate(x,495+l*189+(1-p)*90);ctx.scale(1,.5+.5*p);
+   ctx.fillStyle=l===0?DESIGN.cream:DESIGN.orange;ctx.fillText(lines[l][i],0,0);ctx.restore();
+   x+=ctx.measureText(lines[l][i]).width-9;
+  }
+ }
+ // The underline expands from the title and becomes the sculpture's orbit.
+ ctx.globalAlpha=a*.7;ctx.fillStyle=DESIGN.cream;ctx.fillRect(127,734,425*smooth(21,22,t),3);ctx.restore();
+}
+function finish(t){
+ ctx.save();ctx.globalAlpha=.024;ctx.drawImage(grain,0,0,W,H);ctx.restore();
+ const vignette=ctx.createRadialGradient(960,540,370,960,540,1150);
+ vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(0,0,0,.55)');ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ const fade=smooth(23.55,24,t);if(fade){ctx.fillStyle=`rgba(8,10,13,${fade})`;ctx.fillRect(0,0,W,H)}
+}
+function draw(t){
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+ background(t);
+ intro(t);
+ kinetic('BEND',t,4.15,8.8,370,723);
+ fractureType(t);
+ shockwaves(t);
+ sculpture(t);
+ impulse(t);
+ become(t);
+ finalTitle(t);
+ finish(t);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:DESIGN.duration,duration:DESIGN.duration,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+})();
+</script>
+</body>
+</html>

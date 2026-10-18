@@ -56,7 +56,8 @@
     "height": 1080,
     "duration_seconds": 42,
     "source_path": "results/0xchuckstock-879327/baseline/index.html",
-    "reason": "Source generated; rendering and matched-time fidelity review pending."
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
   },
   "adapted": {
     "status": "not_generated"
