@@ -12,3 +12,16 @@ Revise the current reconstruction in place, preserving the 47-second scene seque
 - Reduce the final fade slightly so the 46.85s device and text remain as visible as in the supplied pair.
 
 Create revised graphics and interface elements independently in code. Do not incorporate reference frames, source artwork or audio. Treat all displayed market values and execution-time text as artwork claims.
+
+
+## Matched-time review of attempt 2
+
+Revise the existing recreation while preserving its successful timing and text.
+
+- Define one deterministic desktop candle series with irregular local swings, a jagged earlier peak, uneven decline, and late recovery. Reuse that geometry at every zoom level. Match the sampled crops at 12–17s rather than merely centering the recovery.
+- At 6–7s, retain the original's empty bordered regions and delay the lower watchlist quote content. Complete positions/payoff population by 8s.
+- Keep the blue-white newest-candle glow visible at 12–14s. Delay the paired mint/pink microscopic composition to the supported later samples. Build explicit RGB stripes, horizontal cell divisions, dark lattice, and localized bloom; keep white nodes proportional to the sampled candle geometry.
+- Adjust the option-chain framing at 19–20s so 25000 is near the top. At 24s, retain the left watchlist sliver and reduce the positions/payoff panel's apparent size. Match the timestamp-specific row values rather than mixing neighboring states.
+- Rebuild 28–35s with more distributed tiny stars and cross-shaped glints, wider blue/purple haze, two distinct haloed nodes, and less visually dominant connecting polygons. Add small label treatments without inventing exact unreadable wording.
+- Preserve the phone's scale landmarks and buy/confirmation timing. Refine its charcoal rim and candle silhouette, restore quantity/limit/premium detail lines, and synchronize displayed option values to each legible sampled state.
+- Preserve the closing copy and fade; slightly broaden the glow at the Sahi i.
