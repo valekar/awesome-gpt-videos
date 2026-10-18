@@ -1,38 +1,47 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-<meta charset='utf-8'>
-<meta name='viewport' content='width=device-width,initial-scale=1'>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>KOOKABUS-01 Enclosure</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;background:#000;overflow:hidden}canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#000}canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
 </style>
 </head>
 <body>
-<div id='root' data-composition-id='main' data-width='1280' data-height='720' data-duration='10' data-fps='30'>
-<canvas id='film' class='clip' data-start='0' data-duration='10' width='1280' height='720' aria-label='Animated KOOKABUS-01 enclosure assembly, electrical interfaces and DIN-rail mounting'></canvas>
+<div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="10" data-fps="30">
+<canvas id="film" class="clip" data-start="0" data-duration="10" width="1280" height="720" aria-label="KOOKABUS-01 enclosure assembly, connectors and DIN-rail mounting"></canvas>
 </div>
-<script src='gsap.min.js'></script>
+<script src="gsap.min.js"></script>
 <script>
 /*
-INDEPENDENT SAMPLED RECONSTRUCTION — editable procedural geometry.
-1280 x 720; 10 seconds; intended capture at 30 fps; silent.
-No reference images, movies, CAD, external fonts or external assets are used.
-Only dependency: the harness-provided local gsap.min.js.
+Independently authored sampled reconstruction; not recovered creator CAD/code.
+Editable procedural artwork. No reference images are used as output artwork.
+Runtime: 10 seconds, 1280 × 720, intended capture 30 fps, silent.
+Dependency ledger: harness-provided local gsap.min.js only.
+Asset ledger: generated geometry and Canvas textures; generic system sans-serif.
+No supplied font files are used.
 
-Inferred staging, not recovered original scene boundaries:
-0–1: black reveal; exploded lid, PCB, four screws; board annotation.
-1–2: lid approaches; heat-set insert annotation.
-2–3: lid closes; screws rise; underside-fastening annotation.
-3–4: camera enlarges and centers the enclosure.
-4–5: two battery plugs and one load plug approach and connect.
-5–6: battery/load, LED and Qwiic callouts.
-6–7: mounting plate and rail enter beneath the wired enclosure.
-7–8: oblique mounting presentation and optional-clip callout.
-8–9: inferred hook, tilt and settle; TS35 callout.
-9–10: transition toward the supplied dark title state.
-The final title placement, all interpolation and physical dimensions are approximations.
-This source has not been rendered or visually validated.
+Inferred reconstruction timing:
+0–1: reveal from black; populated board, elevated lid, four screws.
+1–2: lid descends and is seated by 2.000; heat-set insert annotation.
+2–3: four underside screws seat; enclosure closes; camera moves inward.
+3–4: centered product presentation; connector approach begins.
+4–5: two battery plugs and one load plug connect, each with two wires.
+5–6: static red A/yellow B indicators and paired Qwiic sockets; callouts.
+6–7: red mounting component and silver rail enter below the housing.
+7–8: oblique, visibly tilted mounting pose; optional clip annotation.
+8–9: inferred hook-and-snap settling into level rail-mounted presentation.
+9–10: left title lockup and illuminated product, readable at 9.850;
+        brief terminal fade interprets the untimed dark reference state.
+
+Revision notes:
+Lid seating ends at 1.990. Camera poses and silhouette have been adjusted.
+Front wall has an actual procedural opening containing two separate sockets.
+Rail geometry is subdivided for occlusion and kept below the red mount.
+Ending copy is taken from the supplied revision guidance.
+All interpolation, dimensions and unobserved internal detail are inferred.
+This source has not been rendered or visually reviewed.
 */
 (() => {
 'use strict';
@@ -49,7 +58,7 @@ const clamp=x=>Math.max(0,Math.min(1,x));
 const smooth=(a,b,t)=>{const u=clamp((t-a)/(b-a));return u*u*(3-2*u)};
 const gate=(t,a,b,c,d)=>smooth(a,b,t)*(1-smooth(c,d,t));
 const lerp3=(a,b,t)=>a.map((v,i)=>mix(v,b[i],t));
-const COLORS={body:[35,44,47],lid:[64,75,80],inside:[18,27,29],rim:[49,60,64],yellow:[235,181,35],rib:[247,198,56],red:[184,8,19],black:[17,20,22],silver:[164,181,190],screw:[119,139,150],plate:[195,7,30],pcb:[160,177,144]};
+const COLORS={body:[39,48,51],lid:[65,76,81],inside:[18,27,29],rim:[52,63,67],yellow:[235,181,35],rib:[247,198,56],red:[184,8,19],black:[17,20,22],silver:[164,181,190],screw:[119,139,150],plate:[195,7,30],pcb:[160,177,144]};
 const light=unit([-4,8,7]);
 let polygons=[],camera,model={rx:0,rz:0,lift:0},useModel=true;
 function rotate(p){
@@ -85,8 +94,8 @@ function roundedRing(w,d,r,y,segments=6){
  return out;
 }
 function box(x,y,z,w,h,d,color,r=.08,b=.025){
- r=Math.min(r,w/2-.001,d/2-.001);b=Math.min(b,h/2-.001,r*.7);
- const rings=[roundedRing(w-2*b,d-2*b,Math.max(.006,r-b),y-h/2),roundedRing(w,d,r,y-h/2+b),roundedRing(w,d,r,y+h/2-b),roundedRing(w-2*b,d-2*b,Math.max(.006,r-b),y+h/2)];
+ r=Math.max(.002,Math.min(r,w/2-.001,d/2-.001));b=Math.max(0,Math.min(b,h/2-.001,r*.7));
+ const rings=[roundedRing(w-2*b,d-2*b,Math.max(.001,r-b),y-h/2),roundedRing(w,d,r,y-h/2+b),roundedRing(w,d,r,y+h/2-b),roundedRing(w-2*b,d-2*b,Math.max(.001,r-b),y+h/2)];
  for(const ring of rings)for(const p of ring){p[0]+=x;p[2]+=z}
  const center=[x,y,z],n=rings[0].length;
  face(rings[0],color,[0,-1,0]);face(rings[3],color,[0,1,0]);
@@ -96,8 +105,7 @@ function box(x,y,z,w,h,d,color,r=.08,b=.025){
  }
 }
 function block(x,y,z,w,h,d,color){
- const X=w/2,Y=h/2,Z=d/2;
- const p=(a,b,c)=>[x+a*X,y+b*Y,z+c*Z];
+ const X=w/2,Y=h/2,Z=d/2,p=(a,b,c)=>[x+a*X,y+b*Y,z+c*Z];
  face([p(-1,-1,1),p(1,-1,1),p(1,1,1),p(-1,1,1)],color,[0,0,1]);
  face([p(1,-1,-1),p(-1,-1,-1),p(-1,1,-1),p(1,1,-1)],color,[0,0,-1]);
  face([p(1,-1,1),p(1,-1,-1),p(1,1,-1),p(1,1,1)],color,[1,0,0]);
@@ -105,23 +113,43 @@ function block(x,y,z,w,h,d,color){
  face([p(-1,1,1),p(1,1,1),p(1,1,-1),p(-1,1,-1)],color,[0,1,0]);
  face([p(-1,-1,-1),p(1,-1,-1),p(1,-1,1),p(-1,-1,1)],color,[0,-1,0]);
 }
+function frontRect(x0,x1,y0,y1,z,color,extra={}){
+ face([[x0,y0,z],[x1,y0,z],[x1,y1,z],[x0,y1,z]],color,[0,0,1],extra);
+}
 function shell(){
  const outer=[roundedRing(4.44,3.04,.18,-.8),roundedRing(4.6,3.2,.25,-.71),roundedRing(4.6,3.2,.25,.24)];
  const innerTop=roundedRing(4.31,2.91,.13,.24),innerBottom=roundedRing(4.31,2.91,.13,-.64),n=outer[0].length;
  for(let k=0;k<2;k++)for(let i=0;i<n;i++){
-  const j=(i+1)%n;outwardFace([outer[k][i],outer[k][j],outer[k+1][j],outer[k+1][i]],COLORS.body,[0,-.28,0]);
+  const j=(i+1)%n;
+  // The straight front span is rebuilt around a real opening below.
+  if(i===6)continue;
+  outwardFace([outer[k][i],outer[k][j],outer[k+1][j],outer[k+1][i]],COLORS.body,[0,-.28,0]);
  }
  face(outer[0],COLORS.body,[0,-1,0]);face(innerBottom,COLORS.inside,[0,1,0]);
  for(let i=0;i<n;i++){
   const j=(i+1)%n;
   face([outer[2][i],outer[2][j],innerTop[j],innerTop[i]],COLORS.rim,[0,1,0]);
+  if(i===6)continue;
   const middle=average([innerTop[i],innerTop[j]]),normal=unit([-middle[0],0,-middle[2]]);
   face([innerTop[i],innerTop[j],innerBottom[j],innerBottom[i]],COLORS.inside,normal);
  }
- // Very restrained horizontal print lines, newly authored surface detail.
+ // Broad charcoal front face, four strips surrounding one shared recess.
+ const z=1.6,L=-.66,R=.66,B=-.53,T=-.145;
+ frontRect(-2.05,L,-.71,.24,z,COLORS.body);
+ frontRect(R,2.05,-.71,.24,z,COLORS.body);
+ frontRect(L,R,T,.24,z,COLORS.body);
+ frontRect(L,R,-.71,B,z,COLORS.body);
+ outwardFace([[-2.04,-.8,1.52],[2.04,-.8,1.52],[2.05,-.71,1.6],[-2.05,-.71,1.6]],COLORS.body,[0,-.3,0]);
+ // Short bevels lead inward from the cutout, rather than painting sockets on the wall.
+ face([[L,B,z],[R,B,z],[R-.035,B+.035,1.47],[L+.035,B+.035,1.47]],[55,66,65],[0,1,0]);
+ face([[L,T,z],[L+.035,T-.035,1.47],[R-.035,T-.035,1.47],[R,T,z]],[12,20,21],[0,-1,0]);
+ face([[L,B,z],[L+.035,B+.035,1.47],[L+.035,T-.035,1.47],[L,T,z]],[25,36,36],[1,0,0]);
+ face([[R,B,z],[R,T,z],[R-.035,T-.035,1.47],[R-.035,B+.035,1.47]],[21,31,32],[-1,0,0]);
+ // Subtle deterministic print lines avoid the opening.
  for(let i=0;i<22;i++){
-  const y=-.69+i*.039;
-  face([[-2.02,y,1.601],[2.02,y,1.601],[2.02,y+.003,1.601],[-2.02,y+.003,1.601]],[112,130,136],[0,0,1],{opacity:.045});
+  const y=-.69+i*.039,extra={opacity:.035};
+  if(y>B&&y<T){frontRect(-2.02,L-.02,y,y+.002,1.601,[112,130,136],extra);frontRect(R+.02,2.02,y,y+.002,1.601,[112,130,136],extra)}
+  else frontRect(-2.02,2.02,y,y+.002,1.601,[112,130,136],extra);
  }
 }
 function cylinder(a,b,r,color,sides=12,r2=r){
@@ -132,8 +160,7 @@ function cylinder(a,b,r,color,sides=12,r2=r){
  }
  face(A,color,mul(axis,-1));face(B,color,axis);
  for(let i=0;i<sides;i++){
-  const j=(i+1)%sides;
-  const n=unit(add(sub(A[i],a),sub(A[j],a)));
+  const j=(i+1)%sides,n=unit(add(sub(A[i],a),sub(A[j],a)));
   face([A[i],A[j],B[j],B[i]],color,n);
  }
 }
@@ -145,8 +172,7 @@ function tube(points,r,color,sides=9){
   rings.push(Array.from({length:sides},(_,j)=>add(points[i],mul(add(mul(u,Math.cos(j/sides*2*PI)),mul(v,Math.sin(j/sides*2*PI))),r))));
  }
  for(let k=0;k<rings.length-1;k++)for(let i=0;i<sides;i++){
-  const j=(i+1)%sides;
-  const n=unit(add(sub(rings[k][i],points[k]),sub(rings[k][j],points[k])));
+  const j=(i+1)%sides,n=unit(add(sub(rings[k][i],points[k]),sub(rings[k][j],points[k])));
   face([rings[k][i],rings[k][j],rings[k+1][j],rings[k+1][i]],color,n,{specular:color===COLORS.red?24:30});
  }
 }
@@ -155,9 +181,8 @@ function bezier(a,b,c,d,n=30){
 }
 function topTexture(){
  const c=document.createElement('canvas');c.width=1024;c.height=640;const g=c.getContext('2d');
- g.fillStyle='#182125';g.textBaseline='middle';g.textAlign='left';
- g.font='600 34px Arial,Helvetica,sans-serif';g.fillText('BATT A',105,75);
- g.font='600 34px Arial,Helvetica,sans-serif';g.fillText('A',163,200);g.fillText('B',163,426);
+ g.fillStyle='#1b2529';g.textBaseline='middle';g.textAlign='left';
+ g.font='600 34px Arial,Helvetica,sans-serif';g.fillText('BATT A',105,75);g.fillText('A',163,200);g.fillText('B',163,426);
  g.textAlign='center';g.font='700 70px Arial,Helvetica,sans-serif';g.fillText('KOOKABUS-01',532,286);
  g.font='600 40px Arial,Helvetica,sans-serif';g.fillText('5S HOT-SWAP',533,352);
  g.font='600 34px Arial,Helvetica,sans-serif';g.fillText('BATT B',205,550);g.fillText('I2C',545,550);g.fillText('LOAD',827,550);
@@ -201,7 +226,7 @@ function renderGeometry(){
   if(f.texture){mappedTexture(f.texture,f.points);continue}
   const normal=unit(f.normal),view=unit(sub(camera.pos,f.center)),half=unit(add(light,view));
   const diffuse=Math.max(0,dot(normal,light)),shine=Math.pow(Math.max(0,dot(normal,half)),30)*(f.specular===undefined?15:f.specular);
-  const shade=.36+.69*diffuse;
+  const shade=.44+.63*diffuse;
   const col=f.color.map(v=>Math.round(Math.min(255,v*shade+shine)));
   ctx.fillStyle='rgb('+col.join(',')+')';ctx.beginPath();
   const ps=f.points.map(project);ctx.moveTo(ps[0][0],ps[0][1]);for(let i=1;i<ps.length;i++)ctx.lineTo(ps[i][0],ps[i][1]);ctx.closePath();ctx.fill();
@@ -212,7 +237,6 @@ function pcb(t){
  const lift=.48*(1-smooth(.43,1.2,t)),y=-.2+lift;
  box(0,y,0,4.14,.09,2.72,COLORS.pcb,.11,.015);
  textureFace(pcbInk,[[-2.01,y+.047,-1.29],[2.01,y+.047,-1.29],[2.01,y+.047,1.29],[-2.01,y+.047,1.29]]);
- // Four integral corner posts and board mounting pads.
  for(const x of [-1.87,1.87])for(const z of [-1.13,1.13]){
   cylinder([x,-.63,z],[x,y+.065,z],.105,[47,57,58],12);
   cylinder([x,y+.05,z],[x,y+.075,z],.13,[189,157,68],16);
@@ -230,15 +254,15 @@ function pcb(t){
  for(let i=0;i<8;i++)block(-.005+i*.076,y+.08,.81,.033,.07,.12,[186,193,178]);
  for(let i=0;i<3;i++)box(-.22+i*.27,y+.1,-.2,.14,.12,.21,[35,42,38],.012,.004);
 }
+function lidElevation(t){return 3.95*(1-smooth(1.03,1.99,t))}
 function lid(t){
- const elevation=3.95*(1-smooth(1.03,2.48,t));
- const y=.565+elevation;
+ const elevation=lidElevation(t),y=.565+elevation;
  box(0,y,0,4.66,.65,3.26,COLORS.lid,.25,.065);
- // A dark lip emphasizes the lid seam without flattening the shell.
  box(0,.25+elevation,0,4.49,.055,3.1,[29,38,41],.19,.014);
  textureFace(lidInk,[[-2.17,.893+elevation,-1.47],[2.17,.893+elevation,-1.47],[2.17,.893+elevation,1.47],[-2.17,.893+elevation,1.47]]);
- cylinder([-1.7,.896+elevation,-.55],[-1.7,.914+elevation,-.55],.071,[232,59,47],20);
- cylinder([-1.7,.896+elevation,.49],[-1.7,.914+elevation,.49],.071,[235,199,91],20);
+ // Two persistent points: red A and yellow B; no electrical switching is inferred.
+ cylinder([-1.7,.896+elevation,-.55],[-1.7,.917+elevation,-.55],.083,[240,59,47],24);
+ cylinder([-1.7,.896+elevation,.49],[-1.7,.917+elevation,.49],.083,[242,207,104],24);
  if(elevation>.02)for(const x of [-1.89,1.89])for(const z of [-1.14,1.14]){
   cylinder([x,-.13+elevation,z],[x,.31+elevation,z],.13,[30,40,43],14);
   cylinder([x,-.14+elevation,z],[x,-.08+elevation,z],.089,[184,140,51],16);
@@ -256,19 +280,24 @@ function screws(t){
  }
 }
 function frontPort(){
- box(0,-.355,1.598,1.22,.4,.07,[9,15,16],.065,.015);
- for(const x of [-.28,.28]){
-  box(x,-.35,1.635,.44,.245,.1,[189,199,173],.032,.013);
-  block(x,-.346,1.693,.326,.145,.009,[44,61,55]);
-  block(x,-.423,1.696,.35,.025,.012,[225,227,202]);
-  for(let j=0;j<4;j++)block(x-.102+j*.068,-.362,1.705,.018,.08,.008,[188,178,111]);
+ // One horizontal recess; two adjacent pale connector housings within it.
+ frontRect(-.625,.625,-.5,-.18,1.444,[8,15,16]);
+ block(0,-.445,1.466,1.12,.055,.07,[74,93,79]);
+ for(const x of [-.285,.285]){
+  const l=x-.23,r=x+.23,b=-.458,top=-.218,z=1.552;
+  block(x,-.338,1.493,.46,.24,.08,[181,192,170]);
+  frontRect(l,r,b,top,z,[202,211,186]);
+  // The mouth is inset and framed by pale top, bottom and side walls.
+  frontRect(l+.048,r-.048,b+.048,top-.043,z+.002,[35,51,45]);
+  frontRect(l+.048,r-.048,b+.048,b+.074,z+.004,[119,136,112]);
+  for(let j=0;j<4;j++)frontRect(x-.125+j*.075,x-.105+j*.075,-.391,-.342,z+.005,[210,196,127]);
+  frontRect(l+.015,r-.015,b,b+.025,z+.006,[226,230,205]);
+  block(x,top+.012,1.528,.16,.032,.045,[24,35,32]);
  }
- block(0,-.181,1.641,.78,.025,.027,[16,25,25]);
 }
 function connector(side,z,t,start,end){
- const q=smooth(start,end,t),offset=(1-q)*5.0,x=side*(2.65+offset),y=-.02;
+ const q=smooth(start,end,t),offset=(1-q)*3.6,x=side*(2.65+offset),y=-.02;
  box(x,y,z,.77,.56,.61,COLORS.yellow,.065,.025);
- // Ribs wrap the connector body at its cable end.
  for(let i=0;i<3;i++)box(x+side*(.12+i*.085),y,z,.045,.63,.68,COLORS.rib,.035,.009);
  box(x-side*.34,y,z,.11,.49,.53,[199,144,20],.025,.008);
  for(let wire=0;wire<2;wire++){
@@ -289,43 +318,53 @@ function mountingPlate(t){
   box(x,y-.13,.06,.44,.25,2.52,[174,6,24],.04,.013);
   for(const z of [-.93,.93])cylinder([x,y-.265,z],[x,y-.246,z],.09,[45,39,41],14);
  }
- // Clip flanges border the rail, leaving its channel visible.
  box(-.89,y-.24,.07,.2,.35,1.34,[181,5,26],.035,.01);
  box(.89,y-.22,.07,.2,.31,1.34,[210,10,33],.035,.01);
 }
 function rail(t){
- const q=smooth(6.45,7.15,t),dy=-4.5*(1-q),Y=-1.47+dy,z0=-2.7,z1=7.5;
+ const q=smooth(6.45,7.15,t),dy=-4.5*(1-q),Y=-1.66+dy,z0=-2.7,z1=7.5;
  useModel=false;
- for(const x of [-.64,.64]){
-  block(x,Y,(z0+z1)/2,.43,.105,z1-z0,COLORS.silver);
-  block(Math.sign(x)*.86,Y+.185,(z0+z1)/2,.105,.36,z1-z0,[141,160,170]);
-  block(Math.sign(x)*.94,Y+.37,(z0+z1)/2,.26,.07,z1-z0,[188,201,208]);
+ // Segment long surfaces so their depth ordering follows the housing occlusion.
+ // Rail lips top out at Y + .405, below the red mounting plate and its hooks.
+ const count=44,len=(z1-z0)/count;
+ for(let i=0;i<count;i++){
+  const a=z0+i*len,b=a+len,z=(a+b)/2;
+  for(const x of [-.64,.64]){
+   block(x,Y,z,.43,.105,len,COLORS.silver);
+   block(Math.sign(x)*.86,Y+.185,z,.105,.36,len,[141,160,170]);
+   block(Math.sign(x)*.94,Y+.37,z,.26,.07,len,[188,201,208]);
+  }
  }
- // Actual gaps in the web form the repeated rectangular rail slots.
+ // Genuine openings in the central web; no dark rectangles laid over metal.
  const step=.96,hole=.49;
  let cursor=z0;
+ function web(a,b){
+  const n=Math.max(1,Math.ceil((b-a)/.23));
+  for(let k=0;k<n;k++){const A=mix(a,b,k/n),B=mix(a,b,(k+1)/n);block(0,Y,(A+B)/2,.86,.105,B-A,COLORS.silver)}
+ }
  for(let z=z0+.49;z<z1;z+=step){
   const a=z-hole/2,b=z+hole/2;
-  if(a>cursor)block(0,Y,(cursor+a)/2,.86,.105,a-cursor,COLORS.silver);
+  if(a>cursor)web(cursor,Math.min(a,z1));
   cursor=Math.min(b,z1);
  }
- if(cursor<z1)block(0,Y,(cursor+z1)/2,.86,.105,z1-cursor,COLORS.silver);
+ if(cursor<z1)web(cursor,z1);
  useModel=true;
 }
 const cameraKeys=[
  [0,820,379,88,.48,.49],
  [1,820,379,88,.48,.49],
- [2,820,353,83,.47,.55],
- [3,796,326,94,.45,.59],
+ [2,800,350,87,.43,.55],
+ [3,673,322,104,.37,.52],
  [4,646,346,105,.24,.65],
  [5,646,345,104,.12,.68],
  [6,641,329,102,.13,.53],
  [7,664,298,102,.18,.25],
- [8,651,307,102,.57,.23],
+ [8,651,307,102,.46,.26],
  [9,657,302,113,.31,.25],
- [9.38,681,307,110,.32,.26],
- [9.85,822,352,89,.37,.3],
- [10,822,352,89,.37,.3]
+ [9.34,681,307,110,.32,.26],
+ [9.78,897,357,86,.37,.30],
+ [9.85,897,357,86,.37,.30],
+ [10,897,357,86,.37,.30]
 ];
 function cameraAt(t){
  let i=0;while(i<cameraKeys.length-2&&t>cameraKeys[i+1][0])i++;
@@ -362,35 +401,41 @@ function annotations(t){
  const title=gate(t,.3,.65,2.24,2.56);
  if(title>0){ctx.save();ctx.globalAlpha=title;ctx.fillStyle='#d9ac43';ctx.fillRect(65,582,5,78);type('KOOKABUS-01 ENCLOSURE',85,619,40,true);type('3D-printed, support-free, three parts',86,655,24,false,'left','#ced9dc');ctx.restore()}
  caption(gate(t,.57,.82,1.39,1.66),'Board drops onto corner posts','No loose standoffs',807,421,[[820,429],[923,429],anchor([2.12,.2,1.45])],{align:'right',size:25,subsize:19});
- const lidHeight=3.95*(1-smooth(1.03,2.48,t));
- caption(gate(t,1.5,1.75,2.3,2.55),'M3 heat-set inserts','Moulded bosses in the lid',483,202,[[719,210],[797,210],anchor([1.89,-.1+lidHeight,1.14])],{size:25,subsize:18});
- caption(gate(t,2.5,2.75,3.32,3.58),'4 × M3 countersunk, from below','No screw heads on the lid',837,509,[[851,514],[962,514],anchor([2.02,-.75,1.38])],{align:'right',size:24,subsize:18});
+ caption(gate(t,1.5,1.75,2.3,2.55),'M3 heat-set inserts','Moulded bosses in the lid',475,204,[[702,211],[748,211],anchor([1.89,.33+lidElevation(t),1.14])],{size:25,subsize:18});
+ caption(gate(t,2.5,2.75,3.32,3.58),'4 × M3 countersunk, from below','No screw heads on the lid',785,518,[[800,523],[919,523],anchor([2.02,-.75,1.38])],{align:'right',size:24,subsize:18});
  const battery=gate(t,4.49,4.85,6.35,6.65),load=gate(t,4.9,5.42,6.35,6.65);
  caption(battery,'BATT A / BATT B','XT60 inputs, one per 5S pack',309,177,[[320,183],[337,183],anchor([-2.9,.1,.55])],{align:'right',size:26,subsize:20});
  caption(load,'LOAD','XT60 output',1054,232,[[1038,239],[984,239],anchor([2.99,.1,0])],{size:27,subsize:20});
  caption(gate(t,5.45,5.77,6.3,6.61),'Status LEDs','Which pack is live',605,86,[[716,92],[745,92],anchor([-1.7,.918,-.55])],{align:'center',size:24,subsize:18});
- caption(gate(t,5.65,5.96,6.3,6.61),'Qwiic I²C port','Voltage and current readout',850,556,[[836,564],[806,564],anchor([0,-.35,1.7])],{size:25,subsize:18});
+ caption(gate(t,5.65,5.96,6.3,6.61),'Qwiic I²C port','Voltage and current readout',850,556,[[836,564],[806,564],anchor([0,-.35,1.55])],{size:25,subsize:18});
  caption(gate(t,7.35,7.65,8.18,8.46),'Optional DIN-rail clip','Same four screws, M3 x 16',847,546,[[833,552],[743,552],anchor([.99,-1.03,1.3])],{size:25,subsize:18});
- useModel=false;const hookPoint=anchor([-.86,-1.10,3.83]);useModel=true;
+ useModel=false;const hookPoint=anchor([-.94,-1.255,3.83]);useModel=true;
  caption(gate(t,8.48,8.73,9.16,9.43),'Hooks on, snaps down','Standard TS35 rail',563,548,[[551,556],[442,556],hookPoint],{size:28,subsize:21});
- const ending=smooth(9.42,9.77,t);
- if(ending>0){ctx.save();ctx.globalAlpha=ending;type('KOOKABUS-01',76,325,60,true);ctx.restore()}
+ const ending=smooth(9.4,9.74,t);
+ if(ending>0){
+  ctx.save();ctx.globalAlpha=ending;
+  ctx.fillStyle='#d9ac43';ctx.fillRect(64,269,5,167);
+  type('KOOKABUS-01',85,326,54,true);
+  type('Built to be bolted down.',85,382,30,true,'left','#d9ac43');
+  type('Desk or DIN rail · XT60 in and out',86,421,21,false,'left','#bdcbd0');
+  ctx.restore();
+ }
 }
 function draw(t){
- ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.clearRect(0,0,W,H);
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.clearRect(0,0,W,H);
  background();camera=cameraAt(t);polygons=[];
- const tilt=smooth(7.28,7.91,t)*(1-smooth(8.03,8.91,t));
- const settle=smooth(8.33,8.83,t);
- model={rx:-.145*tilt,rz:.11*tilt,lift:.62*smooth(6.5,7.17,t)*(1-settle)};useModel=true;
+ const tilt=smooth(7.28,7.91,t)*(1-smooth(8.03,8.91,t)),settle=smooth(8.33,8.9,t);
+ const mountLift=.62*smooth(6.5,7.17,t)*(1-.45*smooth(7.17,8,t))*(1-settle);
+ model={rx:-.18*tilt,rz:.235*tilt,lift:mountLift};useModel=true;
  shell();sideSockets();
- if(t<2.65)pcb(t);
+ if(t<2.05)pcb(t);
  lid(t);frontPort();screws(t);
  if(t>3.72){connector(-1,-.66,t,4.02,4.78);connector(-1,.66,t,4.02,4.78);connector(1,0,t,4.3,4.98)}
  if(t>6.4){mountingPlate(t);rail(t)}
  renderGeometry();annotations(t);
- // The supplied black opening and nearly black ending are preserved.
- // Ending placement is an inferred edit, not an asserted source timestamp.
- const reveal=smooth(.035,.61,t),ending=1-.979*smooth(9.52,10,t),brightness=reveal*ending;
+ // The final lockup remains illuminated at 9.850. The brief terminal fade
+ // represents the supplied untimed dark state, with placement disclosed as inferred.
+ const reveal=smooth(.035,.61,t),terminal=1-.965*smooth(9.91,10,t),brightness=reveal*terminal;
  ctx.globalAlpha=1-brightness;ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);ctx.globalAlpha=1;
 }
 const playhead={t:0};

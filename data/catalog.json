@@ -21130,10 +21130,10 @@
         "cli_version": "0.163.0",
         "protocol_version": "reference-v3",
         "track": "adapted",
-        "iteration": 1,
+        "iteration": 2,
         "source_prompt_sha256": "5d261c564a82c6444a4572c966a225dae6eea63c21c294ae9f97e0d2d3a8043b",
-        "input_sha256": "57ae112c5a08b76e3a6e0d8975f763a4f8132f0d148a278cfc1a56c2baf5de4b",
-        "started_at": "2026-10-18T17:49:57.832891+00:00",
+        "input_sha256": "f75882c945912e36ad757f7644f055945fcdc4cead8442ff33de426614b15c45",
+        "started_at": "2026-10-18T17:59:03.539036+00:00",
         "tools": "none requested; read-only sandbox",
         "reference_images_supplied": [
           "sheet-01.jpg",
@@ -21180,24 +21180,23 @@
           "-"
         ],
         "usage": {
-          "input_tokens": 31548,
+          "input_tokens": 40497,
           "cached_input_tokens": 0,
           "cache_write_input_tokens": 0,
-          "output_tokens": 17410,
-          "reasoning_output_tokens": 8077
+          "output_tokens": 12818,
+          "reasoning_output_tokens": 2588
         },
-        "finished_at": "2026-10-18T17:57:03.813877+00:00",
+        "finished_at": "2026-10-18T18:02:26.637793+00:00",
         "assumptions": [
-          "Procedural enclosure, PCB, connectors, fasteners and rail approximate the supplied visual evidence; authentic CAD geometry was not supplied.",
-          "Camera interpolation, assembly trajectories, plug connections and mounting motion are inferred between sampled states.",
-          "The untimestamped dark title state is placed within the final second as an inferred edit.",
-          "Generic sans-serif typography approximates the reference. Supplied font assets are unused.",
-          "The composition is silent and intended for 30 fps capture."
+          "Independent reconstruction from supplied visual evidence; original CAD and private creator instructions are unavailable.",
+          "Camera interpolation, dimensions, assembly motion and terminal fade timing are inferred.",
+          "Ending copy follows the revision guidance; silent playback follows the supplied zero-audio-stream metadata.",
+          "Uses procedural Canvas artwork, generic system typography and harness-provided GSAP; no reference imagery is embedded."
         ],
         "missing_inputs": [],
-        "summary": "Editable, seekable 10-second procedural reconstruction with assembly, interface callouts and DIN-rail mounting. Source only; not rendered or visually validated.",
+        "summary": "Revised lid seating, camera poses, recessed paired sockets, steady indicators, tilted mounting pose, rail clearance and readable 9.850-second ending. Source only; not rendered or visually validated.",
         "fps": 30.0,
-        "source_sha256": "afe9347f1acec1ad57297ea4d6f8d96ea23e7fa16df5c4ac40178be463207c57",
+        "source_sha256": "5ac2200c36086b82a4710de80279b0f4cb7a41c1b7024b2c230fd1f2380194c2",
         "width": 1280,
         "height": 720,
         "duration_seconds": 10,
@@ -21222,7 +21221,7 @@
             "duration": "10.000000"
           }
         },
-        "staged_source_sha256": "afe9347f1acec1ad57297ea4d6f8d96ea23e7fa16df5c4ac40178be463207c57",
+        "staged_source_sha256": "5ac2200c36086b82a4710de80279b0f4cb7a41c1b7024b2c230fd1f2380194c2",
         "source_modified_after_generation": false
       }
     },
