@@ -79,7 +79,7 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -145,6 +145,29 @@
       "--image",
       "$REPO/work/references/anirockshady-032809/evidence/full-4.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 49753,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 29362,
+      "reasoning_output_tokens": 18492
+    },
+    "finished_at": "2026-10-18T17:25:31.653802+00:00",
+    "assumptions": [
+      "Terrain geometry, projection anchors, lighting and interpolation between supplied samples are inferred approximations.",
+      "Generic system serif and sans-serif fonts approximate the reference typography; supplied font files are unused.",
+      "The composition targets 30 fps and contains no audio, consistent with the supplied metadata.",
+      "Source has not been rendered, GPU-tested or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Revised the full sequence with anchored terrain framing, softer lighting, depth-tested spheres and arrows, separated learning-rate paths, restored accent colors, smoother loss curves and adjusted reveals.",
+    "fps": 30.0,
+    "source_sha256": "718bc391c31613fc8124c500c38b809a899a125811e4e8a2231a634b60df61de",
+    "width": 720,
+    "height": 1280,
+    "duration_seconds": 56.966667,
+    "source_path": "results/anirockshady-032809/adapted/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   }
 }

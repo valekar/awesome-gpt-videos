@@ -33,9 +33,10 @@
       "generated": 14
     },
     "adapted": {
-      "rendered": 9,
+      "rendered": 8,
       "not_generated": 691,
-      "blocked": 3
+      "blocked": 3,
+      "generated": 1
     }
   },
   "entries_with_source": 52,
