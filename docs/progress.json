@@ -34,11 +34,12 @@
     },
     "adapted": {
       "rendered": 5,
-      "not_generated": 696,
-      "blocked": 2
+      "not_generated": 695,
+      "blocked": 2,
+      "generated": 1
     }
   },
-  "entries_with_source": 50,
+  "entries_with_source": 51,
   "entries_with_render": 36,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"

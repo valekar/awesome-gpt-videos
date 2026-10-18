@@ -1,0 +1,81 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "851f69e758cfdc2b2662baa20171c51efb6b65d0253e77782352dc9fe2ca2470",
+  "reference_evidence": {
+    "slug": "alex-prompter-997524",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "duration_seconds": 34.5,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0,
+      21.0,
+      22.0,
+      23.0,
+      24.0,
+      25.0,
+      26.0,
+      27.0,
+      28.0,
+      29.0,
+      30.0,
+      31.0,
+      32.0,
+      33.0,
+      34.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/alex-prompter-997524/evidence/sheet-01.jpg",
+      "work/references/alex-prompter-997524/evidence/sheet-02.jpg",
+      "work/references/alex-prompter-997524/evidence/sheet-03.jpg"
+    ],
+    "full_frames": [
+      "work/references/alex-prompter-997524/evidence/full-1.jpg",
+      "work/references/alex-prompter-997524/evidence/full-2.jpg",
+      "work/references/alex-prompter-997524/evidence/full-3.jpg",
+      "work/references/alex-prompter-997524/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/alex-prompter-997524/evidence/sheet-01.jpg": "093367ab4824c5619d6778f6064be5166ecc70e76ec25ba3662280095562182f",
+    "work/references/alex-prompter-997524/evidence/sheet-02.jpg": "5fd8936aaf4b7ea5cc7d8ca18e783cdd4c9bf90f567f1b030ceeb5f7f0a6ac6a",
+    "work/references/alex-prompter-997524/evidence/sheet-03.jpg": "da06176cbc0a96cda3e5fe20fd73081eaff58cbcb7fa855b56836e1c39875f3c",
+    "work/references/alex-prompter-997524/evidence/full-1.jpg": "21a2acf80c979e3b1beaca3da74305fa6e74b1875b464c96918bdcbd31aa42ea",
+    "work/references/alex-prompter-997524/evidence/full-2.jpg": "f9f109bde3146775827b1dd9adcff9ecbc6ac640c933f0aa6b22768bc07efe0f",
+    "work/references/alex-prompter-997524/evidence/full-3.jpg": "997db9e50ab9a4880abe6ebe2b458e9748044c79e389373a7a76f689212aa678",
+    "work/references/alex-prompter-997524/evidence/full-4.jpg": "997db9e50ab9a4880abe6ebe2b458e9748044c79e389373a7a76f689212aa678"
+  },
+  "usage": {
+    "input_tokens": 33616,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5841,
+    "reasoning_output_tokens": 2070
+  },
+  "audio_supplied": false
+}
