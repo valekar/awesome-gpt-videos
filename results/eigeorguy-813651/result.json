@@ -3,7 +3,7 @@
     "status": "not_generated"
   },
   "adapted": {
-    "status": "running",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -57,6 +57,51 @@
       "--image",
       "$REPO/work/references/eigeorguy-813651/evidence/full-4.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 39950,
+      "cached_input_tokens": 12416,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 14776,
+      "reasoning_output_tokens": 3624
+    },
+    "finished_at": "2026-10-18T17:39:03.942721+00:00",
+    "assumptions": [
+      "Adapted reconstruction from supplied samples; intermediate motion and the final second are inferred.",
+      "Preserved the continuous shot, phone placement, globe scale, visible branding and 60 fps composition metadata.",
+      "Internal orientation, architectural detail, leaf trajectories and miniature vehicle geometry are procedural approximations.",
+      "Silent composition follows the supplied zero-audio-stream metadata; no original sound was available.",
+      "No external artwork or fonts used. Output has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Revised editable HTML with deeper architecture, luminous clocks, warm lighting, richer ground detail, stronger glass reflections and denser layered leaves by three seconds.",
+    "fps": 60.0,
+    "source_sha256": "6258ed5225684c35adfe59147568e54e2e5fe9a19b4d64035c844e8a48acbc39",
+    "width": 1024,
+    "height": 1280,
+    "duration_seconds": 6,
+    "source_path": "results/eigeorguy-813651/adapted/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/eigeorguy-813651/adapted/video.mp4",
+    "poster_url": "media/eigeorguy-813651/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1024,
+          "height": 1280,
+          "r_frame_rate": "60/1"
+        }
+      ],
+      "format": {
+        "duration": "6.000000"
+      }
+    },
+    "staged_source_sha256": "6258ed5225684c35adfe59147568e54e2e5fe9a19b4d64035c844e8a48acbc39",
+    "source_modified_after_generation": false
   }
 }
