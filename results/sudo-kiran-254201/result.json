@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "blocked",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,23 @@
       "-o",
       "$REPO/results/sudo-kiran-254201/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20532,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 268,
+      "reasoning_output_tokens": 165
+    },
+    "finished_at": "2026-10-18T15:13:25.738783+00:00",
+    "assumptions": [
+      "Assumed 16:9 landscape format for the requested 30-second animation."
+    ],
+    "missing_inputs": [
+      "The actual Distilbook product URL. The brief contains only “(product url)”, so the product, features, and official assets cannot be verified."
+    ],
+    "summary": "Animation generation requires the missing product URL to avoid inventing product details.",
+    "reason": "The actual Distilbook product URL. The brief contains only “(product url)”, so the product, features, and official assets cannot be verified."
   },
   "adapted": {
     "status": "not_generated"

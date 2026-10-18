@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,30 @@
       "-o",
       "$REPO/results/chrisjdimarco-808196/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 45381,
+      "cached_input_tokens": 20480,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7709,
+      "reasoning_output_tokens": 1686
+    },
+    "finished_at": "2026-10-18T15:15:12.533807+00:00",
+    "assumptions": [
+      "Creative choice: a 16:9, sixty-second, silent typographic showreel with nine complete scenes, procedural illustrations, and cobalt, cream, acid green, and red art direction.",
+      "Political language is an original civic argument, with no invented officials, corporations, events, statistics, or product claims. Networks are conceptual illustrations, not measured data.",
+      "Adam Smith's quotation about collusion was verified against his primary text: [The Wealth of Nations, Book I, Chapter X](https://www.gutenberg.org/files/3300/3300-h/3300-h). The original work is public domain in the United States; other jurisdictions may differ. No third-party artwork or font assets are used.",
+      "The harness supplies gsap.min.js locally. Artwork uses editable Canvas code and generic system fonts.",
+      "This source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete editable 60-second civic motion manifesto with nine scenes, deterministic animation, and one paused GSAP timeline.",
+    "source_sha256": "32cc7b03bfc96ad8bf88cffaeca933705af10bca11bb60fc93ac5269215e83a3",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 60,
+    "source_path": "results/chrisjdimarco-808196/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   },
   "adapted": {
     "status": "not_generated"

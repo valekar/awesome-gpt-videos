@@ -7400,7 +7400,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -7455,7 +7455,28 @@
         "height": 720,
         "duration_seconds": 60,
         "source_path": "results/xanderwow-a-597063/baseline/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/xanderwow-a-597063/baseline/video.mp4",
+        "poster_url": "media/xanderwow-a-597063/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1280,
+              "height": 720,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "60.000000"
+          }
+        },
+        "staged_source_sha256": "f0c0ba333953c6894417ca1f07d8c59e53d4ee2ee999a0d81ae227c5e924d2a4",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -7838,7 +7859,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -7870,7 +7891,30 @@
           "-o",
           "$REPO/results/chrisjdimarco-808196/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 45381,
+          "cached_input_tokens": 20480,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7709,
+          "reasoning_output_tokens": 1686
+        },
+        "finished_at": "2026-10-18T15:15:12.533807+00:00",
+        "assumptions": [
+          "Creative choice: a 16:9, sixty-second, silent typographic showreel with nine complete scenes, procedural illustrations, and cobalt, cream, acid green, and red art direction.",
+          "Political language is an original civic argument, with no invented officials, corporations, events, statistics, or product claims. Networks are conceptual illustrations, not measured data.",
+          "Adam Smith's quotation about collusion was verified against his primary text: [The Wealth of Nations, Book I, Chapter X](https://www.gutenberg.org/files/3300/3300-h/3300-h). The original work is public domain in the United States; other jurisdictions may differ. No third-party artwork or font assets are used.",
+          "The harness supplies gsap.min.js locally. Artwork uses editable Canvas code and generic system fonts.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable 60-second civic motion manifesto with nine scenes, deterministic animation, and one paused GSAP timeline.",
+        "source_sha256": "32cc7b03bfc96ad8bf88cffaeca933705af10bca11bb60fc93ac5269215e83a3",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 60,
+        "source_path": "results/chrisjdimarco-808196/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -9158,7 +9202,55 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "ceb9e07c58f0ddde6ef25d370633ffd4afa1542ed4925bddc59177bc52630ebd",
+        "input_sha256": "e4f30704f89910ca7fdb70e6a6bf5a61b4ac9215e902cec7c6a50d3158d67fbf",
+        "started_at": "2026-10-18T15:13:11.532467+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/sudo-kiran-254201/baseline/schema.json",
+          "-o",
+          "$REPO/results/sudo-kiran-254201/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20532,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 268,
+          "reasoning_output_tokens": 165
+        },
+        "finished_at": "2026-10-18T15:13:25.738783+00:00",
+        "assumptions": [
+          "Assumed 16:9 landscape format for the requested 30-second animation."
+        ],
+        "missing_inputs": [
+          "The actual Distilbook product URL. The brief contains only “(product url)”, so the product, features, and official assets cannot be verified."
+        ],
+        "summary": "Animation generation requires the missing product URL to avoid inventing product details.",
+        "reason": "The actual Distilbook product URL. The brief contains only “(product url)”, so the product, features, and official assets cannot be verified."
       },
       "adapted": {
         "status": "not_generated"
@@ -9200,7 +9292,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "0e5ba993e55346f3ea2c94d3853cca2fe09f33c0ae9801cd7afc86e088ada8e3",
+        "input_sha256": "ee555b345000d506b05009b7e4a83b203891c2daef8331b9d808a5294d3659c0",
+        "started_at": "2026-10-18T15:13:26.538268+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/buildfastwithai-597035/baseline/schema.json",
+          "-o",
+          "$REPO/results/buildfastwithai-597035/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"

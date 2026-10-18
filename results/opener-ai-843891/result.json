@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "status": "running",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "eeb8d24240843812443eedc310ad8dd9f4e85667a455da8ee6695deaa72ada9e",
+    "input_sha256": "8103e2ac169183241c8981631b3c8e7854410e08433a3c86dad2e5e26cb93b28",
+    "started_at": "2026-10-18T15:15:13.337156+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/opener-ai-843891/baseline/schema.json",
+      "-o",
+      "$REPO/results/opener-ai-843891/baseline/response.json",
+      "-"
+    ]
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}
