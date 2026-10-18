@@ -2,7 +2,7 @@
   "priority": "adapted",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
-  "updated_at": "2026-10-18T17:03:36.512963+00:00",
+  "updated_at": "2026-10-18T17:28:22.826321+00:00",
   "entries": [
     {
       "slug": "ror-fly-880547",
@@ -686,7 +686,7 @@
     },
     {
       "slug": "anirockshady-032809",
-      "stage": "ready_for_visual_recreation"
+      "stage": "existing_render"
     },
     {
       "slug": "mycodecoach-459574",

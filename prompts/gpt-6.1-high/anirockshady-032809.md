@@ -47,3 +47,16 @@ In the learning-rate section, preserve the three color/value associations and re
 
 Restore orange/cyan classification names and alternating use-case rules. Bring legend and text reveals into agreement at 35, 44–46 and 51 seconds. Smooth the loss curve and retain its cyan terminal section. Reduce visibly heavy text weights where supported by the detail pairs. Build all revised elements as original rendered geometry and typography.
 
+
+## Matched-time review of attempt 2
+
+Revise only the evidenced visual gaps while retaining the existing duration, section sequence, text and step/loss schedule.
+
+- Build the terrain as a visibly recessed height field with a faint but readable rectangular grid, soft gray shading, a hot orange-yellow summit and a cyan basin. Preserve the dark teal underside and section-specific front-boundary silhouette.
+- At the 29s pose, let the foreground rim hide the descent endpoint and part of the arrow. Use light orange route points with restrained highlights rather than dark glossy beads.
+- Make the cyan uphill arrow clearly readable at 17s and diagonally opposed to the downhill cue. Give the learning-rate cyan path the broader angular footprint visible in the supplied samples, without inventing additional cycles.
+- Reduce the excessive italic/body weight, enlarge undersized callout text, restore the chart’s cyan endpoint, and tighten the use-case stack-to-note spacing.
+- Match the sampled reveal states: faint trough callout at 12s, cleared lower explanation at 30s and readable use-case heading at 44s.
+
+Create these elements procedurally as new artwork; do not embed reference frames.
+

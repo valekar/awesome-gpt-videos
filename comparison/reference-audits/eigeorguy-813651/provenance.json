@@ -1,0 +1,48 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "2b82ee26438c59f242a835341856142d4aa093cd12057c7b35d74cf7427a9894",
+  "reference_evidence": {
+    "slug": "eigeorguy-813651",
+    "width": 1024,
+    "height": 1280,
+    "fps": "60/1",
+    "duration_seconds": 6.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/eigeorguy-813651/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/eigeorguy-813651/evidence/full-1.jpg",
+      "work/references/eigeorguy-813651/evidence/full-2.jpg",
+      "work/references/eigeorguy-813651/evidence/full-3.jpg",
+      "work/references/eigeorguy-813651/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/eigeorguy-813651/evidence/sheet-01.jpg": "c71f43362700bbfcf0154d37d8b359661519c1997b5874cc8df317a01f750826",
+    "work/references/eigeorguy-813651/evidence/full-1.jpg": "99617719ab647d522214f0aea49fe70f66400f7425bc7843f6a3a72586f78f8b",
+    "work/references/eigeorguy-813651/evidence/full-2.jpg": "13173ce083976b923fd51f571804dd292689a0741def2fb30d4b75edd67335b0",
+    "work/references/eigeorguy-813651/evidence/full-3.jpg": "8c522355a51bdbaa303c1734b3ad47f30412088fbaf53594831a3ffceedd876a",
+    "work/references/eigeorguy-813651/evidence/full-4.jpg": "e31a37a9a858d8b215222abb9afa9f1587d1601600e426ef15ce22f458928ea5"
+  },
+  "usage": {
+    "input_tokens": 29980,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2935,
+    "reasoning_output_tokens": 745
+  },
+  "audio_supplied": false
+}
