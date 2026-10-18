@@ -1,0 +1,12 @@
+{
+  "name": "awesome-gpt-videos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Creator prompt collection and GPT-6.1 high reproduction lab",
+  "scripts": {
+    "catalog": "python3 tools/catalog.py",
+    "test": "python3 -m unittest discover -s tests && node --check docs/app.js",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory docs"
+  },
+  "devDependencies": { "hyperframes": "0.8.171", "gsap": "3.14.2" }
+}

@@ -1,0 +1,53 @@
+# GPT-6.1 high adaptation — majidmanzarpour-927543
+
+Target model: `gpt-6.1-sol`; reasoning effort: `high`.
+Track: adapted replication. Status: draft; not visually validated.
+Creator: @majidmanzarpour. Source: https://x.com/majidmanzarpour/status/2102476258948927543
+Reference page: https://skillry.dev/ai-videos/opus-5-5/majidmanzarpour-927543
+Original prompt SHA-256: `2f65441a1725d6639fe7b96c62175bb743b99338a137210067d7167cfdb4db6f`.
+
+## Source completeness
+
+Upstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.
+Dependency cues found by automated text inspection: none detected; manual reference review still required.
+
+## GPT task
+
+Recreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.
+
+Before an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.
+
+Preserve visual hierarchy, exact UI states, typography, beat grid, morph continuity and loop seam. Inspect all transition states as well as settled frames.
+
+Upstream remake implementation tags (descriptive, not proof of the original stack): canvas. Recompute Canvas state from time; reset transforms and compositing on every frame.
+
+Use the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.
+
+Deliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.
+
+## Creator material — verbatim
+
+<creator_material>
+Create a single self-contained HTML file that renders an animated pixel art wizard casting a spell, using vanilla JavaScript and Canvas 2D. No external assets, libraries, or network requests.
+
+RENDERING
+- Draw everything to an offscreen canvas at a fixed logical resolution of 128x96, then blit to a fullscreen display canvas scaled by the largest integer factor that fits the window, centered, with imageSmoothingEnabled = false and CSS image-rendering: pixelated.
+- All drawing snaps to integer coordinates on the logical canvas. No sub-pixel positions, anti-aliasing, gradients, or shadowBlur.
+- Fixed palette of ~24 hex colors: deep blues/purples for night sky, warm robe tones, 3-4 bright magic colors. Every pixel comes from this palette.
+
+CHARACTER
+- Build the wizard procedurally from filled rects and pixel runs, ~24x32 logical pixels: pointed hat with a bend, long beard, two-shade robe with darker outline, staff with a gem at the tip.
+- Parameterize the pose (staff angle, arm raise, head tilt, robe sway). Animate parameters smoothly, then quantize to the pixel grid each frame so motion reads at an 8-12 fps pixel animation feel even though the loop runs at 60fps.
+
+ANIMATION
+- Looping state machine: IDLE (2-frame bob, beard sway) -> CHARGE (staff raises, gem flickers, sparks spiral inward) -> CAST (bright burst, projectile fires across the scene, 1-2 pixel screen shake) -> RECOVER (settle back). Ease pose parameters between keyframes.
+- Pooled allocation-free particle system: preallocate and reuse. Sparks orbit the gem during CHARGE, explode outward on CAST, each particle stepping its palette index from white to magic color to dark before despawn. Snap particle positions to the grid when drawing.
+- Fixed 60hz timestep update with rAF rendering. Zero object allocation inside the loop.
+
+SCENE
+- Minimal background: dark sky, a few twinkling 1px stars, moon, stone floor line. Character silhouette must read clearly.
+- Subtle 1px rim light on the wizard from the gem, brightening during CHARGE and CAST.
+
+QUALITY BAR
+- Crisp pixels at any window size, seamless loop, stable 60fps, readable silhouette. Should look like a polished 16-bit sprite animation, not vector shapes scaled down.
+</creator_material>

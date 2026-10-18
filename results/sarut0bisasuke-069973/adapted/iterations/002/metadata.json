@@ -1,0 +1,81 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "track": "adapted",
+  "iteration": 2,
+  "source_prompt_sha256": "50986e7a7480e319182c9f7b539224c7faae059ac2867d98c0b9412e93920bf4",
+  "input_sha256": "695a3849189f316ec57f151a04e0a280224e30ef1af96820455c1aa3158a4d8b",
+  "started_at": "2026-10-18T11:56:11.491947+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [
+    "original-15.png"
+  ],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/sarut0bisasuke-069973/adapted/schema.json",
+    "-o",
+    "$REPO/results/sarut0bisasuke-069973/adapted/response.json",
+    "--image",
+    "$REPO/work/references/sarut0bisasuke-069973/original-15.png",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 30535,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 9402,
+    "reasoning_output_tokens": 1789
+  },
+  "finished_at": "2026-10-18T11:59:03.492285+00:00",
+  "assumptions": [
+    "Caveat.ttf and gsap.min.js are supplied locally alongside the HTML.",
+    "Caveat approximates the reference handwriting; exact reference geometry and font remain unknown.",
+    "Existing illustration motion and pour timing are preserved, including the 0 oz coffee counter at 15 seconds.",
+    "The supplied frame and reconstruction brief guide this revision; no render or full-film visual review was performed."
+  ],
+  "missing_inputs": [],
+  "summary": "Corrected the left main stage, right sidebar, top progress segments and handwriting. Preserved the silent 30-second recipe and seekable GSAP timeline.",
+  "source_sha256": "41f7133fe47c1f59a2d7139ef229a74fd59f5d21c8ac7b391859fd2bd0c4d127",
+  "width": 1280,
+  "height": 720,
+  "duration_seconds": 30,
+  "source_path": "results/sarut0bisasuke-069973/adapted/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/sarut0bisasuke-069973/adapted/video.mp4",
+  "poster_url": "media/sarut0bisasuke-069973/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "30.000000"
+    }
+  },
+  "staged_source_sha256": "41f7133fe47c1f59a2d7139ef229a74fd59f5d21c8ac7b391859fd2bd0c4d127",
+  "source_modified_after_generation": false,
+  "reference_artifact_sha256": "e20af26e737e8e10c331d265aaddfae580f5682f64f2d13953f265a3d9009cd5"
+}

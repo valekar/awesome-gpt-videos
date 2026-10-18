@@ -1,0 +1,83 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "track": "adapted",
+  "iteration": 3,
+  "source_prompt_sha256": "50986e7a7480e319182c9f7b539224c7faae059ac2867d98c0b9412e93920bf4",
+  "input_sha256": "dba19d72c585440957d6b8471cf599b4db4cb7147fc1f3d045c0d475b0696df5",
+  "started_at": "2026-10-18T12:01:50.310449+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [
+    "original-28.png"
+  ],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/sarut0bisasuke-069973/adapted/schema.json",
+    "-o",
+    "$REPO/results/sarut0bisasuke-069973/adapted/response.json",
+    "--image",
+    "$REPO/work/references/sarut0bisasuke-069973/original-28.png",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 31225,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 11616,
+    "reasoning_output_tokens": 2070
+  },
+  "finished_at": "2026-10-18T12:05:05.092699+00:00",
+  "assumptions": [
+    "Caveat.ttf is the explicitly supplied local font; it approximates the reference handwriting.",
+    "Liquid geometry, floating ice, soft marbling, straw translucency and splatter are procedural approximations inferred from the supplied frame.",
+    "The existing sidebar, instructions, recipe quantities, pour timing and silent 30-second format are preserved."
+  ],
+  "missing_inputs": [],
+  "summary": "Revised complete source with corrected fill height, floating ice, billowing cream clouds, translucent stirring straw and lower-left progressive closing. Not rendered or visually verified.",
+  "source_sha256": "2dccee8f8a5b6aea738e460cf80ee15cd5d9fe40d8f2fcb4312705462c772bd9",
+  "width": 1280,
+  "height": 720,
+  "duration_seconds": 30,
+  "source_path": "results/sarut0bisasuke-069973/adapted/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/sarut0bisasuke-069973/adapted/video.mp4",
+  "poster_url": "media/sarut0bisasuke-069973/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; layout/contrast inspected zero text nodes. No motion assertions. Sampled visual review is separate.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "30.000000"
+    }
+  },
+  "staged_source_sha256": "2dccee8f8a5b6aea738e460cf80ee15cd5d9fe40d8f2fcb4312705462c772bd9",
+  "source_modified_after_generation": false,
+  "fidelity_review_status": "sampled",
+  "fidelity_review": "comparison/reviews/sarut0bisasuke-069973.json",
+  "reference_artifact_sha256": "7b4fbc31cad873e4b45798391c61b96b23e4c212778f1e833ac0b345df2074ba",
+  "render_preprocessing_changes": []
+}

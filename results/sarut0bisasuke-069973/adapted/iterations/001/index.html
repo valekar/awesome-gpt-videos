@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8'>
+<meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>White Russian — recipe animation</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f6f1e7}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div id='root' data-composition-id='main' data-width='1280' data-height='720' data-duration='30'>
+<canvas id='recipe' class='clip' data-start='0' data-duration='30' width='1280' height='720' aria-label='A silent illustrated White Russian recipe, from an empty glass through ice, vodka, coffee liqueur, cream, and stirring.'></canvas>
+</div>
+<script src='gsap.min.js'></script>
+<script>
+/* EDITABLE RECONSTRUCTION NOTES
+   Format: 1280 × 720, 30 seconds, silent, static camera.
+   Reference evidence: supplied contact sheet and timed reconstruction brief.
+   No original film was accessed or reviewed for this implementation.
+   All geometry, materials, micro-motion and font choices below are inferred.
+   00–03: cold empty tumbler; title and checklist settle onto cream paper.
+   03–07: three independently falling ice cubes; counter reaches three.
+   07–13: pale blue VODKA bottle pivots, pours 1½ oz, then exits.
+   13–18: dark COFFEE LIQUEUR bottle pours ¾ oz; liquid darkens.
+   18–23: white jug pours ¾ oz; cream floats and descends in wisps.
+   23–28: tan straw enters, circles, and spreads the cream through coffee.
+   28–30: persistent completed drink and checklist; Good drink. closing.
+   Asset ledger: all illustration and paper texture are procedural Canvas.
+   Font approximation: generic cursive and serif system fonts, no font files.
+   Dependency: harness-provided local gsap.min.js, no network assets.
+   Authoring target supplied by task: gpt-6.1-sol / high.
+   Render, poster, decoded-time comparison and visual review: not performed.
+*/
+const creatorInput = 'Render a recipe motion graphic animation using JavaScript or HTML (whatever you think will produce the best result) to show the full recipe for a White Russian from start to finish, empty glass to completed cocktail. Explainer video style, showing the ingredients and measurements as they go into the glass. It should be a 30s video.';
+const canvas=document.getElementById('recipe');
+const ctx=canvas.getContext('2d');
+const W=1280,H=720;
+const C={paper:'#f6f1e7',sidebar:'#eadcc5',ink:'#40372b',soft:'#93816a',rule:'#b6a28a',blue:'#d9e6e6',coffee:'#392017',cream:'#f4eddb',tan:'#ba9665'};
+const recipe={vodka:1.5,coffee:0.75,cream:0.75,ice:3};
+const timings={ice:[3,7],vodka:[7,13],coffee:[13,18],cream:[18,23],stir:[23,28],finish:[28,30]};
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const progress=(t,a,b)=>clamp((t-a)/(b-a));
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const lerp=(a,b,p)=>a+(b-a)*p;
+const hash=n=>{const q=Math.sin(n*127.1+311.7)*43758.5453;return q-Math.floor(q)};
+const paper=document.createElement('canvas');paper.width=W;paper.height=H;
+const pc=paper.getContext('2d');pc.fillStyle=C.paper;pc.fillRect(0,0,W,H);pc.fillStyle=C.sidebar;pc.fillRect(0,0,320,H);
+for(let i=0;i<5400;i++){const x=hash(i+1)*W,y=hash(i+8000)*H;pc.fillStyle=i%3?'rgba(108,83,49,.025)':'rgba(255,255,255,.15)';pc.fillRect(x,y,hash(i+24)*1.2+.2,.6)}
+function path(points,close=false){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));if(close)ctx.closePath()}
+function pencil(points,width=1,color=C.ink,close=false){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';path(points,close);ctx.stroke();ctx.globalAlpha*=.22;ctx.translate(.65,-.45);path(points.map((p,i)=>[p[0]+Math.sin(i*2.7)*.65,p[1]+Math.cos(i*1.9)*.5]),close);ctx.lineWidth=width*.6;ctx.stroke();ctx.restore()}
+function text(str,x,y,size=22,options={}){ctx.save();ctx.fillStyle=options.color||C.ink;ctx.globalAlpha*=options.alpha===undefined?1:options.alpha;ctx.textAlign=options.align||'left';ctx.font=(options.italic?'italic ':'')+(options.bold?'600 ':'')+size+'px '+(options.family||'cursive');ctx.fillText(str,x,y);ctx.restore()}
+function tracked(str,x,y,size=9,spacing=2,color=C.soft){ctx.save();ctx.fillStyle=color;ctx.font=size+'px serif';for(const ch of str){ctx.fillText(ch,x,y);x+=ctx.measureText(ch).width+spacing}ctx.restore()}
+function oval(x,y,rx,ry,color,width=1){ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);ctx.stroke();ctx.restore()}
+function glassInterior(){path([[813,294],[1023,294],[1009,584],[826,584]],true)}
+function quarterAmount(value,fraction){const n=fraction>=.999?Math.round(value*4):Math.floor(value*fraction*4+1e-7);const whole=Math.floor(n/4);const f=['','¼','½','¾'][n%4];return n===0?'0':(whole?String(whole):'')+f}
+function amount(str,x,y,unit='oz'){text(str,x,y,62,{italic:true});ctx.save();ctx.font='italic 62px cursive';const width=ctx.measureText(str).width;ctx.restore();text(unit,x+width+8,y,22,{italic:true})}
+function checklist(t){const fade=smooth(progress(t,.4,1.6));ctx.save();ctx.globalAlpha=fade;
+tracked('LOUNGE / HOUSE POUR / RECIPE 01',35,42,8,1.45);
+text('White',35,100,57,{italic:true});text('Russian',43,156,57,{italic:true});
+pencil([[34,174],[106,176],[181,173],[277,170]],1.3);pencil([[56,180],[204,178],[272,176]],.65,C.soft);
+const rows=[['2–4','ice cubes',7,3],['1½ oz','vodka',13,7],['¾ oz','coffee liqueur',18,13],['¾ oz','cream or milk',23,18]];
+rows.forEach((r,i)=>{const y=245+i*52;const done=t>=r[2];const active=t>=r[3]&&t<r[2];
+oval(42,y-6,7.3,7.5,done?C.ink:C.rule,.9);
+if(done)pencil([[37,y-6],[41,y-1],[49,y-12]],1.3,C.ink);
+if(active){pencil([[17,y-6],[29,y-6]],1,C.soft);pencil([[24,y-10],[29,y-6],[24,y-2]],1,C.soft)}
+text(r[0],62,y,22,{italic:true,alpha:done||active?1:.58});text(r[1],130,y,19,{italic:true,alpha:done||active?1:.58});
+});
+tracked('BUILD IN GLASS / OVER ICE',36,482,8,1.5);
+ctx.restore();pencil([[319,0],[320,216],[319,447],[320,720]],.8,'#b6a087');pencil([[324,0],[324,720]],.45,'#d9c9b2')}
+function progressBar(t){const start=365,end=1230,y=655;const labels=['ICE','VODKA','COFFEE','CREAM','FINISH'];const cuts=[0,.2,.44,.64,.84,1];
+pencil([[start,y],[end,y]],.8,'#cfbeaa');
+const p=progress(t,3,28);pencil([[start,y],[lerp(start,end,p),y]],1.35,'#82684d');
+for(let i=0;i<5;i++){const x=lerp(start,end,cuts[i]);pencil([[x,y-3],[x,y+3]],.7,'#a58c70');tracked(labels[i],x+3,y+18,8,1.3,t>=([3,7,13,18,23][i])?'#786048':'#b9ab98')}
+}
+function instructions(t,v,c,m){let start=0,end=3,title='Start with a cold glass',step='',kind='opening';
+if(t>=3&&t<7){start=3;end=7;title='Fill with ice';step='STEP 1 / 5';kind='ice'}
+else if(t>=7&&t<13){start=7;end=13;title='Pour the vodka';step='STEP 2 / 5';kind='vodka'}
+else if(t>=13&&t<18){start=13;end=18;title='Add coffee liqueur';step='STEP 3 / 5';kind='coffee'}
+else if(t>=18&&t<23){start=18;end=23;title='Float the cream';step='STEP 4 / 5';kind='cream'}
+else if(t>=23&&t<28){start=23;end=28;title='Straw in, stir to taste';step='STEP 5 / 5';kind='stir'}
+if(t>=28)return;
+const alpha=(start===0?1:smooth(progress(t,start,start+.28)))*(1-smooth(progress(t,end-.22,end)));
+ctx.save();ctx.globalAlpha=alpha;
+tracked(step||'AN EVERYDAY CLASSIC',432,189,10,1.8);
+text(title,432,226,kind==='stir'?29:31,{italic:true});
+if(kind==='opening'){tracked('ROCKS GLASS · 8–10 OZ',433,300,10,1.3);text('an old fashioned glass works',433,326,18,{italic:true,color:C.soft})}
+if(kind==='ice'){const count=[4.25,5.05,5.85].filter(x=>t>=x).length;amount(String(count),433,291,'cubes');text('keeps glass cool as you build',433,329,17,{italic:true,color:C.soft});text('big cubes melt slower',433,352,17,{italic:true,color:C.soft})}
+if(kind==='vodka'){amount(quarterAmount(recipe.vodka,v),433,294);tracked('1½ OZ',433,325,9,1.4);text('straight over the ice',433,351,18,{italic:true,color:C.soft})}
+if(kind==='coffee'){amount(quarterAmount(recipe.coffee,c),433,294);tracked('¾ OZ',433,325,9,1.4);text('Kahlúa or similar',433,351,18,{italic:true,color:C.soft})}
+if(kind==='cream'){amount(quarterAmount(recipe.cream,m),433,294);tracked('¾ OZ',433,325,9,1.4);text('heavy cream or whole milk',433,351,18,{italic:true,color:C.soft})}
+if(kind==='stir'){amount('3',433,294);tracked('TOTAL / FINISHED POUR',433,325,9,1.3);text('serve as-is for layers',433,351,18,{italic:true,color:C.soft});text('or stir if preferred',433,376,18,{italic:true,color:C.soft})}
+ctx.restore()}
+const cubeData=[{x:867,y:554,a:-.18,size:44,start:3.25,end:4.25},{x:916,y:547,a:.23,size:48,start:4.05,end:5.05},{x:962,y:557,a:.12,size:44,start:4.85,end:5.85}];
+function cubes(t,liquidHeight,outlineOnly=false){cubeData.forEach((d,i)=>{if(t<d.start)return;const p=progress(t,d.start,d.end);const falling=p<1;let y=lerp(133+i*9,d.y,p*p);let a=lerp(d.a-.4,d.a,p);
+if(!falling){const age=t-d.end;const bounce=age<.45?Math.sin(age/.45*Math.PI)*-9*(1-age/.45):0;y=d.y-Math.max(0,liquidHeight-37)*.65+bounce;a=d.a+Math.sin(clamp(age,0,1)*Math.PI)*.055}
+ctx.save();ctx.translate(d.x,y);ctx.rotate(a);const s=d.size/2;
+const pts=[[-s+2,-s],[s,-s+2],[s-1,s-1],[-s,s]];
+if(!outlineOnly){path(pts,true);ctx.fillStyle=falling?'rgba(228,240,241,.65)':'rgba(225,240,241,.26)';ctx.fill();path([[-s+6,-s+5],[s-5,-s+7],[s-5,-s+15],[-s+6,-s+13]],true);ctx.fillStyle='rgba(255,255,255,.28)';ctx.fill()}
+pencil(pts,outlineOnly?.65:.9,outlineOnly?'rgba(236,244,238,.42)':'rgba(101,128,129,.65)',true);pencil([[-s+5,s-5],[-s+5,-s+5],[s-5,-s+3]],.6,'rgba(255,255,255,.66)');ctx.restore()
+})}
+function creamWisps(t,top,bottom,creamP,stirP){if(creamP<=0)return;ctx.save();glassInterior();ctx.clip();
+const age=Math.max(0,t-19.05);const depth=38+82*smooth(age/4)+15*stirP;
+for(let i=0;i<6;i++){const grow=smooth((age-i*.26)/2.8);if(grow<=0)continue;const x=832+i*31;const sway=Math.sin(age*.72+i*1.6)*8+stirP*Math.sin(age*1.3+i)*15;const tip=Math.min(bottom-10,top+depth*grow*(.61+(i%3)*.17));
+ctx.beginPath();ctx.moveTo(x-11,top-3);ctx.bezierCurveTo(x+11,top+24,x-19+sway,tip-25,x+sway,tip);ctx.bezierCurveTo(x+27+sway,tip+14,x+22,top+40,x+13,top-3);ctx.closePath();ctx.fillStyle=i%2?'rgba(235,220,189,.43)':'rgba(250,241,219,.67)';ctx.fill();
+}
+for(let i=0;i<5;i++){const grow=smooth((age-.5-i*.2)/3);const x=845+i*34+Math.sin(age*.8+i)*stirP*17;const y=top+35+i*17;ctx.save();ctx.translate(x,y);ctx.rotate(Math.sin(i*2+age*.5)*.35);ctx.beginPath();ctx.ellipse(0,0,(12+stirP*18)*grow,(4+stirP*6)*grow,0,0,Math.PI*2);ctx.fillStyle='rgba(235,219,188,'+(.12+.25*stirP)+')';ctx.fill();ctx.restore()}
+const cap=ctx.createLinearGradient(0,top,0,top+30);cap.addColorStop(0,'rgba(252,246,229,.94)');cap.addColorStop(.45,'rgba(248,239,215,.78)');cap.addColorStop(1,'rgba(236,216,179,0)');ctx.fillStyle=cap;ctx.fillRect(810,top-1,222,29+creamP*6);
+ctx.restore()}
+function glass(t,v,c,m){const h=80*v+55*c+43*m;const bottom=584,top=bottom-h;ctx.save();
+path([[805,287],[1031,287],[1015,607],[820,607]],true);const tint=ctx.createLinearGradient(805,0,1031,0);tint.addColorStop(0,'rgba(205,225,222,.12)');tint.addColorStop(.35,'rgba(244,250,244,.20)');tint.addColorStop(1,'rgba(184,212,212,.13)');ctx.fillStyle=tint;ctx.fill();
+ctx.save();glassInterior();ctx.clip();
+if(h>.01){const dark=smooth(c);const r=Math.round(lerp(209,61,dark)),g=Math.round(lerp(227,35,dark)),b=Math.round(lerp(229,23,dark));const fill=ctx.createLinearGradient(0,top,0,bottom);fill.addColorStop(0,'rgba('+r+','+g+','+b+','+lerp(.46,.96,dark)+')');fill.addColorStop(1,'rgba('+Math.max(0,r-14)+','+Math.max(0,g-10)+','+Math.max(0,b-5)+','+lerp(.5,.99,dark)+')');ctx.fillStyle=fill;ctx.beginPath();ctx.moveTo(810,top+2);ctx.bezierCurveTo(864,top-4,957,top+5,1027,top);ctx.lineTo(1025,bottom+4);ctx.lineTo(813,bottom+4);ctx.closePath();ctx.fill();
+ctx.strokeStyle=c>.1?'rgba(82,52,32,.47)':'rgba(128,165,169,.6)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(815,top);ctx.bezierCurveTo(880,top+5,963,top-4,1022,top+1);ctx.stroke()}
+ctx.restore();cubes(t,h);creamWisps(t,top,bottom,m,smooth(progress(t,24,27.5)));if(m>0)cubes(t,h,true);
+pencil([[805,287],[807,348],[813,466],[820,607],[1015,607],[1023,449],[1028,347],[1031,287]],1.45,'#4b4a3f');
+ctx.save();ctx.strokeStyle='#535348';ctx.lineWidth=1.25;ctx.beginPath();ctx.ellipse(918,287,113,10,0,0,Math.PI*2);ctx.stroke();ctx.globalAlpha=.25;ctx.beginPath();ctx.ellipse(918,289,111,9,0,0,Math.PI);ctx.stroke();ctx.restore();
+pencil([[822,585],[870,590],[961,591],[1013,585]],1,'#68736a');pencil([[830,598],[908,601],[1006,598]],.7,'#a3afa3');
+pencil([[815,308],[820,400]],1,'rgba(255,255,255,.75)');pencil([[1021,309],[1017,398]],.8,'rgba(255,255,255,.65)');
+for(let i=0;i<3;i++){const y=400+i*44;pencil([[788,y],[798,y]],.7,'#b3a28c');text(i===0?'3':i===1?'2':'1',779,y+3,9,{family:'serif',align:'right',color:'#b3a28c'})}
+ctx.restore();return top}
+function bottle(t,kind,start,end,pourStart,pourEnd,top){if(t<start||t>end)return;const enter=smooth(progress(t,start,start+.8));const leave=smooth(progress(t,end-.72,end));const hold=enter*(1-leave);const mouthX=lerp(1164,978,hold)+leave*95;const mouthY=lerp(100,249,hold)-leave*90;const rotation=-2.11*hold;
+ctx.save();ctx.translate(mouthX,mouthY);ctx.rotate(rotation);ctx.globalAlpha=enter*(1-leave);
+const coffee=kind==='coffee';const bw=coffee?36:27;const bh=coffee?146:185;
+path([[-8,0],[9,0],[10,38],[bw,59],[bw+1,bh],[-bw,bh],[-bw-1,60],[-9,38]],true);ctx.fillStyle=coffee?'#38251b':'rgba(216,231,234,.76)';ctx.fill();pencil([[-8,0],[9,0],[10,38],[bw,59],[bw+1,bh],[-bw,bh],[-bw-1,60],[-9,38]],1.1,C.ink,true);
+path([[-bw+5,70],[bw-5,70],[bw-4,bh-7],[-bw+5,bh-7]],true);ctx.fillStyle=coffee?'#2d1c14':'rgba(167,199,210,.25)';ctx.fill();
+ctx.fillStyle='#eee6d3';ctx.fillRect(-bw-1,89,bw*2+2,coffee?40:48);pencil([[-bw-1,89],[bw+1,89],[bw+1,coffee?129:137],[-bw-1,coffee?129:137]],.6,'#b7ab94',true);
+text(coffee?'COFFEE':'VODKA',0,coffee?103:111,coffee?9:11,{family:'serif',align:'center'});if(coffee)text('LIQUEUR',0,116,8,{family:'serif',align:'center'});else tracked('HOUSE',-15,123,6,.9);
+pencil([[-5,6],[-5,34]],.6,'#e6e2cf');pencil([[-bw+4,70],[-bw+4,82]],.7,coffee?'#8e7559':'#ffffff');ctx.restore();
+if(t>=pourStart&&t<pourEnd){const u=progress(t,pourStart,pourEnd);const flow=smooth(progress(t,pourStart,pourStart+.18))*(1-smooth(progress(t,pourEnd-.18,pourEnd)));ctx.save();ctx.globalAlpha=flow;ctx.strokeStyle=coffee?'#3b2117':'rgba(178,205,211,.76)';ctx.lineWidth=coffee?5:3.4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(mouthX,mouthY);ctx.bezierCurveTo(mouthX-7,mouthY+42,976+Math.sin(u*18)*1.8,top-35,975,top+5);ctx.stroke();if(!coffee){ctx.lineWidth=1;ctx.strokeStyle='rgba(255,255,255,.8)';ctx.stroke()}
+oval(975,top+3,9+Math.sin(u*23)*2,2.5,coffee?'rgba(112,78,47,.5)':'rgba(152,182,184,.6)',.8);ctx.restore()}}
+function jug(t,top){const start=18.15,end=22.95;if(t<start||t>end)return;const enter=smooth(progress(t,start,18.95));const leave=smooth(progress(t,22.2,end));const hold=enter*(1-leave);const x=lerp(1158,993,hold)+80*leave,y=lerp(141,252,hold)-80*leave;ctx.save();ctx.globalAlpha=enter*(1-leave);ctx.translate(x,y);ctx.rotate(-1.0*hold);
+path([[0,0],[21,14],[81,14],[78,103],[13,103],[10,25]],true);ctx.fillStyle='#f5f0e3';ctx.fill();pencil([[0,0],[21,14],[81,14],[78,103],[13,103],[10,25]],1.1,C.ink,true);ctx.beginPath();ctx.moveTo(81,31);ctx.bezierCurveTo(119,17,120,80,80,77);ctx.strokeStyle=C.ink;ctx.lineWidth=1.1;ctx.stroke();pencil([[17,21],[73,21]],.6,'#a89d89');text('CREAM',45,65,10,{family:'serif',align:'center',color:C.soft});ctx.restore();
+if(t>=19.05&&t<22.1){const p=progress(t,19.05,22.1),f=smooth(progress(t,19.05,19.25))*(1-smooth(progress(t,21.9,22.1)));ctx.save();ctx.globalAlpha=f;ctx.strokeStyle='#f6efdb';ctx.lineWidth=6;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(x,y);ctx.bezierCurveTo(x-12,y+45,972+Math.sin(p*15),top-30,972,top+10);ctx.stroke();ctx.lineWidth=1;ctx.strokeStyle='#fffaf0';ctx.stroke();ctx.restore()}}
+function straw(t){if(t<23)return;const p=smooth(progress(t,23.1,24.15));const stirring=progress(t,24.15,27.4);const envelope=Math.sin(stirring*Math.PI);const angle=stirring*Math.PI*5;const dx=Math.sin(angle)*14*envelope,dy=Math.cos(angle)*4*envelope;const x1=858+dx*.6,y1=lerp(-190,208,p)+dy;const x2=933+dx,y2=lerp(150,558,p)+dy;ctx.save();ctx.globalAlpha=smooth(progress(t,23.1,23.5));pencil([[x1,y1],[x2,y2]],7,'#ab8c63');pencil([[x1-1,y1],[x2-1,y2]],4,'#e4d2ae');pencil([[x1-2,y1+2],[x2-2,y2-3]],1,'#fff0cd');oval(x1,y1,3,1.7,'#8f7551',.7);if(t>24.3&&t<27.3){ctx.globalAlpha*=.5*envelope;ctx.beginPath();ctx.ellipse(919,408,76,12,-.04,Math.PI*.15+angle,Math.PI*1.35+angle);ctx.lineWidth=.8;ctx.strokeStyle='#a68d69';ctx.stroke()}ctx.restore()}
+function closing(t){if(t<28)return;const p=smooth(progress(t,28,28.65));ctx.save();ctx.globalAlpha=p;text('Good drink.',901,645,40,{italic:true,align:'center'});tracked('SIMPLE · RICH · CLASSIC',810,687,9,1.9);const marks=[[[1042,581],[1047,576]],[[1053,591],[1061,590]],[[1042,606],[1049,609]],[[1071,581],[1073,575]],[[786,599],[780,603]]];marks.forEach((a,i)=>{ctx.save();ctx.globalAlpha*=smooth(progress(t,28.1+i*.07,28.65+i*.07));pencil(a,1.1,'#8e7251');ctx.restore()});oval(1063,604,2,2,'#8e7251',.8);ctx.restore()}
+function draw(t){ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='source-over';ctx.globalAlpha=1;ctx.clearRect(0,0,W,H);ctx.drawImage(paper,0,0);ctx.lineCap='round';ctx.lineJoin='round';
+const v=progress(t,8.2,12.05),c=progress(t,14.05,17.15),m=progress(t,19.05,22.1);
+checklist(t);instructions(t,v,c,m);progressBar(t);
+const top=glass(t,v,c,m);
+bottle(t,'vodka',7.12,12.95,8.2,12.05,top);bottle(t,'coffee',13.14,17.97,14.05,17.15,top);jug(t,top);straw(t);closing(t);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:30,duration:30,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>

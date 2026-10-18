@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>White Russian — Cocktail Recipe</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#eee8dc}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1600" data-height="900" data-duration="30">
+<canvas id="art" class="clip" data-start="0" data-duration="30" width="1600" height="900" role="img" aria-label="White Russian recipe: fill a rocks glass with ice, pour 2 ounces vodka, add 1 ounce coffee liqueur, float 1 ounce cream, stir gently and serve."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(function(){
+'use strict';
+// Editable recipe, layout and timing. All frames are reconstructed from time.
+const W=1600,H=900,DURATION=30;
+const C={paper:'#eee8dc',ink:'#30251e',muted:'#796d60',accent:'#95613f',line:'#cec3b2',cream:'#fff2d7'};
+const recipe=[{name:'Vodka',amount:'2 oz / 60 ml',start:6},{name:'Coffee liqueur',amount:'1 oz / 30 ml',start:11},{name:'Cream',amount:'1 oz / 30 ml',start:16}];
+const scenes=[
+ {start:0,end:3,kicker:'THE CLASSIC COCKTAIL',title:'Three simple pours.',detail:'A rich, creamy coffee cocktail.',note:'Start with an empty rocks glass.'},
+ {start:3,end:6,kicker:'01  /  ICE',title:'Fill with ice.',detail:'Fresh ice cubes',note:'Add ice to your rocks glass.'},
+ {start:6,end:11,kicker:'02  /  VODKA',title:'Pour the vodka.',detail:'2 oz / 60 ml',note:'Pour directly over the ice.'},
+ {start:11,end:16,kicker:'03  /  COFFEE LIQUEUR',title:'Add coffee liqueur.',detail:'1 oz / 30 ml',note:'Let it flow through the ice.'},
+ {start:16,end:23,kicker:'04  /  CREAM',title:'Float the cream.',detail:'1 oz / 30 ml',note:'Pour slowly over the top.'},
+ {start:23,end:27,kicker:'05  /  FINISH',title:'Stir gently.',detail:'Just a few turns',note:'Bring the coffee and cream together.'},
+ {start:27,end:30,kicker:'READY TO SERVE',title:'Your White Russian.',detail:'Creamy. Rich. Ice cold.',note:'Serve immediately. Enjoy.'}
+];
+const canvas=document.getElementById('art'),ctx=canvas.getContext('2d');
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,p)=>a+(b-a)*p;
+const ease=p=>{p=clamp(p);return p*p*(3-2*p)};
+const prog=(t,a,b)=>ease((t-a)/(b-a));
+const gate=(t,a,b,r=.3)=>prog(t,a,a+r)*(1-prog(t,b-r,b));
+const mix=(a,b,p)=>'rgb('+a.map((v,i)=>Math.round(lerp(v,b[i],clamp(p)))).join(',')+')';
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function text(str,x,y,size,weight=400,color=C.ink,align='left'){
+ ctx.fillStyle=color;ctx.font=weight+' '+size+'px system-ui, -apple-system, BlinkMacSystemFont, sans-serif';ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(str,x,y);
+}
+function line(x1,y1,x2,y2,color,width=1){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
+function ellipse(x,y,rx,ry,fill,stroke,width=1){ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,Math.PI*2);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.stroke()}}
+function innerGlass(){
+ ctx.beginPath();ctx.moveTo(928,343);ctx.lineTo(962,733);ctx.quadraticCurveTo(965,750,990,751);ctx.lineTo(1250,751);ctx.quadraticCurveTo(1275,750,1278,733);ctx.lineTo(1312,343);ctx.closePath();
+}
+function outerGlass(){
+ ctx.beginPath();ctx.moveTo(915,340);ctx.lineTo(951,740);ctx.quadraticCurveTo(954,772,990,776);ctx.lineTo(1250,776);ctx.quadraticCurveTo(1286,772,1289,740);ctx.lineTo(1325,340);ctx.bezierCurveTo(1240,363,1000,363,915,340);ctx.closePath();
+}
+function drawBackground(){
+ ctx.fillStyle=C.paper;ctx.fillRect(0,0,W,H);
+ const g=ctx.createRadialGradient(1130,370,40,1130,480,570);g.addColorStop(0,'#faf7ef');g.addColorStop(1,'#e4dac9');
+ ctx.fillStyle=g;ctx.beginPath();ctx.arc(1184,447,484,0,Math.PI*2);ctx.fill();
+ line(96,336,660,336,C.line,2);
+ text('WHITE',91,157,97,800);text('RUSSIAN',91,255,97,800);
+ text('Vodka, coffee liqueur & cream.',98,302,27,400,C.muted);
+}
+function drawCopy(t){
+ scenes.forEach((s,i)=>{
+  let alpha=prog(t,s.start,s.start+.38)*(i===scenes.length-1?1:1-prog(t,s.end-.32,s.end));
+  if(i===0)alpha=1-prog(t,s.end-.32,s.end);
+  if(alpha<=0)return;
+  ctx.save();ctx.globalAlpha=alpha;ctx.translate(0,14*(1-alpha));
+  text(s.kicker,99,395,21,700,C.accent);
+  text(s.title,96,464,i===3||i===6?46:49,700);
+  text(s.detail,98,522,35,500,C.accent);
+  text(s.note,99,578,25,400,C.muted);
+  ctx.restore();
+ });
+ text('IN YOUR GLASS',99,667,20,700,C.muted);
+ recipe.forEach((r,i)=>{
+  const y=714+i*49,active=prog(t,r.start+.5,r.start+1);
+  ctx.save();ctx.globalAlpha=.44+.56*active;
+  ctx.beginPath();ctx.arc(109,y-8,9,0,Math.PI*2);ctx.strokeStyle=C.accent;ctx.lineWidth=1.8;ctx.stroke();
+  if(active>0){ctx.save();ctx.globalAlpha*=active;ctx.beginPath();ctx.moveTo(104,y-8);ctx.lineTo(108,y-4);ctx.lineTo(115,y-12);ctx.strokeStyle=C.accent;ctx.lineWidth=2.2;ctx.lineCap='round';ctx.stroke();ctx.restore()}
+  text(r.name,133,y,25,500);text(r.amount,658,y,24,500,C.ink,'right');ctx.restore();
+ });
+}
+function drawIce(t){
+ const cubes=[{x:1042,y:690,s:85,a:-.18,at:3.12},{x:1182,y:678,s:90,a:.2,at:3.48},{x:1110,y:595,s:94,a:-.16,at:3.84},{x:1215,y:535,s:86,a:.19,at:4.2},{x:1021,y:508,s:86,a:-.23,at:4.56}];
+ cubes.forEach(q=>{
+  const p=clamp((t-q.at)/.85);if(p<=0)return;
+  const fall=1-Math.pow(1-p,3),bounce=Math.sin(p*Math.PI*3)*Math.pow(1-p,2)*15;
+  ctx.save();ctx.translate(q.x,lerp(170,q.y,fall)+bounce);ctx.rotate(q.a+Math.sin(p*Math.PI)*.2);
+  const g=ctx.createLinearGradient(-q.s/2,-q.s/2,q.s/2,q.s/2);g.addColorStop(0,'rgba(255,255,255,.88)');g.addColorStop(.45,'rgba(236,243,238,.35)');g.addColorStop(1,'rgba(255,255,255,.62)');
+  roundRect(-q.s/2,-q.s/2,q.s,q.s,17);ctx.fillStyle=g;ctx.fill();ctx.strokeStyle='rgba(255,255,255,.88)';ctx.lineWidth=2.5;ctx.stroke();
+  ctx.beginPath();ctx.moveTo(-q.s*.3,q.s*.27);ctx.lineTo(-q.s*.3,-q.s*.24);ctx.quadraticCurveTo(-q.s*.3,-q.s*.33,-q.s*.18,-q.s*.33);ctx.lineTo(q.s*.24,-q.s*.33);ctx.strokeStyle='rgba(255,255,255,.94)';ctx.lineWidth=3;ctx.stroke();
+  line(-q.s*.16,q.s*.32,q.s*.31,q.s*.14,'rgba(171,190,185,.35)',2);
+  ctx.restore();
+ });
+}
+function drawCream(t,level,cream,stir){
+ if(cream<=0)return;
+ const flow=prog(t,16.8,22.3),motion=clamp(t,16.8,27)-16.8;
+ ctx.save();innerGlass();ctx.clip();ctx.beginPath();ctx.rect(900,level,450,400);ctx.clip();
+ // Wide, slowly spreading ribbons make the cream's path legible.
+ const ribbonOpacity=cream*(1-.78*stir);
+ for(let i=0;i<7;i++){
+  const x=970+i*48,depth=(75+(i%3)*35)*flow;
+  ctx.beginPath();ctx.moveTo(x-27,level-13);
+  ctx.bezierCurveTo(x+58+Math.sin(motion*.8+i)*17,level+32,x-55,level+depth*.64,x+14+Math.sin(i+motion*.45)*22,level+depth);
+  ctx.strokeStyle='rgba(255,240,209,'+(ribbonOpacity*(.23+(i%2)*.22))+')';ctx.lineWidth=22+(i%3)*11;ctx.lineCap='round';ctx.stroke();
+ }
+ const cap=ctx.createLinearGradient(0,level,0,level+78);cap.addColorStop(0,'rgba(255,245,222,'+cream*(.9-.24*stir)+')');cap.addColorStop(.6,'rgba(245,218,181,'+cream*.42+')');cap.addColorStop(1,'rgba(245,218,181,0)');
+ ctx.fillStyle=cap;ctx.fillRect(920,level-2,400,90);
+ if(stir>0){
+  for(let i=0;i<4;i++){
+   ctx.beginPath();ctx.ellipse(1120,level+22+i*25,135-i*17,13+i*3,Math.sin(motion*.6+i)*.08,Math.PI*.05,Math.PI*1.83);
+   ctx.strokeStyle='rgba(255,232,195,'+(.19*stir)+')';ctx.lineWidth=7-i;ctx.stroke();
+  }
+ }
+ ctx.restore();
+}
+function drawPour(t,level){
+ const pours=[{a:6.55,b:10.55,color:'#e9ddbf',edge:'#fff8e5'},{a:11.55,b:15.65,color:'#5a2c16',edge:'#ba8450'},{a:16.65,b:22.3,color:'#fff2d7',edge:'#fffaf0'}];
+ pours.forEach((p,i)=>{
+  const a=gate(t,p.a,p.b,.36);if(a<=0)return;
+  ctx.save();ctx.globalAlpha=a;
+  const sourceX=1160,sourceY=205;
+  // A small pouring measure, its spout aligned with the stream.
+  ctx.save();ctx.translate(sourceX,sourceY);ctx.rotate(-.24);
+  ctx.beginPath();ctx.moveTo(0,0);ctx.lineTo(-18,-82);ctx.lineTo(-132,-82);ctx.lineTo(-119,-14);ctx.quadraticCurveTo(-115,12,-83,16);ctx.lineTo(-23,16);ctx.closePath();
+  const vessel=ctx.createLinearGradient(-130,0,0,-80);vessel.addColorStop(0,'#c2b9aa');vessel.addColorStop(.4,'#f9f5e9');vessel.addColorStop(.7,'#ded6c6');vessel.addColorStop(1,'#fffdf6');ctx.fillStyle=vessel;ctx.fill();ctx.strokeStyle='#ad9e88';ctx.lineWidth=2;ctx.stroke();
+  line(-118,-69,-31,-69,p.color,7);line(-104,-46,-95,-2,'rgba(255,255,255,.8)',4);ctx.restore();
+  const wiggle=Math.sin(t*9)*2;
+  ctx.beginPath();ctx.moveTo(sourceX-5,sourceY);ctx.bezierCurveTo(sourceX-4,sourceY+80,sourceX+wiggle-5,level-40,sourceX-8,level+8);ctx.lineTo(sourceX+9,level+8);ctx.bezierCurveTo(sourceX+wiggle+5,level-40,sourceX+5,sourceY+80,sourceX+5,sourceY);ctx.closePath();ctx.fillStyle=p.color;ctx.fill();
+  ctx.beginPath();ctx.moveTo(sourceX-2,sourceY+7);ctx.quadraticCurveTo(sourceX+2,lerp(sourceY,level,.5),sourceX-1,level-4);ctx.strokeStyle=p.edge;ctx.lineWidth=i===1?2:3;ctx.stroke();
+  const ripple=ctx.createRadialGradient(sourceX,level+5,1,sourceX,level+5,40);ripple.addColorStop(0,i===1?'rgba(110,61,29,.5)':'rgba(255,245,220,.7)');ripple.addColorStop(1,'rgba(255,245,220,0)');ellipse(sourceX,level+5,42,12,ripple);
+  for(let j=0;j<3;j++){
+   const q=(t*1.7+j*.31)%1;
+   ellipse(sourceX+(j-1)*21*q,level-31*Math.sin(q*Math.PI),2.2,3.5,p.color);
+  }
+  ctx.restore();
+ });
+}
+function drawSpoon(t,level){
+ const alpha=gate(t,23.12,26.9,.3);if(alpha<=0)return;
+ const entered=prog(t,23.12,23.85),exited=prog(t,26.1,26.9);
+ const theta=clamp(t-23.85,0,2.25)*Math.PI*1.8;
+ const x=1120+Math.sin(theta)*55,y=level+96+Math.cos(theta)*10-210*(1-entered)-255*exited;
+ ctx.save();ctx.globalAlpha=alpha;
+ ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+55,y-303);ctx.strokeStyle='#887c69';ctx.lineWidth=12;ctx.lineCap='round';ctx.stroke();
+ ctx.beginPath();ctx.moveTo(x-2,y);ctx.lineTo(x+53,y-303);ctx.strokeStyle='#fff9e9';ctx.lineWidth=5;ctx.stroke();
+ ctx.translate(x,y);ctx.rotate(.18);const g=ctx.createLinearGradient(-16,0,16,0);g.addColorStop(0,'#918572');g.addColorStop(.45,'#fff9ea');g.addColorStop(1,'#baad96');ellipse(0,0,16,30,g,'#ad9e85',1.5);ctx.restore();
+}
+function drawGlass(t){
+ const vodka=prog(t,6.7,10.4),coffee=prog(t,11.7,15.5),cream=prog(t,16.8,22.1),stir=prog(t,23.9,26.6);
+ const level=751-150*vodka-77*coffee-66*cream;
+ ctx.save();const zoom=1+.025*prog(t,27,29.4);ctx.translate(1120,600);ctx.scale(zoom,zoom);ctx.translate(-1120,-600);
+ // Contact shadow and the glass's thick clear base.
+ const shadow=ctx.createRadialGradient(1120,790,12,1120,790,255);shadow.addColorStop(0,'rgba(76,48,26,.21)');shadow.addColorStop(1,'rgba(76,48,26,0)');ellipse(1120,791,258,35,shadow);
+ outerGlass();const glass=ctx.createLinearGradient(915,0,1325,0);glass.addColorStop(0,'rgba(255,255,255,.66)');glass.addColorStop(.12,'rgba(255,255,255,.10)');glass.addColorStop(.67,'rgba(255,255,255,.03)');glass.addColorStop(1,'rgba(255,255,255,.56)');ctx.fillStyle=glass;ctx.fill();ctx.strokeStyle='rgba(143,133,115,.46)';ctx.lineWidth=2;ctx.stroke();
+ ellipse(1120,340,205,25,'rgba(255,255,255,.11)','rgba(255,255,255,.87)',3);
+ ctx.save();innerGlass();ctx.clip();
+ if(vodka>0){
+  const upper=mix([231,221,185],[139,79,38],coffee),lower=mix([204,191,147],[62,29,15],coffee);
+  const topColor=stir>0?mix([139,79,38],[203,160,116],stir):upper;
+  const bottomColor=stir>0?mix([62,29,15],[157,103,66],stir):lower;
+  const liquid=ctx.createLinearGradient(0,level,0,752);liquid.addColorStop(0,topColor);liquid.addColorStop(1,bottomColor);
+  ctx.globalAlpha=.33+.67*coffee;ctx.fillStyle=liquid;ctx.fillRect(910,level,430,752-level);ctx.globalAlpha=1;
+  ellipse(1120,level,183,17,coffee>0?mix([151,94,47],[219,180,133],stir):'rgba(236,225,191,.5)','rgba(255,245,219,.35)',1.5);
+ }
+ drawIce(t);
+ if(coffee>0){
+  ctx.save();ctx.globalAlpha=.13*coffee*(1-stir);const wash=ctx.createLinearGradient(0,level,0,752);wash.addColorStop(0,'#ac7943');wash.addColorStop(1,'#341507');ctx.fillStyle=wash;ctx.fillRect(920,level,400,752-level);ctx.restore();
+ }
+ ctx.restore();
+ drawCream(t,level,cream,stir);
+ drawSpoon(t,level);
+ drawPour(t,level);
+ // Foreground glass reflections keep every ingredient inside a clear vessel.
+ ctx.save();outerGlass();ctx.clip();
+ const shine=ctx.createLinearGradient(925,0,1004,0);shine.addColorStop(0,'rgba(255,255,255,.05)');shine.addColorStop(.3,'rgba(255,255,255,.6)');shine.addColorStop(.65,'rgba(255,255,255,.1)');shine.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=shine;ctx.fillRect(925,364,82,370);
+ const right=ctx.createLinearGradient(1260,0,1315,0);right.addColorStop(0,'rgba(255,255,255,0)');right.addColorStop(.8,'rgba(255,255,255,.42)');right.addColorStop(1,'rgba(255,255,255,.1)');ctx.fillStyle=right;ctx.fillRect(1260,362,60,371);
+ ctx.restore();
+ ctx.beginPath();ctx.ellipse(1120,340,205,25,0,0,Math.PI);ctx.strokeStyle='rgba(255,255,255,.95)';ctx.lineWidth=4;ctx.stroke();
+ ctx.beginPath();ctx.moveTo(921,351);ctx.lineTo(958,738);ctx.quadraticCurveTo(963,762,991,765);ctx.lineTo(1249,765);ctx.quadraticCurveTo(1277,763,1282,738);ctx.lineTo(1319,351);ctx.strokeStyle='rgba(255,255,255,.8)';ctx.lineWidth=3;ctx.stroke();
+ ellipse(1120,765,144,8,'rgba(255,255,255,.23)');
+ // Small, fixed condensation beads, revealed only once the glass is iced.
+ const condensation=prog(t,5,8);
+ [[946,435,3],[951,485,4],[960,572,3],[970,621,4],[1291,440,3],[1287,497,4],[1275,620,3],[1269,672,3]].forEach(d=>{ctx.save();ctx.globalAlpha=condensation*.7;ellipse(d[0],d[1],d[2],d[2]*1.4,'rgba(255,255,255,.6)','rgba(160,150,131,.22)',1);ctx.restore()});
+ ctx.restore();
+}
+function draw(t){
+ ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;ctx.lineCap='round';ctx.lineJoin='round';
+ drawBackground();drawCopy(t);drawGlass(t);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:DURATION,duration:DURATION,ease:'none',onUpdate:function(){draw(playhead.t)}},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+})();
+</script>
+</body>
+</html>

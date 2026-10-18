@@ -1,0 +1,58 @@
+{
+  "slug": "sarut0bisasuke-069973",
+  "status": "sampled",
+  "reviewed_on": "2026-10-18",
+  "reviewer": "Codex visual inspection",
+  "method": "Decoded reference samples at two-second intervals over the full 30-second duration; full-resolution reference frames at 15 and 28 seconds; generated preview frames at 1.667, 8.333, 15, 21.667 and 28.333 seconds. Decoded output contact sheets inspected after rendering. This is a sampled review, not a frame-by-frame transition acceptance audit.",
+  "reference": {
+    "author": "Sarut0biSasuke",
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_seconds": 30,
+    "audio_streams": 0
+  },
+  "baseline": {
+    "attempts": 1,
+    "observations": [
+      "Preserves the requested 30-second recipe progression with visible ingredients and measurements.",
+      "Chooses a 1600x900 sans-serif editorial layout, different from the original 1280x720 handwritten board.",
+      "Chooses 2 oz vodka, 1 oz coffee liqueur and 1 oz cream; source film uses 1.5, 0.75 and 0.75 oz. The ratio is the same, serving size differs.",
+      "Uses five ice cubes and a generic pouring cup, rather than the reference's three cubes and distinct bottles."
+    ],
+    "render_preprocessing": "HyperFrames added editor data-hf-id attributes only; generated animation code was not manually repaired."
+  },
+  "adapted": {
+    "attempts": 3,
+    "reference_evidence": [
+      "two-second contact sheet in attempt 1",
+      "full-resolution 15-second frame in attempt 2",
+      "full-resolution 28-second frame in attempt 3"
+    ],
+    "shared_asset": "Caveat.ttf (Google Fonts, SIL OFL), provided for attempts 2 and 3; font approximation, not model-generated artwork",
+    "observations": [
+      "Attempt 1 followed the reviewer's mistaken left-sidebar reconstruction; preserved as an archived attempt.",
+      "Attempt 2 restores the right sidebar, top progress line, reference quantities, handwritten typography and reference framing.",
+      "Attempt 3 raises the final fill to the 3 oz line, floats the ice, replaces repeated cream lobes with soft procedural clouds, adjusts straw scale and restores the progressive lower-left closing.",
+      "All five recipe steps, completed drink, checklist and silent 30-second runtime are present."
+    ],
+    "remaining_differences": [
+      "Pencil geometry, container silhouettes, cube contours and paper texture are procedural approximations.",
+      "Cream movement is a deterministic visual approximation rather than a recovered fluid simulation.",
+      "The original font family is unknown; Caveat is separately supplied.",
+      "Exact entrance/exit timing across every transition boundary has not been fully audited.",
+      "At synchronized t=23.13s the reference still displays the cream step while the adaptation has begun the stir instruction; transition timing still needs refinement."
+    ]
+  },
+  "technical_limits": [
+    "Canvas text has no DOM text boxes; automated contrast/layout checked zero text nodes.",
+    "No motion-sidecar assertions were supplied.",
+    "The reproduction passes with a nonfatal source-length warning."
+  ],
+  "comparison_claim": "The adapted track uses additional reference evidence, prompts, a supplied font and multiple iterations. It demonstrates reproduction improvement in this case; it is not a controlled model ranking or proof of visual parity.",
+  "playback_check": {
+    "reference_time": 23.129217,
+    "adapted_time": 23.131934,
+    "observation": "Both videos played in the gallery and paused within 0.003s of one another."
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "path": "assets/fonts/Caveat.ttf",
+    "source": "https://github.com/google/fonts/tree/main/ofl/caveat",
+    "role": "Shared font approximation; adapted iteration 2",
+    "sha256": "0bdb6b660482d31531b3945849fba5916b3ef8695da7024a9e6b9ee3c4157988",
+    "new_gpt_generated_asset": false
+  },
+  {
+    "path": "node_modules/gsap/dist/gsap.min.js",
+    "source": "https://www.npmjs.com/package/gsap/v/3.14.2",
+    "role": "Shared timeline engine for both tracks",
+    "sha256": "c174bfce53a729418d57a8ad8625e7247c793a22fef8e2851e3cfa3de9cd8280",
+    "new_gpt_generated_asset": false
+  }
+]
