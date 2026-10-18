@@ -1,0 +1,205 @@
+{
+  "slug": "gonzalomacagno-344202",
+  "status": "sampled",
+  "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+  "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+  "adapted": {
+    "attempts": 2,
+    "observations": [
+      "All sampled phases are present: empty opening, opening brand, staged Saturday lineup, Sunday date-only card, staged Sunday lineup, closing brand and complete sales card.",
+      "The oversized, pale, edge-cropped GORILLAZ state at 2 seconds and subsequent smaller dark title are preserved.",
+      "Readable principal text, artist billing order, dates, venue wording and CTA match.",
+      "The full-resolution 5-second pair closely matches banner position, dimensions, colored rules and empty space beneath it.",
+      "The full-resolution 9.85-second pair closely matches brand placement, divider, date, venue and CTA pill geometry.",
+      "Both versions retain the fixed portrait composition, background ribbon layering and open lower areas."
+    ],
+    "remaining_differences": [
+      "The GPT gradient is darker and more muted toward the top. The tiny pink rounded fragment touching the original's bottom edge near the left is absent.",
+      "The ribbon topology is recognizable, but its contours differ: the GPT upper loop rises higher and its returning diagonal crosses at a different height. Similar differences persist on the closing brand cards.",
+      "Saturday's smaller billing rows use shorter, less condensed letterforms in GPT. Their overall widths are close, but the original's narrow, taller lettering gives the roster a different texture. A similar difference appears in Sunday's smaller rows at 6–7 seconds.",
+      "The detail pair shows the GPT lower-left purple sweep entering farther down the frame, with a different bend into the descending upper ribbon. The warm arch also has a different contour, despite the closely matched date banner.",
+      "The GPT year is a deeper purple than the original's brighter blue-violet. The background also remains slightly darker and more muted.",
+      "The GPT CTA arrow has a heavier, more angular head than the original's thin right arrow. The pill placement and wording otherwise closely match."
+    ]
+  },
+  "adapted_review_history": [
+    {
+      "iteration": 2,
+      "summary": "The GPT frames closely reproduce all sampled scene states, text hierarchy and major placements. Remaining differences concern ribbon geometry, palette and typography; no clearly major mismatch is established.",
+      "matches": [
+        "All sampled phases are present: empty opening, opening brand, staged Saturday lineup, Sunday date-only card, staged Sunday lineup, closing brand and complete sales card.",
+        "The oversized, pale, edge-cropped GORILLAZ state at 2 seconds and subsequent smaller dark title are preserved.",
+        "Readable principal text, artist billing order, dates, venue wording and CTA match.",
+        "The full-resolution 5-second pair closely matches banner position, dimensions, colored rules and empty space beneath it.",
+        "The full-resolution 9.85-second pair closely matches brand placement, divider, date, venue and CTA pill geometry.",
+        "Both versions retain the fixed portrait composition, background ribbon layering and open lower areas."
+      ],
+      "differences": [
+        {
+          "time_seconds": 0,
+          "description": "The GPT gradient is darker and more muted toward the top. The tiny pink rounded fragment touching the original's bottom edge near the left is absent.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 1,
+          "description": "The ribbon topology is recognizable, but its contours differ: the GPT upper loop rises higher and its returning diagonal crosses at a different height. Similar differences persist on the closing brand cards.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 4,
+          "description": "Saturday's smaller billing rows use shorter, less condensed letterforms in GPT. Their overall widths are close, but the original's narrow, taller lettering gives the roster a different texture. A similar difference appears in Sunday's smaller rows at 6–7 seconds.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 5,
+          "description": "The detail pair shows the GPT lower-left purple sweep entering farther down the frame, with a different bend into the descending upper ribbon. The warm arch also has a different contour, despite the closely matched date banner.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9.85,
+          "description": "The GPT year is a deeper purple than the original's brighter blue-violet. The background also remains slightly darker and more muted.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9.85,
+          "description": "The GPT CTA arrow has a heavier, more angular head than the original's thin right arrow. The pill placement and wording otherwise closely match.",
+          "severity": "minor",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "A small visual refinement is supported. Preserve the scene sequence, sampled reveal states, text, banner geometry and closing layout. Adjust ribbon contours, brighten the gradient and year color, and use narrower, taller lettering for small billing rows. Refine the CTA arrow without changing its button.",
+      "should_revise": true,
+      "prompt_improvement_markdown": "Preserve the current ten-second composition and all matched sampled states. Make only these refinements:\n\n- Lower the upper ribbon loop slightly and refine its returning diagonal and lower-left sweep to match the observed contours. Keep the existing asymmetric topology and layering.\n- Lighten the lavender background and shift the year toward the original's brighter blue-violet.\n- Give smaller artist rows narrower, taller glyph proportions while retaining their current centered widths and billing order. Exact font identity is unspecified.\n- Use a thinner right arrow inside the existing CTA pill.\n- Include the tiny pink rounded fragment visible at the opening bottom edge.\n\nDo not change reveal timing based on these still samples.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Only the supplied decoded frames were assessed. Transitions, easing, continuous motion and behavior between samples cannot be established.",
+        "Requested seek times are quantized to stream frame rates; exact transition synchronization is unverified.",
+        "Small billing names and accents are not consistently legible enough to certify every character. No definite spelling mismatch is established.",
+        "Exact font identities are unknown; typography findings concern visible proportions.",
+        "Audio was not supplied or listened to. Reference metadata reports zero audio streams, indicating a technically silent reference file; the supplied GPT render probe also lists only video.",
+        "Event details and artist names are visual claims in the artwork, not independently verified facts.",
+        "The exact 10-second endpoint is not shown. Render metadata and technical checks do not establish visual fidelity."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "7e96025ce4ebe2b35a58208dbccc1df123ab6c1a0b93ad01db0d7a0174a96c46",
+      "image_sha256": {
+        "work/comparison-evidence/gonzalomacagno-344202/002/sheet-01.jpg": "ecd4a6f53f6e261bbd904a967816b0dc71acaed9687b59db3717fac247ded073",
+        "work/comparison-evidence/gonzalomacagno-344202/002/sheet-02.jpg": "77a9f32f83acad73e2fa632226144a82c0e1e9f44f8c258e638519fee9f8247d",
+        "work/comparison-evidence/gonzalomacagno-344202/002/detail-0000.jpg": "57b95079e1404cc2ac91f3d6695ff7a649f8033bd9f59bd8e85d1231cdd92760",
+        "work/comparison-evidence/gonzalomacagno-344202/002/detail-0005.jpg": "a73e3419230cf784a11d8a9831f1aa1ec83e65171474c7f333e07bc0223e93cc",
+        "work/comparison-evidence/gonzalomacagno-344202/002/detail-0010.jpg": "06d9b3f416530f943452ab1bf84fe65574d87f2521a089a31a54e1a434120830"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          9.85
+        ],
+        "reference_metadata": {
+          "slug": "gonzalomacagno-344202",
+          "width": 720,
+          "height": 1280,
+          "fps": "30/1",
+          "duration_seconds": 10.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0
+          ],
+          "scene_change_times": [],
+          "sheets": [
+            "work/references/gonzalomacagno-344202/evidence/sheet-01.jpg"
+          ],
+          "full_frames": [
+            "work/references/gonzalomacagno-344202/evidence/full-1.jpg",
+            "work/references/gonzalomacagno-344202/evidence/full-2.jpg",
+            "work/references/gonzalomacagno-344202/evidence/full-3.jpg",
+            "work/references/gonzalomacagno-344202/evidence/full-4.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/gonzalomacagno-344202/002/sheet-01.jpg",
+          "work/comparison-evidence/gonzalomacagno-344202/002/sheet-02.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/gonzalomacagno-344202/002/detail-0000.jpg",
+          "work/comparison-evidence/gonzalomacagno-344202/002/detail-0005.jpg",
+          "work/comparison-evidence/gonzalomacagno-344202/002/detail-0010.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 37651,
+        "cached_input_tokens": 18816,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 2060,
+        "reasoning_output_tokens": 1034
+      }
+    }
+  ],
+  "summary": "The GPT frames closely reproduce all sampled scene states, text hierarchy and major placements. Remaining differences concern ribbon geometry, palette and typography; no clearly major mismatch is established.",
+  "limitations": [
+    "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+    "Only the supplied decoded frames were assessed. Transitions, easing, continuous motion and behavior between samples cannot be established.",
+    "Requested seek times are quantized to stream frame rates; exact transition synchronization is unverified.",
+    "Small billing names and accents are not consistently legible enough to certify every character. No definite spelling mismatch is established.",
+    "Exact font identities are unknown; typography findings concern visible proportions.",
+    "Audio was not supplied or listened to. Reference metadata reports zero audio streams, indicating a technically silent reference file; the supplied GPT render probe also lists only video.",
+    "Event details and artist names are visual claims in the artwork, not independently verified facts.",
+    "The exact 10-second endpoint is not shown. Render metadata and technical checks do not establish visual fidelity."
+  ],
+  "reference": {
+    "slug": "gonzalomacagno-344202",
+    "width": 720,
+    "height": 1280,
+    "fps": "30/1",
+    "duration_seconds": 10.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/gonzalomacagno-344202/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/gonzalomacagno-344202/evidence/full-1.jpg",
+      "work/references/gonzalomacagno-344202/evidence/full-2.jpg",
+      "work/references/gonzalomacagno-344202/evidence/full-3.jpg",
+      "work/references/gonzalomacagno-344202/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  }
+}

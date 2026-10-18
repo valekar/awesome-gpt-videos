@@ -3,7 +3,7 @@
     "status": "not_generated"
   },
   "adapted": {
-    "status": "generated",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -81,6 +81,27 @@
     "height": 1280,
     "duration_seconds": 10,
     "source_path": "results/gonzalomacagno-344202/adapted/index.html",
-    "reason": "Source generated; rendering and matched-time fidelity review pending."
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/gonzalomacagno-344202/adapted/video.mp4",
+    "poster_url": "media/gonzalomacagno-344202/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 23 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 720,
+          "height": 1280,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "10.000000"
+      }
+    },
+    "staged_source_sha256": "474a2668226fe86729b236d52473f5944acf8f4ac91888c742aa8fdb75cf9718",
+    "source_modified_after_generation": false
   }
 }

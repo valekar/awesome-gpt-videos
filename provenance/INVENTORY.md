@@ -13,10 +13,10 @@ Pinned upstream: `92aee2f586ac0715cb3cbcb6384834f98a33383d`.
 - prompt_audit: All data prompts and Markdown files read and cross-checked by script. Dependency cues are heuristics; visual/reference review is not complete.
 - unique_prompt_texts: 684
 - visual_reviewed: 0
-- sampled_reviews: 11
-- run_counts: {'baseline': {'blocked': 31, 'not_generated': 624, 'rendered': 34, 'generated': 14}, 'adapted': {'rendered': 10, 'not_generated': 689, 'blocked': 3, 'generated': 1}}
+- sampled_reviews: 12
+- run_counts: {'baseline': {'blocked': 31, 'not_generated': 624, 'rendered': 34, 'generated': 14}, 'adapted': {'rendered': 11, 'not_generated': 689, 'blocked': 3}}
 - entries_with_source: 54
-- entries_with_render: 39
+- entries_with_render: 40
 - model: gpt-6.1-sol
 - reasoning_effort: high
 

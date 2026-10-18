@@ -17870,8 +17870,8 @@
     "dependency_cues": [],
     "source_prompt_sha256": "66609e3599c1c68791788d9f97a3078bf733dbb19873aaed245f26032e7d3fe3",
     "source_file_sha256": "573aa257c20ab8167ae81f558eca9e4439356de2d2b066ee7977c0d5076e4f08",
-    "adapted_prompt_sha256": "50fc9eba400c538a792b3b8ecbfa6b3d7816a225bd39dc6ca24bca54c14e9dcb",
-    "adapted_prompt": "# GPT-6.1 high adaptation — gonzalomacagno-344202\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @GonzaloMacagno. Source: https://x.com/GonzaloMacagno/status/2102897651008344202\nReference page: https://skillry.dev/ai-videos/opus-5-5/gonzalomacagno-344202\nOriginal prompt SHA-256: `66609e3599c1c68791788d9f97a3078bf733dbb19873aaed245f26032e7d3fe3`.\n\n## Source completeness\n\nUpstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.\nDependency cues found by automated text inspection: none detected; manual reference review still required.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve visual hierarchy, exact UI states, typography, beat grid, morph continuity and loop seam. Inspect all transition states as well as settled frames.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): svg, css. Keep vector geometry and typography sharp at the reference viewport.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nNecesito que armes un reel con esta info en 10 segundos, bien publicitario\n</creator_material>\n",
+    "adapted_prompt_sha256": "16fda7ab470fe4f74e6fafc125dfda824aa7047e80864d3b9d76471901e5fc20",
+    "adapted_prompt": "# GPT-6.1 high adaptation — gonzalomacagno-344202\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @GonzaloMacagno. Source: https://x.com/GonzaloMacagno/status/2102897651008344202\nReference page: https://skillry.dev/ai-videos/opus-5-5/gonzalomacagno-344202\nOriginal prompt SHA-256: `66609e3599c1c68791788d9f97a3078bf733dbb19873aaed245f26032e7d3fe3`.\n\n## Source completeness\n\nUpstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.\nDependency cues found by automated text inspection: none detected; manual reference review still required.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve visual hierarchy, exact UI states, typography, beat grid, morph continuity and loop seam. Inspect all transition states as well as settled frames.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): svg, css. Keep vector geometry and typography sharp at the reference viewport.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nNecesito que armes un reel con esta info en 10 segundos, bien publicitario\n</creator_material>\n\n## Review-derived guidance — additional to creator material\n\n\n\n## Matched-time review of attempt 2\n\nPreserve the current ten-second composition and all matched sampled states. Make only these refinements:\n\n- Lower the upper ribbon loop slightly and refine its returning diagonal and lower-left sweep to match the observed contours. Keep the existing asymmetric topology and layering.\n- Lighten the lavender background and shift the year toward the original's brighter blue-violet.\n- Give smaller artist rows narrower, taller glyph proportions while retaining their current centered widths and billing order. Exact font identity is unspecified.\n- Use a thinner right arrow inside the existing CTA pill.\n- Include the tiny pink rounded fragment visible at the opening bottom edge.\n\nDo not change reveal timing based on these still samples.\n\n",
     "reference": {
       "status": "reachable",
       "video_url": "https://media.skillry.dev/opus-5-5/gonzalomacagno-344202/original.mp4",
@@ -17885,7 +17885,7 @@
         "status": "not_generated"
       },
       "adapted": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -17963,11 +17963,236 @@
         "height": 1280,
         "duration_seconds": 10,
         "source_path": "results/gonzalomacagno-344202/adapted/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/gonzalomacagno-344202/adapted/video.mp4",
+        "poster_url": "media/gonzalomacagno-344202/adapted/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Automated contrast audit inspected 23 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 720,
+              "height": 1280,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "10.000000"
+          }
+        },
+        "staged_source_sha256": "474a2668226fe86729b236d52473f5944acf8f4ac91888c742aa8fdb75cf9718",
+        "source_modified_after_generation": false
       }
     },
-    "review_status": "not_reviewed",
-    "review": {}
+    "review_status": "sampled",
+    "review": {
+      "slug": "gonzalomacagno-344202",
+      "status": "sampled",
+      "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+      "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+      "adapted": {
+        "attempts": 2,
+        "observations": [
+          "All sampled phases are present: empty opening, opening brand, staged Saturday lineup, Sunday date-only card, staged Sunday lineup, closing brand and complete sales card.",
+          "The oversized, pale, edge-cropped GORILLAZ state at 2 seconds and subsequent smaller dark title are preserved.",
+          "Readable principal text, artist billing order, dates, venue wording and CTA match.",
+          "The full-resolution 5-second pair closely matches banner position, dimensions, colored rules and empty space beneath it.",
+          "The full-resolution 9.85-second pair closely matches brand placement, divider, date, venue and CTA pill geometry.",
+          "Both versions retain the fixed portrait composition, background ribbon layering and open lower areas."
+        ],
+        "remaining_differences": [
+          "The GPT gradient is darker and more muted toward the top. The tiny pink rounded fragment touching the original's bottom edge near the left is absent.",
+          "The ribbon topology is recognizable, but its contours differ: the GPT upper loop rises higher and its returning diagonal crosses at a different height. Similar differences persist on the closing brand cards.",
+          "Saturday's smaller billing rows use shorter, less condensed letterforms in GPT. Their overall widths are close, but the original's narrow, taller lettering gives the roster a different texture. A similar difference appears in Sunday's smaller rows at 6–7 seconds.",
+          "The detail pair shows the GPT lower-left purple sweep entering farther down the frame, with a different bend into the descending upper ribbon. The warm arch also has a different contour, despite the closely matched date banner.",
+          "The GPT year is a deeper purple than the original's brighter blue-violet. The background also remains slightly darker and more muted.",
+          "The GPT CTA arrow has a heavier, more angular head than the original's thin right arrow. The pill placement and wording otherwise closely match."
+        ]
+      },
+      "adapted_review_history": [
+        {
+          "iteration": 2,
+          "summary": "The GPT frames closely reproduce all sampled scene states, text hierarchy and major placements. Remaining differences concern ribbon geometry, palette and typography; no clearly major mismatch is established.",
+          "matches": [
+            "All sampled phases are present: empty opening, opening brand, staged Saturday lineup, Sunday date-only card, staged Sunday lineup, closing brand and complete sales card.",
+            "The oversized, pale, edge-cropped GORILLAZ state at 2 seconds and subsequent smaller dark title are preserved.",
+            "Readable principal text, artist billing order, dates, venue wording and CTA match.",
+            "The full-resolution 5-second pair closely matches banner position, dimensions, colored rules and empty space beneath it.",
+            "The full-resolution 9.85-second pair closely matches brand placement, divider, date, venue and CTA pill geometry.",
+            "Both versions retain the fixed portrait composition, background ribbon layering and open lower areas."
+          ],
+          "differences": [
+            {
+              "time_seconds": 0,
+              "description": "The GPT gradient is darker and more muted toward the top. The tiny pink rounded fragment touching the original's bottom edge near the left is absent.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 1,
+              "description": "The ribbon topology is recognizable, but its contours differ: the GPT upper loop rises higher and its returning diagonal crosses at a different height. Similar differences persist on the closing brand cards.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 4,
+              "description": "Saturday's smaller billing rows use shorter, less condensed letterforms in GPT. Their overall widths are close, but the original's narrow, taller lettering gives the roster a different texture. A similar difference appears in Sunday's smaller rows at 6–7 seconds.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 5,
+              "description": "The detail pair shows the GPT lower-left purple sweep entering farther down the frame, with a different bend into the descending upper ribbon. The warm arch also has a different contour, despite the closely matched date banner.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 9.85,
+              "description": "The GPT year is a deeper purple than the original's brighter blue-violet. The background also remains slightly darker and more muted.",
+              "severity": "minor",
+              "actionable": true
+            },
+            {
+              "time_seconds": 9.85,
+              "description": "The GPT CTA arrow has a heavier, more angular head than the original's thin right arrow. The pill placement and wording otherwise closely match.",
+              "severity": "minor",
+              "actionable": true
+            }
+          ],
+          "revision_feedback": "A small visual refinement is supported. Preserve the scene sequence, sampled reveal states, text, banner geometry and closing layout. Adjust ribbon contours, brighten the gradient and year color, and use narrower, taller lettering for small billing rows. Refine the CTA arrow without changing its button.",
+          "should_revise": true,
+          "prompt_improvement_markdown": "Preserve the current ten-second composition and all matched sampled states. Make only these refinements:\n\n- Lower the upper ribbon loop slightly and refine its returning diagonal and lower-left sweep to match the observed contours. Keep the existing asymmetric topology and layering.\n- Lighten the lavender background and shift the year toward the original's brighter blue-violet.\n- Give smaller artist rows narrower, taller glyph proportions while retaining their current centered widths and billing order. Exact font identity is unspecified.\n- Use a thinner right arrow inside the existing CTA pill.\n- Include the tiny pink rounded fragment visible at the opening bottom edge.\n\nDo not change reveal timing based on these still samples.",
+          "limitations": [
+            "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+            "Only the supplied decoded frames were assessed. Transitions, easing, continuous motion and behavior between samples cannot be established.",
+            "Requested seek times are quantized to stream frame rates; exact transition synchronization is unverified.",
+            "Small billing names and accents are not consistently legible enough to certify every character. No definite spelling mismatch is established.",
+            "Exact font identities are unknown; typography findings concern visible proportions.",
+            "Audio was not supplied or listened to. Reference metadata reports zero audio streams, indicating a technically silent reference file; the supplied GPT render probe also lists only video.",
+            "Event details and artist names are visual claims in the artwork, not independently verified facts.",
+            "The exact 10-second endpoint is not shown. Render metadata and technical checks do not establish visual fidelity."
+          ],
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "input_sha256": "7e96025ce4ebe2b35a58208dbccc1df123ab6c1a0b93ad01db0d7a0174a96c46",
+          "image_sha256": {
+            "work/comparison-evidence/gonzalomacagno-344202/002/sheet-01.jpg": "ecd4a6f53f6e261bbd904a967816b0dc71acaed9687b59db3717fac247ded073",
+            "work/comparison-evidence/gonzalomacagno-344202/002/sheet-02.jpg": "77a9f32f83acad73e2fa632226144a82c0e1e9f44f8c258e638519fee9f8247d",
+            "work/comparison-evidence/gonzalomacagno-344202/002/detail-0000.jpg": "57b95079e1404cc2ac91f3d6695ff7a649f8033bd9f59bd8e85d1231cdd92760",
+            "work/comparison-evidence/gonzalomacagno-344202/002/detail-0005.jpg": "a73e3419230cf784a11d8a9831f1aa1ec83e65171474c7f333e07bc0223e93cc",
+            "work/comparison-evidence/gonzalomacagno-344202/002/detail-0010.jpg": "06d9b3f416530f943452ab1bf84fe65574d87f2521a089a31a54e1a434120830"
+          },
+          "evidence": {
+            "times": [
+              0.0,
+              1.0,
+              2.0,
+              3.0,
+              4.0,
+              5.0,
+              6.0,
+              7.0,
+              8.0,
+              9.0,
+              9.85
+            ],
+            "reference_metadata": {
+              "slug": "gonzalomacagno-344202",
+              "width": 720,
+              "height": 1280,
+              "fps": "30/1",
+              "duration_seconds": 10.0,
+              "audio_streams": 0,
+              "sample_times": [
+                0.0,
+                1.0,
+                2.0,
+                3.0,
+                4.0,
+                5.0,
+                6.0,
+                7.0,
+                8.0,
+                9.0
+              ],
+              "scene_change_times": [],
+              "sheets": [
+                "work/references/gonzalomacagno-344202/evidence/sheet-01.jpg"
+              ],
+              "full_frames": [
+                "work/references/gonzalomacagno-344202/evidence/full-1.jpg",
+                "work/references/gonzalomacagno-344202/evidence/full-2.jpg",
+                "work/references/gonzalomacagno-344202/evidence/full-3.jpg",
+                "work/references/gonzalomacagno-344202/evidence/full-4.jpg"
+              ],
+              "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+            },
+            "sheets": [
+              "work/comparison-evidence/gonzalomacagno-344202/002/sheet-01.jpg",
+              "work/comparison-evidence/gonzalomacagno-344202/002/sheet-02.jpg"
+            ],
+            "details": [
+              "work/comparison-evidence/gonzalomacagno-344202/002/detail-0000.jpg",
+              "work/comparison-evidence/gonzalomacagno-344202/002/detail-0005.jpg",
+              "work/comparison-evidence/gonzalomacagno-344202/002/detail-0010.jpg"
+            ],
+            "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+          },
+          "usage": {
+            "input_tokens": 37651,
+            "cached_input_tokens": 18816,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2060,
+            "reasoning_output_tokens": 1034
+          }
+        }
+      ],
+      "summary": "The GPT frames closely reproduce all sampled scene states, text hierarchy and major placements. Remaining differences concern ribbon geometry, palette and typography; no clearly major mismatch is established.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Only the supplied decoded frames were assessed. Transitions, easing, continuous motion and behavior between samples cannot be established.",
+        "Requested seek times are quantized to stream frame rates; exact transition synchronization is unverified.",
+        "Small billing names and accents are not consistently legible enough to certify every character. No definite spelling mismatch is established.",
+        "Exact font identities are unknown; typography findings concern visible proportions.",
+        "Audio was not supplied or listened to. Reference metadata reports zero audio streams, indicating a technically silent reference file; the supplied GPT render probe also lists only video.",
+        "Event details and artist names are visual claims in the artwork, not independently verified facts.",
+        "The exact 10-second endpoint is not shown. Render metadata and technical checks do not establish visual fidelity."
+      ],
+      "reference": {
+        "slug": "gonzalomacagno-344202",
+        "width": 720,
+        "height": 1280,
+        "fps": "30/1",
+        "duration_seconds": 10.0,
+        "audio_streams": 0,
+        "sample_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0
+        ],
+        "scene_change_times": [],
+        "sheets": [
+          "work/references/gonzalomacagno-344202/evidence/sheet-01.jpg"
+        ],
+        "full_frames": [
+          "work/references/gonzalomacagno-344202/evidence/full-1.jpg",
+          "work/references/gonzalomacagno-344202/evidence/full-2.jpg",
+          "work/references/gonzalomacagno-344202/evidence/full-3.jpg",
+          "work/references/gonzalomacagno-344202/evidence/full-4.jpg"
+        ],
+        "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+      }
+    }
   },
   {
     "slug": "kamstudiolabs-877996",
