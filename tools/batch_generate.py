@@ -11,7 +11,9 @@ def run(v,a):
  if STOP.is_set():return {'slug':v['slug'],'status':'not_started'}
  slug=v['slug'];out=ROOT/'work/batch-logs'/a.track;out.mkdir(parents=True,exist_ok=True)
  with (out/f'{slug}.log').open('w') as f:
-  r=subprocess.run([sys.executable,str(ROOT/'tools/generate.py'),slug,'--track',a.track,'--timeout',str(a.timeout),'--execute'],cwd=ROOT,stdout=f,stderr=subprocess.STDOUT)
+  command=[sys.executable,str(ROOT/'tools/generate.py'),slug,'--track',a.track,'--timeout',str(a.timeout),'--execute']
+  if a.research:command+=['--research']
+  r=subprocess.run(command,cwd=ROOT,stdout=f,stderr=subprocess.STDOUT)
  status=state(v,a.track)
  error=''
  if r.returncode:
@@ -29,7 +31,7 @@ def run(v,a):
  row={'slug':slug,'track':a.track,'status':status,'finished_at':now(),'returncode':r.returncode,'provider_error':error}
  print(json.dumps(row),flush=True);return row
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('--track',choices=['baseline','adapted'],default='baseline');p.add_argument('--workers',type=int,default=2);p.add_argument('--timeout',type=int,default=900);p.add_argument('--execute',action='store_true');p.add_argument('--slugs',nargs='*');a=p.parse_args()
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--track',choices=['baseline','adapted'],default='baseline');p.add_argument('--workers',type=int,default=2);p.add_argument('--timeout',type=int,default=900);p.add_argument('--execute',action='store_true');p.add_argument('--research',action='store_true');p.add_argument('--slugs',nargs='*');a=p.parse_args()
  catalog=json.loads((ROOT/'data/catalog.json').read_text());rows=[v for v in catalog if state(v,a.track)=='not_generated' and (not a.slugs or v['slug'] in a.slugs)]
  # Start with references already available and self-contained prompts; every remaining entry stays in the queue.
  rows.sort(key=lambda v:(not v['showcased'],not bool(v['reference'].get('video_url')),v['prompt_partial'],len(v['dependency_cues'])))

@@ -1,20 +1,22 @@
 {
   "baseline": {
-    "status": "not_generated",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
     "track": "baseline",
     "iteration": 1,
     "source_prompt_sha256": "5e6ddf5dd440fd706d92b00271333fe13ccb2092b5cbf34f86d65d58b7c22987",
-    "input_sha256": "715d77837b55acfa713fc6b1602d4f96c458a74809f0a2d31130b10739cf8de0",
-    "started_at": "2026-10-18T12:47:38.623055+00:00",
-    "tools": "none requested; read-only sandbox",
+    "input_sha256": "3ec0aa563da4b15afcb018289e40c9bd1b348e409cd3ed6a593e20c5d9a96216",
+    "started_at": "2026-10-18T13:11:07.587535+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
     "reference_images_supplied": [],
     "command": [
       "npx",
       "--yes",
       "@openai/codex@0.163.0",
+      "--search",
       "exec",
       "--ignore-user-config",
       "--ephemeral",
@@ -31,8 +33,29 @@
       "$REPO/results/mandelduck-768972/baseline/response.json",
       "-"
     ],
-    "reason": "Interrupted at user request to publish the repository before continuing generation.",
-    "interrupted_for_publication": true
+    "usage": {
+      "input_tokens": 49463,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 13829,
+      "reasoning_output_tokens": 3622
+    },
+    "finished_at": "2026-10-18T13:16:55.289540+00:00",
+    "assumptions": [
+      "Chosen format: 1600×900 landscape with a 36-second deterministic camera tour and an event-driven playable exploration mode. Keyboard movement uses individual key presses and native key repeat; dragging changes the view.",
+      "The town, five cats, names, architecture, and painted textures are original creative additions inspired by The Starry Night, rather than an exact reconstruction of the painting.",
+      "Painting reference: [MoMA, Vincent van Gogh, The Starry Night, 1889](https://www.moma.org/collection/works/79802). All displayed artwork is generated within the HTML; no museum image, external font, or third-party artwork is embedded. No external asset license gap is introduced.",
+      "Uses the harness-provided gsap.min.js and browser WebGL. This source has not been executed, rendered, or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable 3D painted-town cat hunt with five collectible cats, collision-aware walking, drag-to-look controls, a completion screen, and a seekable camera tour.",
+    "source_sha256": "4d04f75396c03309f88beea6e8b9b597713ccdc649b91c0d9fde97af7f97028c",
+    "width": 1600,
+    "height": 900,
+    "duration_seconds": 36,
+    "source_path": "results/mandelduck-768972/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending.",
+    "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
   },
   "adapted": {
     "status": "not_generated"

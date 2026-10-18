@@ -80,7 +80,64 @@
         "reason": "Cocktail recipe, including ingredient names, measurements, preparation order, and any ice or garnish."
       },
       "adapted": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "code-only-v1",
+        "track": "adapted",
+        "iteration": 2,
+        "source_prompt_sha256": "3baf7bd56c13c9a744a61d918a1dc2b1c4b30b74b9bd1a03b2160470cebc0a34",
+        "input_sha256": "b066a14d683f329fa5ee730f844cd866ff19815bde2af42574ee5833c18ba4eb",
+        "started_at": "2026-10-18T13:21:00.953791+00:00",
+        "tools": "none requested; read-only sandbox",
+        "reference_images_supplied": [
+          "ror-original-15.png"
+        ],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/ror-fly-880547/adapted/schema.json",
+          "-o",
+          "$REPO/results/ror-fly-880547/adapted/response.json",
+          "--image",
+          "$REPO/work/ror-original-15.png",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 30285,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8964,
+          "reasoning_output_tokens": 1552
+        },
+        "finished_at": "2026-10-18T13:23:53.678000+00:00",
+        "assumptions": [
+          "Bangers.ttf and Caveat.ttf are supplied licensed assets beside the HTML; both are loaded before drawing and timeline registration. They approximate unknown original fonts.",
+          "The supplied still and reconstruction brief guide procedural artwork; transition boundaries and drawing paths remain inferred.",
+          "Iteration 2 preserves the silent six-stage recipe and title movement; pours finish at 9.5, 14.5 and 19.5 seconds.",
+          "Source only; no rendering, technical execution or visual parity review has been performed."
+        ],
+        "missing_inputs": [],
+        "summary": "Revised typography, title placement, glass and coral liquid, beveled tinted ice, pour timing, paper texture and larger progress nodes.",
+        "source_sha256": "9575b6395de84cd312eb0fd1405eef422a780b01f2d20d0f65e16126348cfa1b",
+        "width": 1080,
+        "height": 1080,
+        "duration_seconds": 30,
+        "source_path": "results/ror-fly-880547/adapted/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       }
     },
     "review_status": "not_reviewed",
@@ -300,7 +357,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -351,14 +408,66 @@
         "height": 1080,
         "duration_seconds": 18,
         "source_path": "results/deedydas-252537/baseline/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/deedydas-252537/baseline/video.mp4",
+        "poster_url": "media/deedydas-252537/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "18.000000"
+          }
+        },
+        "staged_source_sha256": "6482b6affcd29967c23b65e528fabde38517d94ee46e798a4cc9ffb428dc23ea",
+        "source_modified_after_generation": true
       },
       "adapted": {
         "status": "not_generated"
       }
     },
-    "review_status": "not_reviewed",
-    "review": {}
+    "review_status": "sampled",
+    "review": {
+      "slug": "deedydas-252537",
+      "status": "sampled",
+      "reviewed_on": "2026-10-18",
+      "reviewer": "Codex visual inspection with separately attributed GPT reference draft",
+      "method": "Original sampled over full25.966667s at1s intervals, plus full-resolution details; decoded output sampled over18s at3s spacing. This is sampled visual inspection, not full transition or audio acceptance.",
+      "reference": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30,
+        "duration_seconds": 25.966667,
+        "audio_streams": 1
+      },
+      "baseline": {
+        "attempts": 1,
+        "observations": [
+          "Generates an18s1920x1080 dark inference promo with lime and lavender graphics, five headline beats and procedural tokens.",
+          "Original uses a25.966667s white/navy/violet MUDA-branded sequence: waiting UI, utilization field, token performance cards, dictionary scene, claim, logo, and latency receipt.",
+          "Broad inference-promo intent is present; reference brand, exact sequence, timing, typography and claims are absent from baseline. The original short creator prompt does not specify them.",
+          "Baseline is silent; original has an audio stream whose content has not been listened to or compared."
+        ]
+      },
+      "adapted": {
+        "status": "not_generated",
+        "next_steps": [
+          "Reference analysis and timed scene/text brief saved separately.",
+          "Audio requires review before specifying a complete recreation.",
+          "Do not misclassify unknown audio as silence."
+        ]
+      },
+      "comparison_claim": "This baseline demonstrates one model interpretation of an underdetermined prompt with an additional renderer contract. It does not establish a controlled model ranking or parity."
+    }
   },
   {
     "slug": "melvynx-638493",
@@ -620,21 +729,23 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
         "track": "baseline",
         "iteration": 1,
         "source_prompt_sha256": "004534c250149e89f8131ffb50c03deb130121553125cf68ea1b0d25ba0466d4",
-        "input_sha256": "738afdec887c47b8719f6cabea947258c2eda80d2711338d63aa293954643213",
-        "started_at": "2026-10-18T12:46:31.364548+00:00",
-        "tools": "none requested; read-only sandbox",
+        "input_sha256": "5d744461d3c3c4d0982ae131f216aa0305b3762a04e46158209c1e75b266b320",
+        "started_at": "2026-10-18T13:11:07.560882+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
         "reference_images_supplied": [],
         "command": [
           "npx",
           "--yes",
           "@openai/codex@0.163.0",
+          "--search",
           "exec",
           "--ignore-user-config",
           "--ephemeral",
@@ -651,8 +762,50 @@
           "$REPO/results/prasad-pilla-496049/baseline/response.json",
           "-"
         ],
-        "reason": "Interrupted at user request to publish the repository before continuing generation.",
-        "interrupted_for_publication": true
+        "usage": {
+          "input_tokens": 115211,
+          "cached_input_tokens": 96640,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 6932,
+          "reasoning_output_tokens": 2173
+        },
+        "finished_at": "2026-10-18T13:13:48.633327+00:00",
+        "assumptions": [
+          "Chose 1920×1080 landscape and a silent, five-beat kinetic typography film under the request's creative freedom.",
+          "Product positioning verified through [Alan's official website](https://tryalan.ai/) and [official documentation](https://docs.tryalan.ai/). Copy references coordinated agents, shared context, verification, and planning through production; no quantitative claims are included.",
+          "Palette, abstract diagrams, and typography are original creative choices, not official brand guidelines or product screenshots. Alan is typeset as plain text; no official logo or external media assets are reproduced.",
+          "Only the harness-supplied gsap.min.js is required. Its distribution license is assumed to be handled by the harness; no additional third-party asset licenses are needed.",
+          "The HTML source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable 15-second animation with kinetic type, an assembling context graph, connected workflow cards, graphic wipes, and an Alan closing hold.",
+        "source_sha256": "a8e0c971647ef5862dbb7294e5173797351d9e026a6171c9b01711b260718b53",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/prasad-pilla-496049/baseline/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/prasad-pilla-496049/baseline/video.mp4",
+        "poster_url": "media/prasad-pilla-496049/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "15.000000"
+          }
+        },
+        "staged_source_sha256": "a8e0c971647ef5862dbb7294e5173797351d9e026a6171c9b01711b260718b53",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -695,21 +848,23 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
         "track": "baseline",
         "iteration": 1,
         "source_prompt_sha256": "5e6ddf5dd440fd706d92b00271333fe13ccb2092b5cbf34f86d65d58b7c22987",
-        "input_sha256": "715d77837b55acfa713fc6b1602d4f96c458a74809f0a2d31130b10739cf8de0",
-        "started_at": "2026-10-18T12:47:38.623055+00:00",
-        "tools": "none requested; read-only sandbox",
+        "input_sha256": "3ec0aa563da4b15afcb018289e40c9bd1b348e409cd3ed6a593e20c5d9a96216",
+        "started_at": "2026-10-18T13:11:07.587535+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
         "reference_images_supplied": [],
         "command": [
           "npx",
           "--yes",
           "@openai/codex@0.163.0",
+          "--search",
           "exec",
           "--ignore-user-config",
           "--ephemeral",
@@ -726,8 +881,29 @@
           "$REPO/results/mandelduck-768972/baseline/response.json",
           "-"
         ],
-        "reason": "Interrupted at user request to publish the repository before continuing generation.",
-        "interrupted_for_publication": true
+        "usage": {
+          "input_tokens": 49463,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 13829,
+          "reasoning_output_tokens": 3622
+        },
+        "finished_at": "2026-10-18T13:16:55.289540+00:00",
+        "assumptions": [
+          "Chosen format: 1600×900 landscape with a 36-second deterministic camera tour and an event-driven playable exploration mode. Keyboard movement uses individual key presses and native key repeat; dragging changes the view.",
+          "The town, five cats, names, architecture, and painted textures are original creative additions inspired by The Starry Night, rather than an exact reconstruction of the painting.",
+          "Painting reference: [MoMA, Vincent van Gogh, The Starry Night, 1889](https://www.moma.org/collection/works/79802). All displayed artwork is generated within the HTML; no museum image, external font, or third-party artwork is embedded. No external asset license gap is introduced.",
+          "Uses the harness-provided gsap.min.js and browser WebGL. This source has not been executed, rendered, or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 3D painted-town cat hunt with five collectible cats, collision-aware walking, drag-to-look controls, a completion screen, and a seekable camera tour.",
+        "source_sha256": "4d04f75396c03309f88beea6e8b9b597713ccdc649b91c0d9fde97af7f97028c",
+        "width": 1600,
+        "height": 900,
+        "duration_seconds": 36,
+        "source_path": "results/mandelduck-768972/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
       },
       "adapted": {
         "status": "not_generated"
@@ -768,7 +944,61 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "7fdc1c4ef5338675cc182debb994bd40e1c7b1ef10104c8f7536e2de4d932f79",
+        "input_sha256": "2e70714806b45e7e93cfff9af1c0ea663e61baeff0cf47417568494030d94498",
+        "started_at": "2026-10-18T13:13:49.723782+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/itsolelehmann-762215/baseline/schema.json",
+          "-o",
+          "$REPO/results/itsolelehmann-762215/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20525,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8115,
+          "reasoning_output_tokens": 958
+        },
+        "finished_at": "2026-10-18T13:16:51.566773+00:00",
+        "assumptions": [
+          "Chosen format: silent 24-second animation, 1600 × 900, with six seconds allocated to each season and soft seasonal transitions.",
+          "The requested cinematic influence is interpreted through symmetrical framing, pastel colors, brass details, rose velvet and miniature-like scenery; all artwork is original procedural vector drawing.",
+          "GSAP is supplied locally as gsap.min.js. No external assets, fonts, product facts or screenshots are used; no external asset license gaps apply.",
+          "The HTML has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable train-window animation with four passing seasons, a cozy pastel carriage and steaming coffee.",
+        "source_sha256": "2589a661e4cbde42eb51bcc237c12dcc05c411b0e0e422f02d838b0f037cb98c",
+        "width": 1600,
+        "height": 900,
+        "duration_seconds": 24,
+        "source_path": "results/itsolelehmann-762215/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -810,7 +1040,56 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "c23e4e62411d62b1c3a9dfa56b4149194218910e9f7ed0fa51e4d8282733e801",
+        "input_sha256": "c661a26e7acdd3544744df4a83d6882df7569e030d91c0a634ae84a521934724",
+        "started_at": "2026-10-18T13:16:52.905721+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/0xvalure-331584/baseline/schema.json",
+          "-o",
+          "$REPO/results/0xvalure-331584/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20530,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 271,
+          "reasoning_output_tokens": 164
+        },
+        "finished_at": "2026-10-18T13:17:09.393408+00:00",
+        "assumptions": [
+          "Proposed reel format is 1080×1920 portrait, subject to the missing reference’s aspect ratio."
+        ],
+        "missing_inputs": [
+          "The PayBox logo artwork referred to as “this PayBox logo.”",
+          "The reference video or a publicly accessible link to it."
+        ],
+        "summary": "The logo and reference video are required to create the requested 10-second animation faithfully.",
+        "reason": "The PayBox logo artwork referred to as “this PayBox logo.”; The reference video or a publicly accessible link to it."
       },
       "adapted": {
         "status": "not_generated"
@@ -986,7 +1265,56 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "770445570030a1187f2e77d03e2a11eedbb29f58593f65bef1094043e83ed2d9",
+        "input_sha256": "8a5466e8b8dcf2aeb7497f1fb949c6a79b613290f527d305bab45268b6a9775b",
+        "started_at": "2026-10-18T13:16:56.677945+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/heyiammallik-293397/baseline/schema.json",
+          "-o",
+          "$REPO/results/heyiammallik-293397/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20569,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 427,
+          "reasoning_output_tokens": 320
+        },
+        "finished_at": "2026-10-18T13:17:13.824963+00:00",
+        "assumptions": [
+          "Proposed format: 1920×1080 landscape, approximately 30 seconds.",
+          "No animation has been generated, rendered, or visually reviewed."
+        ],
+        "missing_inputs": [
+          "Your public portfolio URL or supplied portfolio materials, needed to analyze your work and build the video."
+        ],
+        "summary": "The portfolio source is missing. Supply it so the animation can feature your actual work.",
+        "reason": "Your public portfolio URL or supplied portfolio materials, needed to analyze your work and build the video."
       },
       "adapted": {
         "status": "not_generated"
@@ -1117,7 +1445,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "45924ba46cb11321464d9153df8bb79aa849da97e14a77727d91c864d970a651",
+        "input_sha256": "d2d75569c605864e6381810ccba9b4e5f75e74bec1a7c4381ddadae7e905cb1d",
+        "started_at": "2026-10-18T13:17:10.367677+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/ajith-io-615243/baseline/schema.json",
+          "-o",
+          "$REPO/results/ajith-io-615243/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 49321,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 422,
+          "reasoning_output_tokens": 241
+        },
+        "finished_at": "2026-10-18T13:17:31.871310+00:00",
+        "assumptions": [
+          "Official product research: [DistilBook](https://distilbook.com/) turns documents into animated explainer videos with narration, visuals, captions, and a script approval step.",
+          "No public assets were incorporated; asset licensing remains unassessed.",
+          "Dimensions remain unspecified because the required reference video's aspect ratio is unavailable."
+        ],
+        "missing_inputs": [
+          "The referenced video attachment or a publicly accessible download URL is missing. It is required to reproduce the requested visual style."
+        ],
+        "summary": "Product research completed. HTML generation is blocked by the missing reference video.",
+        "reason": "The referenced video attachment or a publicly accessible download URL is missing. It is required to reproduce the requested visual style."
       },
       "adapted": {
         "status": "not_generated"
@@ -1160,7 +1538,61 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "d72f27d2d91f78494663be567cfcac7390e2feba09057627f1b3903aa3e5cd3d",
+        "input_sha256": "dfe3eb8564b689bf64f773d2046d222d1d8dd1bcd268bcd043fee990cd1316a0",
+        "started_at": "2026-10-18T13:17:14.939420+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/0xfemyn-137833/baseline/schema.json",
+          "-o",
+          "$REPO/results/0xfemyn-137833/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20518,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 4902,
+          "reasoning_output_tokens": 1552
+        },
+        "finished_at": "2026-10-18T13:19:28.732640+00:00",
+        "assumptions": [
+          "Creative choice: 16:9, silent, typography-led animation in cobalt, acid yellow, ink and cream.",
+          "AIsa is treated solely as the supplied name. Typography is an original treatment, with no claim to represent an official logo or product identity.",
+          "All graphics are procedural. No external assets, factual product claims or additional asset licenses are required.",
+          "Uses the supplied local gsap.min.js and generic system fonts. This output has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 15-second AIsa animation with kinetic lettering, orbital geometry, scrolling typography, assembling tiles and a final brand hold.",
+        "source_sha256": "ab44b75250ac53827e91467fa85471bfed8d978b19ce797755604ba4abdcd2a2",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/0xfemyn-137833/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -1203,7 +1635,63 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "ceda2b46938b954f10c19d165d29cd8e7ea24fe27dcb2017d7ef01c64700ef08",
+        "input_sha256": "0b15a631cad25ecc07bf11bfb2eaabcb43196c4e66a4481d44f23c2b4087ac0d",
+        "started_at": "2026-10-18T13:17:32.846515+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/0xchuckstock-879327/baseline/schema.json",
+          "-o",
+          "$REPO/results/0xchuckstock-879327/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20555,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 12295,
+          "reasoning_output_tokens": 3607
+        },
+        "finished_at": "2026-10-18T13:22:56.433885+00:00",
+        "assumptions": [
+          "Chosen format: 1920×1080, 42 seconds, with a deterministic automatic battle demonstration.",
+          "Multiplayer is implemented as two-player local keyboard co-op, with two additional AI wingmen. Online networking requires a separate service and is not included.",
+          "Enter starts or restarts the single timeline. WASD/Space and IJKL/right Shift independently give each human pilot control during playback.",
+          "All spacecraft, environments, effects and interface artwork are procedural Canvas geometry; no external assets or fonts are required beyond the supplied gsap.min.js.",
+          "The requested spacecraft designs reference Star Wars. No licensed franchise artwork is included; franchise permission and distribution rights are not established.",
+          "This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable 3D-projected space assault with local co-op, four destructible objectives, mounted batteries, TIE waves and automatic demonstration playback.",
+        "source_sha256": "3e87e8d7c088853ef480054ebee2828803d070f969c7775978c8c4aae0bd537f",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 42,
+        "source_path": "results/0xchuckstock-879327/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -1423,7 +1911,61 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "generated",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "377456abdd2323de281743bb9ea0d3efde800eb8c353dbdef3684ee39e7a6b93",
+        "input_sha256": "84f3ae14a11a1971c6eb8b5eb8176aa3ae5c362e0dcca002955538e2936fcd1d",
+        "started_at": "2026-10-18T13:19:32.723448+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/pankajkumar-dev-718609/baseline/schema.json",
+          "-o",
+          "$REPO/results/pankajkumar-dev-718609/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 20516,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7393,
+          "reasoning_output_tokens": 2588
+        },
+        "finished_at": "2026-10-18T13:22:20.415791+00:00",
+        "assumptions": [
+          "Creative choice: a silent, 12-second, 4:3 animation featuring an original typographic poster reading “BREAK THE FRAME.”",
+          "The paper bulges, curls forward and escapes as its frame fractures; the final composition holds through the ending.",
+          "Artwork uses Canvas and generic system fonts. No external assets or third-party artwork are used; no asset license gaps are known.",
+          "The harness supplies gsap.min.js locally. This source has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "An editable poster bends into depth, bursts through its black frame and settles freely above the scattered pieces.",
+        "source_sha256": "ae9207e4d884b100df867221cd068868874b053e27d57b0554468f43d797643f",
+        "width": 1440,
+        "height": 1080,
+        "duration_seconds": 12,
+        "source_path": "results/pankajkumar-dev-718609/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -1465,7 +2007,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "dddd9d716a1b23ef650d1c10a60f67a75e47d1cad934031aea66289d484e1952",
+        "input_sha256": "39c4ca76ae0f7e2cc4e0c534beb1f4e9c3009f9c0b8fd66f0095764053316c24",
+        "started_at": "2026-10-18T13:22:21.934742+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/nolkeeg-635633/baseline/schema.json",
+          "-o",
+          "$REPO/results/nolkeeg-635633/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"
@@ -1506,7 +2080,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "9b5ee8b63f7d845e05145db978d780ed8b26330561b68057337dd13b1ad3d8aa",
+        "input_sha256": "165eb6f030bb6552ed4d5b8670be8e454b13e09e2c624c90223d2c57569a0ddf",
+        "started_at": "2026-10-18T13:22:58.541563+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/1littlecoder-378066/baseline/schema.json",
+          "-o",
+          "$REPO/results/1littlecoder-378066/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"

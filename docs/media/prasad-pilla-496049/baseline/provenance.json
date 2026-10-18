@@ -1,0 +1,79 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "004534c250149e89f8131ffb50c03deb130121553125cf68ea1b0d25ba0466d4",
+  "input_sha256": "5d744461d3c3c4d0982ae131f216aa0305b3762a04e46158209c1e75b266b320",
+  "started_at": "2026-10-18T13:11:07.560882+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/prasad-pilla-496049/baseline/schema.json",
+    "-o",
+    "$REPO/results/prasad-pilla-496049/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 115211,
+    "cached_input_tokens": 96640,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 6932,
+    "reasoning_output_tokens": 2173
+  },
+  "finished_at": "2026-10-18T13:13:48.633327+00:00",
+  "assumptions": [
+    "Chose 1920×1080 landscape and a silent, five-beat kinetic typography film under the request's creative freedom.",
+    "Product positioning verified through [Alan's official website](https://tryalan.ai/) and [official documentation](https://docs.tryalan.ai/). Copy references coordinated agents, shared context, verification, and planning through production; no quantitative claims are included.",
+    "Palette, abstract diagrams, and typography are original creative choices, not official brand guidelines or product screenshots. Alan is typeset as plain text; no official logo or external media assets are reproduced.",
+    "Only the harness-supplied gsap.min.js is required. Its distribution license is assumed to be handled by the harness; no additional third-party asset licenses are needed.",
+    "The HTML source has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Complete editable 15-second animation with kinetic type, an assembling context graph, connected workflow cards, graphic wipes, and an Alan closing hold.",
+  "source_sha256": "a8e0c971647ef5862dbb7294e5173797351d9e026a6171c9b01711b260718b53",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 15,
+  "source_path": "results/prasad-pilla-496049/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/prasad-pilla-496049/baseline/video.mp4",
+  "poster_url": "media/prasad-pilla-496049/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "15.000000"
+    }
+  },
+  "staged_source_sha256": "a8e0c971647ef5862dbb7294e5173797351d9e026a6171c9b01711b260718b53",
+  "source_modified_after_generation": false
+}

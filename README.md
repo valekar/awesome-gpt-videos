@@ -34,7 +34,7 @@ npm run preview
 # Open http://127.0.0.1:4173
 ```
 
-[`pages.yml`](.github/workflows/pages.yml) builds and deploys the gallery from `main`. After creating a GitHub remote, push this branch and choose **Settings → Pages → Source → GitHub Actions**. This local clone currently has only an `upstream` remote. GitHub publication requires authentication; no live Pages URL is claimed.
+[`pages.yml`](.github/workflows/pages.yml) builds and deploys the gallery from `main`. Published repository: [valekar/awesome-gpt-videos](https://github.com/valekar/awesome-gpt-videos). The [comparison gallery](https://valekar.github.io/awesome-gpt-videos/) deploys through GitHub Actions. `origin` is the GPT repository; `upstream` remains the pinned inspiration source. Publishing uses the existing configured Git credential; a separate GitHub CLI login is not required.
 
 ## Prompts and generation
 
@@ -69,6 +69,14 @@ Original collection: **yihui-dev**, [upstream repository](https://github.com/yih
 
 ## First recorded comparison
 
-The first end-to-end case is **White Russian recipe** by [@Sarut0biSasuke](https://x.com/Sarut0biSasuke/status/2103418429248069973): 30 seconds, silent. The baseline selected a different layout and serving quantities; the adapted run uses an inferred reference brief and separately supplied reference frames. Adaptation iterations are preserved, including the corrected sidebar placement and subsequent drink-material refinements. This is a worked comparison, not a claim that the remaining 702 entries are finished. Read the actual saved metadata and review notes for the current result.
+The first end-to-end case is **White Russian recipe** by [@Sarut0biSasuke](https://x.com/Sarut0biSasuke/status/2103418429248069973): 30 seconds, silent. The baseline selected a different layout and serving quantities; the adapted run uses an inferred reference brief and separately supplied reference frames. Adaptation iterations are preserved, including the corrected sidebar placement and subsequent drink-material refinements. This is a worked comparison. Current completion counts and pending states are reported in the live gallery and `data/audit.json`. Read the actual saved metadata and review notes for the current result.
 
 The repository-local skill now explicitly requires full-resolution reference inspection before inferring layout from a contact sheet. It also separates missing assets, renderer differences, generated source, technical checks and sampled visual review.
+
+## Continuing the corpus
+
+`python3 tools/batch_generate.py --track baseline --workers 2 --research --execute` resumes ungenerated entries. Research mode is recorded separately from the code-only pilot. The queue stops on provider authentication/quota/model errors and never changes model.
+
+`python3 tools/render_queue.py --watch` watches completed baseline sources, stages self-contained movies, runs actual browser checks, renders and verifies MP4s, and refreshes the local gallery. It leaves visual fidelity pending. External runtime assets and interactive controls require separate checks; their source is retained with a reason. Native renderer requests are routed separately. Downloaded reference movies and raw diagnostics remain local and ignored.
+
+`python3 tools/github_sync.py --push` uses Git's configured credential helper and verifies the remote commit. Run tests and commit reviewed publication artifacts first. The generation/render workers update local state; a Git push is what updates the published Pages gallery.

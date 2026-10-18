@@ -105,8 +105,12 @@ def build():
   'prompt_audit':'All data prompts and Markdown files read and cross-checked by script. Dependency cues are heuristics; visual/reference review is not complete.',
   'unique_prompt_texts':len({v['prompt'] for v in videos}),
   'visual_reviewed':sum(v['review_status']=='reviewed' for v in entries),
+  'sampled_reviews':sum(v['review_status']=='sampled' for v in entries),
+  'run_counts':{track:dict(collections.Counter(v['runs'][track]['status'] for v in entries)) for track in ['baseline','adapted']},
+  'entries_with_source':sum(any(r['status'] in ('generated','rendered','reviewed') for r in v['runs'].values()) for v in entries),
+  'entries_with_render':sum(any(r['status'] in ('rendered','reviewed') for r in v['runs'].values()) for v in entries),
   'model':MODEL,'reasoning_effort':'high'}
- dump(ROOT/'data/catalog.json',entries);dump(ROOT/'data/audit.json',audit)
+ dump(ROOT/'data/catalog.json',entries);dump(ROOT/'data/audit.json',audit);dump(ROOT/'docs/progress.json',audit)
  (ROOT/'docs/catalog.js').write_text('window.CATALOG = '+json.dumps(entries,ensure_ascii=False)+';\nwindow.AUDIT = '+json.dumps(audit,ensure_ascii=False)+';\n')
  (ROOT/'provenance/INVENTORY.md').write_text('# Source inventory\n\nPinned upstream: `'+audit['upstream_commit']+'`.\n\n'+ '\n'.join(f'- {k}: {v}' for k,v in audit.items() if k not in ['upstream_commit','upstream'])+'\n\nAll adaptations are draft instructions. No adaptation alone establishes generation or reference fidelity.\n')
  print(json.dumps(audit,indent=2))

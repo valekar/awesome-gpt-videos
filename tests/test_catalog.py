@@ -2,10 +2,15 @@ import hashlib,json,pathlib,sys,tempfile,unittest
 ROOT=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
 from catalog import adapt,digest
 from generate import make_input
+from render_queue import parse_check
 class ProvenanceTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
   cls.original=json.loads((ROOT/'data/videos.json').read_text());cls.entries=json.loads((ROOT/'data/catalog.json').read_text());cls.audit=json.loads((ROOT/'data/audit.json').read_text())
+ def test_renderer_diagnostics_do_not_hide_report(self):
+  report=parse_check('[hyperframes] GPU probe hardware\n{"ok":true,"browserSkipped":false,"runtime":{"ok":true}}\n')
+  self.assertTrue(report['ok']);self.assertFalse(report['browserSkipped'])
+  with self.assertRaises(ValueError):parse_check('renderer stopped without a report')
  def test_complete_one_to_one_mapping(self):
   self.assertEqual(len(self.entries),703);self.assertEqual(len({v['slug'] for v in self.entries}),703)
   self.assertEqual({v['slug'] for v in self.original},{v['slug'] for v in self.entries})

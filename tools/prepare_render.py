@@ -17,7 +17,7 @@ if __name__=='__main__':
  metadata=json.loads((source/'metadata.json').read_text())
  shutil.copyfile(source/'index.html',project/'index.html')
  shutil.copyfile(ROOT/'node_modules/gsap/dist/gsap.min.js',project/'gsap.min.js')
- if (ROOT/'assets/fonts/Caveat.ttf').exists():shutil.copyfile(ROOT/'assets/fonts/Caveat.ttf',project/'Caveat.ttf')
+ for font in (ROOT/'assets/fonts').glob('*.ttf'):shutil.copyfile(font,project/font.name)
  config=json.loads((project/'hyperframes.json').read_text());config.update(width=metadata['width'],height=metadata['height'],fps=30,duration=metadata['duration_seconds']);dump(project/'hyperframes.json',config)
  (project/'BRIEF.md').write_text(f'''---
 workflow: general-video
@@ -28,7 +28,7 @@ length: {metadata['duration_seconds']}
 aspect: "{metadata['width']}:{metadata['height']}"
 ---
 
-Track: {a.track}. Target GPT-6.1 Sol/high. User requested generation and comparison for this collection. Preserve the recorded model source and disclose staging or repair changes. This stage bundles only local GSAP. Reference/evidence and provenance remain in the repository results and comparison folders. See comparison/METHODOLOGY.md. No new voice/music/assets are authorized by this staging step.
+Track: {a.track}. Target GPT-6.1 Sol/high. User requested generation and comparison for this collection. Preserve the recorded model source and disclose staging or repair changes. This stage bundles local GSAP and licensed font assets. Reference/evidence and provenance remain in the repository results and comparison folders. See comparison/METHODOLOGY.md. No new voice/music/assets are authorized by this staging step.
 ''')
- dump(project/'STAGING.json',{'source':f'results/{a.slug}/{a.track}/index.html','model_source_sha256':digest((source/'index.html').read_text()),'changes':['copied unchanged HTML','bundled gsap.min.js from gsap@3.14.2','made licensed Caveat font available; used by adaptation iteration 2'],'runtime':'hyperframes@0.8.171','track':a.track})
+ dump(project/'STAGING.json',{'source':f'results/{a.slug}/{a.track}/index.html','model_source_sha256':digest((source/'index.html').read_text()),'changes':['copied unchanged HTML','bundled gsap.min.js from gsap@3.14.2','made licensed local font assets available; actual use is declared per generated source'],'runtime':'hyperframes@0.8.171','track':a.track})
  print(project)

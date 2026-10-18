@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inference in Motion</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#080b0d}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#080b0d}.clip{position:absolute;inset:0;width:100%;height:100%}canvas{display:block;width:100%;height:100%;object-fit:contain}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="18">
+<div class="clip" data-start="0" data-duration="18"><canvas id="art" width="1920" height="1080" role="img" aria-label="An abstract startup film about inference, with kinetic typography, flowing tokens and luminous computation paths."></canvas></div>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+/* Editable creative settings. All visual states are reconstructed from time. */
+const CONFIG={width:1920,height:1080,duration:18,ink:'#080b0d',paper:'#f3f5ef',mint:'#baff69',violet:'#ab9cff'};
+const BEATS=[
+ {start:0,end:3.6,lines:['Ideas move','fast.']},
+ {start:3.6,end:7.2,lines:['Inference.','In motion.']},
+ {start:7.2,end:11,lines:['From prompt.','To possibility.']},
+ {start:11,end:14.4,lines:['Less waiting.','More building.']},
+ {start:14.4,end:18,lines:['Make room','for what’s next.']}
+];
+const canvas=document.getElementById('art'),ctx=canvas.getContext('2d');
+const W=CONFIG.width,H=CONFIG.height,TAU=Math.PI*2;
+const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,n));
+const smooth=n=>{n=clamp(n);return n*n*(3-2*n)};
+const out=n=>1-Math.pow(1-clamp(n),4);
+const mix=(a,b,n)=>a+(b-a)*n;
+const fract=n=>n-Math.floor(n);
+function rounded(x,y,w,h,r=20){ctx.beginPath();ctx.roundRect(x,y,w,h,r)}
+function line(x1,y1,x2,y2,color,width=1){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke()}
+function label(text,x,y,size,color=CONFIG.paper,align='left',weight=700){ctx.fillStyle=color;ctx.font=weight+' '+size+'px Arial, Helvetica, sans-serif';ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(text,x,y)}
+function glow(x,y,r,color){const g=ctx.createRadialGradient(x,y,0,x,y,r);g.addColorStop(0,color);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(x-r,y-r,r*2,r*2)}
+function pill(x,y,w,h,color,alpha=1){ctx.save();ctx.globalAlpha*=alpha;rounded(x,y,w,h,h/2);ctx.fillStyle=color;ctx.fill();ctx.restore()}
+function backdrop(t){
+ ctx.fillStyle=CONFIG.ink;ctx.fillRect(0,0,W,H);
+ glow(1480+70*Math.sin(t*.35),550,850,'rgba(142,180,113,.075)');
+ ctx.save();ctx.globalAlpha=.12;
+ for(let i=0;i<17;i++){const x=120+i*112;line(x,0,x,H,'#607065',1)}
+ for(let i=0;i<10;i++)line(0,50+i*112,W,50+i*112,'#607065',1);
+ ctx.restore();
+}
+function sceneAlpha(t,b,i){const enter=i===0?1:smooth((t-b.start)/.32);const leave=i===BEATS.length-1?1:1-smooth((t-(b.end-.32))/.32);return enter*leave}
+function headline(lines,x,y,size,u,accentIndex=1){
+ lines.forEach((text,i)=>{
+  const p=out((u-i*.11)/.72);
+  ctx.save();ctx.beginPath();ctx.rect(x-8,y+i*size*1.05-size,1700,size*1.15);ctx.clip();
+  label(text,x,y+i*size*1.05+(1-p)*size,size,i===accentIndex?CONFIG.mint:CONFIG.paper);
+  ctx.restore();
+ });
+}
+function ring(x,y,r,color,width=2,start=0,end=TAU){ctx.strokeStyle=color;ctx.lineWidth=width;ctx.beginPath();ctx.arc(x,y,r,start,end);ctx.stroke()}
+function opening(u,t){
+ const p=out(u/.8);
+ ctx.save();ctx.translate(1360,530);ctx.rotate(-.16+u*.055);
+ for(let lane=0;lane<7;lane++){
+  const yy=(lane-3)*78;
+  line(-120,yy,590,yy,'rgba(186,255,105,.13)',2);
+  for(let j=0;j<4;j++){
+   const phase=fract(j/4+u*(.18+lane*.014));
+   const x=-290+phase*1050;
+   const width=48+((lane*31+j*19)%100);
+   pill(x,yy-20,width,40,(lane+j)%5===0?CONFIG.violet:CONFIG.mint,p*(.25+.75*Math.sin(phase*Math.PI)));
+  }
+ }
+ ctx.restore();
+ headline(BEATS[0].lines,132,432,170,u);
+ const a=smooth((u-.65)/.45);ctx.save();ctx.globalAlpha=a;
+ label('Give them somewhere to go.',140,764,40,'#a6afa5','left',400);
+ ctx.restore();
+ line(140,856,140+420*out((u-.4)/1.2),856,CONFIG.mint,5);
+}
+function motion(u,t){
+ const reveal=out(u/.8);
+ ctx.save();ctx.translate(1395,548);ctx.scale(reveal,reveal);
+ for(let i=0;i<4;i++){
+  ctx.save();ctx.rotate(u*.18+i*.63);
+  ctx.strokeStyle=i%2?CONFIG.violet:CONFIG.mint;ctx.globalAlpha=.34+i*.12;ctx.lineWidth=2+i*.6;
+  ctx.beginPath();ctx.ellipse(0,0,330-i*32,116+i*34,0,0,TAU);ctx.stroke();
+  const a=u*(.9+i*.2)+i*1.9;
+  const x=Math.cos(a)*(330-i*32),y=Math.sin(a)*(116+i*34);
+  glow(x,y,40,'rgba(186,255,105,.3)');pill(x-9,y-9,18,18,CONFIG.paper);
+  ctx.restore();
+ }
+ rounded(-92,-92,184,184,38);ctx.fillStyle=CONFIG.mint;ctx.fill();
+ for(let k=0;k<3;k++)pill(-47,-38+k*29,94-(k===1?26:0),13,CONFIG.ink);
+ ctx.restore();
+ headline(BEATS[1].lines,132,440,158,u);
+ ctx.save();ctx.globalAlpha=smooth((u-.75)/.5);label('Turn intent into momentum.',140,766,40,'#a6afa5','left',400);ctx.restore();
+}
+function transformation(u,t){
+ headline(BEATS[2].lines,132,238,112,u);
+ const left=260,right=1660,cy=714;
+ const enter=out((u-.3)/.7);
+ ctx.save();ctx.globalAlpha=enter;
+ for(let lane=0;lane<5;lane++){
+  const sy=cy+(lane-2)*53,ey=cy+(lane-2)*77;
+  ctx.strokeStyle='rgba(186,255,105,.24)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(left,sy);ctx.bezierCurveTo(640,sy,685,cy,960,cy);ctx.bezierCurveTo(1230,cy,1250,ey,right,ey);ctx.stroke();
+  for(let j=0;j<5;j++){
+   const q=fract(u*.27+j/5+lane*.075);
+   let x,y;
+   if(q<.5){const z=q*2;x=mix(left,960,z);y=mix(sy,cy,smooth(z))}
+   else{const z=(q-.5)*2;x=mix(960,right,z);y=mix(cy,ey,smooth(z))}
+   pill(x-19,y-7,38,14,lane%2?CONFIG.violet:CONFIG.mint,.25+.75*Math.sin(q*Math.PI));
+  }
+ }
+ glow(960,cy,220,'rgba(186,255,105,.16)');
+ ctx.save();ctx.translate(960,cy);ctx.rotate(Math.PI/4);rounded(-66,-66,132,132,20);ctx.fillStyle=CONFIG.mint;ctx.fill();rounded(-34,-34,68,68,10);ctx.fillStyle=CONFIG.ink;ctx.fill();ctx.restore();
+ rounded(132,cy-116,230,232,28);ctx.fillStyle='#101813';ctx.fill();ctx.strokeStyle='#3a493b';ctx.lineWidth=2;ctx.stroke();
+ for(let k=0;k<4;k++)pill(170,cy-66+k*39,72+(k*47)%90,13,k===0?CONFIG.mint:'#536250');
+ rounded(1544,cy-164,244,328,28);ctx.fillStyle='#151c19';ctx.fill();ctx.strokeStyle='#536250';ctx.stroke();
+ ctx.save();ctx.beginPath();ctx.rect(1564,cy-140,204,280);ctx.clip();
+ for(let k=0;k<8;k++){const bh=55+((k*59)%164);rounded(1572+k*25,cy+115-bh,17,bh,8);ctx.fillStyle=k%3===0?CONFIG.violet:CONFIG.mint;ctx.fill()}
+ ctx.restore();ctx.restore();
+}
+function building(u,t){
+ const p=out(u/.7);
+ ctx.save();ctx.translate(1430,645);ctx.rotate(-.13);
+ for(let row=3;row>=0;row--)for(let col=0;col<3;col++){
+  const delay=(3-row)*.10+col*.06;
+  const e=out((u-delay)/.7);
+  const x=(col-1)*128+(3-row)*22,y=(row-2)*124+(1-e)*340;
+  ctx.save();ctx.globalAlpha=e;
+  rounded(x-49,y-49,98,98,20);ctx.fillStyle=(col+row)%4===0?CONFIG.violet:((col+row)%3===0?CONFIG.mint:'#233326');ctx.fill();
+  ctx.strokeStyle='rgba(224,255,208,.18)';ctx.lineWidth=2;ctx.stroke();
+  if((col+row)%3===0){line(x-17,y,x+17,y,CONFIG.ink,5);line(x,y-17,x,y+17,CONFIG.ink,5)}
+  ctx.restore();
+ }
+ ctx.restore();
+ headline(BEATS[3].lines,132,424,142,u);
+ ctx.save();ctx.globalAlpha=smooth((u-.7)/.5);label('Keep the ideas coming.',140,760,40,'#a6afa5','left',400);ctx.restore();
+}
+function ending(u,t){
+ const p=out(u/.8);
+ ctx.save();ctx.translate(960,290);ctx.scale(p,p);
+ ring(0,0,86,'rgba(186,255,105,.18)',2);
+ ring(0,0,86,CONFIG.mint,6,-Math.PI/2,-Math.PI/2+TAU*clamp(u/1.2));
+ ctx.save();ctx.rotate(-.15+u*.08);pill(-40,-13,80,26,CONFIG.mint);pill(-13,-40,26,80,CONFIG.mint);ctx.restore();ctx.restore();
+ ctx.save();ctx.textAlign='center';
+ BEATS[4].lines.forEach((text,i)=>{const e=out((u-i*.12)/.8);ctx.save();ctx.globalAlpha=e;label(text,960,558+i*146+(1-e)*90,136,i?CONFIG.mint:CONFIG.paper,'center');ctx.restore()});
+ ctx.globalAlpha=smooth((u-.9)/.6);label('Inference, in motion.',960,873,42,'#a6afa5','center',400);ctx.restore();
+}
+const scenes=[opening,motion,transformation,building,ending];
+function draw(t){
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.clearRect(0,0,W,H);backdrop(t);
+ BEATS.forEach((b,i)=>{const a=sceneAlpha(t,b,i);if(a<=0)return;ctx.save();ctx.globalAlpha=a;scenes[i](Math.max(0,t-b.start),t);ctx.restore()});
+ /* Short, deterministic light wipes connect the five beats. */
+ for(let i=1;i<BEATS.length;i++){
+  const q=(t-(BEATS[i].start-.18))/.48;
+  if(q>0&&q<1){const x=-380+(W+760)*smooth(q);ctx.save();ctx.globalAlpha=Math.sin(q*Math.PI)*.24;ctx.transform(1,0,-.24,1,0,0);const g=ctx.createLinearGradient(x-120,0,x+240,0);g.addColorStop(0,'transparent');g.addColorStop(.5,CONFIG.mint);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(x-120,0,360,H);ctx.restore()}
+ }
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:CONFIG.duration,duration:CONFIG.duration,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>

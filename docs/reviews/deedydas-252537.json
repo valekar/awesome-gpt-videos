@@ -1,0 +1,32 @@
+{
+  "slug": "deedydas-252537",
+  "status": "sampled",
+  "reviewed_on": "2026-10-18",
+  "reviewer": "Codex visual inspection with separately attributed GPT reference draft",
+  "method": "Original sampled over full25.966667s at1s intervals, plus full-resolution details; decoded output sampled over18s at3s spacing. This is sampled visual inspection, not full transition or audio acceptance.",
+  "reference": {
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "duration_seconds": 25.966667,
+    "audio_streams": 1
+  },
+  "baseline": {
+    "attempts": 1,
+    "observations": [
+      "Generates an18s1920x1080 dark inference promo with lime and lavender graphics, five headline beats and procedural tokens.",
+      "Original uses a25.966667s white/navy/violet MUDA-branded sequence: waiting UI, utilization field, token performance cards, dictionary scene, claim, logo, and latency receipt.",
+      "Broad inference-promo intent is present; reference brand, exact sequence, timing, typography and claims are absent from baseline. The original short creator prompt does not specify them.",
+      "Baseline is silent; original has an audio stream whose content has not been listened to or compared."
+    ]
+  },
+  "adapted": {
+    "status": "not_generated",
+    "next_steps": [
+      "Reference analysis and timed scene/text brief saved separately.",
+      "Audio requires review before specifying a complete recreation.",
+      "Do not misclassify unknown audio as silence."
+    ]
+  },
+  "comparison_claim": "This baseline demonstrates one model interpretation of an underdetermined prompt with an additional renderer contract. It does not establish a controlled model ranking or parity."
+}

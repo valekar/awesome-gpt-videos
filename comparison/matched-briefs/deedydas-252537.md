@@ -1,0 +1,135 @@
+# Model-drafted reference reconstruction — deedydas-252537
+
+Status: sampled visual reconstruction; full timing/audio acceptance pending. Generated with GPT-6.1 Sol/high from declared reference frames.
+
+Create a NEW, code-rendered recreation inferred from the supplied decoded frames. This is reference guidance, not the creator’s identical original prompt or recovered private chat. The supplied creator material is only: “make a modern slick and punchy video for a modern startup that works on inference”. The visible reference provides enough evidence to reconstruct its visual sequence; unprovided production decisions remain unknown.
+
+Render at 1280×720, 16:9, 30 fps, with a target duration of 25.966667 seconds. Preserve the visible artwork’s separate technical inscription, “1920×1080 · 30 FPS · 120 BPM”; that inscription is graphic content, not the decoded file’s resolution or evidence of an audible tempo. All performance figures and product claims are reference artwork, not independently verified facts.
+
+Use a predominantly white canvas, very dark navy typography, saturated violet accents, faint gray rules, and restrained pastel fills. The film is flat editorial motion design: typography, UI fragments, tiled diagrams, rounded token chips, a dictionary layout, an irregular circular brushstroke, and a pastel gradient band. There are no observed people, photographic environments, physical materials, or perspective camera shots. Preserve the large areas of whitespace and the sharp contrast between sparse title frames and dense token fields.
+
+Rebuild all artwork in code. Do not use the contact sheets or full-resolution reference frames as output imagery. Suitable primitives include DOM/SVG text, rectangles, rounded pills, rules, SVG paths, and gradients. Font identities are unknown: match the observed heavy sans serif for headlines and branding, small tracked monospaced technical text, monospaced counters, and contrasting high-contrast serif for the dictionary word “muda”. Do not treat a guessed font as an identified creator asset.
+
+Maintain the technical frame surrounding the content. In the full-resolution evidence, fine registration crosses sit near the four corners, approximately 42 px from the left/right and top/bottom edges. Top-left text reads “MUDA / FILM 01”; the top-right shows a running T+ timestamp. A thin horizontal rule runs approximately x=61–1219 at y=663, with a violet progress segment extending over time. The lower-left chapter label changes with the sequence; the technical inscription is aligned at lower right. At 25 seconds the violet line reaches almost the whole inner width. Labels are tiny, gray, monospaced, widely spaced, and subordinate to the main composition. The violet full-screen shot uses pale contrasting frame furniture.
+
+The contact-sheet black timestamp strips, tile boundaries, and unused black cells are presentation scaffolding, not video artwork. Sheet 1 contains 0–15 seconds in four columns; sheet 2 contains 16–25 seconds, with its remaining cells empty. Full-resolution frames confirm an opening UI at embedded time T+01.033s, an almost empty name-section frame at T+13.033s, and the small final logo at T+25.000s.
+
+Follow the ordered sampled states below. Only the three supplied scene-change timestamps establish precise early cuts. Elsewhere, numeric scene ranges organize the evidence; they do not establish exact unsampled edit boundaries. Progressive text, changing counters, and changing geometry are observed across samples, but their continuous trajectories, easing, and entry/exit mechanisms require follow-up. Do not add camera moves, extra scenes, product interfaces, interactions, or unobserved content.
+
+## Declared uncertainties
+- The exact-visible-text list includes the separately supplied creator request as context; that request is not an on-screen caption.
+- Coverage spans the whole duration at approximately one-second intervals, with three additional detected early scene boundaries. It is not a frame-by-frame review. Brief events and transition details between samples may be unobserved.
+- Only 2.966667, 3.966667, and 4.466667 seconds are supplied as detected scene changes. Later section boundaries are bracketed by sampled states, not established to frame precision.
+- Nominal contact-sheet times and embedded artwork timestamps differ slightly: the full-resolution opening and name frames show 1.033 and 13.033 seconds, while the final full frame shows 25.000 seconds.
+- The exact fonts, font weights, color values, corner radii, shadows, easing curves, and original animation implementation are unknown. Geometric measurements in this brief are approximate.
+- The chapter-label separator is a short dash; its exact Unicode character cannot be determined from raster evidence. The technical inscription’s separators and spacing should also be checked at final text-proof stage.
+- The cluster’s total row/column count cannot be counted confidently from the contact sheets. Its tiny explanatory line appears to continue with “EACH SQUARE = 5 MS”, but the numeral and full punctuation require confirmation.
+- The token list records readable examples, not a verified exhaustive inventory or original ordering. Some pills are cropped at frame edges, and their changing layouts do not establish horizontal movement direction.
+- The 22-second microcopy appears to read approximately “FIRST TOKEN 38 MS · 12,480 TOK/S · NOTHING IDLE”. This is tentative; the throughput numeral and exact separators are too small to certify.
+- The claim section’s lower-right microcopy is too small for reliable complete transcription. It appears associated with the Japanese waste-elimination wording, but no complete replacement wording should be invented.
+- The dictionary brushstroke changes between sampled states. A path reveal is inferred; continuous drawing direction and whether the shape also rotates or transforms are unknown.
+- The samples do not establish precise entrance/exit motion, card counter interpolation, spinner rotation, placeholder animation, token speed, or logo movement.
+- No separate frame is supplied for the final tail after 25.000 seconds. A held end card through 25.966667 seconds is inferred, not confirmed.
+- Displayed latency, throughput, utilization, and dictionary/marketing statements are preserved visual claims. This analysis does not independently validate them.
+
+Audio: The metadata reports one audio stream. Audio was NOT supplied, so sound, music, narration, effects, and their timing have not been reviewed. Do not mark the film silent or invent audible content. Obtain and review the audio before specifying or evaluating the recreation’s soundtrack.
+
+
+## Observed scene samples
+- 0–2.966667s: Opening chapter: “01 – THE WAIT”. At the nominal 0-second sample, the field is almost entirely white beneath the persistent technical frame; main UI content is not yet clearly legible. At 1 second, a pale blue-gray rounded user-message bubble occupies the upper-right half. The full-resolution T+01.033s frame places it approximately x=679–1147, y=200–265, containing dark sans-serif text, “Summarize the quarter in one line.” On the left, a small pale circular spinner with a violet arc is centered around x=147, y=339; gray “Thinking..” begins around x=176. Lower left, approximately x=133, a tiny tracked “waiting” label sits above a large gray monospaced “0.08 s”. At 2 seconds, the message and thinking indicator remain, three very pale horizontal response-placeholder bars appear beneath the indicator, and the counter reads “2.57 s”. Preserve the strong left/right separation and sparse layout. The samples establish content appearing and the timer changing; they do not establish the spinner’s rotation, placeholder shimmer, or precise entrance animation. The supplied detected cut at 2.966667 seconds ends this section.
+- 2.966667–3.966667s: White typographic impact shot, chapter “02 – THE WORD”. The 3-second tile contains the enormous navy uppercase word “WAITING”, horizontally spanning most of the inner canvas and centered around the middle of the frame. Use an extremely heavy sans serif, tight spacing, and approximately four-fifths of the frame width. Retain the surrounding technical frame at much smaller scale. The detected cut times support this approximately one-second shot. Its internal entrance or exit treatment is not resolved by the single sampled state.
+- 3.966667–4.466667s: Full saturated violet background with enormous white uppercase “WASTE.”, including its period. The 4-second sample shows the word centered across the frame, with similarly heavy sans-serif weight and dominant scale. Fine frame labels and rules remain visible in a pale contrasting color. Preserve the abrupt palette reversal from the preceding white/navy shot. Supplied scene-change timestamps bound this shot at approximately half a second; no internal letter motion is established.
+- 4.466667–9s: Chapter “03 – THE CLUSTER”, white background. At 5 seconds, the navy heading “Most of inference is waiting.” sits across the upper-left region. Beneath it is a broad rectangular field of many small, evenly sized square cells. The sampled 5-second state is sparse and partially faded, with pale violet and gray cells and faint residual marks toward the right. At 6 seconds, the field is dense and regular, with many white/light-gray cells and scattered lavender cells. Small dark capsule annotations identify “IDLE” near the upper-left portion, “PADDING” near the upper-right, “COLD START” below a left-side position, and “QUEUE” below a right-side position. Fine leaders or markers connect annotations to the grid. Lower right, a small “UTILIZATION” label sits above a large navy “31%”. A tiny explanatory line sits beneath the grid. At 7 seconds, the same headline, grid, and 31% remain; a slender vertical violet line is visible immediately left of the grid and the annotation capsules are lighter. At 8 seconds, the headline is replaced by violet “Not anymore.”; the rectangular grid is filled much more uniformly with pastel violet, pink, peach, yellow, mint, and blue squares. The utilization figure becomes violet “94%”. Maintain the grid’s horizontal rectangular footprint, approximately the central three-quarters of the frame width, with the utilization block below its right edge. The evidence suggests a transformation between the two grid states, but does not establish a sweeping fill, particle assembly, exact cell count, or exact transition time. The grid-to-token-field change occurs somewhere after the 8-second sample and by the 9-second sample.
+- 9–13s: Chapter “04 – THE STREAM”. At 9 seconds, densely packed horizontal rows of small rounded token pills cover almost the entire canvas between the persistent top and bottom frame furniture. Pills extend beyond the side edges and are cropped there. Use muted lavender, blue, mint, peach, pink, and pale yellow fills, with tiny dark monospaced lowercase words. Repeated readable vocabulary includes speculative, question, draft, done, cache, warm, answer, schedule, tokens, prefill, batch, route, shard, kv, ends, stream, ready, verify, attention, accept, decode, fused, page, fp8, the, before, and is. At 10 seconds, a clean white card overlays and occludes the token field near the center. It has modest corner rounding and restrained edge/shadow treatment. Small “THROUGHPUT” appears above a very large navy “601”, with smaller gray “tok/s” aligned beside the number. A fine divider separates the lower row: “FIRST TOKEN” at left and “257 ms” at right. At 11 seconds, the same card reads “7,674 tok/s” and “55 ms”. At 12 seconds, it reads “12,325 tok/s” and “39 ms”. The card occupies roughly two-fifths of the frame width and about one-third of its height. Preserve the contrast between the busy pastel background and the quiet white metric panel. Successive samples establish changing numbers and token arrangements; continuous counting, token speed, and movement direction are not established. By the 13-second sample the large foreground content has cleared.
+- 13–17s: Chapter “05 – THE NAME”. The full-resolution T+13.033s frame is essentially empty white apart from the persistent frame, chapter label, and progress rule; extremely faint residual shapes are barely visible toward the lower right. Preserve this observed breathing space. At 14 seconds, a dictionary composition begins: lowercase serif “muda” on the left, a tiny tracked “NOUN · JAPANESE” above it, and an incomplete dark navy circular brushstroke on the right. Very large, extremely pale lavender Japanese characters sit behind the right-hand graphic, extending beyond the bottom and right edges. At 15 seconds, the left definition is visible: “無駄 — waste; futility; uselessness.” A short thin rule and smaller explanatory copy appear below: “The first of the three wastes in the Toyota Production System: muda, mura, muri.” At 16 seconds, a violet final line is added: “Also: the thing we delete.” The left block begins around 8% of frame width. The serif word is large but much smaller than the preceding impact titles. The brushstroke is centered approximately in the right quarter of the frame, with a diameter near half the frame height. Its navy stroke has tapered thin sections, a heavier right/lower sweep, and an open irregular junction near the upper-left/top. Pale background characters read as enlarged 無駄, cropped by the canvas. The arc’s extent differs between the 14- and 15-second samples; a reveal or redraw is plausible but its path, direction, and timing are inferred. No camera motion is established.
+- 17–21s: Chapter “06 – THE CLAIM”, returning to a sparse white typographic layout. At 17 seconds, a large gray “We” appears near the left margin in the upper-middle portion of the canvas. At 18 seconds, it has become the complete navy line “We removed the waste.” At 19 seconds, a second line is partially present: violet “It was” followed by dark “most”. At 20 seconds, the second line reads “It was most of it.”, with “most” navy and the surrounding words violet. Both lines use a very heavy sans serif, tight tracking, and left alignment, beginning around 8% of frame width. The first line spans most of the available width; the second sits directly below with a clear line gap. A narrow, pale lavender vertical Japanese inscription at the far right reads “無駄をなくす”. Very small gray wording is visible near the lower-right area but cannot be fully transcribed from the supplied contact sheet. Preserve the observed progressive word states; the samples do not resolve whether words are typed, faded, slid, masked, or revealed through another treatment. The transition into the next brand shot occurs after the 20-second sample and by 21 seconds.
+- 21–23s: Chapter “07 – THE MARK”. At 21 seconds, a broad pastel gradient band crosses the white canvas, rising toward the right. Its top and bottom edges are parallel diagonals, and both ends are cropped by the frame. The band covers approximately the central half of the frame height. Color moves through pale blue/lavender on the left, a subtle mint region low in the middle, and peach/pink toward the right. A large, heavy navy lowercase “muda” is centered over the band; its period is a small saturated violet square aligned at the baseline. At 22 seconds, the same mark remains and the centered dark tagline “Inference, minus the waiting.” is visible beneath it. Below the tagline is a tiny tracked technical line, apparently containing first-token latency, throughput, and an idle-related phrase; its exact transcription needs a larger frame. Keep the mark much larger here than in the final end card. These samples show the tagline being added, but do not establish the band’s entrance direction, continuous movement, or logo scaling.
+- 23–25s: Chapter “08 – THE RECEIPT”, on white. At 23 seconds, a compact receipt-style metric row is centered in the canvas: tiny tracked “THIS FILM” on the left and larger dark gray monospaced “26.000 s” on the right. At 24 seconds, a thin horizontal rule divides this from a second row: tiny “YOUR ANSWER” at left and violet monospaced “0.038 s” at right. The block occupies approximately the central two-fifths of the frame width, leaving very large surrounding margins. Preserve the reference’s displayed 26.000-second value even though the supplied decoded duration is 25.966667 seconds. The second row is added between sampled states; its precise reveal mechanism is unknown. The receipt clears before or at the 25-second end-card sample.
+- 25–25.966667s: Final white end card, still within “08 – THE RECEIPT”. The full-resolution T+25.000s frame shows only a small centered navy “muda” with a violet square period, plus the persistent technical frame and near-complete violet progress line. At 1280×720, the mark occupies approximately x=555–726 and y=334–381, centered around the canvas midpoint. This is a substantial scale reduction from the gradient-band logo. No tagline or receipt values remain visible. The final 0.966667 seconds are not separately sampled; a continued hold is a reconstruction assumption requiring confirmation, and no final fade or additional event is evidenced.
+
+## Visible text evidence
+- make a modern slick and punchy video for a modern startup that works on inference
+- MUDA / FILM 01
+- T+01.033s
+- T+13.033s
+- T+25.000s
+- 1920×1080 · 30 FPS · 120 BPM
+- 01 – THE WAIT
+- 02 – THE WORD
+- 03 – THE CLUSTER
+- 04 – THE STREAM
+- 05 – THE NAME
+- 06 – THE CLAIM
+- 07 – THE MARK
+- 08 – THE RECEIPT
+- Summarize the quarter in one line.
+- Thinking..
+- waiting
+- 0.08 s
+- 2.57 s
+- WAITING
+- WASTE.
+- Most of inference is waiting.
+- IDLE
+- PADDING
+- COLD START
+- QUEUE
+- UTILIZATION
+- 31%
+- Not anymore.
+- 94%
+- ONE GPU CLUSTER
+- ONE SECOND
+- THROUGHPUT
+- 601
+- 7,674
+- 12,325
+- tok/s
+- FIRST TOKEN
+- 257 ms
+- 55 ms
+- 39 ms
+- speculative
+- question
+- draft
+- done
+- cache
+- warm
+- answer
+- schedule
+- tokens
+- prefill
+- batch
+- route
+- shard
+- kv
+- ends
+- stream
+- ready
+- verify
+- attention
+- accept
+- decode
+- fused
+- page
+- fp8
+- the
+- before
+- is
+- NOUN · JAPANESE
+- muda
+- 無駄
+- 無駄 — waste; futility; uselessness.
+- The first of the three wastes in the Toyota Production System: muda, mura, muri.
+- Also: the thing we delete.
+- We
+- We removed the waste.
+- It was most
+- It was most of it.
+- 無駄をなくす
+- muda.
+- Inference, minus the waiting.
+- THIS FILM
+- 26.000 s
+- YOUR ANSWER
+- 0.038 s

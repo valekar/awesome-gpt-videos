@@ -11,3 +11,5 @@ This repository adapts a pinned public prompt collection for GPT-6.1 Sol/high an
 - Keep credentials, downloaded reference movies and raw execution logs out of public artifacts. Creator assets retain separate provenance.
 - Run `python3 -m unittest discover -s tests` and `node --check docs/app.js` after pipeline changes. Inspect the gallery in a browser after UI changes.
 - Publishing requires an authenticated GitHub account and a user-requested destination. Never push to `upstream`.
+
+For an authorized GitHub publication, `gh auth status` may be signed out while Git’s configured credential helper is authenticated. Verify that existing helper before requesting another login. `tools/github_sync.py` uses it in process memory and never prints or saves credential values.

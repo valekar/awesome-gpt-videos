@@ -1,0 +1,72 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "354619a50a03fb737af489b1a42d73787e9d4c9b89e7252149d468b5021a5624",
+  "reference_evidence": {
+    "slug": "deedydas-252537",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "duration_seconds": 25.966667,
+    "audio_streams": 1,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0,
+      21.0,
+      22.0,
+      23.0,
+      24.0,
+      25.0
+    ],
+    "scene_change_times": [
+      2.966667,
+      3.966667,
+      4.466667
+    ],
+    "sheets": [
+      "work/references/deedydas-252537/evidence/sheet-01.jpg",
+      "work/references/deedydas-252537/evidence/sheet-02.jpg"
+    ],
+    "full_frames": [
+      "work/references/deedydas-252537/evidence/full-1.jpg",
+      "work/references/deedydas-252537/evidence/full-2.jpg",
+      "work/references/deedydas-252537/evidence/full-3.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/deedydas-252537/evidence/sheet-01.jpg": "cebb9487ab51d02760b9b900c8dd4af1d0863dbe9a61b46f3b8cc8bb251ad38e",
+    "work/references/deedydas-252537/evidence/sheet-02.jpg": "49dd5a277c7294355909a025e55410ee88b7ece57391a3e4074d89dae9641365",
+    "work/references/deedydas-252537/evidence/full-1.jpg": "d28dc9b33935d42ef129bd819c5198b125dc5509a79ee00907274247104e04ef",
+    "work/references/deedydas-252537/evidence/full-2.jpg": "2980bb7ec7c80370ae7576a9a70eebc41e6eaefcef168faa3c866b08d9b312ab",
+    "work/references/deedydas-252537/evidence/full-3.jpg": "5cbdc51796202c39d994bc976312edaaa25c7370932749ae2d35ae91693f3cc5"
+  },
+  "usage": {
+    "input_tokens": 29604,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8674,
+    "reasoning_output_tokens": 4142
+  },
+  "audio_supplied": false
+}

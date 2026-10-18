@@ -14,13 +14,13 @@ if __name__=='__main__':
  if (video['width'],video['height'])!=(original['width'],original['height']):p.error('Render dimensions differ from recorded source')
  dst=ROOT/'docs/media'/a.slug/a.track;dst.mkdir(parents=True,exist_ok=True)
  shutil.copyfile(a.video,dst/'video.mp4')
- subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-ss','15','-i',str(dst/'video.mp4'),'-frames:v','1',str(dst/'poster.jpg')],check=True)
+ subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-ss',str(min(15,original['duration_seconds']/2)),'-i',str(dst/'video.mp4'),'-frames:v','1',str(dst/'poster.jpg')],check=True)
  # Only intentionally public model inputs/artifacts; execution diagnostics remain private.
  src=ROOT/'results'/a.slug/a.track
  for name in ['input.txt','response.json','index.html']:shutil.copyfile(src/name,dst/name)
  shutil.copyfile(ROOT/'node_modules/gsap/dist/gsap.min.js',dst/'gsap.min.js')
- if (ROOT/'assets/fonts/Caveat.ttf').exists():
-  shutil.copyfile(ROOT/'assets/fonts/Caveat.ttf',dst/'Caveat.ttf');shutil.copyfile(ROOT/'assets/fonts/OFL.txt',dst/'FONT-LICENSE.txt')
+ for font in (ROOT/'assets/fonts').glob('*.ttf'):shutil.copyfile(font,dst/font.name)
+ for license in (ROOT/'assets/fonts').glob('*OFL*.txt'):shutil.copyfile(license,dst/('FONT-'+license.name))
  project=ROOT/'work/render-projects'/a.slug/a.track
  staged=(project/'index.html').read_text();shutil.copyfile(project/'index.html',dst/'render-source.html')
  original.update(status='rendered',reason='Rendered and technically checked. Matched-time visual review pending.',video_url=f'media/{a.slug}/{a.track}/video.mp4',poster_url=f'media/{a.slug}/{a.track}/poster.jpg',technical_check='passed',technical_check_limits='Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.',render_probe=probe,staged_source_sha256=digest(staged),source_modified_after_generation=digest(staged)!=original['source_sha256'])

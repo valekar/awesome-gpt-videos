@@ -49,6 +49,63 @@
     "reason": "Cocktail recipe, including ingredient names, measurements, preparation order, and any ice or garnish."
   },
   "adapted": {
-    "status": "not_generated"
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "code-only-v1",
+    "track": "adapted",
+    "iteration": 2,
+    "source_prompt_sha256": "3baf7bd56c13c9a744a61d918a1dc2b1c4b30b74b9bd1a03b2160470cebc0a34",
+    "input_sha256": "b066a14d683f329fa5ee730f844cd866ff19815bde2af42574ee5833c18ba4eb",
+    "started_at": "2026-10-18T13:21:00.953791+00:00",
+    "tools": "none requested; read-only sandbox",
+    "reference_images_supplied": [
+      "ror-original-15.png"
+    ],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/ror-fly-880547/adapted/schema.json",
+      "-o",
+      "$REPO/results/ror-fly-880547/adapted/response.json",
+      "--image",
+      "$REPO/work/ror-original-15.png",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 30285,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 8964,
+      "reasoning_output_tokens": 1552
+    },
+    "finished_at": "2026-10-18T13:23:53.678000+00:00",
+    "assumptions": [
+      "Bangers.ttf and Caveat.ttf are supplied licensed assets beside the HTML; both are loaded before drawing and timeline registration. They approximate unknown original fonts.",
+      "The supplied still and reconstruction brief guide procedural artwork; transition boundaries and drawing paths remain inferred.",
+      "Iteration 2 preserves the silent six-stage recipe and title movement; pours finish at 9.5, 14.5 and 19.5 seconds.",
+      "Source only; no rendering, technical execution or visual parity review has been performed."
+    ],
+    "missing_inputs": [],
+    "summary": "Revised typography, title placement, glass and coral liquid, beveled tinted ice, pour timing, paper texture and larger progress nodes.",
+    "source_sha256": "9575b6395de84cd312eb0fd1405eef422a780b01f2d20d0f65e16126348cfa1b",
+    "width": 1080,
+    "height": 1080,
+    "duration_seconds": 30,
+    "source_path": "results/ror-fly-880547/adapted/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   }
 }

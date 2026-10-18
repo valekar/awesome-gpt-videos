@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Alan — Connected Flow</title>
+<style>
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#111b19}body{font-family:sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="15">
+<canvas id="art" class="clip" data-start="0" data-duration="15" data-track-index="0" width="1920" height="1080" aria-label="Alan: shared context, coordinated agents, and a connected flow from plan to production."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(function(){
+'use strict';
+// EDITABLE DESIGN AND COPY. All artwork is original vector drawing.
+const DESIGN={ink:'#111b19',paper:'#f2f0e7',lime:'#d4ff64',orange:'#ff7956',muted:'#84948c'};
+const COPY={opening:['FROM','INTENT.'],openingSub:'Turn intent into software.',network:['AGENTS.','IN SYNC.'],networkSub:'Shared context. Coordinated work.',nodes:['Plan','Code','Test','Review','Context','Team'],processTitle:'MOVE AS ONE.',stages:['PLAN','BUILD','REVIEW','TEST'],flow:['ONE','CONNECTED','FLOW.'],flowSub:'Context → Agents → Verification',brand:'Alan',closing:'From plan to production.',handle:'@tryAlanAI',url:'tryalan.ai'};
+const canvas=document.getElementById('art');
+const ctx=canvas.getContext('2d');
+const W=1920,H=1080,PI=Math.PI;
+const clamp=v=>Math.max(0,Math.min(1,v));
+const out=v=>1-Math.pow(1-clamp(v),3);
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const back=v=>{v=clamp(v)-1;return 1+2.70158*v*v*v+1.70158*v*v};
+const mix=(a,b,p)=>a+(b-a)*p;
+function font(size,weight=800){ctx.font=weight+' '+size+'px sans-serif'}
+function text(s,x,y,size,color=DESIGN.ink,weight=800,align='left'){
+ ctx.fillStyle=color;font(size,weight);ctx.textAlign=align;ctx.textBaseline='alphabetic';ctx.fillText(s,x,y);
+}
+function fitted(s,x,y,size,maxWidth,color=DESIGN.ink,weight=800,align='left'){
+ font(size,weight);const width=ctx.measureText(s).width;
+ text(s,x,y,width>maxWidth?size*maxWidth/width:size,color,weight,align);
+}
+function rr(x,y,w,h,r,fill,stroke,lineWidth=2){
+ ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.lineWidth=lineWidth;ctx.strokeStyle=stroke;ctx.stroke()}
+}
+function dot(x,y,r,color){ctx.beginPath();ctx.arc(x,y,Math.max(.001,r),0,PI*2);ctx.fillStyle=color;ctx.fill()}
+function line(x1,y1,x2,y2,color,width=2){ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
+function arrow(x,y,size,color,angle=0){ctx.save();ctx.translate(x,y);ctx.rotate(angle);ctx.strokeStyle=color;ctx.lineWidth=size*.12;ctx.beginPath();ctx.moveTo(-size*.55,0);ctx.lineTo(size*.5,0);ctx.moveTo(0,-size*.5);ctx.lineTo(size*.5,0);ctx.lineTo(0,size*.5);ctx.stroke();ctx.restore()}
+function grid(color,alpha,step=54){ctx.save();ctx.globalAlpha=alpha;for(let y=27;y<H;y+=step)for(let x=27;x<W;x+=step)dot(x,y,1.3,color);ctx.restore()}
+function reveal(s,x,y,size,p,color,maxWidth=1660){
+ p=clamp(p);ctx.save();ctx.beginPath();ctx.rect(x-5,y-size*1.12,maxWidth+15,size*1.28);ctx.clip();
+ fitted(s,x,y+(1-out(p))*size*1.3,size,maxWidth,color);ctx.restore();
+}
+function bg(color){ctx.fillStyle=color;ctx.fillRect(0,0,W,H)}
+function curvePoint(a,b,c,d,p){const q=1-p;return{x:q*q*q*a.x+3*q*q*p*b.x+3*q*p*p*c.x+p*p*p*d.x,y:q*q*q*a.y+3*q*q*p*b.y+3*q*p*p*c.y+p*p*p*d.y}}
+function bezier(a,b,c,d,color,width){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.bezierCurveTo(b.x,b.y,c.x,c.y,d.x,d.y);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}
+
+// 0.00–2.80: Oversized type and a sculptural stack of potential work.
+function opening(t){
+ bg(DESIGN.paper);grid(DESIGN.ink,.12);
+ const settle=out(t/1.2),exit=smooth((t-2.15)/.65);
+ ctx.save();ctx.translate(-exit*100,0);
+ reveal(COPY.opening[0],125,310,205,t/.65,DESIGN.ink,1040);
+ reveal(COPY.opening[1],115,535,205,(t-.16)/.7,DESIGN.ink,1110);
+ ctx.save();ctx.globalAlpha=out((t-.7)/.5);text(COPY.openingSub,135,715,44,DESIGN.ink,500);ctx.restore();ctx.restore();
+ ctx.save();ctx.translate(1440+exit*190,483);ctx.rotate(-.19+exit*.25);
+ for(let i=5;i>=0;i--){
+  const p=back((t-.12-i*.075)/.85),lift=(1-p)*300;
+  ctx.save();ctx.translate(i*23+(1-settle)*(i%2?120:-120),-i*30-lift);ctx.rotate((1-settle)*(i-2)*.13);
+  rr(-170,-105,340,225,20,i===0?DESIGN.lime:DESIGN.paper,DESIGN.ink,3);
+  if(i===0){dot(-120,-55,12,DESIGN.ink);line(-85,-55,105,-55,DESIGN.ink,7);line(-120,0,90,0,DESIGN.ink,7);line(-120,40,15,40,DESIGN.ink,7);arrow(108,57,40,DESIGN.ink)}
+  ctx.restore();
+ }
+ ctx.restore();
+ const p=out((t-.7)/1.15);
+ line(135,865,1785,865,'#cad0bf',3);line(135,865,135+1650*p,865,DESIGN.ink,5);dot(135+1650*p,865,15,DESIGN.orange);
+ for(let i=0;i<3;i++){const k=out((t-1.1-i*.14)/.55);dot(1415+i*95,795-25*Math.sin(i),8*k,DESIGN.ink)}
+}
+
+// 2.80–6.00: A spatial context graph assembles around Alan.
+function network(t){
+ bg(DESIGN.ink);grid(DESIGN.paper,.065);
+ reveal(COPY.network[0],115,193,120,t/.58,DESIGN.paper,780);
+ reveal(COPY.network[1],905,193,120,(t-.12)/.58,DESIGN.lime,900);
+ const cx=960,cy=610,grow=out((t-.15)/1.05),rot=.07*smooth(t/3.2);
+ const nodes=COPY.nodes.map((name,i)=>{
+  const a=-PI/2+i*PI/3+rot;
+  return{name,x:cx+Math.cos(a)*655*grow,y:cy+Math.sin(a)*245*grow};
+ });
+ ctx.save();ctx.globalAlpha=.25*grow;ctx.strokeStyle=DESIGN.muted;ctx.lineWidth=2;ctx.beginPath();ctx.ellipse(cx,cy,655,245,rot,0,PI*2);ctx.stroke();ctx.beginPath();ctx.ellipse(cx,cy,438,320,-.16,0,PI*2);ctx.stroke();ctx.restore();
+ nodes.forEach((n,i)=>{
+  const p=out((t-.2-i*.075)/.7),a={x:cx,y:cy},b={x:mix(cx,n.x,.25),y:cy+(i%2?95:-95)},c={x:mix(cx,n.x,.75),y:n.y},d={x:n.x,y:n.y};
+  ctx.save();ctx.globalAlpha=p;bezier(a,b,c,d,'#57664e',3);
+  const packet=clamp((t-.75-i*.1)/1.35),pt=curvePoint(a,b,c,d,packet);
+  if(packet>0&&packet<1)dot(pt.x,pt.y,8,DESIGN.lime);
+  ctx.translate(n.x,n.y);ctx.scale(p,p);rr(-112,-46,224,92,46,i===4?DESIGN.lime:'#21302a',i===4?DESIGN.lime:'#7f8f79',2);
+  text(n.name,0,12,34,i===4?DESIGN.ink:DESIGN.paper,650,'center');ctx.restore();
+ });
+ const core=back((t-.05)/.7);
+ ctx.save();ctx.translate(cx,cy);ctx.scale(core,core);rr(-156,-85,312,170,32,DESIGN.lime,null);text(COPY.brand,0,24,75,DESIGN.ink,750,'center');ctx.restore();
+ ctx.save();ctx.globalAlpha=out((t-.7)/.65);text(COPY.networkSub,960,1000,43,DESIGN.paper,500,'center');ctx.restore();
+}
+
+// 6.00–9.20: The graph resolves into a continuous editorial conveyor.
+function process(t){
+ bg(DESIGN.paper);grid(DESIGN.ink,.08);
+ reveal(COPY.processTitle,120,220,145,t/.62,DESIGN.ink,1690);
+ const xs=[135,555,975,1395],y=438,w=350,h=255;
+ const run=clamp((t-.65)/2.12),endX=mix(135,1785,run);
+ line(135,819,1785,819,'#c9cdbd',8);line(135,819,endX,819,DESIGN.ink,8);dot(endX,819,19,DESIGN.orange);
+ xs.forEach((x,i)=>{
+  const p=out((t-.15-i*.1)/.65),lit=smooth((t-.78-i*.46)/.22);
+  ctx.save();ctx.translate(0,(1-p)*165);ctx.globalAlpha=p;
+  rr(x+9,y+12,w,h,25,'#d9ddcf',null);rr(x,y,w,h,25,DESIGN.ink,null);
+  ctx.save();ctx.beginPath();ctx.roundRect(x,y,w,h,25);ctx.clip();ctx.fillStyle=DESIGN.lime;ctx.fillRect(x,y+h*(1-lit),w,h*lit);ctx.restore();
+  const color=lit>.5?DESIGN.ink:DESIGN.paper;
+  text(COPY.stages[i],x+30,y+66,43,color,750);
+  ctx.save();ctx.translate(x+w/2,y+163);
+  if(i===0){rr(-48,-36,96,75,8,null,color,4);line(-26,-14,28,-14,color,4);line(-26,5,15,5,color,4);line(-26,23,34,23,color,4)}
+  if(i===1){ctx.strokeStyle=color;ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(-24,-28);ctx.lineTo(-55,0);ctx.lineTo(-24,28);ctx.moveTo(24,-28);ctx.lineTo(55,0);ctx.lineTo(24,28);ctx.moveTo(12,-35);ctx.lineTo(-12,35);ctx.stroke()}
+  if(i===2){ctx.strokeStyle=color;ctx.lineWidth=4;ctx.beginPath();ctx.ellipse(-5,0,53,31,0,0,PI*2);ctx.stroke();dot(-5,0,13,color)}
+  if(i===3){ctx.strokeStyle=color;ctx.lineWidth=6;ctx.beginPath();ctx.moveTo(-37,0);ctx.lineTo(-9,26);ctx.lineTo(42,-30);ctx.stroke()}
+  ctx.restore();line(x+w/2,y+h+20,x+w/2,796,DESIGN.ink,3);
+  if(i<3)arrow(x+w+34,y+h/2,29,DESIGN.ink);
+  ctx.restore();
+ });
+ ctx.save();ctx.globalAlpha=out((t-1.8)/.5);text('From plan to production.',120,975,46,DESIGN.ink,500);arrow(1750,953,54,DESIGN.ink);ctx.restore();
+}
+
+// 9.20–12.00: A bold typographic crescendo with intertwined motion paths.
+function flow(t){
+ bg(DESIGN.lime);
+ const p=out(t/.75),spin=mix(-1.3,.3,smooth(t/2.8));
+ ctx.save();ctx.translate(1490,543);ctx.rotate(spin);ctx.scale(p,p);
+ ctx.strokeStyle=DESIGN.ink;ctx.lineWidth=46;
+ ctx.beginPath();ctx.ellipse(0,0,280,374,.36,-.1,PI*1.6);ctx.stroke();
+ ctx.strokeStyle=DESIGN.paper;ctx.lineWidth=46;ctx.beginPath();ctx.ellipse(0,0,280,374,-.36,PI*.4,PI*2.12);ctx.stroke();
+ const a=PI*1.6;arrow(Math.cos(a)*280,Math.sin(a)*374,72,DESIGN.ink,a+PI/2);
+ ctx.restore();
+ ctx.save();ctx.translate(-30*smooth((t-1.8)/1),0);
+ reveal(COPY.flow[0],120,305,210,t/.53,DESIGN.ink,1100);
+ reveal(COPY.flow[1],120,515,160,(t-.15)/.55,DESIGN.ink,1230);
+ reveal(COPY.flow[2],110,748,230,(t-.29)/.6,DESIGN.ink,1150);
+ ctx.restore();
+ const q=out((t-.75)/.7);line(130,868,130+1645*q,868,DESIGN.ink,3);
+ ctx.save();ctx.globalAlpha=q;text(COPY.flowSub,130,959,43,DESIGN.ink,550);ctx.restore();
+}
+
+// 12.00–15.00: A generous brand hold. Plain text, not a recreated logo.
+function closing(t){
+ bg(DESIGN.ink);
+ const enter=out(t/.8);
+ ctx.save();ctx.globalAlpha=.15*enter;ctx.strokeStyle=DESIGN.lime;ctx.lineWidth=1.5;
+ const r=390+120*(1-enter);
+ ctx.beginPath();ctx.ellipse(960,490,r*1.55,r*.9,-.24,0,PI*2);ctx.stroke();ctx.beginPath();ctx.ellipse(960,490,r*1.55,r*.9,.24,0,PI*2);ctx.stroke();ctx.restore();
+ const word=COPY.brand,size=322;font(size,750);const total=ctx.measureText(word).width;let x=960-total/2;
+ for(let i=0;i<word.length;i++){
+  const width=ctx.measureText(word[i]).width,p=back((t-.1-i*.085)/.7);
+  ctx.save();ctx.globalAlpha=clamp(p);ctx.translate(x+width/2,570+(1-p)*155);ctx.rotate((1-p)*(i%2?.12:-.12));text(word[i],0,0,size,DESIGN.paper,750,'center');ctx.restore();x+=width;
+ }
+ ctx.save();ctx.globalAlpha=out((t-.63)/.55);text(COPY.closing,960,713,52,DESIGN.lime,500,'center');ctx.restore();
+ const footer=out((t-1.02)/.55);
+ ctx.save();ctx.globalAlpha=footer;line(665,813,1255,813,'#4a5b4c',2);text(COPY.handle,960,886,36,DESIGN.paper,600,'center');text(COPY.url,960,947,32,DESIGN.paper,450,'center');ctx.restore();
+}
+
+const SCENES=[{start:0,draw:opening},{start:2.8,draw:network},{start:6,draw:process},{start:9.2,draw:flow},{start:12,draw:closing}];
+function draw(time){
+ const t=Math.max(0,Math.min(15,time));
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.lineCap='round';ctx.lineJoin='round';ctx.clearRect(0,0,W,H);
+ for(let i=0;i<SCENES.length;i++){
+  const scene=SCENES[i];if(t<scene.start)continue;
+  ctx.save();
+  if(i>0){
+   const p=out((t-scene.start)/.44);ctx.beginPath();
+   if(i===4){ctx.arc(1490,543,Math.max(.001,p*2200),0,PI*2)}
+   else if(i===2){ctx.rect(0,H*(1-p),W,H*p)}
+   else{ctx.rect(W*(1-p),0,W*p,H)}
+   ctx.clip();
+  }
+  scene.draw(t-scene.start);ctx.restore();
+ }
+}
+const clock={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(clock,{t:15,duration:15,ease:'none',onUpdate:function(){draw(clock.t)}},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+})();
+</script>
+</body>
+</html>

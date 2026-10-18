@@ -1,0 +1,53 @@
+{
+  "status": "blocked",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "45924ba46cb11321464d9153df8bb79aa849da97e14a77727d91c864d970a651",
+  "input_sha256": "d2d75569c605864e6381810ccba9b4e5f75e74bec1a7c4381ddadae7e905cb1d",
+  "started_at": "2026-10-18T13:17:10.367677+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/ajith-io-615243/baseline/schema.json",
+    "-o",
+    "$REPO/results/ajith-io-615243/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 49321,
+    "cached_input_tokens": 20352,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 422,
+    "reasoning_output_tokens": 241
+  },
+  "finished_at": "2026-10-18T13:17:31.871310+00:00",
+  "assumptions": [
+    "Official product research: [DistilBook](https://distilbook.com/) turns documents into animated explainer videos with narration, visuals, captions, and a script approval step.",
+    "No public assets were incorporated; asset licensing remains unassessed.",
+    "Dimensions remain unspecified because the required reference video's aspect ratio is unavailable."
+  ],
+  "missing_inputs": [
+    "The referenced video attachment or a publicly accessible download URL is missing. It is required to reproduce the requested visual style."
+  ],
+  "summary": "Product research completed. HTML generation is blocked by the missing reference video.",
+  "reason": "The referenced video attachment or a publicly accessible download URL is missing. It is required to reproduce the requested visual style."
+}

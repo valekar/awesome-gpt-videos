@@ -34,7 +34,7 @@ python3 tools/prepare_render.py <slug> --track adapted
 
 Generation uses the signed-in local Codex CLI, pinned to `@openai/codex@0.163.0`; the installed 0.136.0 CLI failed to parse the current model catalog and rejected the target. The newer CLI's model/effort probe succeeded on 2026-10-18. No API key is required for that signed-in CLI path. Raw events/stderr are ignored by Git. The runner stops on a provider failure rather than automatically spending on retries. It never changes model or resets usage limits.
 
-The batch runner is serial and resumable. `--all` selects every entry; `--showcase` selects the 100 actual README showcase tiles (not the 30 latest-prompt tiles). Partial baseline entries and unprepared reproduction entries become blocked with a reason. The runner does not pretend that blocked entries have been tested.
+The single-entry runner is resumable; the corpus supervisor uses a declared worker count. `--all` selects every entry; `--showcase` selects the 100 actual README showcase tiles (not the 30 latest-prompt tiles). Partial baseline entries and unprepared reproduction entries become blocked with a reason. The runner does not pretend that blocked entries have been tested.
 
 ## Reference availability
 
@@ -51,3 +51,11 @@ The White Russian baseline and reproduction use a tool-free code-generation mode
 The reproduction's first reference brief misread the contact-sheet layout; the first output followed that mistake. Iteration 2 corrected the sidebar and supplied Caveat separately. Iteration 3 addresses visual liquid level, floating ice and cream movement from a full-resolution reference frame. These iterations, extra reference images and font assistance prevent treating the result as a single-shot comparison with the baseline. All attempts remain archived under `results/<slug>/<track>/iterations/`.
 
 HyperFrames' runtime checks passed on the pilot. The artwork is Canvas: the automated layout/contrast audits checked zero DOM text nodes, and no motion sidecar assertions were supplied. Thus those checks do not certify text readability, within-Canvas geometry, physical realism or fidelity. A passing technical check can also include a nonfatal source-length warning.
+
+## Continued-run protocol
+
+The code-only pilot is preserved. New calls may use `--research` (protocol `research-v2`) to enable the model's native public web-search tool for source requests that explicitly need research. Local-file reads, shell commands, credential access and delegation remain prohibited for these model calls. Research-enabled output is labeled separately; it must not be passed off as the pilot's identical environment. Missing product assets must not be blamed on a browsing restriction imposed by the earlier harness.
+
+`tools/reference_frames.py` records actual decoded timestamps, full-resolution details and detected scene-change times. `tools/analyze_reference.py` uses GPT-6.1/high to draft attributed reconstruction briefs from those declared images. These are model-generated sampled analyses, not human frame-by-frame acceptance. An audio stream alone is not an audio review: images cannot establish narration, music or sound effects.
+
+GitHub publication uses the existing configured Git credential helper. A separate `gh auth` login may be absent even when Git is authenticated. Credentials are never printed, stored in repository files or embedded in remote URLs.

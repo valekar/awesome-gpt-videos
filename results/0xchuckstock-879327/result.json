@@ -1,0 +1,64 @@
+{
+  "baseline": {
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "ceda2b46938b954f10c19d165d29cd8e7ea24fe27dcb2017d7ef01c64700ef08",
+    "input_sha256": "0b15a631cad25ecc07bf11bfb2eaabcb43196c4e66a4481d44f23c2b4087ac0d",
+    "started_at": "2026-10-18T13:17:32.846515+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/0xchuckstock-879327/baseline/schema.json",
+      "-o",
+      "$REPO/results/0xchuckstock-879327/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20555,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 12295,
+      "reasoning_output_tokens": 3607
+    },
+    "finished_at": "2026-10-18T13:22:56.433885+00:00",
+    "assumptions": [
+      "Chosen format: 1920×1080, 42 seconds, with a deterministic automatic battle demonstration.",
+      "Multiplayer is implemented as two-player local keyboard co-op, with two additional AI wingmen. Online networking requires a separate service and is not included.",
+      "Enter starts or restarts the single timeline. WASD/Space and IJKL/right Shift independently give each human pilot control during playback.",
+      "All spacecraft, environments, effects and interface artwork are procedural Canvas geometry; no external assets or fonts are required beyond the supplied gsap.min.js.",
+      "The requested spacecraft designs reference Star Wars. No licensed franchise artwork is included; franchise permission and distribution rights are not established.",
+      "This source has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable 3D-projected space assault with local co-op, four destructible objectives, mounted batteries, TIE waves and automatic demonstration playback.",
+    "source_sha256": "3e87e8d7c088853ef480054ebee2828803d070f969c7775978c8c4aae0bd537f",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 42,
+    "source_path": "results/0xchuckstock-879327/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

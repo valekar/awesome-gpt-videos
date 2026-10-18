@@ -14,9 +14,14 @@ def record(slug,track,value):
   fcntl.flock(f,fcntl.LOCK_EX)
   d=json.loads(p.read_text()) if p.exists() else {'baseline':{'status':'not_generated'},'adapted':{'status':'not_generated'}}
   d[track]=value;dump(p,d)
-def make_input(v,track,brief=None):
+def make_input(v,track,brief=None,research=False):
  material=v['prompt'] if track=='baseline' else (ROOT/'prompts/gpt-6.1-high'/f"{v['slug']}.md").read_text()
- text=CONTRACT+'\nEXPERIMENT TRACK: '+track+'\n\nCREATOR TASK / ADAPTED TASK:\n'+material
+ contract=CONTRACT
+ if research:
+  contract=contract.replace('Do not call tools, browse, read any files, execute shell commands or spawn agents.', 'Public web search is available: use it for requested product/factual research and official public assets. Do not execute shell commands, read local files or credentials, access private sources, or spawn agents.')
+  contract=contract.replace('No external assets, images, fonts, audio, modules or network calls unless explicitly supplied here.', 'Use supplied local dependencies. Verified official public asset URLs may be referenced in HTML after web research; identify sources and any license gaps in assumptions. Do not invent product facts, screenshots or numbers. No private-source access. Required assets will be frozen by the harness before rendering.')
+ text=contract+'\nEXPERIMENT TRACK: '+track+'\n\nCREATOR TASK / ADAPTED TASK:\n'+material
+ if track=='adapted':text+='\n\nSUPPLIED LOCAL FONT ASSETS: Bangers.ttf and Caveat.ttf (SIL OFL) are available beside the HTML. If useful, load via @font-face and wait for document.fonts readiness before initial drawing/timeline registration. Declare any use as a shared font approximation, not recovered original typography.'
  if brief:text+='\n\nTIMED RECONSTRUCTION BRIEF (inferred from finished reference, not original chat):\n'+brief
  return text
 
@@ -32,17 +37,20 @@ def run_one(v,args):
   record(slug,track,{'status':'blocked','reason':'Exact replication needs a scene-by-scene reference audit and matched brief.','model':MODEL,'reasoning_effort':'high'});print(slug,'blocked: missing matched brief',flush=True);return
  if v['prompt_partial'] and track=='baseline':
   record(slug,track,{'status':'blocked','reason':'Published source is partial/post only; identical original-prompt benchmark unavailable.','model':MODEL,'reasoning_effort':'high'});return
- prompt=make_input(v,track,brief_path.read_text() if track=='adapted' else None)
- iteration=existing.get('iteration',1) + 1 if args.revise else 1
+ prompt=make_input(v,track,brief_path.read_text() if track=='adapted' else None,getattr(args,'research',False))
+ restart=args.revise or (getattr(args,'retry',False) and existing.get('status') in ('blocked','failed'))
+ iteration=existing.get('iteration',1) + 1 if restart else 1
  if args.revise:
   if not (out/'index.html').exists():raise ValueError('Revision requires existing generated source')
   prompt+='\n\nPREVIOUS GENERATED SOURCE (repair this; preserve already correct motion):\n'+(out/'index.html').read_text()+'\n\nREVISION FEEDBACK:\n'+pathlib.Path(args.revise).read_text()
+ if restart:
   archive=out/'iterations'/f'{iteration-1:03d}';archive.mkdir(parents=True,exist_ok=False)
   for name in ['index.html','metadata.json','input.txt','schema.json','response.json','events.jsonl','stderr.log','hyperframes.json']:
    if (out/name).exists():shutil.copyfile(out/name,archive/name)
  (out/'input.txt').write_text(prompt);dump(out/'schema.json',SCHEMA)
- metadata={'status':'running','model':MODEL,'reasoning_effort':'high','cli_version':'0.163.0','track':track,'iteration':iteration,'source_prompt_sha256':digest(v['prompt']),'input_sha256':digest(prompt),'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'tools':'none requested; read-only sandbox','reference_images_supplied':[]}
+ metadata={'status':'running','model':MODEL,'reasoning_effort':'high','cli_version':'0.163.0','protocol_version':'research-v2' if getattr(args,'research',False) else 'code-only-v1','track':track,'iteration':iteration,'source_prompt_sha256':digest(v['prompt']),'input_sha256':digest(prompt),'started_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'tools':'none requested; read-only sandbox','reference_images_supplied':[]}
  command=['npx','--yes','@openai/codex@0.163.0','exec','--ignore-user-config','--ephemeral','--model',MODEL,'-c','model_reasoning_effort="high"','--sandbox','read-only','--json','--output-schema',str(out/'schema.json'),'-o',str(out/'response.json')]
+ if getattr(args,'research',False):command.insert(3,'--search');metadata['tools']='public web search allowed; shell/file/agent tools forbidden'
  if track=='adapted' and args.image:
   command+=['--image',str(pathlib.Path(args.image).resolve())];metadata['reference_images_supplied']=[str(pathlib.Path(args.image).name)]
  command+=['-'];metadata['command']=[x.replace(str(ROOT),'$REPO') for x in command];record(slug,track,metadata);print(slug,track,'generating',flush=True)
@@ -54,7 +62,7 @@ def run_one(v,args):
   for line in (out/'events.jsonl').read_text().splitlines():
    event=json.loads(line)
    if event.get('type')=='turn.completed':usage=event.get('usage',{})
-   if event.get('item',{}).get('type') in ('command_execution','mcp_tool_call','web_search'):raise RuntimeError('Unexpected tool use in code-only experiment; inspect raw events')
+   if event.get('item',{}).get('type') in (('command_execution','mcp_tool_call') if getattr(args,'research',False) else ('command_execution','mcp_tool_call','web_search')):raise RuntimeError('Unexpected tool use in code-only experiment; inspect raw events')
   metadata.update({'usage':usage,'finished_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'assumptions':reply['assumptions'],'missing_inputs':reply['missing_inputs'],'summary':reply['summary']})
   if reply['missing_inputs'] or not reply['html'].strip():metadata.update(status='blocked',reason='; '.join(reply['missing_inputs']) or 'Model returned no source')
   else:
@@ -69,7 +77,7 @@ def run_one(v,args):
  finally:
   subprocess.run([sys.executable,str(ROOT/'tools/catalog.py')],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('slugs',nargs='*');p.add_argument('--track',choices=['baseline','adapted'],default='baseline');p.add_argument('--all',action='store_true');p.add_argument('--showcase',action='store_true');p.add_argument('--image');p.add_argument('--revise',help='Feedback text file; archives the previous attempt before generating a revision');p.add_argument('--timeout',type=int,default=900);p.add_argument('--execute',action='store_true',help='Without this flag, print the queue only; no model usage.')
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('slugs',nargs='*');p.add_argument('--track',choices=['baseline','adapted'],default='baseline');p.add_argument('--all',action='store_true');p.add_argument('--showcase',action='store_true');p.add_argument('--image');p.add_argument('--research',action='store_true',help='Allow public web research, recorded separately from the code-only pilot');p.add_argument('--retry',action='store_true',help='Retry a blocked/failed run while archiving its previous attempt');p.add_argument('--revise',help='Feedback text file; archives the previous attempt before generating a revision');p.add_argument('--timeout',type=int,default=900);p.add_argument('--execute',action='store_true',help='Without this flag, print the queue only; no model usage.')
  a=p.parse_args();catalog=json.loads((ROOT/'data/catalog.json').read_text());known={v['slug'] for v in catalog}
  if set(a.slugs)-known:p.error('Unknown slug(s): '+', '.join(set(a.slugs)-known))
  rows=[v for v in catalog if a.all or (a.showcase and v['showcased']) or v['slug'] in a.slugs]
