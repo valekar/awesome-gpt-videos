@@ -9,22 +9,33 @@
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="30">
+<div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="30" data-fps="30">
 <canvas id="artwork" class="clip" data-start="0" data-duration="30" width="1280" height="720" aria-label="Thirty-second Brieform presentation: ask in chat, share a form, and read the answers."></canvas>
 </div>
 <script src="gsap.min.js"></script>
 <script>
 /*
-Editable, newly drawn reconstruction from the supplied reference images and brief.
-1280 × 720; 30 seconds; intended sampling: 30 fps; silent.
-Typography, subsecond timing, status symbols, logo geometry and easing are approximations.
-Scene plan:
-0–3: question, answer and lime emphasis; fade to background.
-3.35–11.95: create and publish in chat; sequential tool completion and link.
-11.85–18.90: public intake form; progressive entry; submission confirmation.
-18.85–24.98: response request, tool completion and three-item summary.
-25.45–30: brand lockup, highlighted promise, compatibility and website.
-No reference images or external media are used. No rendering or visual validation is claimed.
+Editable adaptation reconstructed with new Canvas artwork from the supplied samples.
+1280 × 720; 30 seconds; intended output rate: 30 fps; silent.
+Generic system fonts approximate the unidentified reference typography.
+Logo geometry, subsecond timing and easing remain inferred.
+
+Timed reconstruction:
+0–3: question and answer reveal; lime emphasis; return to background.
+3.35–11.95: client intake request; sequential create/publish tools; live link.
+11.75–18.90: public form, progressive values, then submission confirmation.
+18.85–24.98: summary request, response tool and accumulating three-item summary.
+25.45–30: Brieform lockup, promise, compatibility and website; final hold.
+
+Focused revisions: horizontal olive glow; slightly raised opening answer with
+more highlight padding; larger chat-message typography; advanced request,
+email and budget entry; fully bright form by 12 seconds; no focus at 16;
+delayed summary caption; earlier summary request and second bullet;
+lighter closing tagline and narrower website lettering.
+
+Dependencies: harness-supplied local gsap.min.js only.
+No supplied image is embedded. No font, audio or network asset is requested.
+No render, technical check or matched-time visual review is claimed.
 */
 (() => {
 'use strict';
@@ -43,14 +54,18 @@ const progress=(t,a,b)=>clamp((t-a)/(b-a));
 const smooth=v=>v*v*(3-2*v);
 const fade=(t,a,b,d,e)=>smooth(progress(t,a,b))*(1-smooth(progress(t,d,e)));
 const typed=(s,t,a,b)=>s.slice(0,Math.floor(progress(t,a,b)*s.length));
-function font(size,weight=400,family='sans-serif'){c.font=weight+' '+size+'px '+family;c.textAlign='left';c.textBaseline='alphabetic';}
+function font(size,weight=400,family='sans-serif'){
+ c.font=weight+' '+size+'px '+family;c.textAlign='left';c.textBaseline='alphabetic';
+}
 function text(s,x,y,size=20,color=C.white,weight=400,family='sans-serif'){
  font(size,weight,family);c.fillStyle=color;c.fillText(s,x,y);
 }
 function rounded(x,y,w,h,r=8){
  r=Math.max(0,Math.min(r,w/2,h/2));c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
 }
-function box(x,y,w,h,r,fill,stroke=null,line=1){rounded(x,y,w,h,r);if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}}
+function box(x,y,w,h,r,fill,stroke=null,line=1){
+ rounded(x,y,w,h,r);if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}
+}
 function layer(alpha,fn){if(alpha<=0)return;c.save();c.globalAlpha*=clamp(alpha);fn();c.restore();}
 function centered(s,y,size,color,weight=400,family='sans-serif'){
  font(size,weight,family);const w=c.measureText(s).width;text(s,(W-w)/2,y,size,color,weight,family);
@@ -70,22 +85,28 @@ function step(number,label){
 }
 function background(){
  c.fillStyle=C.bg;c.fillRect(0,0,W,H);
- const glow=c.createRadialGradient(640,350,15,640,350,560);
- glow.addColorStop(0,'rgba(123,129,48,0.075)');glow.addColorStop(.58,'rgba(99,106,37,0.025)');glow.addColorStop(1,'rgba(99,106,37,0)');
- c.fillStyle=glow;c.fillRect(0,0,W,H);
+ c.save();
+ c.translate(640,350);c.scale(1,.42);
+ const glow=c.createRadialGradient(0,0,0,0,0,540);
+ glow.addColorStop(0,'rgba(122,128,45,0.075)');
+ glow.addColorStop(.48,'rgba(112,119,40,0.035)');
+ glow.addColorStop(.82,'rgba(99,106,37,0.008)');
+ glow.addColorStop(1,'rgba(99,106,37,0)');
+ c.fillStyle=glow;c.fillRect(-540,-540,1080,1080);
+ c.restore();
 }
 function opening(t){
  const a=fade(t,.25,.85,2.45,2.98);
  layer(a,()=>{
  centered('Need a form?',322,72,'#a4a49a',700);
- const left='Just ',right='ask your AI.';font(92,700);
+ const left='Just ',right='ask your AI.',baseline=449;font(92,700);
  const lw=c.measureText(left).width,rw=c.measureText(right).width,x=(W-lw-rw)/2;
- text(left+right,x,458,92,'#74746a',700);
+ text(left+right,x,baseline,92,'#74746a',700);
  const emphasis=smooth(progress(t,1.25,1.82));
  layer(emphasis,()=>{
- text(left,x,458,92,C.white,700);
- box(x+lw-3,382,rw+8,91,4,C.lime);
- text(right,x+lw,458,92,'#11120b',700);
+ text(left,x,baseline,92,C.white,700);
+ box(x+lw-3,369,rw+8,104,4,C.lime);
+ text(right,x+lw,baseline,92,'#11120b',700);
  });
  });
 }
@@ -107,11 +128,11 @@ function wrap(s,maxWidth,size=20){
 }
 function prompt(s){
  if(!s)return;
- const size=20,lines=wrap(s,548,size);font(size);
+ const size=21,lineHeight=29,lines=wrap(s,548,size);font(size);
  const w=Math.min(580,Math.max(105,...lines.map(l=>c.measureText(l).width+32)));
- const h=lines.length*27+22,x=1030-w,y=218;
+ const h=lines.length*lineHeight+22,x=1030-w,y=218;
  box(x,y,w,h,11,C.bubble,'#333229',1);
- lines.forEach((line,i)=>text(line,x+16,y+29+i*27,size,C.white));
+ lines.forEach((line,i)=>text(line,x+16,y+30+i*lineHeight,size,C.white));
 }
 function tick(x,y,r=8){
  c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=C.lime;c.fill();
@@ -127,7 +148,7 @@ function tool(name,y,t,appear,complete){
 function chatCreate(t){
  layer(fade(t,3.35,3.8,11.60,11.95),()=>{
  step('01','ASK IN CHAT');chatShell();
- prompt(typed(COPY.request,t,3.45,5.65));
+ prompt(typed(COPY.request,t,3.30,5.45));
  tool('create_form',340,t,6.55,7.48);tool('publish_form',377,t,7.48,8.35);
  layer(smooth(progress(t,8.40,8.70)),()=>text('Done. Your form is live at its own link:',250,423,20,C.white));
  layer(smooth(progress(t,8.65,8.95)),()=>{
@@ -165,14 +186,14 @@ function success(t){
  });
 }
 function publicForm(t){
- layer(fade(t,11.85,12.12,18.55,18.90),()=>{
+ layer(fade(t,11.75,11.98,18.55,18.90),()=>{
  step('02','SHARE THE LINK');browserShell();
  layer(1-smooth(progress(t,16.50,16.68)),()=>{
  text('Client intake',330,218,32,C.ink,700);
- const focus=t<12.85?'name':t<13.65?'email':t<14.35?'budget':t<16.20?'details':null;
- field('Name',typed(COPY.name,t,12.05,12.80),330,267,300,38,focus==='name',t);
- field('Email',typed(COPY.email,t,12.85,13.60),648,267,301,38,focus==='email',t);
- field('Budget',typed(COPY.budget,t,13.65,14.30),330,346,619,38,focus==='budget',t);
+ const focus=t<12.60?'name':t<13.30?'email':t<14.35?'budget':t<15.95?'details':null;
+ field('Name',typed(COPY.name,t,12.05,12.60),330,267,300,38,focus==='name',t);
+ field('Email',typed(COPY.email,t,12.60,13.22),648,267,301,38,focus==='email',t);
+ field('Budget',typed(COPY.budget,t,13.30,14.05),330,346,619,38,focus==='budget',t);
  field('Project details',typed(COPY.details,t,14.35,15.80),330,426,619,70,focus==='details',t);
  box(330,514,109,43,7,C.ink);text('Submit',357,542,16,'#ffffff',700);
  });
@@ -193,13 +214,15 @@ function summaryBullet(parts,y,alpha){
 function chatRead(t){
  layer(fade(t,18.85,19.08,24.55,24.98),()=>{
  step('03','READ THE ANSWERS');chatShell();
- prompt(typed(COPY.summary,t,18.65,19.72));
+ prompt(typed(COPY.summary,t,18.45,19.55));
  tool('get_responses',310,t,20.45,20.90);
  layer(smooth(progress(t,21.45,21.80)),()=>text('You have 8 responses this week:',250,357,20,C.white));
  summaryBullet([{text:'Most budgets fall between $5k and $10k.'}],397,smooth(progress(t,21.68,22.00)));
- summaryBullet([{text:'5 of 8',color:C.lime},{text:' want a site redesign.'}],435,smooth(progress(t,22.05,22.48)));
+ summaryBullet([{text:'5 of 8',color:C.lime},{text:' want a site redesign.'}],435,smooth(progress(t,21.85,22.35)));
  summaryBullet([{text:'Call first: '},{text:'Studio Nord',color:C.lime},{text:', launch before March.'}],473,smooth(progress(t,22.42,22.95)));
- mixed([{text:'The answers come back '},{text:'in the same thread.',color:C.lime}],670);
+ layer(smooth(progress(t,19.25,19.65)),()=>mixed([
+ {text:'The answers come back '},{text:'in the same thread.',color:C.lime}
+ ],670));
  });
 }
 function brandIcon(x,y,size){
@@ -210,20 +233,24 @@ function brandIcon(x,y,size){
 function closing(t){
  layer(smooth(progress(t,25.45,25.92)),()=>{
  brandIcon(462,215,74);text('Brieform',554,275,64,C.white,700);
- const before='Forms your AI builds, publishes, and ',last='reads.';
- font(42,700);let size=42;
+ const before='Forms your AI builds, publishes, and ',last='reads.',weight=500;
+ font(42,weight);let size=42;
  const initialWidth=c.measureText(before+last).width;
  if(initialWidth>838)size*=838/initialWidth;
- font(size,700);const bw=c.measureText(before).width,lw=c.measureText(last).width,x=(W-bw-lw)/2;
- text(before+last,x,360,size,C.white,700);
+ font(size,weight);const bw=c.measureText(before).width,lw=c.measureText(last).width,x=(W-bw-lw)/2;
+ text(before+last,x,360,size,C.white,weight);
  layer(smooth(progress(t,26.35,26.85)),()=>{
  box(x+bw-4,360-size*.88,lw+10,size*1.12,5,C.lime);
- text(last,x+bw,360,size,'#101209',700);
+ text(last,x+bw,360,size,'#101209',weight);
  });
  layer(smooth(progress(t,26.40,26.95)),()=>centered('Works with Claude, ChatGPT, Cursor and any MCP client.',418,20,C.muted));
  layer(smooth(progress(t,26.70,27.85)),()=>{
  box(472,461,200,49,12,C.lime);
- text('brieform.app',494,494,24,'#12150b',700,'monospace');
+ const website='brieform.app';font(24,700,'monospace');
+ const websiteWidth=c.measureText(website).width;
+ c.save();c.translate(572,494);c.scale(.92,1);
+ text(website,-websiteWidth/2,0,24,'#12150b',700,'monospace');
+ c.restore();
  text('Free to start',688,494,22,C.muted);
  });
  });

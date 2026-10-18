@@ -1,14 +1,14 @@
 {
-  "status": "rendered",
+  "status": "generated",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
   "cli_version": "0.163.0",
   "protocol_version": "reference-v3",
   "track": "adapted",
-  "iteration": 1,
+  "iteration": 2,
   "source_prompt_sha256": "6a4c04c3887819823ae3d31512c956f6cc82c47e06665499db6e503afa914769",
-  "input_sha256": "9c694112924fde17a548bdb78172ebace4bcee52c2a389f9c43e4a44675664cd",
-  "started_at": "2026-10-18T15:59:09.287697+00:00",
+  "input_sha256": "b64d4564182614c4ad988d5e03f50564392cfd541db6df086aee178e9ba44bcc",
+  "started_at": "2026-10-18T16:03:26.065657+00:00",
   "tools": "none requested; read-only sandbox",
   "reference_images_supplied": [
     "sheet-01.jpg",
@@ -59,48 +59,26 @@
     "-"
   ],
   "usage": {
-    "input_tokens": 34574,
-    "cached_input_tokens": 0,
+    "input_tokens": 39048,
+    "cached_input_tokens": 18816,
     "cache_write_input_tokens": 0,
-    "output_tokens": 6765,
-    "reasoning_output_tokens": 2070
+    "output_tokens": 8086,
+    "reasoning_output_tokens": 3106
   },
-  "finished_at": "2026-10-18T16:01:38.305199+00:00",
+  "finished_at": "2026-10-18T16:06:07.447622+00:00",
   "assumptions": [
-    "Reconstruction follows the supplied images and inferred brief; exact subsecond timing, typography and logo geometry are approximated.",
-    "Uses generic system fonts and newly drawn Canvas artwork. Supplied font assets are unused.",
-    "Silent, matching the authoritative reference metadata; intended frame rate is 30 fps.",
-    "The completed closing card holds through 30 seconds; the unsupplied endpoint is inferred.",
-    "Source has not been rendered or visually reviewed."
+    "Generic system fonts and newly drawn logo geometry approximate the supplied reference artwork.",
+    "Subsecond timing is inferred from the supplied samples and revision guidance.",
+    "The completed closing card holds through 30 seconds; the reference endpoint was not supplied.",
+    "The animation is silent, consistent with the supplied metadata reporting zero audio streams."
   ],
   "missing_inputs": [],
-  "summary": "Editable, seekable 30-second Brieform reconstruction covering all five stages and progressive UI states.",
+  "summary": "Repaired the supplied animation with focused glow, typography, typing, focus and opacity refinements. Preserved the scene sequence, copy, card geometry and closing hold. Not rendered or visually validated.",
   "fps": 30.0,
-  "source_sha256": "f208cb5f327a8d59f735869b70fefa8950d02a34a9303842d4ce0390a9c6c35c",
+  "source_sha256": "2db4312335e6bd17b5e4444594d4ec5b564161c6d30ba66d03f12dbdd6b86bdc",
   "width": 1280,
   "height": 720,
   "duration_seconds": 30,
   "source_path": "results/majorbaguette-834228/adapted/index.html",
-  "reason": "Rendered and technically checked. Matched-time visual review pending.",
-  "video_url": "media/majorbaguette-834228/adapted/video.mp4",
-  "poster_url": "media/majorbaguette-834228/adapted/poster.jpg",
-  "technical_check": "passed",
-  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
-  "render_probe": {
-    "programs": [],
-    "stream_groups": [],
-    "streams": [
-      {
-        "codec_type": "video",
-        "width": 1280,
-        "height": 720,
-        "r_frame_rate": "30/1"
-      }
-    ],
-    "format": {
-      "duration": "30.000000"
-    }
-  },
-  "staged_source_sha256": "f208cb5f327a8d59f735869b70fefa8950d02a34a9303842d4ce0390a9c6c35c",
-  "source_modified_after_generation": false
+  "reason": "Source generated; rendering and matched-time fidelity review pending."
 }

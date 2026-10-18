@@ -80,7 +80,7 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -138,6 +138,29 @@
       "--image",
       "$REPO/work/references/majorbaguette-834228/evidence/full-4.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 39048,
+      "cached_input_tokens": 18816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 8086,
+      "reasoning_output_tokens": 3106
+    },
+    "finished_at": "2026-10-18T16:06:07.447622+00:00",
+    "assumptions": [
+      "Generic system fonts and newly drawn logo geometry approximate the supplied reference artwork.",
+      "Subsecond timing is inferred from the supplied samples and revision guidance.",
+      "The completed closing card holds through 30 seconds; the reference endpoint was not supplied.",
+      "The animation is silent, consistent with the supplied metadata reporting zero audio streams."
+    ],
+    "missing_inputs": [],
+    "summary": "Repaired the supplied animation with focused glow, typography, typing, focus and opacity refinements. Preserved the scene sequence, copy, card geometry and closing hold. Not rendered or visually validated.",
+    "fps": 30.0,
+    "source_sha256": "2db4312335e6bd17b5e4444594d4ec5b564161c6d30ba66d03f12dbdd6b86bdc",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 30,
+    "source_path": "results/majorbaguette-834228/adapted/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   }
 }
