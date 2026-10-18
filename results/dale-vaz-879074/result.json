@@ -55,7 +55,7 @@
     "reason": "A verified SAHI mobile landscape screenshot or official reference showing a chart in one half and an option chain in the other; needed to implement the required ending without inventing a product screen.; Verified interface references for the Positions and Watchlist windows, sufficient to reproduce their contents accurately."
   },
   "adapted": {
-    "status": "running",
+    "status": "rendered",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -117,6 +117,51 @@
       "--image",
       "$REPO/work/references/dale-vaz-879074/evidence/full-4.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 51013,
+      "cached_input_tokens": 50944,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 18350,
+      "reasoning_output_tokens": 4101
+    },
+    "finished_at": "2026-10-18T16:33:20.732378+00:00",
+    "assumptions": [
+      "Preserved the supplied 47-second, 1280×720, 30 fps sequence.",
+      "Intermediate choreography, candle geometry, RGB cells and constellation structure are inferred from supplied evidence.",
+      "Unavailable small labels are omitted; generic system fonts approximate typography.",
+      "Silent composition; all market values and execution timings are artwork claims.",
+      "Source only; no rendering, technical validation or visual review is claimed."
+    ],
+    "missing_inputs": [],
+    "summary": "Revised chart geometry and crops, fine RGB material, changing table states, constellation structure, phone proportions, purchase feedback and final fade.",
+    "fps": 30.0,
+    "source_sha256": "b61522331af57c053397e187f4aca820e456f101a746d6a66f3602f105c5c9ae",
+    "width": 1280,
+    "height": 720,
+    "duration_seconds": 47,
+    "source_path": "results/dale-vaz-879074/adapted/index.html",
+    "reason": "Rendered and technically checked. Matched-time visual review pending.",
+    "video_url": "media/dale-vaz-879074/adapted/video.mp4",
+    "poster_url": "media/dale-vaz-879074/adapted/poster.jpg",
+    "technical_check": "passed",
+    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+    "render_probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "30/1"
+        }
+      ],
+      "format": {
+        "duration": "47.000000"
+      }
+    },
+    "staged_source_sha256": "b61522331af57c053397e187f4aca820e456f101a746d6a66f3602f105c5c9ae",
+    "source_modified_after_generation": false
   }
 }
