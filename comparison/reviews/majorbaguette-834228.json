@@ -4,25 +4,22 @@
   "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
   "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
   "adapted": {
-    "attempts": 1,
+    "attempts": 2,
     "observations": [
-      "Preserves the opening, create/publish chat, public form, submission confirmation, response-summary chat and closing card.",
-      "Completed text retains Brieform branding, URLs, form values, 8 responses, budget amounts, Studio Nord and compatibility copy.",
-      "Card geometry, numbered headings, caption placement, lime emphasis and front-facing composition closely match.",
-      "Background-only states match at 0, 3 and 25 seconds; success states match at 17–18 seconds.",
-      "The 15-second detail closely matches form geometry and the partially typed project description. The completed closing card remains present through 29.85 seconds."
+      "All stages appear at matching sampled times: opening, create/publish chat, public form, submission confirmation, response summary and closing card.",
+      "Background-only states at 0, 3 and 25 seconds are preserved.",
+      "Readable product copy, Brieform branding, URLs, form values, eight-response count, budget figures and summary bullets match.",
+      "The 15-second detail preserves the form geometry, field arrangement, active textarea outline, Submit button and highlighted caption.",
+      "The closing detail preserves the icon silhouette, brand lockup, compatibility sentence, highlighted “reads.” and website CTA.",
+      "The sampled views retain centered, front-facing compositions without an evident added camera treatment."
     ],
     "remaining_differences": [
-      "Across the samples, GPT spreads the olive tint broadly across the background. ORIGINAL has a more localized horizontal glow with darker surrounding space, particularly clear in the opening detail pair.",
-      "GPT places the highlighted answer slightly lower and uses a shorter lime rectangle vertically. ORIGINAL's highlight has more vertical padding around 'ask your AI.'.",
-      "Prompt entry trails ORIGINAL at 4–5 seconds: GPT shows a shorter fragment at each sampled time. Both reach the completed request by 6 seconds.",
-      "GPT's user-message text is more compact, allowing 'project' onto the first line where ORIGINAL wraps it onto the second. The GPT bubble is consequently shallower. Similar compact wrapping appears in the summary-request bubble.",
-      "GPT's form card and step heading are still substantially dimmed, while ORIGINAL's form is already bright and readable. The scene is present, but its entrance opacity is behind the reference sample.",
-      "Form entry trails ORIGINAL: GPT's email is only at 'lea' while ORIGINAL has progressed into the address. At 14 seconds GPT's budget entry is also shorter. The project-description fragments align much more closely at 15 seconds.",
-      "GPT retains a dark focus outline and insertion caret in Project details after the completed value appears. ORIGINAL shows the completed field without that active-focus treatment.",
-      "GPT already displays the bottom summary caption while ORIGINAL's caption is not yet visible. Meanwhile GPT's request reads only 'Summarize', behind ORIGINAL's longer partial request.",
-      "ORIGINAL has begun revealing the second summary bullet faintly; GPT shows only the introduction and first bullet. Both show the complete summary by 23 seconds.",
-      "The closing detail shows heavier GPT tagline lettering and wider monospace lettering inside the website pill, leaving less horizontal padding than ORIGINAL. The wording and overall arrangement match."
+      "The GPT background appears slightly darker and greener, with a less distinct central olive glow. This tonal difference recurs across the sampled scenes.",
+      "The GPT user-message bubble is narrower and begins farther right within the chat window. Its text appears more compact and heavier than the ORIGINAL. Similar differences recur in the summary prompt.",
+      "The GPT publication-link outline is narrower than the ORIGINAL, and its URL appears more compact despite preserving the same address.",
+      "The ORIGINAL textarea shows “A new site for our des” with a caret; GPT has progressed to “A new site for our desi”. Other sampled typing fragments also differ slightly in character progress.",
+      "The GPT website CTA is dimmer than the ORIGINAL at this sample, with the URL barely visible. Both are fully visible by 28 seconds.",
+      "The closing sentence appears slightly lighter and narrower in GPT. The brand lockup and overall placement remain closely aligned."
     ]
   },
   "adapted_review_history": [
@@ -228,17 +225,197 @@
         "output_tokens": 2309,
         "reasoning_output_tokens": 995
       }
+    },
+    {
+      "iteration": 2,
+      "summary": "The sampled GPT frames closely preserve the complete sequence, copy, interfaces and closing card. No actionable major difference is evident; remaining differences concern typography, chat spacing, background tone and reveal timing.",
+      "matches": [
+        "All stages appear at matching sampled times: opening, create/publish chat, public form, submission confirmation, response summary and closing card.",
+        "Background-only states at 0, 3 and 25 seconds are preserved.",
+        "Readable product copy, Brieform branding, URLs, form values, eight-response count, budget figures and summary bullets match.",
+        "The 15-second detail preserves the form geometry, field arrangement, active textarea outline, Submit button and highlighted caption.",
+        "The closing detail preserves the icon silhouette, brand lockup, compatibility sentence, highlighted “reads.” and website CTA.",
+        "The sampled views retain centered, front-facing compositions without an evident added camera treatment."
+      ],
+      "differences": [
+        {
+          "time_seconds": 0,
+          "description": "The GPT background appears slightly darker and greener, with a less distinct central olive glow. This tonal difference recurs across the sampled scenes.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 6,
+          "description": "The GPT user-message bubble is narrower and begins farther right within the chat window. Its text appears more compact and heavier than the ORIGINAL. Similar differences recur in the summary prompt.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 9,
+          "description": "The GPT publication-link outline is narrower than the ORIGINAL, and its URL appears more compact despite preserving the same address.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 15,
+          "description": "The ORIGINAL textarea shows “A new site for our des” with a caret; GPT has progressed to “A new site for our desi”. Other sampled typing fragments also differ slightly in character progress.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 27,
+          "description": "The GPT website CTA is dimmer than the ORIGINAL at this sample, with the URL barely visible. Both are fully visible by 28 seconds.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 29.85,
+          "description": "The closing sentence appears slightly lighter and narrower in GPT. The brand lockup and overall placement remain closely aligned.",
+          "severity": "minor",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "No major revision is warranted by these samples. Optional refinement should target the chat bubble and URL sizing, closing headline weight, background tone and the 27-second CTA opacity while preserving the sequence, copy, form geometry and completed holds.",
+      "should_revise": false,
+      "prompt_improvement_markdown": "For an optional refinement, preserve the existing scenes and timing anchors. Widen the chat user bubbles toward the left and slightly relax their text weight; widen the publication-link outline to match its reference proportions. Give the closing sentence slightly more weight and width. Warm the background subtly and restore the restrained central olive glow. Make the website CTA more readable at 27 seconds while retaining its completed appearance from 28 seconds. At 15 seconds, end the textarea fragment at “A new site for our des” before the caret.",
+      "limitations": [
+        "These are model-generated findings from supplied sampled images, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Motion between samples, easing, cursor behavior and precise transition boundaries cannot be established. Requested seek times are quantized to stream frame rates.",
+        "Exact font identities, tiny interface symbols and small tonal differences remain uncertain at the supplied image resolution.",
+        "Audio was not supplied. Reference metadata reports zero audio streams, and the GPT render probe lists only video; this is technical evidence of silent files, not a listening assessment.",
+        "The final supplied sample is at 29.85 seconds; the exact 30-second endpoint is unobserved.",
+        "Product statements and numerical values were compared as visible copy, not independently verified facts.",
+        "The reported technical check inspected zero text samples and does not establish Canvas text readability or visual fidelity."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "392a28af65e8fd7d02377fdadf43eaf5ab91922136e03869ea72d6adc1b2cd87",
+      "image_sha256": {
+        "work/comparison-evidence/majorbaguette-834228/002/sheet-01.jpg": "f4a082075a0429334367d73747740d825c0f10f699cc9c8e15ccb6d5e8c0d3d4",
+        "work/comparison-evidence/majorbaguette-834228/002/sheet-02.jpg": "998854ef756c8dcab480789911238daf8c50265d945c00ad15110074c62fffc8",
+        "work/comparison-evidence/majorbaguette-834228/002/sheet-03.jpg": "534e9bf5903fafdd8c300304d50b07f877f2ea473098470946f5a147a160c631",
+        "work/comparison-evidence/majorbaguette-834228/002/sheet-04.jpg": "2848436070957175d79c0fe3c05eb3a8dd154618dadd7542e7deb464ec7d9d9e",
+        "work/comparison-evidence/majorbaguette-834228/002/detail-0000.jpg": "0117f95c8861774cee4ddd699be110eeaa2da90b5b8473f9ad20e9c70f31b864",
+        "work/comparison-evidence/majorbaguette-834228/002/detail-0015.jpg": "29d84ee77bcf7b48deffcad15db7278f1318535275188b647b6ef932223243a3",
+        "work/comparison-evidence/majorbaguette-834228/002/detail-0030.jpg": "e51a25d5ac78d9e5b061d3c00201a70aac64e5cd67af9b9e6c87e67883b9888d"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          18.0,
+          19.0,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          28.0,
+          29.0,
+          29.85
+        ],
+        "reference_metadata": {
+          "slug": "majorbaguette-834228",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration_seconds": 30.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0,
+            10.0,
+            11.0,
+            12.0,
+            13.0,
+            14.0,
+            15.0,
+            16.0,
+            17.0,
+            18.0,
+            19.0,
+            20.0,
+            21.0,
+            22.0,
+            23.0,
+            24.0,
+            25.0,
+            26.0,
+            27.0,
+            28.0,
+            29.0
+          ],
+          "scene_change_times": [],
+          "sheets": [
+            "work/references/majorbaguette-834228/evidence/sheet-01.jpg",
+            "work/references/majorbaguette-834228/evidence/sheet-02.jpg"
+          ],
+          "full_frames": [
+            "work/references/majorbaguette-834228/evidence/full-1.jpg",
+            "work/references/majorbaguette-834228/evidence/full-2.jpg",
+            "work/references/majorbaguette-834228/evidence/full-3.jpg",
+            "work/references/majorbaguette-834228/evidence/full-4.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/majorbaguette-834228/002/sheet-01.jpg",
+          "work/comparison-evidence/majorbaguette-834228/002/sheet-02.jpg",
+          "work/comparison-evidence/majorbaguette-834228/002/sheet-03.jpg",
+          "work/comparison-evidence/majorbaguette-834228/002/sheet-04.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/majorbaguette-834228/002/detail-0000.jpg",
+          "work/comparison-evidence/majorbaguette-834228/002/detail-0015.jpg",
+          "work/comparison-evidence/majorbaguette-834228/002/detail-0030.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 41365,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1955,
+        "reasoning_output_tokens": 1020
+      }
     }
   ],
-  "summary": "Close sampled reconstruction: all scenes, principal copy, form interactions and closing elements are present. Differences concern background glow, typography and several reveal/typing states; no major omission is evident.",
+  "summary": "The sampled GPT frames closely preserve the complete sequence, copy, interfaces and closing card. No actionable major difference is evident; remaining differences concern typography, chat spacing, background tone and reveal timing.",
   "limitations": [
-    "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
-    "Only the supplied decoded stills were assessed. Motion, easing, camera behavior between samples and exact transition boundaries cannot be established.",
-    "Requested seek times are quantized to stream frame rates; small timing differences may include sampling effects.",
-    "Exact font identity and tiny rendering, color or antialiasing differences remain uncertain.",
-    "No audio was supplied. Reference metadata reports audio_streams=0, indicating a technically silent reference file; no listening review was performed.",
-    "Product statements, quantities and compatibility claims were compared as visible copy, not independently verified facts.",
-    "No source implementation or additional files were inspected; revisions describe visible targets rather than verified code changes."
+    "These are model-generated findings from supplied sampled images, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+    "Motion between samples, easing, cursor behavior and precise transition boundaries cannot be established. Requested seek times are quantized to stream frame rates.",
+    "Exact font identities, tiny interface symbols and small tonal differences remain uncertain at the supplied image resolution.",
+    "Audio was not supplied. Reference metadata reports zero audio streams, and the GPT render probe lists only video; this is technical evidence of silent files, not a listening assessment.",
+    "The final supplied sample is at 29.85 seconds; the exact 30-second endpoint is unobserved.",
+    "Product statements and numerical values were compared as visible copy, not independently verified facts.",
+    "The reported technical check inspected zero text samples and does not establish Canvas text readability or visual fidelity."
   ],
   "reference": {
     "slug": "majorbaguette-834228",

@@ -38,6 +38,25 @@ Deliver editable source, the exact model input, model/effort/CLI metadata, depen
 make a presentation video for Brieform, 30 seconds long
 </creator_material>
 
+## Review-derived guidance — additional to creator material
+
+
+
+## Matched-time review of attempt 1
+
+Preserve the existing 30-second structure, completed text, form geometry, success state and closing composition. Refine only these observed differences:
+
+- Use a restrained horizontal olive glow centered behind the content, with darker outer regions.
+- Raise the opening answer slightly and increase the lime highlight's vertical padding.
+- Increase chat-message text size or spacing enough to match the reference wrapping and bubble height.
+- Advance the initial request at 4–5s and email/budget entry at 13–14s while preserving the closely matched 15s description fragment.
+- Make the form bright by 12s; remove the Project details focus outline and caret by 16s.
+- Delay the summary caption beyond the 19s sample, advance that sample's request fragment, and begin the second response bullet by 22s.
+- Reduce closing-tagline weight and website-pill lettering width while retaining their current placement.
+
+Use newly authored code artwork. These samples do not justify additional camera movement or invented interactions.
+
+
 
 SUPPLIED LOCAL FONT ASSETS: Bangers.ttf and Caveat.ttf (SIL OFL) are available beside the HTML. If useful, load via @font-face and wait for document.fonts readiness before initial drawing/timeline registration. Declare any use as a shared font approximation, not recovered original typography.
 
@@ -140,3 +159,254 @@ Audio: Frozen metadata reports audio_streams=0, so the supplied reference file h
 
 AUTHORITATIVE REFERENCE MEDIA: {"width": 1280, "height": 720, "duration_seconds": 30.0, "fps": "30/1", "audio_streams": 0}
 Preserve this duration, aspect and frame rate. Preserve on-screen brands as reference artwork. Do not substitute model names in the film. Audio streams are not supplied as sound evidence; unresolved sound prevents full recreation acceptance.
+
+PREVIOUS GENERATED SOURCE (repair this; preserve already correct motion):
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Brieform — Presentation</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#191914}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="30">
+<canvas id="artwork" class="clip" data-start="0" data-duration="30" width="1280" height="720" aria-label="Thirty-second Brieform presentation: ask in chat, share a form, and read the answers."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+/*
+Editable, newly drawn reconstruction from the supplied reference images and brief.
+1280 × 720; 30 seconds; intended sampling: 30 fps; silent.
+Typography, subsecond timing, status symbols, logo geometry and easing are approximations.
+Scene plan:
+0–3: question, answer and lime emphasis; fade to background.
+3.35–11.95: create and publish in chat; sequential tool completion and link.
+11.85–18.90: public intake form; progressive entry; submission confirmation.
+18.85–24.98: response request, tool completion and three-item summary.
+25.45–30: brand lockup, highlighted promise, compatibility and website.
+No reference images or external media are used. No rendering or visual validation is claimed.
+*/
+(() => {
+'use strict';
+const canvas=document.getElementById('artwork');
+const c=canvas.getContext('2d');
+const W=1280,H=720;
+const C={bg:'#191914',lime:'#d4ff37',white:'#f7f7ef',muted:'#95958b',panel:'#23221d',edge:'#34332c',bubble:'#2b2a24',paper:'#f5f6f0',ink:'#1d1c17'};
+const COPY={
+ request:'Create a client intake form: name, email, budget and project details. Then publish it.',
+ summary:'Summarize the responses so far.',
+ name:'Léa Martin',email:'lea@studionord.fr',budget:'$5k to $10k',
+ details:'A new site for our design studio, live before March.'
+};
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const progress=(t,a,b)=>clamp((t-a)/(b-a));
+const smooth=v=>v*v*(3-2*v);
+const fade=(t,a,b,d,e)=>smooth(progress(t,a,b))*(1-smooth(progress(t,d,e)));
+const typed=(s,t,a,b)=>s.slice(0,Math.floor(progress(t,a,b)*s.length));
+function font(size,weight=400,family='sans-serif'){c.font=weight+' '+size+'px '+family;c.textAlign='left';c.textBaseline='alphabetic';}
+function text(s,x,y,size=20,color=C.white,weight=400,family='sans-serif'){
+ font(size,weight,family);c.fillStyle=color;c.fillText(s,x,y);
+}
+function rounded(x,y,w,h,r=8){
+ r=Math.max(0,Math.min(r,w/2,h/2));c.beginPath();c.moveTo(x+r,y);c.lineTo(x+w-r,y);c.quadraticCurveTo(x+w,y,x+w,y+r);c.lineTo(x+w,y+h-r);c.quadraticCurveTo(x+w,y+h,x+w-r,y+h);c.lineTo(x+r,y+h);c.quadraticCurveTo(x,y+h,x,y+h-r);c.lineTo(x,y+r);c.quadraticCurveTo(x,y,x+r,y);c.closePath();
+}
+function box(x,y,w,h,r,fill,stroke=null,line=1){rounded(x,y,w,h,r);if(fill){c.fillStyle=fill;c.fill();}if(stroke){c.strokeStyle=stroke;c.lineWidth=line;c.stroke();}}
+function layer(alpha,fn){if(alpha<=0)return;c.save();c.globalAlpha*=clamp(alpha);fn();c.restore();}
+function centered(s,y,size,color,weight=400,family='sans-serif'){
+ font(size,weight,family);const w=c.measureText(s).width;text(s,(W-w)/2,y,size,color,weight,family);
+}
+function mixed(parts,y,size=27,weight=400){
+ font(size,weight);const widths=parts.map(p=>c.measureText(p.text).width);let x=(W-widths.reduce((a,b)=>a+b,0))/2;
+ parts.forEach((p,i)=>{text(p.text,x,y,size,p.color||C.white,weight);x+=widths[i];});
+}
+function tracked(s,x,y,size,color,spacing=1.5){
+ font(size,400,'monospace');c.fillStyle=color;for(const ch of s){c.fillText(ch,x,y);x+=c.measureText(ch).width+spacing;}
+}
+function step(number,label){
+ font(18,400,'monospace');const labelWidth=c.measureText(label).width+(label.length-1)*1.5;
+ const x=(W-(40+12+labelWidth))/2;
+ box(x,41,40,28,4,C.lime);text(number,x+7,61,17,C.ink,700,'monospace');
+ tracked(label,x+52,61,18,C.muted,1.5);
+}
+function background(){
+ c.fillStyle=C.bg;c.fillRect(0,0,W,H);
+ const glow=c.createRadialGradient(640,350,15,640,350,560);
+ glow.addColorStop(0,'rgba(123,129,48,0.075)');glow.addColorStop(.58,'rgba(99,106,37,0.025)');glow.addColorStop(1,'rgba(99,106,37,0)');
+ c.fillStyle=glow;c.fillRect(0,0,W,H);
+}
+function opening(t){
+ const a=fade(t,.25,.85,2.45,2.98);
+ layer(a,()=>{
+ centered('Need a form?',322,72,'#a4a49a',700);
+ const left='Just ',right='ask your AI.';font(92,700);
+ const lw=c.measureText(left).width,rw=c.measureText(right).width,x=(W-lw-rw)/2;
+ text(left+right,x,458,92,'#74746a',700);
+ const emphasis=smooth(progress(t,1.25,1.82));
+ layer(emphasis,()=>{
+ text(left,x,458,92,C.white,700);
+ box(x+lw-3,382,rw+8,91,4,C.lime);
+ text(right,x+lw,458,92,'#11120b',700);
+ });
+ });
+}
+function chatShell(){
+ c.save();c.shadowColor='rgba(0,0,0,.48)';c.shadowBlur=40;c.shadowOffsetY=22;
+ box(220,150,840,420,18,C.panel);c.restore();
+ box(220,150,840,420,18,null,C.edge,1);
+ c.strokeStyle='#34332c';c.lineWidth=1;c.beginPath();c.moveTo(221,193);c.lineTo(1059,193);c.stroke();
+ ['#c67572','#b8a357','#709c6c'].forEach((color,i)=>{c.beginPath();c.arc(245+i*17,172,4.5,0,Math.PI*2);c.fillStyle=color;c.fill();});
+ text('Your AI chat',310,177,13,'#a3a298');
+ font(11,400,'monospace');const labels=[['MCP · ',C.muted],['brieform','#bdce70'],[' connected',C.muted]];
+ const width=labels.reduce((n,p)=>n+c.measureText(p[0]).width,0);let x=1038-width;
+ labels.forEach(p=>{text(p[0],x,177,11,p[1],400,'monospace');x+=c.measureText(p[0]).width;});
+}
+function wrap(s,maxWidth,size=20){
+ font(size);const words=s.split(' '),lines=[];let line='';
+ for(const word of words){const next=line?line+' '+word:word;if(line&&c.measureText(next).width>maxWidth){lines.push(line);line=word;}else line=next;}
+ if(line)lines.push(line);return lines;
+}
+function prompt(s){
+ if(!s)return;
+ const size=20,lines=wrap(s,548,size);font(size);
+ const w=Math.min(580,Math.max(105,...lines.map(l=>c.measureText(l).width+32)));
+ const h=lines.length*27+22,x=1030-w,y=218;
+ box(x,y,w,h,11,C.bubble,'#333229',1);
+ lines.forEach((line,i)=>text(line,x+16,y+29+i*27,size,C.white));
+}
+function tick(x,y,r=8){
+ c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=C.lime;c.fill();
+ c.beginPath();c.moveTo(x-r*.42,y);c.lineTo(x-r*.05,y+r*.31);c.lineTo(x+r*.46,y-r*.33);c.strokeStyle='#292c15';c.lineWidth=1.6;c.lineCap='round';c.lineJoin='round';c.stroke();
+}
+function tool(name,y,t,appear,complete){
+ layer(smooth(progress(t,appear,appear+.22)),()=>{
+ if(t>=complete)tick(260,y-5,8);
+ else{c.beginPath();c.arc(260,y-5,7,0,Math.PI*2);c.strokeStyle='#a1af5b';c.lineWidth=1.5;c.stroke();c.beginPath();c.arc(260,y-5,2,0,Math.PI*2);c.fillStyle=C.lime;c.fill();}
+ text('brieform · '+name,278,y,14,'#b2b1a5',400,'monospace');
+ });
+}
+function chatCreate(t){
+ layer(fade(t,3.35,3.8,11.60,11.95),()=>{
+ step('01','ASK IN CHAT');chatShell();
+ prompt(typed(COPY.request,t,3.45,5.65));
+ tool('create_form',340,t,6.55,7.48);tool('publish_form',377,t,7.48,8.35);
+ layer(smooth(progress(t,8.40,8.70)),()=>text('Done. Your form is live at its own link:',250,423,20,C.white));
+ layer(smooth(progress(t,8.65,8.95)),()=>{
+ const label='brieform.app/f/client-intake';font(17,400,'monospace');const width=c.measureText(label).width+49;
+ box(250,442,width,49,9,'#25251c','#a4b456',1.5);
+ text('↗',263,474,19,C.white);text(label,286,474,17,C.white,400,'monospace');
+ });
+ mixed([{text:'Describe it. Brieform '},{text:'builds and publishes it.',color:C.lime}],670);
+ });
+}
+function browserShell(){
+ c.save();c.shadowColor='rgba(0,0,0,.48)';c.shadowBlur=42;c.shadowOffsetY=23;
+ box(270,117,740,486,20,C.paper);c.restore();
+ box(270,117,740,486,20,null,'#d5d6d0',1);
+ box(286,125,708,29,4,'#ffffff','#e6e7e1',1);
+ text('brieform.app/f/client-intake',298,144,13,'#787a70',400,'monospace');
+ c.fillStyle='rgba(0,0,0,.025)';c.fillRect(271,157,738,6);
+}
+function field(label,value,x,y,w,h,focus,t){
+ text(label,x,y-12,16,'#3c3e35');
+ box(x,y,w,h,7,'#ffffff',focus?'#25261f':'#d7d9d1',focus?1.6:1.1);
+ text(value,x+14,y+26,16,'#25271f');
+ if(focus&&Math.floor(t*2.4)%2===0){
+ font(16);const caretX=x+14+c.measureText(value).width;
+ c.fillStyle='#25271f';c.fillRect(caretX+1,y+10,1.4,21);
+ }
+}
+function success(t){
+ const a=smooth(progress(t,16.63,16.90));
+ layer(a,()=>{
+ c.beginPath();c.arc(640,335,32,0,Math.PI*2);c.fillStyle=C.ink;c.fill();
+ c.beginPath();c.moveTo(630,336);c.lineTo(638,343);c.lineTo(651,326);c.strokeStyle=C.lime;c.lineWidth=3;c.lineCap='round';c.lineJoin='round';c.stroke();
+ centered('Thanks, we got it.',414,32,C.ink,700);
+ centered('We will get back to you within two days.',450,18,'#84867b');
+ });
+}
+function publicForm(t){
+ layer(fade(t,11.85,12.12,18.55,18.90),()=>{
+ step('02','SHARE THE LINK');browserShell();
+ layer(1-smooth(progress(t,16.50,16.68)),()=>{
+ text('Client intake',330,218,32,C.ink,700);
+ const focus=t<12.85?'name':t<13.65?'email':t<14.35?'budget':t<16.20?'details':null;
+ field('Name',typed(COPY.name,t,12.05,12.80),330,267,300,38,focus==='name',t);
+ field('Email',typed(COPY.email,t,12.85,13.60),648,267,301,38,focus==='email',t);
+ field('Budget',typed(COPY.budget,t,13.65,14.30),330,346,619,38,focus==='budget',t);
+ field('Project details',typed(COPY.details,t,14.35,15.80),330,426,619,70,focus==='details',t);
+ box(330,514,109,43,7,C.ink);text('Submit',357,542,16,'#ffffff',700);
+ });
+ success(t);
+ layer(smooth(progress(t,12.05,12.55)),()=>mixed([
+ {text:'A normal web page. The people filling it in '},
+ {text:'never see an AI.',color:C.lime}
+ ],670,27));
+ });
+}
+function summaryBullet(parts,y,alpha){
+ layer(alpha,()=>{
+ c.beginPath();c.arc(256,y-6,2.6,0,Math.PI*2);c.fillStyle=C.lime;c.fill();
+ let x=270;font(20);
+ parts.forEach(p=>{text(p.text,x,y,20,p.color||C.white);x+=c.measureText(p.text).width;});
+ });
+}
+function chatRead(t){
+ layer(fade(t,18.85,19.08,24.55,24.98),()=>{
+ step('03','READ THE ANSWERS');chatShell();
+ prompt(typed(COPY.summary,t,18.65,19.72));
+ tool('get_responses',310,t,20.45,20.90);
+ layer(smooth(progress(t,21.45,21.80)),()=>text('You have 8 responses this week:',250,357,20,C.white));
+ summaryBullet([{text:'Most budgets fall between $5k and $10k.'}],397,smooth(progress(t,21.68,22.00)));
+ summaryBullet([{text:'5 of 8',color:C.lime},{text:' want a site redesign.'}],435,smooth(progress(t,22.05,22.48)));
+ summaryBullet([{text:'Call first: '},{text:'Studio Nord',color:C.lime},{text:', launch before March.'}],473,smooth(progress(t,22.42,22.95)));
+ mixed([{text:'The answers come back '},{text:'in the same thread.',color:C.lime}],670);
+ });
+}
+function brandIcon(x,y,size){
+ box(x,y,size,size,3,'#050604');
+ c.save();c.translate(x,y);c.scale(size/74,size/74);
+ c.beginPath();c.moveTo(10,24);c.lineTo(65,9);c.quadraticCurveTo(69,8,67,14);c.lineTo(51,64);c.quadraticCurveTo(27,62,13,40);c.quadraticCurveTo(7,30,10,24);c.closePath();c.fillStyle='#ffffff';c.fill();c.restore();
+}
+function closing(t){
+ layer(smooth(progress(t,25.45,25.92)),()=>{
+ brandIcon(462,215,74);text('Brieform',554,275,64,C.white,700);
+ const before='Forms your AI builds, publishes, and ',last='reads.';
+ font(42,700);let size=42;
+ const initialWidth=c.measureText(before+last).width;
+ if(initialWidth>838)size*=838/initialWidth;
+ font(size,700);const bw=c.measureText(before).width,lw=c.measureText(last).width,x=(W-bw-lw)/2;
+ text(before+last,x,360,size,C.white,700);
+ layer(smooth(progress(t,26.35,26.85)),()=>{
+ box(x+bw-4,360-size*.88,lw+10,size*1.12,5,C.lime);
+ text(last,x+bw,360,size,'#101209',700);
+ });
+ layer(smooth(progress(t,26.40,26.95)),()=>centered('Works with Claude, ChatGPT, Cursor and any MCP client.',418,20,C.muted));
+ layer(smooth(progress(t,26.70,27.85)),()=>{
+ box(472,461,200,49,12,C.lime);
+ text('brieform.app',494,494,24,'#12150b',700,'monospace');
+ text('Free to start',688,494,22,C.muted);
+ });
+ });
+}
+function draw(t){
+ c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';
+ c.shadowColor='transparent';c.shadowBlur=0;c.shadowOffsetX=0;c.shadowOffsetY=0;
+ c.lineWidth=1;c.lineCap='butt';c.lineJoin='miter';c.clearRect(0,0,W,H);
+ background();opening(t);chatCreate(t);publicForm(t);chatRead(t);closing(t);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:30,duration:30,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+})();
+</script>
+</body>
+</html>
+
+REVISION FEEDBACK:
+A focused fidelity pass is supported. Preserve the scene sequence, completed copy, card geometry and closing hold. Localize the background glow, refine message typography and wrapping, and adjust the specific sampled typing, focus and opacity states. No major scene rebuild is indicated.

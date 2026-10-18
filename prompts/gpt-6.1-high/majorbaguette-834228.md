@@ -49,3 +49,8 @@ Preserve the existing 30-second structure, completed text, form geometry, succes
 
 Use newly authored code artwork. These samples do not justify additional camera movement or invented interactions.
 
+
+## Matched-time review of attempt 2
+
+For an optional refinement, preserve the existing scenes and timing anchors. Widen the chat user bubbles toward the left and slightly relax their text weight; widen the publication-link outline to match its reference proportions. Give the closing sentence slightly more weight and width. Warm the background subtly and restore the restrained central olive glow. Make the website CTA more readable at 27 seconds while retaining its completed appearance from 28 seconds. At 15 seconds, end the textarea fragment at “A new site for our des” before the caret.
+

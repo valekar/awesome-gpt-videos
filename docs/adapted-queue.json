@@ -2,7 +2,7 @@
   "priority": "adapted",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
-  "updated_at": "2026-10-18T15:57:04.544715+00:00",
+  "updated_at": "2026-10-18T16:07:47.250855+00:00",
   "entries": [
     {
       "slug": "ror-fly-880547",
@@ -226,7 +226,7 @@
     },
     {
       "slug": "majorbaguette-834228",
-      "stage": "ready_for_visual_recreation"
+      "stage": "existing_render"
     },
     {
       "slug": "miskinho-956105",
