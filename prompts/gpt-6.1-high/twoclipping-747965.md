@@ -9,7 +9,7 @@ Original prompt SHA-256: `795b06bda520e9c967235d735483cf72cad9ec57f568358b8ec6e3
 ## Source completeness
 
 Upstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.
-Dependency cues found by automated text inspection: private_project_context, audio_dependency, input_request.
+Dependency cues found by automated text inspection: private_project_context, audio_dependency, placeholder_context, input_request.
 
 ## GPT task
 

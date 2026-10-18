@@ -9,7 +9,7 @@ Original prompt SHA-256: `c0da6680108a95af8588132e4597d5c688e190873a595601cddb92
 ## Source completeness
 
 The upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.
-Dependency cues found by automated text inspection: native_renderer.
+Dependency cues found by automated text inspection: native_renderer, placeholder_context.
 
 ## GPT task
 

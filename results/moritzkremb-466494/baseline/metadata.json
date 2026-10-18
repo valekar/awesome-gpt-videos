@@ -1,0 +1,51 @@
+{
+  "status": "blocked",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "5603c7619aa193c0931c728a76e419e57bacb32cf9859f5103e58535ccdfb133",
+  "input_sha256": "041e5718d0e2d635798846095d8125a4e3040b7f77757041cd355f5a9176ffe7",
+  "started_at": "2026-10-18T12:45:54.094938+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/moritzkremb-466494/baseline/schema.json",
+    "-o",
+    "$REPO/results/moritzkremb-466494/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 20499,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 400,
+    "reasoning_output_tokens": 281
+  },
+  "finished_at": "2026-10-18T12:46:10.858275+00:00",
+  "assumptions": [
+    "Proposed format: 1920×1080 landscape.",
+    "No animation was generated, rendered or reviewed."
+  ],
+  "missing_inputs": [
+    "Official SaaS product information covering the features and benefits to showcase.",
+    "Actual product screenshots, brand assets and images. None were supplied, and this experiment prohibits browsing to obtain them."
+  ],
+  "summary": "The requested launch video requires real product context and assets that are unavailable under the no-browsing constraint.",
+  "reason": "Official SaaS product information covering the features and benefits to showcase.; Actual product screenshots, brand assets and images. None were supplied, and this experiment prohibits browsing to obtain them."
+}

@@ -1,0 +1,59 @@
+{
+  "baseline": {
+    "status": "generated",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "eb0d2b3e86ea0239dac9f7c5d05c56f9c1338e95a805618d7853a69dfe1680db",
+    "input_sha256": "ac8d0e7d6474405b60cfeffe605ff916bcb3f2f03281ee64d37f7f60bfab9704",
+    "started_at": "2026-10-18T12:46:10.039965+00:00",
+    "tools": "none requested; read-only sandbox",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/deedydas-252537/baseline/schema.json",
+      "-o",
+      "$REPO/results/deedydas-252537/baseline/response.json",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 20408,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 4063,
+      "reasoning_output_tokens": 516
+    },
+    "finished_at": "2026-10-18T12:47:37.734974+00:00",
+    "assumptions": [
+      "Chose an 18-second, 16:9 abstract startup promo because no runtime or aspect ratio was supplied.",
+      "Used original, unbranded campaign copy, charcoal backgrounds, mint and violet graphics, and generic system typography.",
+      "No product-specific features, measurements or brand identity were assumed; the film is silent."
+    ],
+    "missing_inputs": [],
+    "summary": "Editable five-beat inference promo with kinetic typography, flowing tokens and abstract computation graphics. Uses one paused GSAP timeline; not rendered or visually reviewed.",
+    "source_sha256": "95c48609de908deb8a7a5bff429dc8d94751944db5059216333f60313af4800f",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 18,
+    "source_path": "results/deedydas-252537/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

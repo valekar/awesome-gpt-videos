@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build auditable GPT prompt adaptations and the static comparison catalog."""
-import argparse, collections, hashlib, json, pathlib, re
+import argparse, collections, hashlib, json, pathlib, re, os, tempfile, fcntl
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 MODEL = 'gpt-6.1-sol'
 UPSTREAM = 'https://github.com/yihui-dev/awesome-opus5-5-videos'
@@ -27,11 +27,18 @@ CUES = {
  'private_project_context': r'\b(my app|my studio|my product|this project|this repo|the codebase|your codebase|about me|about my|our (?:app|product)|/asic|skill mesh)\b|本项目',
  'audio_dependency': r'\b(exact same audio|audio track|song|music|voiceover|narration|tts|soundtrack|ElevenLabs)\b|配音|音楽',
  'native_renderer': r'\b(Blender|Manim|Raylib|Remotion|C/C\+\+)\b',
+ 'placeholder_context': r'<website url>|\[(?:your product|DESCRIBE|website|your company|product|brand)|\(your product\)',
  'input_request': r'\b(ask me for|ask me|your product|product link|company name)\b',
 }
 def digest(s): return hashlib.sha256(s.encode()).hexdigest()
 def dump(path, obj):
- path.parent.mkdir(parents=True, exist_ok=True);path.write_text(json.dumps(obj,ensure_ascii=False,indent=2)+'\n')
+ path.parent.mkdir(parents=True, exist_ok=True)
+ fd,tmp=tempfile.mkstemp(prefix=path.name+'.',dir=path.parent)
+ try:
+  with os.fdopen(fd,'w') as f:f.write(json.dumps(obj,ensure_ascii=False,indent=2)+'\n')
+  os.replace(tmp,path)
+ finally:
+  if os.path.exists(tmp):os.unlink(tmp)
 def adapt(v, flags):
  tech=' '.join(TECH[t] for t in v['tech_tags'] if t in TECH)
  coverage=('The upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.' if v['prompt_partial'] else 'Upstream marks this as a full prompt. This does not establish that all referenced assets or prior chat context are available.')
@@ -103,4 +110,7 @@ def build():
  (ROOT/'docs/catalog.js').write_text('window.CATALOG = '+json.dumps(entries,ensure_ascii=False)+';\nwindow.AUDIT = '+json.dumps(audit,ensure_ascii=False)+';\n')
  (ROOT/'provenance/INVENTORY.md').write_text('# Source inventory\n\nPinned upstream: `'+audit['upstream_commit']+'`.\n\n'+ '\n'.join(f'- {k}: {v}' for k,v in audit.items() if k not in ['upstream_commit','upstream'])+'\n\nAll adaptations are draft instructions. No adaptation alone establishes generation or reference fidelity.\n')
  print(json.dumps(audit,indent=2))
-if __name__=='__main__':build()
+if __name__=='__main__':
+ lock=ROOT/'work/catalog.lock';lock.parent.mkdir(parents=True,exist_ok=True)
+ with lock.open('w') as f:
+  fcntl.flock(f,fcntl.LOCK_EX);build()
