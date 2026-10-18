@@ -1,0 +1,382 @@
+{
+  "slug": "dale-vaz-879074",
+  "status": "sampled",
+  "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+  "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+  "adapted": {
+    "attempts": 1,
+    "observations": [
+      "Both begin on black, introduce a centered blue-white point, then show a horizontal line and progressively assembled desktop terminal.",
+      "Desktop panel relationships are preserved: watchlist left, chart upper center, positions/payoff below and option chain right.",
+      "Chart price badges match the prominent sampled values at 12–13 seconds; option-chain pills match at 18–20 seconds.",
+      "Both include candle magnification, option-chain and positions inspection, desktop retreat, a spatial interlude and landscape-phone reveal.",
+      "The mobile order ticket, Buy emphasis and confirmation appear at corresponding sampled phases around 39–41 seconds.",
+      "The closing card preserves Sahi, “Single screen trading on” and “Your Money. Your Move.” with the phone above and a final fade."
+    ],
+    "remaining_differences": [
+      "At 2–3 seconds, ORIGINAL has a visible circular ring around the central glow. GPT retains a smaller point without the corresponding visible ring.",
+      "ORIGINAL already shows the chart across its upper-center panel. GPT exposes mainly the peak and nearby candles within a smaller central region, leaving much of the chart area empty. The sampled assembly state differs.",
+      "Across the desktop views, GPT replaces ORIGINAL's irregular, multi-swing candle series with a sharper isolated summit and a comparatively smooth, extended descent. Peak shape, intermediate rebounds, trough geometry and the lavender curve differ substantially.",
+      "The chart close-up is framed too broadly in GPT: more candles and a wider trough/recovery sequence remain visible. ORIGINAL crops more tightly around the latest recovery and right price axis, with a blue-white highlight on the newest candle that GPT lacks at 12–13 seconds.",
+      "At 15–16 seconds, ORIGINAL resolves into fine RGB subpixels, horizontal divisions, dark lattice and luminous screen texture. GPT shows coarse mint/pink bars with conspicuous black grid lines, little comparable RGB separation and much cleaner edges. Its oversized node/path arrangement also occupies different positions relative to the candle boundary.",
+      "GPT's returning candle view remains wider: additional candles and more of the lower lavender curve are visible. ORIGINAL emphasizes the tall mint/pink pair more tightly and gives the nearby white nodes a stronger soft glow.",
+      "At 18–20 seconds, GPT simplifies the option-chain close-up into three principal numerical columns. ORIGINAL also shows substantial outer quantity/metric columns, including values such as “119.9L” and “−0.40”. Row scale and vertical placement differ despite matching current-price pill text.",
+      "The sampled positions states diverge: ORIGINAL's row quotes and P&L figures change between 22 and 23 seconds, while GPT retains the same displayed rows. Matching the total “+₹1,547” does not reproduce those underlying updates.",
+      "The full-resolution pair shows different camera framing: ORIGINAL clips the upper chart heavily and places the positions panel higher; GPT retains the chart's full summit and places positions lower. Readable data also differs: ORIGINAL shows Total P&L “+₹1,541”, first-row LTP “86.35” and second-row LTP “32.10”; GPT shows “+₹1,544”, “86.25” and “32.05”.",
+      "Across 28–35 seconds, GPT's spatial interlude is much emptier and dimmer. ORIGINAL contains a more developed constellation network, numerous cross-shaped glints, visible connecting segments, labeled haloed nodes and stronger blue/purple haze. GPT chiefly presents two glowing points among faint pinpricks, losing much of this scene's visual mechanism.",
+      "The phone's internal proportions differ: GPT allocates more screen width to the chart and compresses the option chain. Its chart also has a smoother descending profile and a differently positioned early spike, whereas ORIGINAL contains more irregular candle clusters and rebounds.",
+      "GPT's buy ticket is smaller and less opaque, allowing option-chain content to remain conspicuous behind its text. ORIGINAL presents a more solid dark card with a larger, brighter Buy-button region. The overlay's visual separation and hierarchy are weaker in GPT.",
+      "After confirmation, ORIGINAL retains a clearly outlined option cell in the right table at 41–42 seconds. GPT shows the confirmation toast but lacks that corresponding outlined-cell feedback.",
+      "The full-resolution final pair shows GPT further faded than ORIGINAL: the device rim, screen and tagline are less visible at the same requested timestamp."
+    ]
+  },
+  "adapted_review_history": [
+    {
+      "iteration": 1,
+      "summary": "The GPT samples cover the complete scene sequence and broadly match its timing, palette and branding. Major differences remain in chart geometry, microscopic display material, constellation detail, interface data and mobile interaction feedback.",
+      "matches": [
+        "Both begin on black, introduce a centered blue-white point, then show a horizontal line and progressively assembled desktop terminal.",
+        "Desktop panel relationships are preserved: watchlist left, chart upper center, positions/payoff below and option chain right.",
+        "Chart price badges match the prominent sampled values at 12–13 seconds; option-chain pills match at 18–20 seconds.",
+        "Both include candle magnification, option-chain and positions inspection, desktop retreat, a spatial interlude and landscape-phone reveal.",
+        "The mobile order ticket, Buy emphasis and confirmation appear at corresponding sampled phases around 39–41 seconds.",
+        "The closing card preserves Sahi, “Single screen trading on” and “Your Money. Your Move.” with the phone above and a final fade."
+      ],
+      "differences": [
+        {
+          "time_seconds": 2,
+          "description": "At 2–3 seconds, ORIGINAL has a visible circular ring around the central glow. GPT retains a smaller point without the corresponding visible ring.",
+          "severity": "minor",
+          "actionable": true
+        },
+        {
+          "time_seconds": 6,
+          "description": "ORIGINAL already shows the chart across its upper-center panel. GPT exposes mainly the peak and nearby candles within a smaller central region, leaving much of the chart area empty. The sampled assembly state differs.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 8,
+          "description": "Across the desktop views, GPT replaces ORIGINAL's irregular, multi-swing candle series with a sharper isolated summit and a comparatively smooth, extended descent. Peak shape, intermediate rebounds, trough geometry and the lavender curve differ substantially.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 12,
+          "description": "The chart close-up is framed too broadly in GPT: more candles and a wider trough/recovery sequence remain visible. ORIGINAL crops more tightly around the latest recovery and right price axis, with a blue-white highlight on the newest candle that GPT lacks at 12–13 seconds.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 15,
+          "description": "At 15–16 seconds, ORIGINAL resolves into fine RGB subpixels, horizontal divisions, dark lattice and luminous screen texture. GPT shows coarse mint/pink bars with conspicuous black grid lines, little comparable RGB separation and much cleaner edges. Its oversized node/path arrangement also occupies different positions relative to the candle boundary.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 17,
+          "description": "GPT's returning candle view remains wider: additional candles and more of the lower lavender curve are visible. ORIGINAL emphasizes the tall mint/pink pair more tightly and gives the nearby white nodes a stronger soft glow.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 18,
+          "description": "At 18–20 seconds, GPT simplifies the option-chain close-up into three principal numerical columns. ORIGINAL also shows substantial outer quantity/metric columns, including values such as “119.9L” and “−0.40”. Row scale and vertical placement differ despite matching current-price pill text.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 23,
+          "description": "The sampled positions states diverge: ORIGINAL's row quotes and P&L figures change between 22 and 23 seconds, while GPT retains the same displayed rows. Matching the total “+₹1,547” does not reproduce those underlying updates.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 24,
+          "description": "The full-resolution pair shows different camera framing: ORIGINAL clips the upper chart heavily and places the positions panel higher; GPT retains the chart's full summit and places positions lower. Readable data also differs: ORIGINAL shows Total P&L “+₹1,541”, first-row LTP “86.35” and second-row LTP “32.10”; GPT shows “+₹1,544”, “86.25” and “32.05”.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 30,
+          "description": "Across 28–35 seconds, GPT's spatial interlude is much emptier and dimmer. ORIGINAL contains a more developed constellation network, numerous cross-shaped glints, visible connecting segments, labeled haloed nodes and stronger blue/purple haze. GPT chiefly presents two glowing points among faint pinpricks, losing much of this scene's visual mechanism.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 38,
+          "description": "The phone's internal proportions differ: GPT allocates more screen width to the chart and compresses the option chain. Its chart also has a smoother descending profile and a differently positioned early spike, whereas ORIGINAL contains more irregular candle clusters and rebounds.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 39,
+          "description": "GPT's buy ticket is smaller and less opaque, allowing option-chain content to remain conspicuous behind its text. ORIGINAL presents a more solid dark card with a larger, brighter Buy-button region. The overlay's visual separation and hierarchy are weaker in GPT.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 41,
+          "description": "After confirmation, ORIGINAL retains a clearly outlined option cell in the right table at 41–42 seconds. GPT shows the confirmation toast but lacks that corresponding outlined-cell feedback.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 46.85,
+          "description": "The full-resolution final pair shows GPT further faded than ORIGINAL: the device rim, screen and tagline are less visible at the same requested timestamp.",
+          "severity": "minor",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "Revise the existing source while preserving its complete sequence, broad timing, palette, matching price pills, purchase milestones and closing copy. Prioritize chart geometry and camera crops, RGB subpixel material, constellation structure, timestamp-specific table states and mobile feedback. These are supported structural differences; font replacement is not a priority.",
+      "should_revise": true,
+      "prompt_improvement_markdown": "Revise the current reconstruction in place, preserving the 47-second scene sequence and successful branding, panel relationships, prominent price pills and interaction milestones.\n\n- Make the upper-center chart substantially visible by 6s. Rebuild its plotted geometry with irregular candle clusters, intermediate rebounds and the observed late recovery; maintain that geometry consistently through overview and close-up views.\n- Tighten the 12–17s camera crops around the latest candles. Restore the blue-white newest-candle highlight. At microscopic scale, construct fine RGB subpixels, horizontal cell divisions, a dark lattice and soft bloom rather than coarse grids over solid colored bars. Align the white nodes and connecting path with the inspected candle geometry.\n- Restore the outer option-chain quantity/metric columns at 18–20s. Use timestamp-specific readable values for positions inspection; do not hold one table state throughout. At 24s, match the higher positions-panel placement and clipped upper chart, including the visible total +₹1,541 and LTP values 86.35 and 32.10.\n- Develop the 28–35s interlude with restrained but visible cross-shaped glints, fine connecting segments, haloed nodes and blue/purple haze. Leave unreadable node wording unspecified.\n- Correct the phone chart/table width balance and its distinct candle geometry. Give the order ticket an opaque dark surface and a larger bright Buy region; retain an outlined option cell after confirmation at 41–42s.\n- Reduce the final fade slightly so the 46.85s device and text remain as visible as in the supplied pair.\n\nCreate revised graphics and interface elements independently in code. Do not incorporate reference frames, source artwork or audio. Treat all displayed market values and execution-time text as artwork claims.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Assessment uses the supplied paired sheets and full-resolution details only. Label strips and blank sheet cells are evidence scaffolding and were excluded.",
+        "Matching requested seek times can select frames quantized to each stream's frame rate. Intermediate motion, easing, trajectories and exact transition boundaries cannot be established from these stills.",
+        "Small interface text, precise font identity and tiny pixel differences cannot be reliably assessed at sheet resolution; uncertain text was not treated as an exact transcription.",
+        "Displayed prices, profits, quantities and execution-time claims are visual evidence, not independently verified facts.",
+        "No audio was supplied or heard. Reference metadata reports zero audio streams, indicating a technically silent reference; no listening assessment was performed.",
+        "The supplied GPT render probe reports 1280×720 video at 30 fps for 47 seconds. Those technical properties and the reported technical-check pass were not independently verified here and do not establish visual fidelity."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "7ad489661574c7882a0f9ed6aa69209791b5ea0ddc51746d808d25867e0259d0",
+      "image_sha256": {
+        "work/comparison-evidence/dale-vaz-879074/001/sheet-01.jpg": "cd5fb3a043e7a76a006436c410c3896db85365abcc8d2a8b520b594623a7cd1f",
+        "work/comparison-evidence/dale-vaz-879074/001/sheet-02.jpg": "2cb1c3981d02c8c5b58291fcdbb778acc7fc8b009182631b5ae1628d4f78b957",
+        "work/comparison-evidence/dale-vaz-879074/001/sheet-03.jpg": "89d933ce3f5f56c5a3503750dea5f0f1a981ff14460cc6472e13b0a181245dbf",
+        "work/comparison-evidence/dale-vaz-879074/001/sheet-04.jpg": "de95f7b9d43dd20157a8506a32074ac84aed21344d021b3fdad607a105d821b9",
+        "work/comparison-evidence/dale-vaz-879074/001/sheet-05.jpg": "d4ae9f9fda6c6ef01475f0cb7927fca03703d5cd3c8a49458806ce329514cb5a",
+        "work/comparison-evidence/dale-vaz-879074/001/sheet-06.jpg": "4c41d7caf740aa627549ef01b1e314964aa25a49a5e13fe6044dd6f9f9ace3ed",
+        "work/comparison-evidence/dale-vaz-879074/001/detail-0000.jpg": "8cb65ac5efd62b596544361221ade097881cf86d805781ac700d5646247b4bf6",
+        "work/comparison-evidence/dale-vaz-879074/001/detail-0024.jpg": "11d7fb5e14422f6a677c052d44e9fceb77c83d4d1911e12a3589f165be483cc0",
+        "work/comparison-evidence/dale-vaz-879074/001/detail-0047.jpg": "32f98e93090a7066f06cfff353867103ab1a4fe51b4156db3d667c30e95c8f08"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          13.0,
+          14.0,
+          15.0,
+          16.0,
+          17.0,
+          18.0,
+          19.0,
+          20.0,
+          21.0,
+          22.0,
+          23.0,
+          24.0,
+          25.0,
+          26.0,
+          27.0,
+          28.0,
+          29.0,
+          30.0,
+          31.0,
+          32.0,
+          33.0,
+          34.0,
+          35.0,
+          36.0,
+          37.0,
+          38.0,
+          39.0,
+          40.0,
+          41.0,
+          42.0,
+          43.0,
+          44.0,
+          45.0,
+          46.0,
+          46.85
+        ],
+        "reference_metadata": {
+          "slug": "dale-vaz-879074",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration_seconds": 47.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0,
+            6.0,
+            7.0,
+            8.0,
+            9.0,
+            10.0,
+            11.0,
+            12.0,
+            13.0,
+            14.0,
+            15.0,
+            16.0,
+            17.0,
+            18.0,
+            19.0,
+            20.0,
+            21.0,
+            22.0,
+            23.0,
+            24.0,
+            25.0,
+            26.0,
+            27.0,
+            28.0,
+            29.0,
+            30.0,
+            31.0,
+            32.0,
+            33.0,
+            34.0,
+            35.0,
+            36.0,
+            37.0,
+            38.0,
+            39.0,
+            40.0,
+            41.0,
+            42.0,
+            43.0,
+            44.0,
+            45.0,
+            46.0
+          ],
+          "scene_change_times": [],
+          "sheets": [
+            "work/references/dale-vaz-879074/evidence/sheet-01.jpg",
+            "work/references/dale-vaz-879074/evidence/sheet-02.jpg",
+            "work/references/dale-vaz-879074/evidence/sheet-03.jpg"
+          ],
+          "full_frames": [
+            "work/references/dale-vaz-879074/evidence/full-1.jpg",
+            "work/references/dale-vaz-879074/evidence/full-2.jpg",
+            "work/references/dale-vaz-879074/evidence/full-3.jpg",
+            "work/references/dale-vaz-879074/evidence/full-4.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/dale-vaz-879074/001/sheet-01.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/sheet-02.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/sheet-03.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/sheet-04.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/sheet-05.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/sheet-06.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/dale-vaz-879074/001/detail-0000.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/detail-0024.jpg",
+          "work/comparison-evidence/dale-vaz-879074/001/detail-0047.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 48926,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 3592,
+        "reasoning_output_tokens": 1552
+      }
+    }
+  ],
+  "summary": "The GPT samples cover the complete scene sequence and broadly match its timing, palette and branding. Major differences remain in chart geometry, microscopic display material, constellation detail, interface data and mobile interaction feedback.",
+  "limitations": [
+    "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+    "Assessment uses the supplied paired sheets and full-resolution details only. Label strips and blank sheet cells are evidence scaffolding and were excluded.",
+    "Matching requested seek times can select frames quantized to each stream's frame rate. Intermediate motion, easing, trajectories and exact transition boundaries cannot be established from these stills.",
+    "Small interface text, precise font identity and tiny pixel differences cannot be reliably assessed at sheet resolution; uncertain text was not treated as an exact transcription.",
+    "Displayed prices, profits, quantities and execution-time claims are visual evidence, not independently verified facts.",
+    "No audio was supplied or heard. Reference metadata reports zero audio streams, indicating a technically silent reference; no listening assessment was performed.",
+    "The supplied GPT render probe reports 1280×720 video at 30 fps for 47 seconds. Those technical properties and the reported technical-check pass were not independently verified here and do not establish visual fidelity."
+  ],
+  "reference": {
+    "slug": "dale-vaz-879074",
+    "width": 1280,
+    "height": 720,
+    "fps": "30/1",
+    "duration_seconds": 47.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0,
+      21.0,
+      22.0,
+      23.0,
+      24.0,
+      25.0,
+      26.0,
+      27.0,
+      28.0,
+      29.0,
+      30.0,
+      31.0,
+      32.0,
+      33.0,
+      34.0,
+      35.0,
+      36.0,
+      37.0,
+      38.0,
+      39.0,
+      40.0,
+      41.0,
+      42.0,
+      43.0,
+      44.0,
+      45.0,
+      46.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/dale-vaz-879074/evidence/sheet-01.jpg",
+      "work/references/dale-vaz-879074/evidence/sheet-02.jpg",
+      "work/references/dale-vaz-879074/evidence/sheet-03.jpg"
+    ],
+    "full_frames": [
+      "work/references/dale-vaz-879074/evidence/full-1.jpg",
+      "work/references/dale-vaz-879074/evidence/full-2.jpg",
+      "work/references/dale-vaz-879074/evidence/full-3.jpg",
+      "work/references/dale-vaz-879074/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  }
+}

@@ -13,7 +13,7 @@ Pinned upstream: `92aee2f586ac0715cb3cbcb6384834f98a33383d`.
 - prompt_audit: All data prompts and Markdown files read and cross-checked by script. Dependency cues are heuristics; visual/reference review is not complete.
 - unique_prompt_texts: 684
 - visual_reviewed: 0
-- sampled_reviews: 7
+- sampled_reviews: 8
 - run_counts: {'baseline': {'blocked': 31, 'not_generated': 624, 'rendered': 34, 'generated': 14}, 'adapted': {'rendered': 7, 'not_generated': 694, 'blocked': 2}}
 - entries_with_source: 52
 - entries_with_render: 38

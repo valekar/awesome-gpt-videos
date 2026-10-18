@@ -24,7 +24,7 @@
   "prompt_audit": "All data prompts and Markdown files read and cross-checked by script. Dependency cues are heuristics; visual/reference review is not complete.",
   "unique_prompt_texts": 684,
   "visual_reviewed": 0,
-  "sampled_reviews": 7,
+  "sampled_reviews": 8,
   "run_counts": {
     "baseline": {
       "blocked": 31,

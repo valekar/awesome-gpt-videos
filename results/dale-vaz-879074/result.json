@@ -55,16 +55,16 @@
     "reason": "A verified SAHI mobile landscape screenshot or official reference showing a chart in one half and an option chain in the other; needed to implement the required ending without inventing a product screen.; Verified interface references for the Positions and Watchlist windows, sufficient to reproduce their contents accurately."
   },
   "adapted": {
-    "status": "rendered",
+    "status": "running",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
     "protocol_version": "reference-v3",
     "track": "adapted",
-    "iteration": 1,
+    "iteration": 2,
     "source_prompt_sha256": "3075b9a2c16603d1e10d86b2ae5d6293cd52f7eb7d0e3f29563a7e08f7520c01",
-    "input_sha256": "78901e62e08e01665859969f110fb428416026ac00f4448ab1144ea8124cfa73",
-    "started_at": "2026-10-18T16:17:07.622804+00:00",
+    "input_sha256": "3ff2eb1f13c119114858127cabb2ba8d5725dbaa3f105f9b05dcff0aa9a3b8be",
+    "started_at": "2026-10-18T16:26:36.889106+00:00",
     "tools": "none requested; read-only sandbox",
     "reference_images_supplied": [
       "sheet-01.jpg",
@@ -117,51 +117,6 @@
       "--image",
       "$REPO/work/references/dale-vaz-879074/evidence/full-4.jpg",
       "-"
-    ],
-    "usage": {
-      "input_tokens": 39111,
-      "cached_input_tokens": 0,
-      "cache_write_input_tokens": 0,
-      "output_tokens": 18735,
-      "reasoning_output_tokens": 6439
-    },
-    "finished_at": "2026-10-18T16:23:29.185173+00:00",
-    "assumptions": [
-      "Uses the authoritative 47-second, 1280×720, 30 fps reference specification.",
-      "Intermediate camera paths, easing, RGB display geometry and constellation placement are inferred.",
-      "Generic system typography approximates the reference; unreadable labels are omitted and unavailable quotes use em dashes.",
-      "The film is silent, consistent with the supplied zero-audio-stream metadata; sound fidelity and full recreation acceptance are not claimed.",
-      "Source only: no rendering, visual review, MP4 export or fidelity validation was performed."
-    ],
-    "missing_inputs": [],
-    "summary": "Editable, deterministic HyperFrames recreation covering the desktop assembly, microscopic chart inspection, spatial retreat, phone purchase interaction and final Sahi card.",
-    "fps": 30.0,
-    "source_sha256": "21620e52e07597310c17fd714675203866ad0757225e099c1eba3032a5e7649e",
-    "width": 1280,
-    "height": 720,
-    "duration_seconds": 47,
-    "source_path": "results/dale-vaz-879074/adapted/index.html",
-    "reason": "Rendered and technically checked. Matched-time visual review pending.",
-    "video_url": "media/dale-vaz-879074/adapted/video.mp4",
-    "poster_url": "media/dale-vaz-879074/adapted/poster.jpg",
-    "technical_check": "passed",
-    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
-    "render_probe": {
-      "programs": [],
-      "stream_groups": [],
-      "streams": [
-        {
-          "codec_type": "video",
-          "width": 1280,
-          "height": 720,
-          "r_frame_rate": "30/1"
-        }
-      ],
-      "format": {
-        "duration": "47.000000"
-      }
-    },
-    "staged_source_sha256": "21620e52e07597310c17fd714675203866ad0757225e099c1eba3032a5e7649e",
-    "source_modified_after_generation": false
+    ]
   }
 }
