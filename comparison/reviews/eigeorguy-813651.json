@@ -1,0 +1,194 @@
+{
+  "slug": "eigeorguy-813651",
+  "status": "sampled",
+  "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+  "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+  "adapted": {
+    "attempts": 1,
+    "observations": [
+      "All supplied pairs retain the same product-shot scene: one upright black smartphone on a pale background with a central glass globe.",
+      "Phone placement, globe size, empty screen space and lower-right watermark placement broadly match.",
+      "Visible text preserves “09:41” and “getreely.co”; both marks include a purple emblem.",
+      "Both versions contain a golden clock tower, adjoining building, red double-decker bus, red phone box, roadway and street lamps.",
+      "Later GPT samples contain more airborne leaves than its opening sample, matching the reference’s broad progression.",
+      "Reported render metadata preserves 1024 × 1280, 60 fps and a six-second duration."
+    ],
+    "remaining_differences": [
+      "The GPT architecture has broad, flat ochre surfaces, simplified roof details and repetitive dark window slots. The reference has more articulated clock-stage trim, smaller architectural details and stronger dimensional shading. This difference persists across the samples.",
+      "The reference tower, clock and street area emit strong warm light, with bright clock faces and localized illumination around the building and lamps. GPT has much more uniform lighting and a comparatively dull miniature.",
+      "GPT presents a broad, relatively bare cream platform with a nearly straight foreground road. The reference has a more substantial dark platform edge, denser ground-level leaves and street detail, and a road layout that reads with greater depth.",
+      "The reference glass has a broad luminous upper-right reflection and stronger curved, layered highlights. GPT uses cleaner, narrower streaks and a more uniform rim. At 3 and 5.85 seconds, the reference again shows more substantial reflections crossing and wrapping around the miniature.",
+      "The reference contains many conspicuous yellow, orange, red and green airborne flecks across the left side, foreground and around the tower. GPT has a sparse, faint scattering concentrated near the building and rear of the platform. The density and depth mismatch remains evident at 4, 5 and 5.85 seconds.",
+      "The matched viewing angle differs: the reference exposes two bright clock faces and a clearly receding adjoining building, while GPT shows one dominant, nearly frontal clock face that appears dark. At 5.85 seconds, the reference tower sits farther right within the globe and exposes a different street arrangement than GPT.",
+      "The GPT phone has a broader, darker rim, a subtly green-black display and a visible protruding left-side button. The reference has a finer silver perimeter and a more neutral black screen, with its prominent button on the right."
+    ]
+  },
+  "adapted_review_history": [
+    {
+      "iteration": 1,
+      "summary": "The sampled GPT frames preserve the scene and overall composition, but the miniature is visibly flatter, less illuminated and less densely populated with leaves. Architecture, glass reflections and matched-time viewing angles need revision.",
+      "matches": [
+        "All supplied pairs retain the same product-shot scene: one upright black smartphone on a pale background with a central glass globe.",
+        "Phone placement, globe size, empty screen space and lower-right watermark placement broadly match.",
+        "Visible text preserves “09:41” and “getreely.co”; both marks include a purple emblem.",
+        "Both versions contain a golden clock tower, adjoining building, red double-decker bus, red phone box, roadway and street lamps.",
+        "Later GPT samples contain more airborne leaves than its opening sample, matching the reference’s broad progression.",
+        "Reported render metadata preserves 1024 × 1280, 60 fps and a six-second duration."
+      ],
+      "differences": [
+        {
+          "time_seconds": 0,
+          "description": "The GPT architecture has broad, flat ochre surfaces, simplified roof details and repetitive dark window slots. The reference has more articulated clock-stage trim, smaller architectural details and stronger dimensional shading. This difference persists across the samples.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 0,
+          "description": "The reference tower, clock and street area emit strong warm light, with bright clock faces and localized illumination around the building and lamps. GPT has much more uniform lighting and a comparatively dull miniature.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 0,
+          "description": "GPT presents a broad, relatively bare cream platform with a nearly straight foreground road. The reference has a more substantial dark platform edge, denser ground-level leaves and street detail, and a road layout that reads with greater depth.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 0,
+          "description": "The reference glass has a broad luminous upper-right reflection and stronger curved, layered highlights. GPT uses cleaner, narrower streaks and a more uniform rim. At 3 and 5.85 seconds, the reference again shows more substantial reflections crossing and wrapping around the miniature.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 3,
+          "description": "The reference contains many conspicuous yellow, orange, red and green airborne flecks across the left side, foreground and around the tower. GPT has a sparse, faint scattering concentrated near the building and rear of the platform. The density and depth mismatch remains evident at 4, 5 and 5.85 seconds.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 3,
+          "description": "The matched viewing angle differs: the reference exposes two bright clock faces and a clearly receding adjoining building, while GPT shows one dominant, nearly frontal clock face that appears dark. At 5.85 seconds, the reference tower sits farther right within the globe and exposes a different street arrangement than GPT.",
+          "severity": "major",
+          "actionable": true
+        },
+        {
+          "time_seconds": 0,
+          "description": "The GPT phone has a broader, darker rim, a subtly green-black display and a visible protruding left-side button. The reference has a finer silver perimeter and a more neutral black screen, with its prominent button on the right.",
+          "severity": "minor",
+          "actionable": true
+        }
+      ],
+      "revision_feedback": "Preserve the framing, globe scale, visible text, scene continuity and six-second format. Concentrate revisions inside the globe: deepen the architectural geometry, restore warm localized illumination and bright clock faces, enrich the platform and ground leaves, strengthen curved glass reflections, and substantially increase layered airborne leaves in the later samples. Adjust internal orientation against the supplied matched-time views, especially at 3 and 5.85 seconds. Refine the phone rim after these larger differences.",
+      "should_revise": true,
+      "prompt_improvement_markdown": "Keep the existing phone placement, globe diameter, pale background, status text and watermark placement. Refine the procedurally drawn miniature with projecting architectural trim, recessed windows, detailed roof pinnacles and shaded building faces. Give the clocks bright cream faces and add warm localized light around the tower, pavement and lamps. Make the platform’s dark thickness visible and distribute dense autumn leaves over its surface. By the 3-second sample, show many clearly visible colored leaves at multiple depths, including in front of the tower; maintain the fuller airborne distribution through 5.85 seconds. Use broad curved glass highlights and diagonal reflections layered over the city while keeping its silhouette readable. Match the observed clock-face visibility and building perspective at 0, 3 and 5.85 seconds using deterministic internal orientation controls. Preserve one continuous shot and introduce no shake gesture or additional scene.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Assessment covers the supplied samples at 0, 1, 2, 3, 4, 5 and 5.85 seconds. Intermediate movement, exact trajectories and the final 0.15 seconds are not established.",
+        "Still samples cannot determine rotation direction, motion smoothness, independent vehicle travel or shake responsiveness.",
+        "Exact leaf counts, tiny street-object quantities, clock-hand positions, font identity and emblem fidelity are not reliably resolved.",
+        "Audio was not supplied or listened to. Reference metadata reports zero audio streams, and the supplied GPT render probe lists only a video stream; the supplied technical evidence therefore indicates silent files.",
+        "Duration, frame rate and resolution are reported technical metadata, not independently checked here. Visible reference content is treated as visual evidence, not independently verified factual claims."
+      ],
+      "model": "gpt-6.1-sol",
+      "reasoning_effort": "high",
+      "input_sha256": "e30eac7dca2a95b33d3a8df265034a32caacaa334548ab30da5cb0a0fe250b72",
+      "image_sha256": {
+        "work/comparison-evidence/eigeorguy-813651/001/sheet-01.jpg": "74f852d49b6b54e2413cfc8adb262029b4c8951cbeffd78253e26e0a4a4271bd",
+        "work/comparison-evidence/eigeorguy-813651/001/detail-0000.jpg": "67c7a963a2d952a9d1fba8f04c8b7b9166e68f50683aae0214adb37272999b0f",
+        "work/comparison-evidence/eigeorguy-813651/001/detail-0003.jpg": "6148eef79d6d6806413495e349fc96367aea91b72939838917661649f0532965",
+        "work/comparison-evidence/eigeorguy-813651/001/detail-0006.jpg": "d9ed821f2279151d1a90415bb42e4b2d4a00364e07bd31a83f40dee7ff2a82e3"
+      },
+      "evidence": {
+        "times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0,
+          5.85
+        ],
+        "reference_metadata": {
+          "slug": "eigeorguy-813651",
+          "width": 1024,
+          "height": 1280,
+          "fps": "60/1",
+          "duration_seconds": 6.0,
+          "audio_streams": 0,
+          "sample_times": [
+            0.0,
+            1.0,
+            2.0,
+            3.0,
+            4.0,
+            5.0
+          ],
+          "scene_change_times": [],
+          "sheets": [
+            "work/references/eigeorguy-813651/evidence/sheet-01.jpg"
+          ],
+          "full_frames": [
+            "work/references/eigeorguy-813651/evidence/full-1.jpg",
+            "work/references/eigeorguy-813651/evidence/full-2.jpg",
+            "work/references/eigeorguy-813651/evidence/full-3.jpg",
+            "work/references/eigeorguy-813651/evidence/full-4.jpg"
+          ],
+          "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+        },
+        "sheets": [
+          "work/comparison-evidence/eigeorguy-813651/001/sheet-01.jpg"
+        ],
+        "details": [
+          "work/comparison-evidence/eigeorguy-813651/001/detail-0000.jpg",
+          "work/comparison-evidence/eigeorguy-813651/001/detail-0003.jpg",
+          "work/comparison-evidence/eigeorguy-813651/001/detail-0006.jpg"
+        ],
+        "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+      },
+      "usage": {
+        "input_tokens": 36067,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1783,
+        "reasoning_output_tokens": 516
+      }
+    }
+  ],
+  "summary": "The sampled GPT frames preserve the scene and overall composition, but the miniature is visibly flatter, less illuminated and less densely populated with leaves. Architecture, glass reflections and matched-time viewing angles need revision.",
+  "limitations": [
+    "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+    "Assessment covers the supplied samples at 0, 1, 2, 3, 4, 5 and 5.85 seconds. Intermediate movement, exact trajectories and the final 0.15 seconds are not established.",
+    "Still samples cannot determine rotation direction, motion smoothness, independent vehicle travel or shake responsiveness.",
+    "Exact leaf counts, tiny street-object quantities, clock-hand positions, font identity and emblem fidelity are not reliably resolved.",
+    "Audio was not supplied or listened to. Reference metadata reports zero audio streams, and the supplied GPT render probe lists only a video stream; the supplied technical evidence therefore indicates silent files.",
+    "Duration, frame rate and resolution are reported technical metadata, not independently checked here. Visible reference content is treated as visual evidence, not independently verified factual claims."
+  ],
+  "reference": {
+    "slug": "eigeorguy-813651",
+    "width": 1024,
+    "height": 1280,
+    "fps": "60/1",
+    "duration_seconds": 6.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/eigeorguy-813651/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/eigeorguy-813651/evidence/full-1.jpg",
+      "work/references/eigeorguy-813651/evidence/full-2.jpg",
+      "work/references/eigeorguy-813651/evidence/full-3.jpg",
+      "work/references/eigeorguy-813651/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  }
+}

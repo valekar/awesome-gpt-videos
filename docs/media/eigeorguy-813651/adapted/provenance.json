@@ -1,0 +1,105 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "reference-v3",
+  "track": "adapted",
+  "iteration": 1,
+  "source_prompt_sha256": "e0e9291af62eaa272d45adfeb008be0f9653654aa5b5c5e065349768f686138e",
+  "input_sha256": "a5270f0e50c29715e486f63eaa8d663e65cf17d57ff5380def45a62d45cc8951",
+  "started_at": "2026-10-18T17:29:44.287928+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [
+    "sheet-01.jpg",
+    "full-1.jpg",
+    "full-2.jpg",
+    "full-3.jpg",
+    "full-4.jpg"
+  ],
+  "reference_image_sha256": {
+    "sheet-01.jpg": "c71f43362700bbfcf0154d37d8b359661519c1997b5874cc8df317a01f750826",
+    "full-1.jpg": "99617719ab647d522214f0aea49fe70f66400f7425bc7843f6a3a72586f78f8b",
+    "full-2.jpg": "13173ce083976b923fd51f571804dd292689a0741def2fb30d4b75edd67335b0",
+    "full-3.jpg": "8c522355a51bdbaa303c1734b3ad47f30412088fbaf53594831a3ffceedd876a",
+    "full-4.jpg": "e31a37a9a858d8b215222abb9afa9f1587d1601600e426ef15ce22f458928ea5"
+  },
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/eigeorguy-813651/adapted/schema.json",
+    "-o",
+    "$REPO/results/eigeorguy-813651/adapted/response.json",
+    "--image",
+    "$REPO/work/references/eigeorguy-813651/evidence/sheet-01.jpg",
+    "--image",
+    "$REPO/work/references/eigeorguy-813651/evidence/full-1.jpg",
+    "--image",
+    "$REPO/work/references/eigeorguy-813651/evidence/full-2.jpg",
+    "--image",
+    "$REPO/work/references/eigeorguy-813651/evidence/full-3.jpg",
+    "--image",
+    "$REPO/work/references/eigeorguy-813651/evidence/full-4.jpg",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 32623,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 9642,
+    "reasoning_output_tokens": 2070
+  },
+  "finished_at": "2026-10-18T17:32:48.534567+00:00",
+  "assumptions": [
+    "This is an inferred reconstruction from the supplied samples and brief, not an identical original-prompt reproduction.",
+    "The supplied 1024 × 1280 format, six-second duration and 60 fps are preserved.",
+    "Architecture, vehicles, glass reflections and the supplied getreely.co mark are newly drawn from procedural geometry.",
+    "A restrained internal turntable and deterministic autumn-leaf disturbance approximate the sampled movement. No visible shake trigger was supplied.",
+    "Cab placement, clock hands, architectural dimensions and particle count are inferred. Vehicles remain stationary relative to the platform.",
+    "The unobserved final second continues the established shot. The composition is silent; full recreation acceptance remains unresolved.",
+    "Only locally provided GSAP is required. Generic system typography is used.",
+    "Source has not been executed, rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Editable, seekable HyperFrames HTML recreating the phone, miniature London globe, glass reflections and swirling leaves.",
+  "fps": 60.0,
+  "source_sha256": "1ee0236e9d17cf16433d672f52a6b4b3bca3c5754a0b984effe32091ebd770eb",
+  "width": 1024,
+  "height": 1280,
+  "duration_seconds": 6,
+  "source_path": "results/eigeorguy-813651/adapted/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/eigeorguy-813651/adapted/video.mp4",
+  "poster_url": "media/eigeorguy-813651/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1024,
+        "height": 1280,
+        "r_frame_rate": "60/1"
+      }
+    ],
+    "format": {
+      "duration": "6.000000"
+    }
+  },
+  "staged_source_sha256": "1ee0236e9d17cf16433d672f52a6b4b3bca3c5754a0b984effe32091ebd770eb",
+  "source_modified_after_generation": false
+}

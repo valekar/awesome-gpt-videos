@@ -20300,8 +20300,8 @@
     "dependency_cues": [],
     "source_prompt_sha256": "e0e9291af62eaa272d45adfeb008be0f9653654aa5b5c5e065349768f686138e",
     "source_file_sha256": "44355c5b94ec3f49c589e9c58d2614b3b49c1390309f0c2fe7abad2770ad77d9",
-    "adapted_prompt_sha256": "e493f09cf36d62b6984792c9251c5c64c76562aff670445ed3977771809e24e3",
-    "adapted_prompt": "# GPT-6.1 high adaptation — eigeorguy-813651\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @eigeorguy. Source: https://x.com/eigeorguy/status/2103992442072813651\nReference page: https://skillry.dev/ai-videos/opus-5-5/eigeorguy-813651\nOriginal prompt SHA-256: `e0e9291af62eaa272d45adfeb008be0f9653654aa5b5c5e065349768f686138e`.\n\n## Source completeness\n\nThe upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.\nDependency cues found by automated text inspection: none detected; manual reference review still required.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve geometry, materials, lighting, camera path, subject scale, scene density and physical interactions. Inspect near and far surfaces and important occlusions.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): threejs, shader, canvas. Use a fixed timestep or analytic scene state, seeded randomness, and a reproducible camera. Drive shader uniforms from deterministic timeline time and verify rendering on the target browser/GPU. Recompute Canvas state from time; reset transforms and compositing on every frame.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nOpus 5.5 put London in a snow globe\n\n🕰 Elizabeth Tower with lit clock faces\n🚌 Red double-decker\n🚕 Black cab at a zebra crossing\n☎️ Phone box\n🍂 Leaves that swirl when you shake the phone\n\n~700 lines of Swift. No 3D files.\n</creator_material>\n",
+    "adapted_prompt_sha256": "80e6a205fc85f16b872ef48cbc23207637b63b44af757f14e92d55484e903214",
+    "adapted_prompt": "# GPT-6.1 high adaptation — eigeorguy-813651\n\nTarget model: `gpt-6.1-sol`; reasoning effort: `high`.\nTrack: adapted replication. Status: draft; not visually validated.\nCreator: @eigeorguy. Source: https://x.com/eigeorguy/status/2103992442072813651\nReference page: https://skillry.dev/ai-videos/opus-5-5/eigeorguy-813651\nOriginal prompt SHA-256: `e0e9291af62eaa272d45adfeb008be0f9653654aa5b5c5e065349768f686138e`.\n\n## Source completeness\n\nThe upstream entry is marked partial: this may be a post or incomplete instructions. Treat it as partial evidence; never call an inferred reconstruction the original prompt.\nDependency cues found by automated text inspection: none detected; manual reference review still required.\n\n## GPT task\n\nRecreate the intent and complete scope of the creator material quoted below. Preserve subjects, brands, language, exact text, quantities, runtime, aspect ratio, scene order and requested interactions. A model name mentioned as the authoring tool does not change the requested on-screen content. Do not replace Claude/Opus branding when it is part of the actual scene.\n\nBefore an exact reproduction, inspect the original film across every scene and transition, and write a timed reconstruction brief with composition, camera, materials, motion, text and sound. Label every inferred choice. When an essential attachment, product, song, private directory or prior conversation is missing, record the missing input and stop that reproduction; do not invent it and claim a match.\n\nPreserve geometry, materials, lighting, camera path, subject scale, scene density and physical interactions. Inspect near and far surfaces and important occlusions.\n\nUpstream remake implementation tags (descriptive, not proof of the original stack): threejs, shader, canvas. Use a fixed timestep or analytic scene state, seeded randomness, and a reproducible camera. Drive shader uniforms from deterministic timeline time and verify rendering on the target browser/GPU. Recompute Canvas state from time; reset transforms and compositing on every frame.\n\nUse the creator's explicit renderer when specified. Otherwise use the host's video workflow (HyperFrames where available). Keep rendering infrastructure identical between benchmark tracks wherever possible. Use local, credited dependencies and record external asset/tool contributions. Make the result seekable for matched-time inspection; never substitute reference scene code, exported frames or the original movie for newly generated scene assembly.\n\nDeliver editable source, the exact model input, model/effort/CLI metadata, dependency and asset ledger, rendered MP4 and poster, and a review record. Check subject coverage, timing, geometry/materials, typography, camera, motion and audio at matching decoded timestamps. Report technical validity and visual fidelity separately. Do not assign a pass or score before actual reference review.\n\n## Creator material — verbatim\n\n<creator_material>\nOpus 5.5 put London in a snow globe\n\n🕰 Elizabeth Tower with lit clock faces\n🚌 Red double-decker\n🚕 Black cab at a zebra crossing\n☎️ Phone box\n🍂 Leaves that swirl when you shake the phone\n\n~700 lines of Swift. No 3D files.\n</creator_material>\n\n## Review-derived guidance — additional to creator material\n\n\n\n## Matched-time review of attempt 1\n\nKeep the existing phone placement, globe diameter, pale background, status text and watermark placement. Refine the procedurally drawn miniature with projecting architectural trim, recessed windows, detailed roof pinnacles and shaded building faces. Give the clocks bright cream faces and add warm localized light around the tower, pavement and lamps. Make the platform’s dark thickness visible and distribute dense autumn leaves over its surface. By the 3-second sample, show many clearly visible colored leaves at multiple depths, including in front of the tower; maintain the fuller airborne distribution through 5.85 seconds. Use broad curved glass highlights and diagonal reflections layered over the city while keeping its silhouette readable. Match the observed clock-face visibility and building perspective at 0, 3 and 5.85 seconds using deterministic internal orientation controls. Preserve one continuous shot and introduce no shake gesture or additional scene.\n\n",
     "reference": {
       "status": "reachable",
       "video_url": "https://media.skillry.dev/opus-5-5/eigeorguy-813651/original.mp4",
@@ -20315,11 +20315,306 @@
         "status": "not_generated"
       },
       "adapted": {
-        "status": "not_generated"
+        "status": "rendered",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "reference-v3",
+        "track": "adapted",
+        "iteration": 1,
+        "source_prompt_sha256": "e0e9291af62eaa272d45adfeb008be0f9653654aa5b5c5e065349768f686138e",
+        "input_sha256": "a5270f0e50c29715e486f63eaa8d663e65cf17d57ff5380def45a62d45cc8951",
+        "started_at": "2026-10-18T17:29:44.287928+00:00",
+        "tools": "none requested; read-only sandbox",
+        "reference_images_supplied": [
+          "sheet-01.jpg",
+          "full-1.jpg",
+          "full-2.jpg",
+          "full-3.jpg",
+          "full-4.jpg"
+        ],
+        "reference_image_sha256": {
+          "sheet-01.jpg": "c71f43362700bbfcf0154d37d8b359661519c1997b5874cc8df317a01f750826",
+          "full-1.jpg": "99617719ab647d522214f0aea49fe70f66400f7425bc7843f6a3a72586f78f8b",
+          "full-2.jpg": "13173ce083976b923fd51f571804dd292689a0741def2fb30d4b75edd67335b0",
+          "full-3.jpg": "8c522355a51bdbaa303c1734b3ad47f30412088fbaf53594831a3ffceedd876a",
+          "full-4.jpg": "e31a37a9a858d8b215222abb9afa9f1587d1601600e426ef15ce22f458928ea5"
+        },
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/eigeorguy-813651/adapted/schema.json",
+          "-o",
+          "$REPO/results/eigeorguy-813651/adapted/response.json",
+          "--image",
+          "$REPO/work/references/eigeorguy-813651/evidence/sheet-01.jpg",
+          "--image",
+          "$REPO/work/references/eigeorguy-813651/evidence/full-1.jpg",
+          "--image",
+          "$REPO/work/references/eigeorguy-813651/evidence/full-2.jpg",
+          "--image",
+          "$REPO/work/references/eigeorguy-813651/evidence/full-3.jpg",
+          "--image",
+          "$REPO/work/references/eigeorguy-813651/evidence/full-4.jpg",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 32623,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 9642,
+          "reasoning_output_tokens": 2070
+        },
+        "finished_at": "2026-10-18T17:32:48.534567+00:00",
+        "assumptions": [
+          "This is an inferred reconstruction from the supplied samples and brief, not an identical original-prompt reproduction.",
+          "The supplied 1024 × 1280 format, six-second duration and 60 fps are preserved.",
+          "Architecture, vehicles, glass reflections and the supplied getreely.co mark are newly drawn from procedural geometry.",
+          "A restrained internal turntable and deterministic autumn-leaf disturbance approximate the sampled movement. No visible shake trigger was supplied.",
+          "Cab placement, clock hands, architectural dimensions and particle count are inferred. Vehicles remain stationary relative to the platform.",
+          "The unobserved final second continues the established shot. The composition is silent; full recreation acceptance remains unresolved.",
+          "Only locally provided GSAP is required. Generic system typography is used.",
+          "Source has not been executed, rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable, seekable HyperFrames HTML recreating the phone, miniature London globe, glass reflections and swirling leaves.",
+        "fps": 60.0,
+        "source_sha256": "1ee0236e9d17cf16433d672f52a6b4b3bca3c5754a0b984effe32091ebd770eb",
+        "width": 1024,
+        "height": 1280,
+        "duration_seconds": 6,
+        "source_path": "results/eigeorguy-813651/adapted/index.html",
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/eigeorguy-813651/adapted/video.mp4",
+        "poster_url": "media/eigeorguy-813651/adapted/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1024,
+              "height": 1280,
+              "r_frame_rate": "60/1"
+            }
+          ],
+          "format": {
+            "duration": "6.000000"
+          }
+        },
+        "staged_source_sha256": "1ee0236e9d17cf16433d672f52a6b4b3bca3c5754a0b984effe32091ebd770eb",
+        "source_modified_after_generation": false
       }
     },
-    "review_status": "not_reviewed",
-    "review": {}
+    "review_status": "sampled",
+    "review": {
+      "slug": "eigeorguy-813651",
+      "status": "sampled",
+      "reviewer": "GPT-6.1 Sol/high automated matched-time frame comparison",
+      "method": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied.",
+      "adapted": {
+        "attempts": 1,
+        "observations": [
+          "All supplied pairs retain the same product-shot scene: one upright black smartphone on a pale background with a central glass globe.",
+          "Phone placement, globe size, empty screen space and lower-right watermark placement broadly match.",
+          "Visible text preserves “09:41” and “getreely.co”; both marks include a purple emblem.",
+          "Both versions contain a golden clock tower, adjoining building, red double-decker bus, red phone box, roadway and street lamps.",
+          "Later GPT samples contain more airborne leaves than its opening sample, matching the reference’s broad progression.",
+          "Reported render metadata preserves 1024 × 1280, 60 fps and a six-second duration."
+        ],
+        "remaining_differences": [
+          "The GPT architecture has broad, flat ochre surfaces, simplified roof details and repetitive dark window slots. The reference has more articulated clock-stage trim, smaller architectural details and stronger dimensional shading. This difference persists across the samples.",
+          "The reference tower, clock and street area emit strong warm light, with bright clock faces and localized illumination around the building and lamps. GPT has much more uniform lighting and a comparatively dull miniature.",
+          "GPT presents a broad, relatively bare cream platform with a nearly straight foreground road. The reference has a more substantial dark platform edge, denser ground-level leaves and street detail, and a road layout that reads with greater depth.",
+          "The reference glass has a broad luminous upper-right reflection and stronger curved, layered highlights. GPT uses cleaner, narrower streaks and a more uniform rim. At 3 and 5.85 seconds, the reference again shows more substantial reflections crossing and wrapping around the miniature.",
+          "The reference contains many conspicuous yellow, orange, red and green airborne flecks across the left side, foreground and around the tower. GPT has a sparse, faint scattering concentrated near the building and rear of the platform. The density and depth mismatch remains evident at 4, 5 and 5.85 seconds.",
+          "The matched viewing angle differs: the reference exposes two bright clock faces and a clearly receding adjoining building, while GPT shows one dominant, nearly frontal clock face that appears dark. At 5.85 seconds, the reference tower sits farther right within the globe and exposes a different street arrangement than GPT.",
+          "The GPT phone has a broader, darker rim, a subtly green-black display and a visible protruding left-side button. The reference has a finer silver perimeter and a more neutral black screen, with its prominent button on the right."
+        ]
+      },
+      "adapted_review_history": [
+        {
+          "iteration": 1,
+          "summary": "The sampled GPT frames preserve the scene and overall composition, but the miniature is visibly flatter, less illuminated and less densely populated with leaves. Architecture, glass reflections and matched-time viewing angles need revision.",
+          "matches": [
+            "All supplied pairs retain the same product-shot scene: one upright black smartphone on a pale background with a central glass globe.",
+            "Phone placement, globe size, empty screen space and lower-right watermark placement broadly match.",
+            "Visible text preserves “09:41” and “getreely.co”; both marks include a purple emblem.",
+            "Both versions contain a golden clock tower, adjoining building, red double-decker bus, red phone box, roadway and street lamps.",
+            "Later GPT samples contain more airborne leaves than its opening sample, matching the reference’s broad progression.",
+            "Reported render metadata preserves 1024 × 1280, 60 fps and a six-second duration."
+          ],
+          "differences": [
+            {
+              "time_seconds": 0,
+              "description": "The GPT architecture has broad, flat ochre surfaces, simplified roof details and repetitive dark window slots. The reference has more articulated clock-stage trim, smaller architectural details and stronger dimensional shading. This difference persists across the samples.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 0,
+              "description": "The reference tower, clock and street area emit strong warm light, with bright clock faces and localized illumination around the building and lamps. GPT has much more uniform lighting and a comparatively dull miniature.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 0,
+              "description": "GPT presents a broad, relatively bare cream platform with a nearly straight foreground road. The reference has a more substantial dark platform edge, denser ground-level leaves and street detail, and a road layout that reads with greater depth.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 0,
+              "description": "The reference glass has a broad luminous upper-right reflection and stronger curved, layered highlights. GPT uses cleaner, narrower streaks and a more uniform rim. At 3 and 5.85 seconds, the reference again shows more substantial reflections crossing and wrapping around the miniature.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 3,
+              "description": "The reference contains many conspicuous yellow, orange, red and green airborne flecks across the left side, foreground and around the tower. GPT has a sparse, faint scattering concentrated near the building and rear of the platform. The density and depth mismatch remains evident at 4, 5 and 5.85 seconds.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 3,
+              "description": "The matched viewing angle differs: the reference exposes two bright clock faces and a clearly receding adjoining building, while GPT shows one dominant, nearly frontal clock face that appears dark. At 5.85 seconds, the reference tower sits farther right within the globe and exposes a different street arrangement than GPT.",
+              "severity": "major",
+              "actionable": true
+            },
+            {
+              "time_seconds": 0,
+              "description": "The GPT phone has a broader, darker rim, a subtly green-black display and a visible protruding left-side button. The reference has a finer silver perimeter and a more neutral black screen, with its prominent button on the right.",
+              "severity": "minor",
+              "actionable": true
+            }
+          ],
+          "revision_feedback": "Preserve the framing, globe scale, visible text, scene continuity and six-second format. Concentrate revisions inside the globe: deepen the architectural geometry, restore warm localized illumination and bright clock faces, enrich the platform and ground leaves, strengthen curved glass reflections, and substantially increase layered airborne leaves in the later samples. Adjust internal orientation against the supplied matched-time views, especially at 3 and 5.85 seconds. Refine the phone rim after these larger differences.",
+          "should_revise": true,
+          "prompt_improvement_markdown": "Keep the existing phone placement, globe diameter, pale background, status text and watermark placement. Refine the procedurally drawn miniature with projecting architectural trim, recessed windows, detailed roof pinnacles and shaded building faces. Give the clocks bright cream faces and add warm localized light around the tower, pavement and lamps. Make the platform’s dark thickness visible and distribute dense autumn leaves over its surface. By the 3-second sample, show many clearly visible colored leaves at multiple depths, including in front of the tower; maintain the fuller airborne distribution through 5.85 seconds. Use broad curved glass highlights and diagonal reflections layered over the city while keeping its silhouette readable. Match the observed clock-face visibility and building perspective at 0, 3 and 5.85 seconds using deterministic internal orientation controls. Preserve one continuous shot and introduce no shake gesture or additional scene.",
+          "limitations": [
+            "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+            "Assessment covers the supplied samples at 0, 1, 2, 3, 4, 5 and 5.85 seconds. Intermediate movement, exact trajectories and the final 0.15 seconds are not established.",
+            "Still samples cannot determine rotation direction, motion smoothness, independent vehicle travel or shake responsiveness.",
+            "Exact leaf counts, tiny street-object quantities, clock-hand positions, font identity and emblem fidelity are not reliably resolved.",
+            "Audio was not supplied or listened to. Reference metadata reports zero audio streams, and the supplied GPT render probe lists only a video stream; the supplied technical evidence therefore indicates silent files.",
+            "Duration, frame rate and resolution are reported technical metadata, not independently checked here. Visible reference content is treated as visual evidence, not independently verified factual claims."
+          ],
+          "model": "gpt-6.1-sol",
+          "reasoning_effort": "high",
+          "input_sha256": "e30eac7dca2a95b33d3a8df265034a32caacaa334548ab30da5cb0a0fe250b72",
+          "image_sha256": {
+            "work/comparison-evidence/eigeorguy-813651/001/sheet-01.jpg": "74f852d49b6b54e2413cfc8adb262029b4c8951cbeffd78253e26e0a4a4271bd",
+            "work/comparison-evidence/eigeorguy-813651/001/detail-0000.jpg": "67c7a963a2d952a9d1fba8f04c8b7b9166e68f50683aae0214adb37272999b0f",
+            "work/comparison-evidence/eigeorguy-813651/001/detail-0003.jpg": "6148eef79d6d6806413495e349fc96367aea91b72939838917661649f0532965",
+            "work/comparison-evidence/eigeorguy-813651/001/detail-0006.jpg": "d9ed821f2279151d1a90415bb42e4b2d4a00364e07bd31a83f40dee7ff2a82e3"
+          },
+          "evidence": {
+            "times": [
+              0.0,
+              1.0,
+              2.0,
+              3.0,
+              4.0,
+              5.0,
+              5.85
+            ],
+            "reference_metadata": {
+              "slug": "eigeorguy-813651",
+              "width": 1024,
+              "height": 1280,
+              "fps": "60/1",
+              "duration_seconds": 6.0,
+              "audio_streams": 0,
+              "sample_times": [
+                0.0,
+                1.0,
+                2.0,
+                3.0,
+                4.0,
+                5.0
+              ],
+              "scene_change_times": [],
+              "sheets": [
+                "work/references/eigeorguy-813651/evidence/sheet-01.jpg"
+              ],
+              "full_frames": [
+                "work/references/eigeorguy-813651/evidence/full-1.jpg",
+                "work/references/eigeorguy-813651/evidence/full-2.jpg",
+                "work/references/eigeorguy-813651/evidence/full-3.jpg",
+                "work/references/eigeorguy-813651/evidence/full-4.jpg"
+              ],
+              "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+            },
+            "sheets": [
+              "work/comparison-evidence/eigeorguy-813651/001/sheet-01.jpg"
+            ],
+            "details": [
+              "work/comparison-evidence/eigeorguy-813651/001/detail-0000.jpg",
+              "work/comparison-evidence/eigeorguy-813651/001/detail-0003.jpg",
+              "work/comparison-evidence/eigeorguy-813651/001/detail-0006.jpg"
+            ],
+            "sampling": "Requested matching seek times; video frames are quantized to each stream frame rate. No audio supplied."
+          },
+          "usage": {
+            "input_tokens": 36067,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1783,
+            "reasoning_output_tokens": 516
+          }
+        }
+      ],
+      "summary": "The sampled GPT frames preserve the scene and overall composition, but the miniature is visibly flatter, less illuminated and less densely populated with leaves. Architecture, glass reflections and matched-time viewing angles need revision.",
+      "limitations": [
+        "These are model-generated sampled findings, not a human review, frame-by-frame acceptance, quality score or model ranking.",
+        "Assessment covers the supplied samples at 0, 1, 2, 3, 4, 5 and 5.85 seconds. Intermediate movement, exact trajectories and the final 0.15 seconds are not established.",
+        "Still samples cannot determine rotation direction, motion smoothness, independent vehicle travel or shake responsiveness.",
+        "Exact leaf counts, tiny street-object quantities, clock-hand positions, font identity and emblem fidelity are not reliably resolved.",
+        "Audio was not supplied or listened to. Reference metadata reports zero audio streams, and the supplied GPT render probe lists only a video stream; the supplied technical evidence therefore indicates silent files.",
+        "Duration, frame rate and resolution are reported technical metadata, not independently checked here. Visible reference content is treated as visual evidence, not independently verified factual claims."
+      ],
+      "reference": {
+        "slug": "eigeorguy-813651",
+        "width": 1024,
+        "height": 1280,
+        "fps": "60/1",
+        "duration_seconds": 6.0,
+        "audio_streams": 0,
+        "sample_times": [
+          0.0,
+          1.0,
+          2.0,
+          3.0,
+          4.0,
+          5.0
+        ],
+        "scene_change_times": [],
+        "sheets": [
+          "work/references/eigeorguy-813651/evidence/sheet-01.jpg"
+        ],
+        "full_frames": [
+          "work/references/eigeorguy-813651/evidence/full-1.jpg",
+          "work/references/eigeorguy-813651/evidence/full-2.jpg",
+          "work/references/eigeorguy-813651/evidence/full-3.jpg",
+          "work/references/eigeorguy-813651/evidence/full-4.jpg"
+        ],
+        "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+      }
+    }
   },
   {
     "slug": "kum1ta-740521",
