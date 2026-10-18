@@ -24,7 +24,7 @@ if __name__=='__main__':
  for license in (ROOT/'assets/fonts').glob('*OFL*.txt'):shutil.copyfile(license,dst/('FONT-'+license.name))
  project=ROOT/'work/render-projects'/a.slug/a.track
  staged=(project/'index.html').read_text();shutil.copyfile(project/'index.html',dst/'render-source.html')
- original.update(status='rendered',reason='Rendered and technically checked. Matched-time visual review pending.',video_url=f'media/{a.slug}/{a.track}/video.mp4',poster_url=f'media/{a.slug}/{a.track}/poster.jpg',technical_check='passed',technical_check_limits='Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.',render_probe=probe,staged_source_sha256=digest(staged),source_modified_after_generation=digest(staged)!=original['source_sha256'])
+ original.update(status='rendered',reason='Rendered and technically checked. Matched-time visual review pending.',video_url=f'media/{a.slug}/{a.track}/video.mp4',poster_url=f'media/{a.slug}/{a.track}/poster.jpg',technical_check='passed',technical_check_limits=f"Automated contrast audit inspected {check.get('contrast',{}).get('checked',0)} text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",render_probe=probe,staged_source_sha256=digest(staged),source_modified_after_generation=digest(staged)!=original['source_sha256'])
  dump(src/'metadata.json',original);record(a.slug,a.track,original)
  public=json.loads(json.dumps(original).replace(str(ROOT),'$REPO'));dump(dst/'provenance.json',public)
  subprocess.run([sys.executable,str(ROOT/'tools/catalog.py')],check=True,cwd=ROOT,stdout=subprocess.DEVNULL)

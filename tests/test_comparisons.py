@@ -18,6 +18,9 @@ class ComparisonTests(unittest.TestCase):
    refresh(root,[v],{'sampled_reviews':0,'visual_reviewed':0});first=p.read_text();refresh(root,[v],{'sampled_reviews':0,'visual_reviewed':0})
    self.assertEqual(first,p.read_text());self.assertIn('0 adapted recreations rendered; 1 original-prompt baselines rendered',first);self.assertIn('Keep this prose.',first)
  def test_audio_case_keeps_followup_instead_of_silent_recreation(self):
-  v=next(v for v in json.loads((ROOT/'data/catalog.json').read_text()) if v['slug']=='deedydas-252537')
-  self.assertEqual(classify(v),'audio_review_needed')
+  v={'slug':'example','category':'motion','prompt':'Canvas promo','runs':{'adapted':{'status':'not_generated'}}}
+  with tempfile.TemporaryDirectory() as folder:
+   root=pathlib.Path(folder);p=root/'work/references/example/reference.json';p.parent.mkdir(parents=True)
+   p.write_text(json.dumps({'status':'downloaded','probe':{'streams':[{'codec_type':'video'},{'codec_type':'audio'}]}}))
+   with patch('adapted_queue.ROOT',root):self.assertEqual(classify(v),'audio_review_needed')
 if __name__=='__main__':unittest.main()

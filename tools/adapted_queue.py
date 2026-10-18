@@ -6,7 +6,8 @@ from render_queue import render
 NATIVE=re.compile(r'\b(Blender|Manim|Raylib|Remotion|C/C\+\+)\b',re.I)
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def classify(v):
- if v['runs']['adapted'].get('status') in ('rendered','reviewed'):return 'existing_render'
+ if v['runs']['adapted'].get('status') in ('rendered','reviewed'):
+  return 'existing_render' if v.get('review',{}).get('adapted') else 'render_needs_comparison'
  if v['runs']['adapted'].get('status')=='blocked':return 'missing_inputs_or_workflow'
  path=ROOT/'work/references'/v['slug']/'reference.json'
  if not path.exists():return 'reference_unavailable'
@@ -61,7 +62,7 @@ def process(v,a):
 if __name__=='__main__':
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--execute',action='store_true');p.add_argument('--max-revisions',type=int,default=1);p.add_argument('--slugs',nargs='*');a=p.parse_args()
  rows,stages=queue();mapping={r['slug']:r['stage'] for r in stages}
- rows=[v for v in rows if mapping[v['slug']]=='ready_for_visual_recreation' and (not a.slugs or v['slug'] in a.slugs)]
+ rows=[v for v in rows if mapping[v['slug']] in ('ready_for_visual_recreation','render_needs_comparison') and (not a.slugs or v['slug'] in a.slugs)]
  rows.sort(key=lambda v:(not v['showcased'],float(json.loads((ROOT/'work/references'/v['slug']/'reference.json').read_text())['probe']['format']['duration'])))
  print(json.dumps({'queued':len(rows),'stages':{s:sum(x['stage']==s for x in stages) for s in sorted(set(x['stage'] for x in stages))},'first':[v['slug'] for v in rows[:10]]}),flush=True)
  if not a.execute:sys.exit()
