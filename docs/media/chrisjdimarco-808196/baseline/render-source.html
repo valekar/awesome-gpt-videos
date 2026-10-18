@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Public — A Civic Motion Manifesto</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#162edb}body{font-family:Arial,Helvetica,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="60">
+<canvas id="art" class="clip" data-start="0" data-duration="60" width="1920" height="1080" role="img" aria-label="A sixty-second civic motion manifesto about informed citizens, corruption, Adam Smith's warning about collusion, and democratic accountability."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+/* EDITABLE SETTINGS: scene timings, colors and copy. All drawings are procedural.
+   Artwork is recomputed from absolute time; there are no independent clocks. */
+const W=1920,H=1080;
+const P={blue:'#162edb',paper:'#f3efdf',ink:'#17191b',green:'#d7ff52',red:'#f44836',orange:'#ff713d'};
+const COPY={
+ opener:['A FREE','SOCIETY','NEEDS YOU.'],
+ information:['INFORMATION','IS CIVIC POWER.'],
+ concentration:['POWER LOVES','TO CONCENTRATE.'],
+ corruption:['WHEN MONEY','BUYS THE RULES,'],
+ smith:['the conversation ends','in a conspiracy','against the public'],
+ markets:['MARKETS SHOULD','SERVE SOCIETY.'],
+ authoritarianism:['FASCISM THRIVES','WHEN SCRUTINY','IS SILENCED.'],
+ actions:[['QUESTION.','Ask who benefits.'],['VERIFY.','Check the evidence.'],['PARTICIPATE.','Defend a free press.'],['VOTE.','Make power answer.']],
+ closing:['STAY INFORMED.','KEEP POWER','ACCOUNTABLE.']
+};
+const starts=[0,6,12,18,24,31,37,44,51];
+const lengths=[6,6,6,6,7,6,7,7,9];
+const canvas=document.getElementById('art');
+const c=canvas.getContext('2d');
+const TAU=Math.PI*2;
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,p)=>a+(b-a)*p;
+const ease=v=>1-Math.pow(1-clamp(v),3);
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const enter=(t,delay=0,d=.7)=>ease((t-delay)/d);
+const hash=n=>{let z=Math.sin(n*127.1+311.7)*43758.5453;return z-Math.floor(z)};
+function rect(x,y,w,h,color){c.fillStyle=color;c.fillRect(x,y,w,h)}
+function line(x,y,a,b,color,width=3){c.beginPath();c.moveTo(x,y);c.lineTo(a,b);c.strokeStyle=color;c.lineWidth=width;c.stroke()}
+function circle(x,y,r,fill,stroke=null,lw=2){if(r<=0)return;c.beginPath();c.arc(x,y,r,0,TAU);if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=lw;c.stroke()}}
+function text(s,x,y,size,color=P.ink,weight=900,align='left',family='Arial, Helvetica, sans-serif'){
+ c.font=weight+' '+size+'px '+family;c.textAlign=align;c.textBaseline='alphabetic';c.fillStyle=color;c.fillText(s,x,y);
+}
+function rise(s,x,y,size,color,t,delay=0,align='left',weight=900){
+ const p=enter(t,delay);c.save();c.globalAlpha=p;c.beginPath();c.rect(0,y-size-8,W,size+24);c.clip();text(s,x,y+(1-p)*size*1.2,size,color,weight,align);c.restore();
+}
+function stack(lines,x,y,size,gap,color,t,delay=0,align='left'){
+ lines.forEach((s,i)=>rise(s,x,y+i*gap,size,color,t,delay+i*.13,align));
+}
+function arrow(x1,y1,x2,y2,color,width=6,head=20){
+ line(x1,y1,x2,y2,color,width);let a=Math.atan2(y2-y1,x2-x1);c.beginPath();c.moveTo(x2,y2);c.lineTo(x2-head*Math.cos(a-.5),y2-head*Math.sin(a-.5));c.lineTo(x2-head*Math.cos(a+.5),y2-head*Math.sin(a+.5));c.closePath();c.fillStyle=color;c.fill();
+}
+function grid(color,alpha=.12,step=90){c.save();c.globalAlpha=alpha;for(let x=0;x<=W;x+=step)line(x,0,x,H,color,1);for(let y=0;y<=H;y+=step)line(0,y,W,y,color,1);c.restore()}
+function dots(color,alpha=.15){c.save();c.globalAlpha=alpha;for(let y=20;y<H;y+=30)for(let x=20;x<W;x+=30)circle(x,y,1.25,color);c.restore()}
+function grain(t,color=P.ink,alpha=.045){
+ c.save();c.globalAlpha=alpha;const phase=Math.floor(t*8);for(let i=0;i<750;i++){const x=hash(i*3+phase*.017)*W,y=hash(i*3+1+phase*.023)*H;rect(x,y,1+hash(i+19)*3,1,color)}c.restore();
+}
+function eye(x,y,w,h,t,color,irisColor,bg){
+ c.save();c.translate(x,y);const open=.92+.08*Math.sin(t*1.5);c.scale(1,open);
+ c.beginPath();c.moveTo(-w/2,0);c.bezierCurveTo(-w*.24,-h*.74,w*.24,-h*.74,w/2,0);c.bezierCurveTo(w*.24,h*.74,-w*.24,h*.74,-w/2,0);c.closePath();c.fillStyle=color;c.fill();
+ c.save();c.clip();const px=Math.sin(t*.65)*w*.045;circle(px,0,h*.42,irisColor);circle(px,0,h*.18,bg);circle(px-h*.09,-h*.13,h*.055,color);c.restore();c.restore();
+}
+function orbit(x,y,r,t,color,count=12){
+ c.save();c.strokeStyle=color;c.lineWidth=2;c.beginPath();c.arc(x,y,r,0,TAU);c.stroke();
+ for(let i=0;i<count;i++){let a=TAU*i/count+t*.11;circle(x+Math.cos(a)*r,y+Math.sin(a)*r,7+(i%3)*3,color)}c.restore();
+}
+function pill(s,x,y,w,color,ink,t,d=0){let p=enter(t,d);c.save();c.globalAlpha=p;c.translate((1-p)*-100,0);rect(x,y,w,74,color);text(s,x+25,y+50,37,ink,800);c.restore()}
+function scene0(t){
+ rect(0,0,W,H,P.blue);dots(P.paper,.15);
+ const intro=enter(t,0,1);c.save();c.translate(1430,545);c.rotate(-.14+t*.025);c.scale(intro,intro);
+ for(let i=0;i<28;i++){const a=TAU*i/28;let r=355+15*Math.sin(i*2+t);line(Math.cos(a)*r,Math.sin(a)*r,Math.cos(a)*(r+45),Math.sin(a)*(r+45),P.green,5)}c.restore();
+ stack(COPY.opener,110,270,132,145,P.paper,t,.1);
+ c.save();c.translate(1430,545);c.rotate(-.14);c.scale(intro,intro);eye(0,0,760,400,t,P.paper,P.green,P.blue);c.restore();
+ rise('Democracy begins with an informed public.',115,940,43,P.paper,t,1.3,'left',500);
+ const p=enter(t,2.3,1.2);line(115,982,115+1650*p,982,P.green,6);
+}
+function newspaper(x,y,w,h,angle,title,t,i){
+ let p=enter(t,.55+i*.18,.8);c.save();c.translate(x+w/2,y+h/2+(1-p)*300);c.rotate(angle*(.5+.5*p));c.globalAlpha=p;
+ rect(-w/2+14,-h/2+18,w,h,P.ink);rect(-w/2,-h/2,w,h,P.paper);c.strokeStyle=P.ink;c.lineWidth=3;c.strokeRect(-w/2,-h/2,w,h);
+ text(title,-w/2+32,-h/2+73,46,P.ink,900);line(-w/2+32,-h/2+100,w/2-32,-h/2+100,P.ink,5);
+ if(i===0){circle(0,35,82,P.blue);text('?',0,74,111,P.paper,900,'center')}
+ if(i===1){c.strokeStyle=P.blue;c.lineWidth=17;c.beginPath();c.moveTo(-92,30);c.lineTo(-25,94);c.lineTo(106,-62);c.stroke()}
+ if(i===2){for(let j=0;j<3;j++){rect(-w/2+35,-35+j*54,w-70,25,j===1?P.blue:P.ink);circle(w/2-60,-23+j*54,7,P.paper)}}
+ for(let k=0;k<2;k++)line(-w/2+32,h/2-60+k*15,w/2-32-(k%2)*65,h/2-60+k*15,P.ink,4);
+ c.restore();
+}
+function scene1(t){
+ rect(0,0,W,H,P.paper);grid(P.ink,.07,90);
+ stack(COPY.information,110,195,110,120,P.ink,t,.03);
+ rise('A headline is a starting point. Evidence is the test.',115,408,40,P.blue,t,.6,'left',600);
+ newspaper(125,520,500,390,-.05,'QUESTION',t,0);
+ newspaper(710,520,500,390,.035,'CHECK',t,1);
+ newspaper(1295,520,500,390,-.025,'COMPARE',t,2);
+ const q=enter(t,1.3);c.save();c.globalAlpha=q;arrow(630,715,694,715,P.red,7,20);arrow(1215,715,1279,715,P.red,7,20);c.restore();
+}
+function scene2(t){
+ rect(0,0,W,H,P.ink);grid(P.green,.075,100);
+ const pull=smooth((t-1.2)/3.5),hx=1380,hy=585;
+ for(let i=0;i<32;i++){
+  let a=i*2.39996,r=210+hash(i+81)*245;
+  let ox=hx+Math.cos(a)*r,oy=hy+Math.sin(a)*r;
+  let x=lerp(ox,hx+(ox-hx)*.28,pull),y=lerp(oy,hy+(oy-hy)*.28,pull);
+  c.save();c.globalAlpha=.25+.4*enter(t,.25+i*.015);line(ox,oy,hx,hy,P.green,2);c.restore();
+  circle(x,y,(10+hash(i+12)*12)*enter(t,i*.015),P.green);
+ }
+ const rr=75+pull*80;circle(hx,hy,rr,P.green);eye(hx,hy,rr*1.5,rr*.75,t,P.ink,P.paper,P.green);
+ orbit(hx,hy,375,t,P.green,8);
+ stack(COPY.concentration,110,185,103,118,P.paper,t,.1);
+ rise('Who checks the center?',115,815,55,P.green,t,1.1);
+ rise('Concentrated power demands public scrutiny.',115,904,37,P.paper,t,1.5,'left',500);
+}
+function circuitToken(t,phase){
+ const u=((t*.17+phase)%1+1)%1;const x0=450,x1=1470,y0=467,y1=843;let x,y;
+ if(u<.38){x=lerp(x0,x1,u/.38);y=y0}else if(u<.5){x=x1;y=lerp(y0,y1,(u-.38)/.12)}else if(u<.88){x=lerp(x1,x0,(u-.5)/.38);y=y1}else{x=x0;y=lerp(y1,y0,(u-.88)/.12)}
+ circle(x,y,17,P.paper,P.ink,4);
+}
+function scene3(t){
+ rect(0,0,W,H,P.orange);dots(P.ink,.11);
+ stack(COPY.corruption,110,183,111,123,P.ink,t,.1);
+ let p=enter(t,.35);c.save();c.globalAlpha=p;
+ c.strokeStyle=P.ink;c.lineWidth=7;c.strokeRect(450,467,1020,376);
+ for(let i=0;i<8;i++)circuitToken(t,i/8);
+ c.restore();
+ [{x:190,label:'PRIVATE GAIN',delay:.6},{x:1030,label:'PUBLIC OFFICE',delay:.85}].forEach(o=>{
+  const q=enter(t,o.delay);c.save();c.translate(o.x,535+(1-q)*130);c.globalAlpha=q;
+  rect(12,15,700,225,P.ink);rect(0,0,700,225,P.paper);text(o.label,350,133,62,P.ink,900,'center');c.restore();
+ });
+ c.save();c.globalAlpha=enter(t,1.35);circle(960,647,63,P.ink);text('↔',960,670,70,P.paper,700,'center');c.restore();
+ rise('THE PUBLIC PAYS.',110,980,87,P.ink,t,1.6);
+}
+function book(t){
+ c.save();c.translate(1535,525);c.rotate(-.13+.02*Math.sin(t));const p=enter(t,.6,1);c.scale(p,p);
+ for(let i=8;i>=0;i--)rect(-170+i*6,-235-i*3,335,470,P.ink);
+ rect(-170,-235,335,470,P.blue);rect(-148,-235,9,470,P.paper);
+ for(let i=0;i<6;i++)line(-110,-110+i*45,105-(i%2)*35,-110+i*45,P.paper,5);
+ circle(-12,-175,22,P.green);rect(-110,175,200,9,P.green);c.restore();
+}
+function scene4(t){
+ rect(0,0,W,H,P.paper);
+ rect(111,100,76*enter(t),8,P.red);
+ rise('ADAM SMITH',110,185,53,P.ink,t,.1);
+ rise('The Wealth of Nations',110,239,34,P.ink,t,.3,'left',500);
+ text('“',92,445,240,P.red,700,'left','Georgia, serif');
+ COPY.smith.forEach((s,i)=>{
+  let p=enter(t,.8+i*.35,1);c.save();c.globalAlpha=p;c.translate((1-p)*60,0);
+  text(s,125,440+i*116,94,P.ink,600,'left','Georgia, serif');c.restore();
+ });
+ const underline=enter(t,2.5,1);rect(125,710,1060*underline,15,P.red);
+ book(t);
+ rise('A warning about collusion against the public.',125,853,41,P.ink,t,3,'left',500);
+ rise('Commerce needs scrutiny.',125,933,53,P.blue,t,3.4);
+}
+function gear(x,y,r,t){
+ c.save();c.translate(x,y);c.rotate(t*.2);c.fillStyle=P.ink;
+ c.beginPath();for(let i=0;i<72;i++){let a=TAU*i/72,rr=(i%6===0||i%6===5)?r*.82:r;c.lineTo(Math.cos(a)*rr,Math.sin(a)*rr)}c.closePath();c.fill();circle(0,0,r*.66,P.green);circle(0,0,r*.47,null,P.ink,3);
+ for(let i=0;i<8;i++){let a=i*TAU/8;circle(Math.cos(a)*r*.56,Math.sin(a)*r*.56,9,P.ink)}c.restore();
+}
+function scene5(t){
+ rect(0,0,W,H,P.green);grid(P.ink,.09,95);
+ stack(COPY.markets,110,195,109,122,P.ink,t,.1);
+ pill('OPEN COMPETITION',115,470,660,P.ink,P.green,t,.6);
+ pill('HONEST INSTITUTIONS',115,575,715,P.ink,P.green,t,.8);
+ pill('PUBLIC ACCOUNTABILITY',115,680,805,P.ink,P.green,t,1);
+ const p=enter(t,.3,1.1);c.save();c.translate(1420,590);c.scale(p,p);gear(0,0,270,t);eye(0,0,300,156,t,P.ink,P.paper,P.green);c.restore();
+ rise('Prosperity without privilege.',115,956,65,P.ink,t,1.8);
+}
+function scene6(t){
+ rect(0,0,W,H,P.ink);
+ const squeeze=smooth(t/3),release=smooth((t-5.45)/1.2);
+ const amount=squeeze*(1-release);
+ for(let i=0;i<12;i++){
+  const x=i*170-30;let bh=(76+hash(i+340)*135)*amount;
+  rect(x,0,110,bh,P.red);rect(x,H-bh,110,bh,P.red);
+ }
+ rect(0,0,74+amount*55,H,P.red);rect(W-74-amount*55,0,74+amount*55,H,P.red);
+ c.save();c.globalAlpha=.12;for(let i=0;i<8;i++)line(200+i*220,225,200+i*220,855,P.paper,3);c.restore();
+ const size=102;
+ stack(COPY.authoritarianism,W/2,405,size,120,P.paper,t,.25,'center');
+ let p=enter(t,1.4);rect(960-490*p,724,980*p,13,P.red);
+ rise('No leader is above accountability.',960,845,44,P.paper,t,2,'center',500);
+ if(release>0){c.save();c.globalAlpha=release;for(let i=0;i<20;i++){let a=TAU*i/20,r=600+release*260;line(960+Math.cos(a)*r*.55,540+Math.sin(a)*r*.55,960+Math.cos(a)*r,540+Math.sin(a)*r,P.green,8)}c.restore()}
+}
+function community(t,x,y,r,color,bg){
+ const points=[];for(let i=0;i<24;i++){
+  let a=TAU*i/24+t*.045,rr=r*(.8+.16*Math.sin(i*1.9));
+  points.push({x:x+Math.cos(a)*rr,y:y+Math.sin(a)*rr});
+ }
+ c.save();c.globalAlpha=.23;for(let i=0;i<24;i++){
+  for(let k=1;k<=2;k++){const b=points[(i+k*5)%24];line(points[i].x,points[i].y,b.x,b.y,color,2)}
+ }c.restore();
+ points.forEach((p,i)=>{
+  let q=enter(t,.3+i*.025,.7);circle(p.x,p.y,23*q,color);circle(p.x,p.y,8*q,bg);
+ });
+ eye(x,y,410,210,t,color,bg,color);
+}
+function scene7(t){
+ rect(0,0,W,H,P.paper);dots(P.blue,.1);
+ COPY.actions.forEach((o,i)=>{
+  const y=215+i*205;
+  rise(o[0],110,y,101,i%2?P.ink:P.blue,t,.15+i*.24);
+  rise(o[1],115,y+59,36,P.ink,t,.45+i*.24,'left',500);
+ });
+ let p=enter(t,.3,1);c.save();c.translate(1420,545);c.scale(p,p);community(t,0,0,350,P.blue,P.paper);c.restore();
+ const a=enter(t,2.2,1.4);c.save();c.globalAlpha=a;orbit(1420,545,413,t,P.blue,6);c.restore();
+}
+function scene8(t){
+ const tt=Math.min(t,6.6);rect(0,0,W,H,P.blue);
+ c.save();c.globalAlpha=.17;
+ for(let i=0;i<40;i++){
+  const a=i*TAU/40+tt*.025;
+  line(960+Math.cos(a)*580,540+Math.sin(a)*580,960+Math.cos(a)*1000,540+Math.sin(a)*1000,P.paper,2);
+ }
+ c.restore();
+ const p=enter(tt,.05,1);c.save();c.translate(960,186);c.scale(p,p);eye(0,0,260,132,tt,P.paper,P.green,P.blue);c.restore();
+ COPY.closing.forEach((s,i)=>rise(s,960,420+i*133,119,P.paper,tt,.45+i*.16,'center'));
+ let u=enter(tt,1.6,1.1);rect(960-645*u,752,1290*u,12,P.green);
+ rise('Freedom is a public responsibility.',960,875,47,P.paper,tt,2,'center',500);
+ const final=enter(tt,3.4,1.2);for(let i=0;i<13;i++){
+  let x=960+(i-6)*58;circle(x,958,8*final,P.green);
+ }
+}
+const renderers=[scene0,scene1,scene2,scene3,scene4,scene5,scene6,scene7,scene8];
+function renderScene(i,t){c.save();renderers[i](Math.max(0,t));c.restore()}
+function draw(time){
+ const t=clamp(time,0,60);c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,W,H);
+ let i=0;for(let k=1;k<starts.length;k++)if(t>=starts[k])i=k;
+ const local=t-starts[i];
+ if(i>0&&local<.52){
+  renderScene(i-1,lengths[i-1]);
+  const p=ease(local/.52);const edge=lerp(-340,W+340,p);
+  c.save();c.beginPath();c.moveTo(0,0);c.lineTo(edge+180,0);c.lineTo(edge-180,H);c.lineTo(0,H);c.closePath();c.clip();renderScene(i,local);c.restore();
+  c.save();c.strokeStyle=i%2?P.red:P.green;c.lineWidth=18;c.beginPath();c.moveTo(edge+180,0);c.lineTo(edge-180,H);c.stroke();c.restore();
+ }else renderScene(i,local);
+ grain(Math.min(t,57.6),i===2||i===6?P.paper:P.ink,.035);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:60,duration:60,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+</script>
+</body>
+</html>
