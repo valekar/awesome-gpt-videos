@@ -33,13 +33,13 @@
       "generated": 14
     },
     "adapted": {
-      "rendered": 6,
-      "not_generated": 695,
+      "rendered": 7,
+      "not_generated": 694,
       "blocked": 2
     }
   },
-  "entries_with_source": 51,
-  "entries_with_render": 37,
+  "entries_with_source": 52,
+  "entries_with_render": 38,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"
 }
