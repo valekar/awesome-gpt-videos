@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,30 @@
       "-o",
       "$REPO/results/lukasersil-726495/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 20641,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 7244,
+      "reasoning_output_tokens": 2452
+    },
+    "finished_at": "2026-10-18T13:56:31.607999+00:00",
+    "assumptions": [
+      "Creative choice: a silent 16:9 showreel titled Make It Move, using oversized system typography, ivory, orange, cobalt and black.",
+      "Six connected movements showcase typography, projected 3D geometry with calculated lighting, fluid-like ribbons, sliced distortion, masking and particles.",
+      "Fluid motion is an analytical visual treatment rather than a physical fluid simulation.",
+      "Artwork is generated in Canvas; no external assets or fonts are required. GSAP is supplied by the harness.",
+      "The HTML has not been rendered or visually reviewed."
+    ],
+    "missing_inputs": [],
+    "summary": "Complete editable 15-second HyperFrames showreel with deterministic Canvas artwork and one paused GSAP timeline.",
+    "source_sha256": "fa9d49fe681ad8bb970347a51c793e1895382fbfee81331bf6d1fc1e59cfb89f",
+    "width": 1920,
+    "height": 1080,
+    "duration_seconds": 15,
+    "source_path": "results/lukasersil-726495/baseline/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   },
   "adapted": {
     "status": "not_generated"

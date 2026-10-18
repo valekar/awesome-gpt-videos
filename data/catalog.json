@@ -2247,7 +2247,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -2303,7 +2303,28 @@
         "height": 1080,
         "duration_seconds": 30,
         "source_path": "results/1littlecoder-378066/baseline/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/1littlecoder-378066/baseline/video.mp4",
+        "poster_url": "media/1littlecoder-378066/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "30.000000"
+          }
+        },
+        "staged_source_sha256": "6f9697cc2cb6256251422a813d529ea3c7fc62003b7451e41513d2f5787613b1",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -2392,7 +2413,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -2424,7 +2445,30 @@
           "-o",
           "$REPO/results/lukasersil-726495/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20641,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 7244,
+          "reasoning_output_tokens": 2452
+        },
+        "finished_at": "2026-10-18T13:56:31.607999+00:00",
+        "assumptions": [
+          "Creative choice: a silent 16:9 showreel titled Make It Move, using oversized system typography, ivory, orange, cobalt and black.",
+          "Six connected movements showcase typography, projected 3D geometry with calculated lighting, fluid-like ribbons, sliced distortion, masking and particles.",
+          "Fluid motion is an analytical visual treatment rather than a physical fluid simulation.",
+          "Artwork is generated in Canvas; no external assets or fonts are required. GSAP is supplied by the harness.",
+          "The HTML has not been rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable 15-second HyperFrames showreel with deterministic Canvas artwork and one paused GSAP timeline.",
+        "source_sha256": "fa9d49fe681ad8bb970347a51c793e1895382fbfee81331bf6d1fc1e59cfb89f",
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 15,
+        "source_path": "results/lukasersil-726495/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -2646,7 +2690,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -2678,7 +2722,31 @@
           "-o",
           "$REPO/results/zacxbt-944604/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 45901,
+          "cached_input_tokens": 20864,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 8120,
+          "reasoning_output_tokens": 2463
+        },
+        "finished_at": "2026-10-18T13:57:09.110684+00:00",
+        "assumptions": [
+          "Chosen format: 4:3, with a 128×96 logical canvas and an eight-second seamless spell cycle.",
+          "The required local gsap.min.js is the sole library dependency. Deterministic timeline sampling replaces the creator's autonomous requestAnimationFrame loop; the host controls playback and repetition.",
+          "Rendering samples time at 60 Hz and poses at 10 fps. Particle storage is preallocated, with deterministic reconstruction on every seek.",
+          "Artwork is original procedural Canvas drawing using exactly 24 palette colors; no external assets or asset license gaps.",
+          "Integer scaling assumes a viewport of at least 128×96; smaller viewports center and crop native pixels.",
+          "This source has not been rendered, visually reviewed, or performance tested."
+        ],
+        "missing_inputs": [],
+        "summary": "Complete editable pixel-art wizard animation with charging sparks, spell burst, projectile, recovery, and seamless cycle endpoints.",
+        "source_sha256": "3ee422e82dbfffcec96a70306726a1df90f65a89e82c97127f2aa082be4f137b",
+        "width": 1280,
+        "height": 960,
+        "duration_seconds": 8,
+        "source_path": "results/zacxbt-944604/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending."
       },
       "adapted": {
         "status": "not_generated"
@@ -2720,7 +2788,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "af8616fe3686a594424c001b8d2fa6b2c91ec79020bd19752a8490d39112c5a3",
+        "input_sha256": "70226ddc095eab0403ec24268739b083276232c8db2ea5f6c09a47124aaca7c9",
+        "started_at": "2026-10-18T13:56:33.693972+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/lexnlin-241739/baseline/schema.json",
+          "-o",
+          "$REPO/results/lexnlin-241739/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"

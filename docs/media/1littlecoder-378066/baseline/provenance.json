@@ -1,0 +1,80 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "9b5ee8b63f7d845e05145db978d780ed8b26330561b68057337dd13b1ad3d8aa",
+  "input_sha256": "165eb6f030bb6552ed4d5b8670be8e454b13e09e2c624c90223d2c57569a0ddf",
+  "started_at": "2026-10-18T13:22:58.541563+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/1littlecoder-378066/baseline/schema.json",
+    "-o",
+    "$REPO/results/1littlecoder-378066/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 84721,
+    "cached_input_tokens": 54656,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8170,
+    "reasoning_output_tokens": 1530
+  },
+  "finished_at": "2026-10-18T13:53:40.882159+00:00",
+  "assumptions": [
+    "Opus 5.5 means Anthropic's Claude Opus 5.5. Product identity and the coding, agents, and knowledge-work positioning were verified on Anthropic's official pages: https://www.anthropic.com/claude-opus-5-5 and https://www.anthropic.com/claude/opus. The official announcement also links to claude.ai.",
+    "Chosen format: full-bleed 16:9, 1920×1080, exactly 30 seconds. No decorative borders, letterboxing, or corner text.",
+    "The Apple 1984 inspiration is expressed through an original illustrated industrial auditorium, uniform audience, runner, hammer throw, and liberation into warm light. No Apple footage, dialogue, music, logo, or third-party artwork is used.",
+    "All artwork is editable procedural Canvas geometry; titles are editable SVG text. Only the supplied gsap.min.js dependency is required.",
+    "Silent ad: no soundtrack or voiceover was supplied. No external media or font licenses are required; brand authorization and endorsement rights have not been established.",
+    "This source has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "A complete 30-second cinematic Opus 5.5 ad: conformity, a terracotta runner, a shattering projection, and a warm product reveal.",
+  "source_sha256": "6f9697cc2cb6256251422a813d529ea3c7fc62003b7451e41513d2f5787613b1",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 30,
+  "source_path": "results/1littlecoder-378066/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/1littlecoder-378066/baseline/video.mp4",
+  "poster_url": "media/1littlecoder-378066/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "30.000000"
+    }
+  },
+  "staged_source_sha256": "6f9697cc2cb6256251422a813d529ea3c7fc62003b7451e41513d2f5787613b1",
+  "source_modified_after_generation": false
+}

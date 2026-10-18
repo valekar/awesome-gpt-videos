@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pixel Wizard</title>
+<style>
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0c1024}
+#root{position:relative;width:100%;height:100%;overflow:hidden;background:#0c1024}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1280" data-height="960" data-duration="8">
+<canvas id="stage" class="clip" data-start="0" data-duration="8" data-track-index="0" aria-label="A pixel art wizard raises a glowing staff and casts a turquoise spell beneath the moon."></canvas>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+'use strict';
+/* EDITABLE SETTINGS: logical pixels, palette, cycle timing and particle pool. */
+const W=128,H=96,DURATION=8,CAST=3.9,COUNT=112,TAU=Math.PI*2;
+const P=['#0c1024','#141831','#1d2340','#2b2c49','#3e3b55','#5a5268','#82778b','#b5a7af','#e5d5b5','#fff4cf','#291d2d','#4d2636','#79384b','#b6575b','#e58a73','#6c433e','#a77152','#ddb477','#393858','#535c9b','#8979e8','#58b9c7','#9af1d4','#ffffff'];
+const root=document.getElementById('root');
+const display=document.getElementById('stage');
+const output=display.getContext('2d',{alpha:false});
+const logical=document.createElement('canvas');logical.width=W;logical.height=H;
+const c=logical.getContext('2d',{alpha:false});
+c.imageSmoothingEnabled=false;output.imageSmoothingEnabled=false;
+const clock={t:0};
+const stars=new Int16Array([8,12,21,24,34,9,47,20,59,11,72,27,82,8,91,34,116,9,120,29,12,37,27,33,68,19,109,42,19,54,96,9,76,40,4,25]);
+const shakeX=new Int8Array([1,-1,2,-1,0,1,-2,1,0,-1,1,0,0,0]);
+const shakeY=new Int8Array([0,1,-1,1,-1,0,1,0,-1,0,1,0,0,0]);
+/* Reusable pool: immutable seeds and mutable numeric state, no per-frame objects. */
+const seed=new Float64Array(COUNT),speed=new Float64Array(COUNT),life=new Float64Array(COUNT);
+const px=new Float64Array(COUNT),py=new Float64Array(COUNT),age=new Float64Array(COUNT);
+const active=new Uint8Array(COUNT),color=new Uint8Array(COUNT);
+let rng=0x7ac31b;
+function randomSeed(){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return(rng>>>0)/4294967296;}
+for(let i=0;i<COUNT;i++){seed[i]=randomSeed();speed[i]=11+randomSeed()*23;life[i]=0.65+randomSeed()*1.05;}
+const hatRuns=new Int8Array([
+  14,0,5,10, 12,1,6,10, 10,2,6,10, 9,3,6,10,
+  8,4,8,10, 7,5,10,10, 6,6,12,10, 5,7,14,10,
+  4,8,17,10, 2,9,22,10, 1,10,24,10,
+  13,1,4,13, 11,2,3,13, 10,3,3,13, 9,4,5,13,
+  8,5,7,12, 7,6,10,12, 6,7,12,12, 5,8,15,11,
+  3,9,19,16, 3,10,20,12, 12,3,1,14, 11,4,1,14,
+  9,5,1,13, 7,7,1,13, 18,9,2,17
+]);
+let bx=33,by=49,head=0,sway=0,raise=0,thrust=0,charge=0,gemX=0,gemY=0,handX=0,handY=0,tailX=0,tailY=0;
+let originX=0,originY=0;
+const round=Math.round;
+function rect(k,x,y,w=1,h=1){c.fillStyle=P[k];c.fillRect(round(x),round(y),round(w),round(h));}
+function smooth(a,b,t){let u=Math.max(0,Math.min(1,(t-a)/(b-a)));return u*u*(3-2*u);}
+function line(k,x0,y0,x1,y1,size=1){
+ x0=round(x0);y0=round(y0);x1=round(x1);y1=round(y1);
+ let dx=Math.abs(x1-x0),sx=x0<x1?1:-1,dy=-Math.abs(y1-y0),sy=y0<y1?1:-1,err=dx+dy;
+ const off=(size-1)>>1;
+ for(;;){rect(k,x0-off,y0-off,size,size);if(x0===x1&&y0===y1)break;let e=err*2;if(e>=dy){err+=dy;x0+=sx;}if(e<=dx){err+=dx;y0+=sy;}}
+}
+function diamond(k,x,y,r){x=round(x);y=round(y);r=round(r);for(let j=-r;j<=r;j++){let span=r-Math.abs(j);rect(k,x-span,y+j,span*2+1,1);}}
+function ring(k,x,y,r,phase,dots=28){for(let i=0;i<dots;i++){let a=i*TAU/dots+phase;rect(k,x+Math.cos(a)*r,y+Math.sin(a)*r*0.72);}}
+function pose(t){
+ const q=Math.floor((t+0.000001)*10)/10;
+ const settle=1-smooth(4.9,6.2,q);
+ charge=smooth(1.6,3.3,q)*settle;
+ thrust=smooth(3.6,3.8,q)*settle;
+ const bob=(Math.floor(q*2.5)%2)*(1-charge);
+ bx=33+round(thrust);by=49+round(bob);
+ head=round(-charge+thrust*2);
+ sway=round(Math.sin(q*TAU/1.6)*(1-charge)+thrust*2);
+ raise=round(charge*5);
+ handX=bx+23+round(thrust*3);handY=by+21-raise;
+ const angle=-1.47-charge*0.25+thrust*1.02;
+ gemX=round(handX+Math.cos(angle)*23);gemY=round(handY+Math.sin(angle)*23);
+ tailX=round(handX-Math.cos(angle)*8);tailY=round(handY-Math.sin(angle)*8);
+}
+pose(3.9);originX=gemX;originY=gemY;
+function background(t){
+ rect(0,0,0,W,H);
+ /* Sparse, stepped stars. Their eight-second phase closes exactly. */
+ for(let i=0;i<stars.length;i+=2){let tw=Math.sin(t*TAU/8+i*1.73);let k=tw>0.82?8:tw>0.15?6:3;rect(k,stars[i],stars[i+1]);if(tw>0.985&&i%6===0){rect(3,stars[i]-1,stars[i+1]);rect(3,stars[i]+1,stars[i+1]);rect(3,stars[i],stars[i+1]-1);rect(3,stars[i],stars[i+1]+1);}}
+ /* A hand-pixelled moon; no paths, smoothing, alpha or gradients. */
+ rect(6,99,11,9,1);rect(7,97,12,13,2);rect(8,96,14,15,7);rect(8,97,21,13,2);rect(7,99,23,9,1);
+ rect(9,99,13,6,2);rect(9,97,15,4,4);rect(7,107,15,3,5);rect(7,104,20,4,2);rect(6,105,16,2,2);rect(7,101,18,2,1);rect(9,99,21,2,1);
+ /* Distant low silhouettes keep the wizard's contour uncluttered. */
+ rect(1,0,76,18,6);rect(1,4,73,5,3);rect(1,14,78,13,4);rect(1,94,78,34,4);rect(1,107,75,9,3);
+ rect(4,0,82,128,1);rect(2,0,83,128,13);rect(3,0,84,128,1);
+ for(let row=0;row<2;row++){
+  let yy=85+row*6;rect(1,0,yy+5,128,1);
+  for(let x=(row?8:-5);x<128;x+=22){rect(1,x,yy,1,5);rect(4,x+2,yy,17,1);rect(3,x+3,yy+1,15,1);}
+ }
+ rect(5,24,82,17,1);rect(3,21,81,32,1);rect(1,31,83,24,2);
+}
+function groundMagic(t){
+ const power=charge*(1-0.6*thrust);
+ if(power<0.15&&t<CAST)return;
+ let strength=power;
+ if(t>=CAST)strength=Math.max(strength,1-smooth(CAST,CAST+0.8,t));
+ if(strength<=0.1)return;
+ for(let i=-15;i<=15;i++){if((i&1)===0&&Math.abs(i)<strength*17)rect(strength>0.8?19:18,gemX+i,83+(Math.abs(i)%3===0?1:0));}
+}
+function wizard(t){
+ /* Robe: outlined pixel runs with a warm lit plane and a dark fold. */
+ for(let y=17;y<=30;y++){
+  const spread=Math.floor((y-17)/3),shift=round(sway*(y-17)/14);
+  const left=bx+8-spread+shift,right=bx+19+spread+shift;
+  rect(10,left,by+y,right-left+1,1);
+  rect(11,left+1,by+y,right-left-1,1);
+  rect(12,left+2,by+y,Math.max(1,right-left-6),1);
+  rect(13,left+2,by+y,2,1);
+  if(y>22)rect(10,bx+15+shift,by+y,1,1);
+  if(y>26)rect(11,left+3,by+y,3,1);
+ }
+ rect(10,bx+4+sway,by+31,19,1);
+ rect(15,bx+7+sway,by+30,4,1);rect(16,bx+8+sway,by+29,2,1);
+ rect(10,bx+6+sway,by+31,6,2);rect(10,bx+18+sway,by+31,6,2);
+ rect(15,bx+7+sway,by+31,3,1);rect(15,bx+19+sway,by+31,3,1);
+ /* Rear sleeve and resting hand. */
+ rect(10,bx+5,by+17,5,9);rect(11,bx+6,by+18,4,7);rect(12,bx+6,by+18,2,5);rect(16,bx+7,by+25,3,2);rect(17,bx+8,by+25,2,1);
+ /* Staff is constructed with integer Bresenham runs. */
+ line(10,tailX,tailY,gemX,gemY,3);line(15,tailX,tailY,gemX,gemY);line(16,tailX+1,tailY-1,gemX+1,gemY+2);
+ rect(17,gemX-2,gemY+4,5,1);rect(15,gemX-2,gemY+3,1,3);rect(17,gemX+2,gemY+2,1,3);
+ /* Raised arm: two articulated pixel segments, with a bright cuff. */
+ const elbowX=bx+21+round(thrust*2),elbowY=by+22-round(charge*2);
+ line(10,bx+17,by+18,elbowX,elbowY,7);line(10,elbowX,elbowY,handX,handY,6);
+ line(12,bx+17,by+18,elbowX,elbowY,5);line(12,elbowX,elbowY,handX,handY,4);
+ line(13,bx+17,by+17,elbowX,elbowY-1,2);rect(16,handX-2,handY-2,3,4);rect(17,handX,handY-2,3,3);rect(14,handX+1,handY-1,2,1);
+ /* Face under the brim, pointing toward the spell. */
+ const hx=bx+head,hy=by;
+ rect(10,hx+10,hy+10,11,8);rect(16,hx+12,hy+11,8,6);rect(17,hx+15,hy+11,5,4);
+ rect(17,hx+20,hy+13,3,2);rect(14,hx+20,hy+15,2,1);
+ rect(10,hx+18,hy+12,2,1);rect(23,hx+19,hy+12,1,1);
+ /* Beard: independently swaying, stepped locks. */
+ const beard=round(Math.sin(Math.floor(t*10)/10*TAU/1.6)*(1-charge));
+ for(let j=0;j<11;j++){
+  let left=hx+10+Math.floor(j/4)+round(beard*j/10),width=11-Math.floor(j*0.78);
+  rect(10,left-1,hy+15+j,width+2,1);rect(7,left,hy+15+j,width,1);
+  if(width>3)rect(8,left+2,hy+15+j,width-3,1);
+  if(j<7)rect(6,left,hy+15+j,1,1);
+ }
+ rect(9,hx+14,hy+15,6,1);rect(8,hx+19,hy+16,3,1);rect(9,hx+15,hy+17,2,4);rect(6,hx+12,hy+19,1,3);
+ for(let i=0;i<hatRuns.length;i+=4)rect(hatRuns[i+3],hx+hatRuns[i],hy+hatRuns[i+1],hatRuns[i+2],1);
+ /* One-pixel rim light uses only palette colors. */
+ let light=charge>0.75?22:charge>0.2?21:19;
+ rect(light,hx+23,hy+9,2,1);rect(light,hx+24,hy+10,1,1);
+ rect(light,hx+21,hy+13,1,2);rect(light,handX+2,handY-2,1,2);
+ if(charge>0.2){line(light,elbowX,elbowY-3,handX-2,handY-3);rect(light,bx+22+round(sway),by+27,1,3);}
+}
+function gem(t){
+ let flicker=Math.floor(t*10)%3,hot=charge>0.75;
+ if(charge>0.15){
+  let r=4+round(charge*3)+(flicker===0?1:0);
+  for(let y=-r;y<=r;y++)for(let x=-r;x<=r;x++){
+   const d=Math.abs(x)+Math.abs(y);
+   if(d<=r&&d>3&&((x+y+flicker)&1)===0)rect(d<r-1?19:18,gemX+x,gemY+y);
+  }
+ }
+ diamond(10,gemX,gemY,3);diamond(hot?21:19,gemX,gemY,2);
+ rect(hot?22:21,gemX,gemY-2,1,4);rect(hot?23:22,gemX,gemY-1,1,2);rect(22,gemX-1,gemY,1,1);
+ if(hot&&flicker===0){rect(22,gemX-5,gemY);rect(22,gemX+5,gemY);rect(23,gemX,gemY-5);}
+}
+function particles(t){
+ for(let i=0;i<COUNT;i++){
+  active[i]=0;
+  if(t>=1.6&&t<CAST&&i<56){
+   const elapsed=t-1.6-i*0.018;
+   if(elapsed>=0){
+    const a=elapsed%0.82,u=a/0.82,r=(1-u)*(10+seed[i]*10),angle=seed[i]*TAU+a*7.5;
+    px[i]=gemX+Math.cos(angle)*r;py[i]=gemY+Math.sin(angle)*r*0.76;
+    age[i]=u;color[i]=u<0.3?18:u<0.65?20:u<0.88?21:23;active[i]=1;
+   }
+  }else if(t>=CAST){
+   const a=t-CAST,span=life[i];
+   if(a<span){
+    const angle=i*2.399963229728653+seed[i]*0.3;
+    px[i]=originX+Math.cos(angle)*speed[i]*a;
+    py[i]=originY+Math.sin(angle)*speed[i]*a+10*a*a;
+    const u=a/span;age[i]=u;color[i]=u<0.13?23:u<0.4?22:u<0.66?21:u<0.83?20:18;active[i]=1;
+   }
+  }
+  if(active[i]){rect(color[i],px[i],py[i]);if(t>=CAST&&age[i]<0.15&&i%7===0)rect(22,px[i]-1,py[i],3,1);}
+ }
+}
+function spell(t){
+ const a=t-CAST;
+ if(a>=0&&a<0.55){
+  const r=3+a*41;
+  ring(a<0.12?23:a<0.3?22:19,originX,originY,r,0,40);
+  if(a<0.25){line(22,originX-9*(1-a*4),originY,originX+9*(1-a*4),originY);line(23,originX,originY-9*(1-a*4),originX,originY+9*(1-a*4));}
+ }
+ const fly=t-(CAST+0.08);
+ if(fly>=0&&fly<1.5){
+  const x=originX+fly*49,y=originY-Math.sin(Math.min(1,fly/1.5)*Math.PI)*4;
+  for(let j=20;j>0;j--){let tx=x-j,ty=y+Math.sin(j*0.56-fly*18)*(j/13);let k=j>14?18:j>8?20:j>3?21:22;rect(k,tx,ty,j<9?2:1,j<5?3:1);if(j%4===0)rect(19,tx-2,ty+3);}
+  diamond(18,x,y,5);diamond(20,x,y,4);diamond(21,x+1,y,3);diamond(22,x+2,y,2);rect(23,x+2,y-1,2,3);
+  rect(21,x-3,y-5);rect(22,x+2,y+5);
+ }
+}
+function blit(){
+ output.fillStyle=P[0];output.fillRect(0,0,display.width,display.height);
+ const scale=Math.max(1,Math.floor(Math.min(display.width/W,display.height/H)));
+ const x=Math.floor((display.width-W*scale)/2),y=Math.floor((display.height-H*scale)/2);
+ output.imageSmoothingEnabled=false;output.drawImage(logical,0,0,W,H,x,y,W*scale,H*scale);
+}
+/* Pure frame reconstruction. Seeking backward has the same result as forward. */
+function draw(seconds){
+ const wrapped=((seconds%DURATION)+DURATION)%DURATION;
+ const t=Math.floor((wrapped+0.000001)*60)/60;
+ pose(t);background(t);
+ let sx=0,sy=0;
+ if(t>=CAST&&t<CAST+0.23){let i=Math.min(13,Math.floor((t-CAST)*60));sx=shakeX[i];sy=shakeY[i];}
+ /* Repaint with integer shake offsets, including the background and floor. */
+ if(sx||sy){rect(0,0,0,W,H);c.save();c.translate(sx,sy);background(t);}else c.save();
+ groundMagic(t);wizard(t);gem(t);particles(t);spell(t);
+ c.restore();blit();
+}
+function resize(){display.width=Math.max(1,Math.floor(root.clientWidth));display.height=Math.max(1,Math.floor(root.clientHeight));output.imageSmoothingEnabled=false;draw(clock.t);}
+window.addEventListener('resize',resize);
+resize();
+/* One finite, paused timeline. The host owns playback and repetition. */
+const timeline=gsap.timeline({paused:true});
+timeline.to(clock,{t:DURATION,duration:DURATION,ease:'none',onUpdate:function(){draw(clock.t);}},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>

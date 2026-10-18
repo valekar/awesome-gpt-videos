@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Opus 5.5 — Break the pattern</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#10191e}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#10191e}.clip{position:absolute;inset:0;width:100%;height:100%}canvas,svg{display:block;width:100%;height:100%}svg{pointer-events:none}text{font-family:Arial,Helvetica,sans-serif}.serif{font-family:Georgia,'Times New Roman',serif}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="30">
+<canvas id="art" class="clip" data-start="0" data-duration="30" width="1920" height="1080" aria-label="A terracotta-clad runner breaks a monumental projection in a cold industrial auditorium, releasing warm light."></canvas>
+<svg class="clip" data-start="0" data-duration="30" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg" aria-label="Claude Opus 5.5. Break the pattern.">
+<g id="question" opacity="0" fill="#f4eee4">
+<text x="1060" y="390" font-size="110" font-weight="700" letter-spacing="-5">Ask</text>
+<text x="1060" y="510" font-size="110" font-weight="700" letter-spacing="-5">differently.</text>
+</g>
+<g id="breakline" opacity="0" fill="#292a26">
+<text x="960" y="572" text-anchor="middle" font-size="112" font-weight="600" letter-spacing="-5">Break the pattern.</text>
+</g>
+<g id="endcard" opacity="0" text-anchor="middle" fill="#292a26">
+<text class="serif" x="960" y="337" font-size="80" letter-spacing="-3">Claude</text>
+<text x="960" y="525" font-size="166" font-weight="600" letter-spacing="-9">Opus 5.5</text>
+<text x="960" y="639" font-size="43" letter-spacing="-1">For coding, agents, and knowledge work.</text>
+<text x="960" y="817" font-size="38" fill="#9b4c36">claude.ai</text>
+</g>
+</svg>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+'use strict';
+/* EDITABLE DIRECTION
+   00–10: conformity; 10–14: the runner; 14–18.8: approach and wind-up;
+   18.8–20.2: throw; 20.2–22.8: rupture; 22.8–25: idea; 25–30: product.
+   Original procedural artwork. No footage, external fonts, or audio.
+   All visual state is a pure function of the single GSAP time value. */
+const W=1920,H=1080;
+const canvas=document.getElementById('art'),c=canvas.getContext('2d');
+const question=document.getElementById('question'),breakline=document.getElementById('breakline'),endcard=document.getElementById('endcard');
+const CFG={impact:20.2,release:18.8,cream:'#f3eee4',orange:'#d77d58',ink:'#292a26'};
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,u)=>a+(b-a)*u;
+const smooth=(a,b,t)=>{const u=clamp((t-a)/(b-a));return u*u*(3-2*u)};
+const hash=n=>{const x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)};
+const windowed=(t,a,b,d=.4)=>smooth(a,a+d,t)*(1-smooth(b-d,b,t));
+function poly(points,fill,stroke,width=1){c.beginPath();points.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.closePath();if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.stroke()}}
+function ellipse(x,y,rx,ry,fill){c.beginPath();c.ellipse(x,y,Math.max(.01,rx),Math.max(.01,ry),0,0,Math.PI*2);c.fillStyle=fill;c.fill()}
+function line(points,color,width=1){c.beginPath();points.forEach((p,i)=>i?c.lineTo(p[0],p[1]):c.moveTo(p[0],p[1]));c.strokeStyle=color;c.lineWidth=width;c.lineCap='round';c.lineJoin='round';c.stroke()}
+function gradientRect(x,y,w,h,stops,vertical=true){const g=c.createLinearGradient(x,y,vertical?x:x+w,vertical?y+h:y);stops.forEach(s=>g.addColorStop(s[0],s[1]));c.fillStyle=g;c.fillRect(x,y,w,h)}
+// Fixed grain texture, generated once with a deterministic hash.
+const grain=document.createElement('canvas');grain.width=256;grain.height=256;
+const gc=grain.getContext('2d'),gd=gc.createImageData(256,256);
+for(let i=0;i<65536;i++){const v=Math.floor(hash(i+301)*255);gd.data[i*4]=v;gd.data[i*4+1]=v;gd.data[i*4+2]=v;gd.data[i*4+3]=24}
+gc.putImageData(gd,0,0);const grainPattern=c.createPattern(grain,'repeat');
+function projector(camZ,camX=0){return (x,y,z)=>{const s=1040/(z-camZ);return {x:960+(x-camX)*s,y:548-(y-170)*s,s}}}
+function worldPoly(P,pts,fill,stroke,width=1){poly(pts.map(p=>{const q=P(...p);return [q.x,q.y]}),fill,stroke,width)}
+function face(x,y,w,h,t){
+ c.save();c.beginPath();c.rect(x,y,w,h);c.clip();
+ gradientRect(x,y,w,h,[[0,'#7b999f'],[.5,'#bfd0ce'],[1,'#56777f']],false);
+ // Architectural, invented broadcast portrait. No real person's likeness.
+ c.save();c.translate(x+w*.5,y+h*.53);c.scale(w/1000,h/560);
+ poly([[-390,350],[-310,205],[-140,137],[-120,93],[120,93],[140,137],[310,205],[390,350]],'#4d6a73');
+ poly([[-155,-178],[-103,-239],[63,-247],[151,-179],[175,-40],[127,113],[47,169],[-59,162],[-141,91],[-179,-39]],'#a9bcbb');
+ poly([[-155,-178],[-103,-239],[-74,-131],[-92,49],[-59,162],[-141,91],[-179,-39]],'#739198');
+ poly([[63,-247],[151,-179],[175,-40],[127,113],[47,169],[78,32],[52,-112]],'#8ca6aa');
+ poly([[-105,-86],[-35,-102],[-12,-74],[-113,-62]],'#365561');
+ poly([[23,-75],[48,-102],[113,-82],[117,-58]],'#365561');
+ line([[-103,-67],[-54,-70]],'#d4dfd8',6);line([[45,-69],[96,-65]],'#d4dfd8',6);
+ poly([[5,-72],[-26,42],[27,46],[37,26],[8,28]],'#66848b');
+ line([[-60,88],[-17,79],[24,84],[66,76]],'#425f68',9);
+ line([[-48,108],[44,106]],'#b9c8c1',3);
+ c.restore();
+ // Scan lines belong to the fictional projection, never the outside frame.
+ c.fillStyle='rgba(15,40,50,.12)';for(let i=0;i<h;i+=6)c.fillRect(x,y+i,w,2);
+ const flick=.025*(1+Math.sin(t*17));c.fillStyle='rgba(230,246,236,'+flick+')';c.fillRect(x,y,w,h);
+ c.fillStyle='#e3e9de';c.textAlign='center';c.font='700 '+Math.round(w*.076)+'px Arial, sans-serif';
+ c.fillText('THINK ALIKE.',x+w*.5,y+h*.89);
+ c.restore();
+}
+function citizen(P,x,z,index,t){
+ const p=P(x,0,z),s=p.s;const bob=Math.sin(t*.65)*1.3;
+ c.save();c.translate(p.x,p.y);c.scale(s,s);
+ ellipse(7,0,34,8,'rgba(0,0,0,.25)');
+ // Chair and a backlit, uniformly seated audience member.
+ poly([[-28,-83],[27,-83],[32,-12],[-30,-12]],'#15252d');
+ line([[-22,-25],[-25,2]],'#1d3038',5);line([[22,-25],[26,2]],'#1d3038',5);
+ poly([[-23,-103],[-13,-119],[13,-119],[23,-103],[29,-39],[-29,-39]],index%3===0?'#324751':'#293e48');
+ ellipse(0,-135+bob,17,22,'#3a515c');
+ c.beginPath();c.ellipse(0,-137+bob,17,21,0,Math.PI,Math.PI*1.8);c.strokeStyle='#78909a';c.lineWidth=2.2;c.stroke();
+ line([[-20,-101],[-27,-62]],'#56707a',2);
+ c.restore();
+}
+function hammer(x,y,angle,s=1){c.save();c.translate(x,y);c.rotate(angle);c.scale(s,s);line([[0,5],[0,-64]],'#ded9c9',6);poly([[-25,-84],[27,-84],[30,-58],[-26,-58]],'#a7b2ad');poly([[-25,-84],[-14,-92],[34,-92],[27,-84]],'#e8e5d8');poly([[27,-84],[34,-92],[35,-66],[30,-58]],'#61757a');c.restore()}
+function runner(x,y,s,t,mode='run',alpha=1){
+ c.save();c.globalAlpha=alpha;c.translate(x,y);c.scale(s,s);
+ const wind=smooth(17.15,18.78,t),released=smooth(18.8,19.2,t);
+ const phase=t*9.5,run=(mode==='close'?1:1-smooth(16.5,17.5,t));
+ const bob=Math.sin(phase*2)*2.2*run;c.translate(0,bob);
+ ellipse(0,0,49,8,'rgba(0,0,0,.26)');
+ const hip=[-7,-87],shoulder=[3,-151];
+ const ankleA=[-34+Math.sin(phase)*37*run,-4-Math.max(0,Math.cos(phase))*24*run];
+ const ankleB=[27-Math.sin(phase)*36*run,-3-Math.max(0,-Math.cos(phase))*25*run];
+ line([hip,[-29+Math.sin(phase+.5)*19*run,-48],ankleA],'#a64d35',21);
+ line([hip,[21-Math.sin(phase+.5)*21*run,-45],ankleB],'#d57b55',22);
+ line([[ankleA[0]-7,ankleA[1]],[ankleA[0]+15,ankleA[1]]],'#e8dbbf',10);
+ line([[ankleB[0]-6,ankleB[1]],[ankleB[0]+17,ankleB[1]]],'#e8dbbf',10);
+ poly([[-16,-151],[14,-154],[24,-106],[10,-82],[-22,-86],[-27,-111]],'#d77d58');
+ poly([[-16,-151],[-5,-150],[-4,-86],[-22,-86],[-27,-111]],'#a6553c');
+ line([[11,-145],[19,-110]],'#f0b08a',3);
+ line([[2,-156],[5,-167]],'#c59e80',12);
+ ellipse(5,-181,15,20,'#ceb092');
+ poly([[-10,-183],[-11,-199],[3,-204],[17,-195],[19,-184],[8,-191],[-2,-185]],'#302c29');
+ poly([[17,-187],[24,-178],[16,-176]],'#ceb092');
+ // Arms gather overhead, then follow through into the release.
+ const handX=lerp(43,-13,wind)+released*75;
+ const handY=lerp(-133,-228,wind)+released*63;
+ const elbowX=lerp(26,-45,wind)+released*66;
+ const elbowY=lerp(-112,-187,wind)+released*22;
+ line([[-10,-145],[elbowX-10,elbowY+5],[handX-5,handY+4]],'#aa593e',14);
+ line([shoulder,[elbowX,elbowY],[handX,handY]],'#e0a07a',13);
+ ellipse(handX,handY,7,7,'#d7b89a');
+ if(t<CFG.release||mode==='close')hammer(handX,handY,lerp(.85,-.72,wind),1);
+ c.restore();
+}
+function hall(t){
+ const after=Math.max(0,t-CFG.impact);
+ const camZ=t<10?lerp(-540,-360,smooth(0,10,t)):-340+Math.min(6,Math.max(0,t-14))*7;
+ const P=projector(camZ);
+ gradientRect(0,0,W,H,[[0,'#0c1a22'],[.54,'#263e48'],[1,'#0c171d']]);
+ // Seamless concrete chamber, spanning the entire stage.
+ worldPoly(P,[[-950,0,1200],[950,0,1200],[950,900,1200],[-950,900,1200]],'#263d47');
+ worldPoly(P,[[-950,0,-250],[-950,900,-250],[-950,900,1200],[-950,0,1200]],'#152a34');
+ worldPoly(P,[[950,0,-250],[950,900,-250],[950,900,1200],[950,0,1200]],'#132832');
+ worldPoly(P,[[-950,0,-250],[950,0,-250],[950,0,1200],[-950,0,1200]],'#243a43');
+ for(let z=0;z<1400;z+=190){
+  worldPoly(P,[[-950,0,z],[-950,900,z],[-885,900,z],[-885,0,z]],'#10242f');
+  worldPoly(P,[[885,0,z],[885,900,z],[950,900,z],[950,0,z]],'#10242f');
+  worldPoly(P,[[-950,790,z],[950,790,z],[950,830,z],[-950,830,z]],'#10232e');
+  worldPoly(P,[[-880,0,z],[-880,660,z],[-867,660,z],[-867,0,z]],'#3e5660');
+  worldPoly(P,[[867,0,z],[867,660,z],[880,660,z],[880,0,z]],'#3e5660');
+ }
+ for(let x=-900;x<=900;x+=150)worldPoly(P,[[x,0,-250],[x+2,0,-250],[x+2,0,1200],[x,0,1200]],'#38505a');
+ const a=P(-710,785,1190),b=P(710,205,1190);const sw=b.x-a.x,sh=b.y-a.y;
+ if(t<CFG.impact)face(a.x,a.y,sw,sh,t);
+ else{
+  gradientRect(a.x,a.y,sw,sh,[[0,'#fff5db'],[.5,'#edc3a0'],[1,'#ce7e5b']]);
+  const glow=c.createRadialGradient(960,a.y+sh*.54,2,960,a.y+sh*.54,1200);glow.addColorStop(0,'rgba(255,238,195,.75)');glow.addColorStop(1,'rgba(255,226,183,0)');c.fillStyle=glow;c.fillRect(0,0,W,H);
+ }
+ // Screen light spills along the aisle.
+ const light=c.createLinearGradient(0,450,0,1080);light.addColorStop(0,'rgba(161,200,199,.18)');light.addColorStop(1,'rgba(94,140,153,0)');
+ poly([[a.x,a.y+sh],[b.x,a.y+sh],[1700,1080],[220,1080]],light);
+ // Back-to-front order; the center aisle remains clear.
+ for(let row=8;row>=0;row--){const z=90+row*115;for(let col=-5;col<=5;col++){if(Math.abs(col)<=1)continue;citizen(P,col*113,z,row*17+col,t)}}
+ if(t>=14){
+  const u=smooth(14,17.25,t),q=P(lerp(-315,-145,u),0,lerp(85,265,u));
+  runner(q.x,q.y,q.s,t,'run',1-smooth(21.2,22.3,t));
+ }
+ if(t>=CFG.release&&t<CFG.impact){
+  const u=clamp((t-CFG.release)/(CFG.impact-CFG.release));
+  const q=P(lerp(-145,0,u),lerp(230,490,u)+230*Math.sin(Math.PI*u),lerp(265,1190,u));
+  hammer(q.x,q.y,-.7+u*Math.PI*4,q.s);
+  // A restrained motion streak, recomputed from the flight position.
+  c.save();c.globalAlpha=.14;line([[q.x-45*(1-u),q.y+28],[q.x-110*(1-u),q.y+55]],'#e9e5d4',3);c.restore();
+ }
+ if(after>0){
+  // Two triangular shards per cell; fixed geometry, analytic trajectories.
+  const cols=13,rows=6,cw=sw/cols,ch=sh/rows;
+  for(let j=0;j<rows;j++)for(let i=0;i<cols;i++)for(let k=0;k<2;k++){
+   const id=(j*cols+i)*2+k,h=hash(id+49),cx=a.x+(i+.5)*cw,cy=a.y+(j+.5)*ch;
+   const dx=cx-960,dy=cy-(a.y+sh*.5),dist=Math.hypot(dx,dy)||1;
+   const speed=170+hash(id+89)*430,dt=after;
+   const px=cx+dx/dist*speed*dt,py=cy+dy/dist*speed*dt+110*dt*dt;
+   c.save();c.globalAlpha=(1-smooth(1.15,2.5,dt))*.95;c.translate(px,py);c.rotate((hash(id+99)-.5)*dt*5);c.scale(1+dt*.13,Math.cos(dt*(h+.4)*2));
+   poly(k===0?[[-cw/2,-ch/2],[cw/2,-ch/2],[-cw/2,ch/2]]:[[cw/2,-ch/2],[cw/2,ch/2],[-cw/2,ch/2]],h>.62?'#f4e9ce':h>.3?'#8da6a5':'#cf8663');c.restore();
+  }
+  const r=after*1750;
+  c.save();c.globalAlpha=.65*(1-smooth(.1,.8,after));c.strokeStyle='#fff0ce';c.lineWidth=12*(1-clamp(after));c.beginPath();c.arc(960,a.y+sh*.5,r,0,Math.PI*2);c.stroke();c.restore();
+ }
+ // Volumetric haze and edge darkness, with no letterboxing or border.
+ const haze=c.createRadialGradient(960,350,30,960,500,1020);haze.addColorStop(0,'rgba(158,194,196,.04)');haze.addColorStop(1,'rgba(0,9,16,.45)');c.fillStyle=haze;c.fillRect(0,0,W,H);
+}
+function closeup(t){
+ gradientRect(0,0,W,H,[[0,'#172a34'],[.5,'#3d535b'],[1,'#14252d']],false);
+ // Massive out-of-focus ribs and long pools of light imply forward motion.
+ for(let i=-2;i<8;i++){
+  const x=i*390-((t-10)*135%390);
+  poly([[x,-80],[x+79,-80],[x+320,1080],[x+178,1080]],'#10212b');
+  line([[x+85,0],[x+327,1080]],'#60747a',4);
+ }
+ gradientRect(0,700,W,380,[[0,'rgba(12,24,31,0)'],[1,'#0b1c25']]);
+ const bgLight=c.createRadialGradient(670,390,30,670,450,690);bgLight.addColorStop(0,'rgba(177,196,190,.27)');bgLight.addColorStop(1,'rgba(177,196,190,0)');c.fillStyle=bgLight;c.fillRect(0,0,W,H);
+ c.save();c.translate(580+(t-10)*15,935);c.rotate(-.12);
+ runner(0,0,3.65,t,'close');c.restore();
+ // Moving floor highlights remain tied to composition time.
+ for(let i=0;i<7;i++){const x=((i*367-(t-10)*520)%2300+2300)%2300-200;line([[x,1020],[x+220,1001]],'rgba(184,201,192,.14)',3)}
+}
+function freed(t){
+ const amount=smooth(CFG.impact+.45,22.85,t);
+ c.save();c.globalAlpha=amount;c.fillStyle=CFG.cream;c.fillRect(0,0,W,H);c.restore();
+ // Freed shards become warm paper-like fragments, then leave the product clear.
+ if(t>21.6&&t<26.4){
+  const dt=t-21.6,alpha=smooth(21.6,22.3,t)*(1-smooth(24.3,26.4,t));
+  for(let i=0;i<34;i++){
+   const angle=hash(i+40)*Math.PI*2,r=150+dt*(150+hash(i+70)*190);
+   const x=960+Math.cos(angle)*r,y=540+Math.sin(angle)*r*.7-dt*38;
+   c.save();c.globalAlpha=alpha*(.16+hash(i+9)*.3);c.translate(x,y);c.rotate(angle+dt*(hash(i+4)-.5));c.scale(1,Math.cos(dt*.65+i));
+   poly([[-18,-7],[19,-10],[13,9],[-12,8]],i%3===0?'#c77b58':'#adaca0');c.restore();
+  }
+ }
+ // Brief impact bloom, followed by a measured transition to cream.
+ const flash=smooth(CFG.impact,CFG.impact+.13,t)*(1-smooth(CFG.impact+.16,CFG.impact+.8,t));
+ if(flash>0){c.fillStyle='rgba(255,247,224,'+(flash*.88)+')';c.fillRect(0,0,W,H)}
+}
+function draw(t){
+ c.setTransform(1,0,0,1,0,0);c.globalAlpha=1;c.globalCompositeOperation='source-over';c.clearRect(0,0,W,H);
+ if(t>=10&&t<14)closeup(t);else if(t<22.85)hall(t);else{c.fillStyle=CFG.cream;c.fillRect(0,0,W,H)}
+ if(t>CFG.impact)freed(t);
+ // Deterministic texture, soft enough to preserve typography and detail.
+ c.save();c.globalAlpha=t<22.85?.2:.1;c.fillStyle=grainPattern;c.fillRect(0,0,W,H);c.restore();
+ const opening=1-smooth(0,.65,t);if(opening>0){c.fillStyle='rgba(5,14,21,'+opening+')';c.fillRect(0,0,W,H)}
+ const qa=windowed(t,10.25,13.85,.55);question.setAttribute('opacity',qa);question.setAttribute('transform','translate('+((1-smooth(10.25,11.1,t))*50)+' 0)');
+ const ba=windowed(t,22.65,25.05,.5);breakline.setAttribute('opacity',ba);breakline.setAttribute('transform','translate(0 '+((1-smooth(22.65,23.3,t))*24)+')');
+ const ea=smooth(25,25.85,t);endcard.setAttribute('opacity',ea);endcard.setAttribute('transform','translate(0 '+((1-ea)*22)+')');
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:30,duration:30,ease:'none',onUpdate:()=>draw(playhead.t)},0);
+// Register only after the one paused timeline is completely built.
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+</script>
+</body>
+</html>
