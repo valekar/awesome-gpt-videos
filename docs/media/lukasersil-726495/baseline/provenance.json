@@ -1,0 +1,79 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "881f479772812f12a88264461b470dc681ba108304f0fa98a573b8e703ad4c0a",
+  "input_sha256": "22b769ef8ee0bbd03ee7c59c54d2cddf758ce282a32586d0c9ef93d385c8b21d",
+  "started_at": "2026-10-18T13:53:42.163512+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/lukasersil-726495/baseline/schema.json",
+    "-o",
+    "$REPO/results/lukasersil-726495/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 20641,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 7244,
+    "reasoning_output_tokens": 2452
+  },
+  "finished_at": "2026-10-18T13:56:31.607999+00:00",
+  "assumptions": [
+    "Creative choice: a silent 16:9 showreel titled Make It Move, using oversized system typography, ivory, orange, cobalt and black.",
+    "Six connected movements showcase typography, projected 3D geometry with calculated lighting, fluid-like ribbons, sliced distortion, masking and particles.",
+    "Fluid motion is an analytical visual treatment rather than a physical fluid simulation.",
+    "Artwork is generated in Canvas; no external assets or fonts are required. GSAP is supplied by the harness.",
+    "The HTML has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Complete editable 15-second HyperFrames showreel with deterministic Canvas artwork and one paused GSAP timeline.",
+  "source_sha256": "fa9d49fe681ad8bb970347a51c793e1895382fbfee81331bf6d1fc1e59cfb89f",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 15,
+  "source_path": "results/lukasersil-726495/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/lukasersil-726495/baseline/video.mp4",
+  "poster_url": "media/lukasersil-726495/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "15.000000"
+    }
+  },
+  "staged_source_sha256": "fa9d49fe681ad8bb970347a51c793e1895382fbfee81331bf6d1fc1e59cfb89f",
+  "source_modified_after_generation": false
+}
