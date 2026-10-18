@@ -79,16 +79,16 @@
     "source_modified_after_generation": false
   },
   "adapted": {
-    "status": "rendered",
+    "status": "running",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
     "protocol_version": "reference-v3",
     "track": "adapted",
-    "iteration": 1,
+    "iteration": 2,
     "source_prompt_sha256": "b3a5b67874a1bbc62f438f4a212a3f878df87ebadd305fef7c91833f017c28e3",
-    "input_sha256": "46d8e85fd9730a48d2a28cd4781bf4aee8280639fe43ffb537e3897be455e6cd",
-    "started_at": "2026-10-18T17:06:03.090129+00:00",
+    "input_sha256": "e9a9f49244a4479f5e0d3c0740b8a652398e99f7109d71a2f2c5edfd7574a71a",
+    "started_at": "2026-10-18T17:12:48.947947+00:00",
     "tools": "none requested; read-only sandbox",
     "reference_images_supplied": [
       "sheet-01.jpg",
@@ -145,51 +145,6 @@
       "--image",
       "$REPO/work/references/anirockshady-032809/evidence/full-4.jpg",
       "-"
-    ],
-    "usage": {
-      "input_tokens": 41637,
-      "cached_input_tokens": 0,
-      "cache_write_input_tokens": 0,
-      "output_tokens": 12583,
-      "reasoning_output_tokens": 4142
-    },
-    "finished_at": "2026-10-18T17:10:15.182586+00:00",
-    "assumptions": [
-      "Reconstructed from the supplied visual evidence; terrain equations, materials, camera interpolation, fades and continuous trajectories are inferred.",
-      "Generic serif and sans-serif fonts approximate the unknown reference typography.",
-      "Displayed step and loss values follow the supplied reference labels; the geometry is illustrative rather than a recovered optimizer.",
-      "Silent composition, intended for capture at 30 fps. No closing fade is added.",
-      "Editable source only; rendering, browser/GPU verification and matched-time visual review have not been performed."
-    ],
-    "missing_inputs": [],
-    "summary": "Complete seekable portrait HyperFrames animation with procedural WebGL terrain, depth-tested spheres and paths, classification, loss chart, learning-rate comparison, use cases and concluding metaphor.",
-    "fps": 30.0,
-    "source_sha256": "d2b8dbcfecb7657a8bea685a7b8a293ae0c622781e97668db1ba1de68802d869",
-    "width": 720,
-    "height": 1280,
-    "duration_seconds": 56.966667,
-    "source_path": "results/anirockshady-032809/adapted/index.html",
-    "reason": "Rendered and technically checked. Matched-time visual review pending.",
-    "video_url": "media/anirockshady-032809/adapted/video.mp4",
-    "poster_url": "media/anirockshady-032809/adapted/poster.jpg",
-    "technical_check": "passed",
-    "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
-    "render_probe": {
-      "programs": [],
-      "stream_groups": [],
-      "streams": [
-        {
-          "codec_type": "video",
-          "width": 720,
-          "height": 1280,
-          "r_frame_rate": "30/1"
-        }
-      ],
-      "format": {
-        "duration": "56.966667"
-      }
-    },
-    "staged_source_sha256": "d2b8dbcfecb7657a8bea685a7b8a293ae0c622781e97668db1ba1de68802d869",
-    "source_modified_after_generation": false
+    ]
   }
 }
