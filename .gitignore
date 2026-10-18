@@ -10,3 +10,5 @@ results/**/stderr.log
 results/**/state.lock
 
 results/**/execution.lock
+
+results/**/workflow.lock

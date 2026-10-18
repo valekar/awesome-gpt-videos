@@ -1,0 +1,97 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "reference-v3",
+  "track": "adapted",
+  "iteration": 2,
+  "source_prompt_sha256": "7bd7ddf6ff03c0a36187b6a32b7e3f1c8bfbf3f7780526a48767873203810d54",
+  "input_sha256": "fa71e4b2cc835b5996fec2b4428d107f622f64e72c5a05cc5a41941b2ebd5ef2",
+  "started_at": "2026-10-18T15:41:26.185063+00:00",
+  "tools": "none requested; read-only sandbox",
+  "reference_images_supplied": [
+    "sheet-01.jpg",
+    "full-1.jpg",
+    "full-2.jpg",
+    "full-3.jpg"
+  ],
+  "reference_image_sha256": {
+    "sheet-01.jpg": "9f8ca58f564e8a89e5c5500ab842dbdf97ad99881946268120f94427a040cf8b",
+    "full-1.jpg": "ff668be6ecfa4732423e4499c2e15b9b98f984868de448c633baefaa1a169da5",
+    "full-2.jpg": "55280d976a801be8eab1a49e86324a3c7069d3106d1a20f891159c50550665c2",
+    "full-3.jpg": "18d1747003cf72726fb0a11eb232732f0e0a02b8f78fc7a473b14b54d31f45a6"
+  },
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/souravbhar871-477361/adapted/schema.json",
+    "-o",
+    "$REPO/results/souravbhar871-477361/adapted/response.json",
+    "--image",
+    "$REPO/work/references/souravbhar871-477361/evidence/sheet-01.jpg",
+    "--image",
+    "$REPO/work/references/souravbhar871-477361/evidence/full-1.jpg",
+    "--image",
+    "$REPO/work/references/souravbhar871-477361/evidence/full-2.jpg",
+    "--image",
+    "$REPO/work/references/souravbhar871-477361/evidence/full-3.jpg",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 34379,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5479,
+    "reasoning_output_tokens": 516
+  },
+  "finished_at": "2026-10-18T15:43:08.025130+00:00",
+  "assumptions": [
+    "Preserves the supplied source’s inferred timing and motion at 1280×720, 60 fps, with no audio.",
+    "System typography approximates the reference; supplied font files are unused.",
+    "Unsampled transitions and collage transcription remain inferred.",
+    "The final second holds the evidenced Claude lockup and partial Opu subtitle; subtitle completion is not invented."
+  ],
+  "missing_inputs": [],
+  "summary": "Complete editable source preserving all six beats, scattered letters at 5 seconds, and the partial closing reveal. No execution, render or review is claimed.",
+  "fps": 60,
+  "source_sha256": "0bd1ad6152f64a43b5a6843f2987915e9ab48eac2180e52e309a24887661cf9b",
+  "width": 1280,
+  "height": 720,
+  "duration_seconds": 10,
+  "source_path": "results/souravbhar871-477361/adapted/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/souravbhar871-477361/adapted/video.mp4",
+  "poster_url": "media/souravbhar871-477361/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "60/1"
+      }
+    ],
+    "format": {
+      "duration": "10.000000"
+    }
+  },
+  "staged_source_sha256": "0bd1ad6152f64a43b5a6843f2987915e9ab48eac2180e52e309a24887661cf9b",
+  "source_modified_after_generation": false
+}

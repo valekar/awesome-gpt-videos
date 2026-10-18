@@ -19,7 +19,7 @@ def prepare(slug):
   path=folder/f'sheet-{page+1:02d}.jpg';canvas.save(path,quality=88);sheets.append(path)
  # Preserve full-resolution reference frames for fine geometry and typography.
  full=[]
- for i,t in enumerate([min(1,duration/5),duration/2,max(0,duration-1)]):
+ for i,t in enumerate([min(1,duration/5),duration/2,max(0,duration-1),max(0,duration-.05)]):
   path=folder/f'full-{i+1}.jpg';subprocess.run(['ffmpeg','-hide_banner','-loglevel','error','-y','-ss',str(t),'-i',str(movie),'-frames:v','1',str(path)],check=True);full.append(path)
  scene=subprocess.run(['ffmpeg','-hide_banner','-i',str(movie),'-vf',"select='gt(scene,0.18)',showinfo",'-fps_mode','vfr','-f','null','-'],text=True,capture_output=True,check=True)
  cuts=[float(t) for t in re.findall(r'pts_time:([0-9.]+)',scene.stderr)]

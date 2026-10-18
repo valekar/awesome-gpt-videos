@@ -1,14 +1,14 @@
 {
-  "status": "generated",
+  "status": "rendered",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
   "cli_version": "0.163.0",
   "protocol_version": "reference-v3",
   "track": "adapted",
-  "iteration": 1,
+  "iteration": 2,
   "source_prompt_sha256": "7bd7ddf6ff03c0a36187b6a32b7e3f1c8bfbf3f7780526a48767873203810d54",
-  "input_sha256": "6abbb450eee60c48b16fff47d11d5465fd33b6ebd980186cd88495cb91332e6a",
-  "started_at": "2026-10-18T15:36:12.927334+00:00",
+  "input_sha256": "fa71e4b2cc835b5996fec2b4428d107f622f64e72c5a05cc5a41941b2ebd5ef2",
+  "started_at": "2026-10-18T15:41:26.185063+00:00",
   "tools": "none requested; read-only sandbox",
   "reference_images_supplied": [
     "sheet-01.jpg",
@@ -51,28 +51,47 @@
     "-"
   ],
   "usage": {
-    "input_tokens": 30062,
-    "cached_input_tokens": 18816,
+    "input_tokens": 34379,
+    "cached_input_tokens": 0,
     "cache_write_input_tokens": 0,
-    "output_tokens": 8154,
-    "reasoning_output_tokens": 3482
+    "output_tokens": 5479,
+    "reasoning_output_tokens": 516
   },
-  "finished_at": "2026-10-18T15:39:35.821262+00:00",
+  "finished_at": "2026-10-18T15:43:08.025130+00:00",
   "assumptions": [
-    "This is an inferred adaptation from the supplied samples, not an exact or visually validated reproduction.",
-    "Scene boundaries, reveals, path drawing and letter alignment motion are inferred; the composition preserves the supplied one-second scene progression.",
-    "The unobserved final second holds the evidenced subtitle “Opu”; no completed subtitle is invented.",
-    "Generic system fonts and newly drawn geometry approximate the observed typography and emblem. Supplied font files are unused.",
-    "The reading collage repeats legible supplied fragments because its complete original transcription is unavailable.",
-    "The composition is silent and specifies 60 fps. Only the locally supplied GSAP runtime is required."
+    "Preserves the supplied source’s inferred timing and motion at 1280×720, 60 fps, with no audio.",
+    "System typography approximates the reference; supplied font files are unused.",
+    "Unsampled transitions and collage transcription remain inferred.",
+    "The final second holds the evidenced Claude lockup and partial Opu subtitle; subtitle completion is not invented."
   ],
   "missing_inputs": [],
-  "summary": "Editable 10-second HyperFrames HTML with deterministic Canvas artwork and one paused GSAP timeline. Source only; not rendered or visually reviewed.",
+  "summary": "Complete editable source preserving all six beats, scattered letters at 5 seconds, and the partial closing reveal. No execution, render or review is claimed.",
   "fps": 60,
-  "source_sha256": "67a84d21ebd3d5c61a26d496041c328426da324db4f7180ce7aadd91591c82c8",
+  "source_sha256": "0bd1ad6152f64a43b5a6843f2987915e9ab48eac2180e52e309a24887661cf9b",
   "width": 1280,
   "height": 720,
   "duration_seconds": 10,
   "source_path": "results/souravbhar871-477361/adapted/index.html",
-  "reason": "Source generated; rendering and matched-time fidelity review pending."
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/souravbhar871-477361/adapted/video.mp4",
+  "poster_url": "media/souravbhar871-477361/adapted/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Automated contrast audit inspected 0 text samples. Canvas drawings have no DOM text boxes. This check does not establish within-Canvas readability or reference fidelity.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "60/1"
+      }
+    ],
+    "format": {
+      "duration": "10.000000"
+    }
+  },
+  "staged_source_sha256": "0bd1ad6152f64a43b5a6843f2987915e9ab48eac2180e52e309a24887661cf9b",
+  "source_modified_after_generation": false
 }

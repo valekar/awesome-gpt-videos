@@ -29,7 +29,7 @@ def command(args,folder,name):
  folder.mkdir(parents=True,exist_ok=True)
  with (folder/(name+'.log')).open('w') as f:r=subprocess.run([sys.executable,*map(str,args)],cwd=ROOT,stdout=f,stderr=subprocess.STDOUT)
  if r.returncode:raise RuntimeError(name+' failed; inspect '+str((folder/(name+'.log')).relative_to(ROOT)))
-def process(v,a):
+def _process(v,a):
  slug=v['slug'];folder=ROOT/'work/adapted-queue'/slug
  meta=ROOT/'work/references'/slug/'evidence.json'
  if not meta.exists():command(['tools/reference_frames.py',slug],folder,'reference')
@@ -59,11 +59,16 @@ def process(v,a):
   feedback=ROOT/'work/comparison-model'/slug/f"{review['iteration']:03d}"/'feedback.txt'
   command(['tools/generate.py',slug,'--track','adapted','--revise',feedback,*images,'--execute'],folder,f'visual-revision-{revision+1}')
  return {'slug':slug,'stage':'sampled_comparison_saved','iterations':state(slug).get('iteration',1),'full_acceptance':False}
+def process(v,a):
+ lock=ROOT/'results'/v['slug']/'adapted/workflow.lock';lock.parent.mkdir(parents=True,exist_ok=True)
+ with lock.open('w') as handle:
+  fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
+  return _process(v,a)
 if __name__=='__main__':
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--execute',action='store_true');p.add_argument('--max-revisions',type=int,default=1);p.add_argument('--slugs',nargs='*');a=p.parse_args()
  rows,stages=queue();mapping={r['slug']:r['stage'] for r in stages}
  rows=[v for v in rows if mapping[v['slug']] in ('ready_for_visual_recreation','render_needs_comparison') and (not a.slugs or v['slug'] in a.slugs)]
- rows.sort(key=lambda v:(not v['showcased'],float(json.loads((ROOT/'work/references'/v['slug']/'reference.json').read_text())['probe']['format']['duration'])))
+ rows.sort(key=lambda v:(v['runs']['adapted'].get('status') not in ('generated','rendered'),not (ROOT/'comparison/matched-briefs'/f"{v['slug']}.md").exists(),not v['showcased'],float(json.loads((ROOT/'work/references'/v['slug']/'reference.json').read_text())['probe']['format']['duration'])))
  print(json.dumps({'queued':len(rows),'stages':{s:sum(x['stage']==s for x in stages) for s in sorted(set(x['stage'] for x in stages))},'first':[v['slug'] for v in rows[:10]]}),flush=True)
  if not a.execute:sys.exit()
  with (ROOT/'work/adapted-queue.lock').open('w') as lock:

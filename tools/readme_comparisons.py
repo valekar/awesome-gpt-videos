@@ -24,7 +24,7 @@ def refresh(root,entries,audit):
  lines+=['','<details>','<summary>Rendered original-prompt baselines</summary>','','These use the published creator material plus the common renderer contract. A rendered baseline is not a reference-guided recreation.','','| Creator / case | Result | Fidelity evidence |','| --- | --- | --- |']
  for v in baselines:
   label=cell(v['author']+' · '+v['slug']);slug=v['slug']
-  review=f'[sampled notes](comparison/reviews/{slug}.json)' if v['review_status']=='sampled' else 'not compared yet'
+  review=(f'[sampled baseline notes](comparison/reviews/{slug}.json)' if v.get('review',{}).get('baseline') else f'[adapted-only review](comparison/reviews/{slug}.json)') if v['review_status']=='sampled' else 'not compared yet'
   lines.append(f'| {label} | [Original and GPT baseline]({BASE}#{slug}) | {review} |')
  lines+=['','</details>','',END]
  block='\n'.join(lines);path=root/'README.md';text=path.read_text()

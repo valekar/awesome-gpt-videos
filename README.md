@@ -7,7 +7,7 @@ A GPT-6.1 Sol / **high reasoning** adaptation and reproduction lab inspired by [
 <!-- COMPARISONS:START -->
 ## Comparisons and progress
 
-**Priority: adapted recreations with GPT-6.1 Sol / high.** 2 adapted recreations rendered; 34 original-prompt baselines rendered. 3 entries have sampled review notes; 0 have a full review recorded.
+**Priority: adapted recreations with GPT-6.1 Sol / high.** 2 adapted recreations rendered; 34 original-prompt baselines rendered. 4 entries have sampled review notes; 0 have a full review recorded.
 
 References, extra inputs, supplied assets and revisions are disclosed. Sampled reviews do not establish visual parity or a model ranking. The [live comparison gallery](https://valekar.github.io/awesome-gpt-videos/) contains both tracks and their current evidence.
 
@@ -25,7 +25,7 @@ These use the published creator material plus the common renderer contract. A re
 
 | Creator / case | Result | Fidelity evidence |
 | --- | --- | --- |
-| deedydas · deedydas-252537 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#deedydas-252537) | [sampled notes](comparison/reviews/deedydas-252537.json) |
+| deedydas · deedydas-252537 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#deedydas-252537) | [sampled baseline notes](comparison/reviews/deedydas-252537.json) |
 | prasad_pilla · prasad-pilla-496049 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#prasad-pilla-496049) | not compared yet |
 | itsolelehmann · itsolelehmann-762215 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#itsolelehmann-762215) | not compared yet |
 | 0xfemyn · 0xfemyn-137833 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#0xfemyn-137833) | not compared yet |
@@ -50,13 +50,13 @@ These use the published creator material plus the common renderer contract. A re
 | TrigLyceee · triglyceee-161719 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#triglyceee-161719) | not compared yet |
 | robvjourney · robvjourney-237474 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#robvjourney-237474) | not compared yet |
 | AmitSingha89 · amitsingha89-780553 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#amitsingha89-780553) | not compared yet |
-| souravbhar871 · souravbhar871-477361 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#souravbhar871-477361) | not compared yet |
+| souravbhar871 · souravbhar871-477361 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#souravbhar871-477361) | [adapted-only review](comparison/reviews/souravbhar871-477361.json) |
 | bizibeast · bizibeast-505124 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#bizibeast-505124) | not compared yet |
 | Xanderwow_A · xanderwow-a-597063 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#xanderwow-a-597063) | not compared yet |
 | manuelogomigo · manuelogomigo-052364 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#manuelogomigo-052364) | not compared yet |
 | chrisjdimarco · chrisjdimarco-808196 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#chrisjdimarco-808196) | not compared yet |
 | BuildFastWithAI · buildfastwithai-597035 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#buildfastwithai-597035) | not compared yet |
-| Sarut0biSasuke · sarut0bisasuke-069973 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#sarut0bisasuke-069973) | [sampled notes](comparison/reviews/sarut0bisasuke-069973.json) |
+| Sarut0biSasuke · sarut0bisasuke-069973 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#sarut0bisasuke-069973) | [sampled baseline notes](comparison/reviews/sarut0bisasuke-069973.json) |
 | anirockshady · anirockshady-032809 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#anirockshady-032809) | not compared yet |
 | ishuagra02 · ishuagra02-678129 | [Original and GPT baseline](https://valekar.github.io/awesome-gpt-videos/#ishuagra02-678129) | not compared yet |
 

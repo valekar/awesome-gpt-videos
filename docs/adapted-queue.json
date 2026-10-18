@@ -2,7 +2,7 @@
   "priority": "adapted",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
-  "updated_at": "2026-10-18T15:39:22.811217+00:00",
+  "updated_at": "2026-10-18T15:44:05.373102+00:00",
   "entries": [
     {
       "slug": "ror-fly-880547",
@@ -294,7 +294,7 @@
     },
     {
       "slug": "ratheejaisal-154698",
-      "stage": "ready_for_visual_recreation"
+      "stage": "missing_inputs_or_workflow"
     },
     {
       "slug": "wani-shola-459278",

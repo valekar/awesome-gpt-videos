@@ -3,81 +3,91 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Claude — inferred motion reconstruction</title>
+<title>Claude — inferred reference reconstruction</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1b1c13}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%;object-fit:contain}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#1B1C13}#root{position:relative;width:100%;height:100%;overflow:hidden}canvas{display:block;width:100%;height:100%;object-fit:contain}
 </style>
 <script src="gsap.min.js"></script>
 </head>
 <body>
 <div id="root" data-composition-id="main" data-width="1280" data-height="720" data-duration="10" data-fps="60">
-<canvas id="art" class="clip" data-start="0" data-duration="10" width="1280" height="720" aria-label="An animated Claude introduction: Hi. I read every word. I think it through. I tell it straight. I build with you. I'm Claude. Opu."></canvas>
+<canvas id="art" class="clip" data-start="0" data-duration="10" width="1280" height="720" role="img" aria-label="Hi. I read every word. I think it through. I tell it straight. I build with you. I’m Claude. Opu."></canvas>
 </div>
 <!--
-EDITABLE, INFERRED RECONSTRUCTION — source only, not rendered or validated.
-Requested experiment target: gpt-6.1-sol / high. This source does not certify execution metadata.
-Reference: @souravbhar871, https://x.com/souravbhar871/status/2103711849703477361
-Authoritative format: 1280 × 720, 10 seconds, 60 fps, no audio streams.
+EDITABLE SOURCE — inferred recreation, not rendered or visually validated.
+Reference creator: @souravbhar871.
+Reference URL: https://x.com/souravbhar871/status/2103711849703477361
+Requested experiment model/effort: gpt-6.1-sol / high; execution metadata must be recorded separately by the harness.
+Format: 1280 × 720, exactly 10 seconds, intended capture at 60 fps, silent.
 
-TIMED IMPLEMENTATION BRIEF — all intervals and unsampled movements are inferred:
-0.00–1.17: ivory greeting; two cropped strokes become newly drawn Hi lettering.
-1.17–2.66: orange reading collage; ivory headline over readable supplied fragments.
-2.66–3.34: black field and small orange dot, settled at the supplied 3-second position.
-3.34–4.64: thought paths draw toward their observed geometry; large ivory text appears.
-4.64–6.60: scattered straight glyphs align; a thin ivory rule crosses the word.
-6.60–7.78: ivory collaboration card with hard orange letter extrusion.
-7.78–10.00: clipped identity reveal, Claude and drawn radial emblem; subtitle reaches Opu.
-The unobserved final second holds the last evidenced subtitle without completing it.
-Camera: fixed graphic plane. Material: flat matte color. Audio: silent.
+TIMED RECONSTRUCTION BRIEF
+0.00–1.17: Ivory field. Two narrow cropped strokes resolve into newly drawn,
+soft-contoured black Hi lettering and an orange circular period.
+1.17–2.66: Orange field, dense mixed text, large central ivory reading statement.
+2.66–3.34: Near-black field with the small orange dot at the observed position.
+3.34–4.64: Branching ivory/orange thought paths, upper-left and lower-right text.
+4.64–6.60: Orange field. Individually rotated, differently weighted letters rise
+across the page at 5 seconds, then align. An ivory rule enters in front of them.
+6.60–7.78: Ivory collaboration card, hard orange extrusion behind dark faces.
+7.78–10.00: Cropped I’m reveal, heavy Claude lettering, radial orange emblem,
+and a staggered partial Opu subtitle. The last evidenced partial subtitle is held.
+All shot boundaries, intermediate trajectories, easing and final hold are inferred.
+The camera remains a fixed, front-facing graphic plane. No added audio or texture.
 
-DEPENDENCY / ASSET LEDGER:
-gsap.min.js: host-supplied local runtime; only external script reference.
-Canvas paths, typography layout and radial emblem: newly authored procedural artwork.
-Generic sans-serif, serif and monospace: system font approximations, not recovered fonts.
-Supplied Bangers.ttf and Caveat.ttf: unused.
-Reference stills: visual guidance only; no reference pixels embedded.
-Small collage text: repeated legible supplied fragments; exact original transcription unavailable.
-No external media, network calls, audio, modules or generated bitmap assets.
+DEPENDENCY AND ASSET LEDGER
+- gsap.min.js: supplied locally by the harness.
+- Canvas paths, letter placement, curves and emblem: newly authored artwork.
+- Generic system fonts: shared approximations, not recovered source typography.
+- Supplied Bangers.ttf and Caveat.ttf: unused.
+- Supplied reference images: guidance only, never drawn into the output.
+- Background collage: visible supplied fragments, with inferred repetition/layout.
+No remote fonts, media, modules, network requests or original film pixels.
 
-REVIEW STATUS:
-No MP4, poster, render log, matched-time review or visual-fidelity score is claimed.
-Exact transition frames, original fonts, complete collage transcription and final frame remain unverified.
+REVIEW RECORD
+This deliverable is source only. No recorded execution, MP4, poster, technical
+check, matched-time visual review or fidelity score is claimed. Complete collage
+transcription, unsampled transitions and the actual final frame remain unknown.
 -->
 <script>
 (function(){
 'use strict';
 const canvas=document.getElementById('art');
 const ctx=canvas.getContext('2d');
-const W=1280,H=720;
+const W=1280,H=720,DURATION=10;
 const C={ivory:'#F1EFDF',ink:'#1B1C13',orange:'#C35D3D'};
 const clamp=v=>Math.max(0,Math.min(1,v));
 const lerp=(a,b,p)=>a+(b-a)*p;
-const smooth=(a,b,t)=>{const p=clamp((t-a)/(b-a));return p*p*(3-2*p);};
-const out=(a,b,t)=>{const p=clamp((t-a)/(b-a));return 1-Math.pow(1-p,3);};
+function smooth(a,b,t){const p=clamp((t-a)/(b-a));return p*p*(3-2*p);}
+function out(a,b,t){const p=clamp((t-a)/(b-a));return 1-Math.pow(1-p,3);}
 function background(color){ctx.fillStyle=color;ctx.fillRect(0,0,W,H);}
 function disc(x,y,r,color){ctx.beginPath();ctx.arc(x,y,Math.max(0,r),0,Math.PI*2);ctx.fillStyle=color;ctx.fill();}
-function roundRect(x,y,w,h,r,color){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=color;ctx.fill();}
-function fit(text,x,y,width,size,family='sans-serif',weight=900,color=C.ink,stroke=0){
+function roundedRect(x,y,w,h,r,color){ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fillStyle=color;ctx.fill();}
+function textFit(text,x,y,width,size,family='sans-serif',weight=900,color=C.ink,stroke=0){
  ctx.save();ctx.font=weight+' '+size+'px '+family;ctx.textAlign='left';ctx.textBaseline='alphabetic';
- const m=ctx.measureText(text).width;ctx.translate(x,y);ctx.scale(width/m,1);ctx.fillStyle=color;ctx.fillText(text,0,0);
- if(stroke){ctx.lineJoin='round';ctx.strokeStyle=color;ctx.lineWidth=stroke;ctx.strokeText(text,0,0);}ctx.restore();
+ const measured=ctx.measureText(text).width;
+ ctx.translate(x,y);ctx.scale(width/measured,1);ctx.fillStyle=color;
+ if(stroke){ctx.lineJoin='round';ctx.strokeStyle=color;ctx.lineWidth=stroke;ctx.strokeText(text,0,0);}
+ ctx.fillText(text,0,0);ctx.restore();
 }
 function pathStroke(d,color,width,reveal=1,length=2000){
  ctx.save();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineCap='round';ctx.lineJoin='round';
  if(reveal<1){ctx.setLineDash([length,length]);ctx.lineDashOffset=length*(1-clamp(reveal));}
  ctx.stroke(new Path2D(d));ctx.restore();
 }
+
+// Newly drawn greeting contours follow the full-resolution silhouette.
 const hiH=new Path2D('M320 203 C356 196 399 197 420 215 Q438 231 438 260 L438 341 Q478 338 504 357 L504 204 C539 197 580 199 601 216 Q618 231 618 260 L618 489 Q618 527 624 556 C591 566 550 566 530 553 Q504 538 504 497 L504 446 L438 446 L438 556 Q390 568 352 552 Q326 543 326 499 L326 435 Q309 424 310 385 L310 341 L326 341 L326 245 Z');
 const hiI=new Path2D('M650 278 C690 272 749 272 774 291 Q789 302 788 330 L788 486 Q788 526 796 558 C764 565 723 565 701 556 Q677 546 677 517 L677 383 Q657 404 651 380 Q643 352 644 307 Q643 287 650 278 Z');
 function greeting(t){
  background(C.ivory);
  const stem=1-smooth(.07,.26,t),rise=out(.045,.88,t);
- if(stem>0){ctx.save();ctx.globalAlpha=stem;roundRect(420,620-130*rise,34,210,17,C.ink);roundRect(550,620-110*rise,36,210,18,C.ink);ctx.restore();}
+ if(stem>0){ctx.save();ctx.globalAlpha=stem;roundedRect(420,620-130*rise,34,210,17,C.ink);roundedRect(550,620-110*rise,36,210,18,C.ink);ctx.restore();}
  ctx.save();ctx.globalAlpha=smooth(.06,.25,t);ctx.translate(640,420*(1-rise));ctx.scale(lerp(.79,1,rise),1);ctx.translate(-640,0);
  ctx.fillStyle=C.ink;ctx.fill(hiH);
  ctx.save();const ip=out(.17,.82,t);ctx.translate(0,120*(1-ip));ctx.globalAlpha*=ip;ctx.fill(hiI);disc(723,207,42,C.ink);ctx.restore();
  const dp=out(.37,.91,t);disc(884,507,51*dp,C.orange);ctx.restore();
 }
+
 const fragments=[
  'Dear Maya, thank you for the letter -- Add the flour slowly, then fold in the eggs.',
  'sawubona · kia ora · hello · bonjour · hola · ciao · olá · hallo · namaste · merhaba · salve · hej · aloha',
@@ -103,11 +113,12 @@ function reading(t){
  }
  ctx.restore();
  const p=out(1.20,1.62,t);ctx.save();ctx.translate(0,35*(1-p));ctx.globalAlpha=p;
- fit('I read',90,327,590,158,'sans-serif',900,C.ivory,3);
- fit('every word',90,495,909,158,'sans-serif',900,C.ivory,3);
+ textFit('I read',90,327,590,158,'sans-serif',900,C.ivory,3);
+ textFit('every word',90,495,909,158,'sans-serif',900,C.ivory,3);
  disc(1042,475,20,C.ink);ctx.restore();
 }
 function lonelyDot(){background(C.ink);disc(973,131,14,C.orange);}
+
 const thought={
  top:'M77 280 C133 375 209 304 335 380',
  bottom:'M98 505 C119 411 215 383 335 380',
@@ -116,20 +127,21 @@ const thought={
 };
 function thinking(t){
  background(C.ink);
- const p=smooth(3.34,3.78,t);
- const line=out(3.42,3.98,t);
+ const p=smooth(3.34,3.78,t),line=out(3.42,3.98,t);
  pathStroke(thought.top,C.ivory,3,line,340);
  pathStroke(thought.bottom,C.ivory,3,line,340);
  pathStroke(thought.upper,C.orange,5,line,1000);
  pathStroke(thought.lower,C.orange,5,out(3.48,4.01,t),1250);
  if(line>.05){disc(77,280,7*line,C.ivory);disc(98,505,7*line,C.ivory);}
  disc(lerp(973,335,p),lerp(131,380,p),lerp(14,9,p),C.orange);
- ctx.save();ctx.globalAlpha=out(3.43,3.86,t);ctx.translate(0,17*(1-out(3.43,3.86,t)));
- fit('I think',95,207,535,108,'monospace',900,C.ivory,1);ctx.restore();
- ctx.save();const q=out(3.56,3.99,t);ctx.globalAlpha=q;ctx.translate(0,23*(1-q));
- fit('it through',385,590,757,108,'monospace',900,C.ivory,1);disc(1169,577,15,C.orange);ctx.restore();
+ ctx.save();const first=out(3.43,3.86,t);ctx.globalAlpha=first;ctx.translate(0,17*(1-first));
+ textFit('I think',95,207,535,108,'monospace',900,C.ivory,1);ctx.restore();
+ ctx.save();const second=out(3.56,3.99,t);ctx.globalAlpha=second;ctx.translate(0,23*(1-second));
+ textFit('it through',385,590,757,108,'monospace',900,C.ivory,1);disc(1169,577,15,C.orange);ctx.restore();
 }
-const letters='straight'.split('');
+
+// Eight independent glyphs retain the observed rising, rotated arrangement at 5s.
+const letters=Array.from('straight');
 const scattered=[
  {x:169,y:491,size:226,r:-.12,f:'sans-serif',w:400},
  {x:268,y:486,size:246,r:-.28,f:'sans-serif',w:900},
@@ -146,37 +158,41 @@ const naturalWidth=widths.reduce((a,b)=>a+b,0),alignedScale=900/naturalWidth;
 const targets=[];let cursor=174;
 widths.forEach(w=>{targets.push(cursor);cursor+=w*alignedScale;});
 function glyph(ch,x,y,size,rotation,family,weight,scaleX,alpha){
- if(alpha<=0)return;ctx.save();ctx.translate(x,y);ctx.rotate(rotation);ctx.scale(scaleX,1);ctx.globalAlpha=alpha;
- ctx.font=weight+' '+size+'px '+family;ctx.fillStyle=C.ink;ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillText(ch,0,0);
- if(weight>=900){ctx.strokeStyle=C.ink;ctx.lineJoin='round';ctx.lineWidth=2;ctx.strokeText(ch,0,0);}ctx.restore();
+ if(alpha<=0)return;
+ ctx.save();ctx.translate(x,y);ctx.rotate(rotation);ctx.scale(scaleX,1);ctx.globalAlpha=alpha;
+ ctx.font=weight+' '+size+'px '+family;ctx.fillStyle=C.ink;ctx.textBaseline='alphabetic';ctx.textAlign='left';
+ if(weight>=900){ctx.strokeStyle=C.ink;ctx.lineJoin='round';ctx.lineWidth=2;ctx.strokeText(ch,0,0);}
+ ctx.fillText(ch,0,0);ctx.restore();
 }
 function straight(t){
  background(C.orange);
  const intro=out(4.64,4.94,t);
- ctx.save();ctx.globalAlpha=intro;fit('I tell it',180,270,375,94,'monospace',400,C.ink);ctx.restore();
+ ctx.save();ctx.globalAlpha=intro;textFit('I tell it',180,270,375,94,'monospace',400,C.ink);ctx.restore();
  const p=smooth(5.22,5.91,t),m=smooth(5.47,5.88,t);
  letters.forEach((ch,i)=>{
-  const s=scattered[i];const x=lerp(s.x,targets[i],p),y=lerp(s.y,492,p)+35*(1-intro);
-  const size=lerp(s.size,220,p),r=s.r*(1-p),sx=lerp(1,alignedScale,p);
-  glyph(ch,x,y,size,r,s.f,s.w,sx,(1-m)*intro);
-  glyph(ch,x,y,size,r,'sans-serif',900,sx,m*intro);
+  const s=scattered[i],x=lerp(s.x,targets[i],p),y=lerp(s.y,492,p)+35*(1-intro);
+  const size=lerp(s.size,220,p),rotation=s.r*(1-p),sx=lerp(1,alignedScale,p);
+  glyph(ch,x,y,size,rotation,s.f,s.w,sx,(1-m)*intro);
+  glyph(ch,x,y,size,rotation,'sans-serif',900,sx,m*intro);
  });
  const rule=out(5.72,5.99,t);ctx.fillStyle=C.ivory;ctx.fillRect(0,442,1280*rule,6);
 }
+
 function collaboration(t){
  background(C.ivory);
- const p=out(6.60,6.94,t);const depth=lerp(0,46,p);
+ const p=out(6.60,6.94,t),depth=lerp(0,46,p);
  ctx.save();ctx.translate(0,36*(1-p));ctx.globalAlpha=p;
  for(let i=32;i>=1;i--){
-  const d=i/32*depth;
-  const shade=i>24?'#9E3F2D':i>13?'#B34B32':'#C35D3D';
-  fit('I build',175+d*.82,315+d,580,160,'sans-serif',900,shade,4);
-  fit('with you.',365+d*.82,516+d,758,160,'sans-serif',900,shade,4);
+  const d=i/32*depth,shade=i>24?'#9E3F2D':i>13?'#B34B32':C.orange;
+  textFit('I build',175+d*.82,315+d,580,160,'sans-serif',900,shade,4);
+  textFit('with you.',365+d*.82,516+d,758,160,'sans-serif',900,shade,4);
  }
- fit('I build',175,315,580,160,'sans-serif',900,C.ink,4);
- fit('with you.',365,516,758,160,'sans-serif',900,C.ink,4);
+ textFit('I build',175,315,580,160,'sans-serif',900,C.ink,4);
+ textFit('with you.',365,516,758,160,'sans-serif',900,C.ink,4);
  ctx.restore();
 }
+
+// Uneven, round-ended radial spokes are drawn anew rather than traced pixels.
 const spokes=[
  [-1.58,74],[-1.13,52],[-.75,60],[-.37,49],[-.08,70],
  [.36,73],[.77,68],[1.16,76],[1.66,58],[2.07,74],
@@ -185,24 +201,41 @@ const spokes=[
 function emblem(p){
  ctx.save();ctx.translate(1033,300);ctx.rotate(-.18*(1-p));ctx.scale(p,p);
  ctx.strokeStyle=C.orange;ctx.lineCap='round';ctx.lineWidth=14;
- spokes.forEach((s,i)=>{const a=s[0],r=s[1];ctx.beginPath();ctx.moveTo(-Math.cos(a)*8,-Math.sin(a)*8);ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);ctx.stroke();});
+ spokes.forEach(s=>{const a=s[0],r=s[1];ctx.beginPath();ctx.moveTo(-Math.cos(a)*8,-Math.sin(a)*8);ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r);ctx.stroke();});
  disc(0,0,16,C.orange);ctx.restore();
 }
 function identity(t){
  background(C.ink);
  const p=smooth(7.82,8.42,t);
  ctx.save();ctx.beginPath();ctx.rect(0,0,W,367);ctx.clip();
- fit('I’m',lerp(160,180,p),lerp(450,361,p),230,151,'monospace',400,C.ivory);ctx.restore();
+ textFit('I’m',lerp(160,180,p),lerp(450,361,p),230,151,'monospace',400,C.ivory);ctx.restore();
  const name=out(8.32,8.80,t);
  ctx.save();ctx.beginPath();ctx.rect(449,175,500*name,200);ctx.clip();
- fit('Claude',455+22*(1-name),361,483,151,'sans-serif',900,C.ivory,3);ctx.restore();
+ textFit('Claude',455+22*(1-name),361,483,151,'sans-serif',900,C.ivory,3);ctx.restore();
  const star=out(8.57,8.96,t);if(star>0)emblem(star);
- const n=t<8.79?0:t<8.86?1:t<8.94?2:3;
- if(n){ctx.save();ctx.font='400 62px monospace';ctx.textBaseline='alphabetic';ctx.fillStyle=C.orange;ctx.fillText('Opu'.slice(0,n),465,465);ctx.restore();}
+ // Preserve the partial subtitle and the staggered character levels visible
+ // in the full-resolution reference. Completion beyond Opu is not evidenced.
+ const subtitle=[
+  {ch:'O',x:465,y:461,start:8.79,end:8.86,alpha:1},
+  {ch:'p',x:502,y:477,start:8.86,end:8.94,alpha:.87},
+  {ch:'u',x:539,y:477,start:8.94,end:9.00,alpha:.62}
+ ];
+ ctx.save();ctx.font='400 62px monospace';ctx.textBaseline='alphabetic';ctx.textAlign='left';ctx.fillStyle=C.orange;
+ subtitle.forEach(letter=>{
+  const q=out(letter.start,letter.end,t);
+  if(q<=0)return;
+  ctx.save();ctx.globalAlpha=q*letter.alpha;ctx.beginPath();ctx.rect(letter.x-2,405,43,82);ctx.clip();
+  ctx.fillText(letter.ch,letter.x,letter.y+13*(1-q));ctx.restore();
+ });
+ ctx.restore();
 }
-function draw(t){
- t=Math.max(0,Math.min(10,t));
- ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.setLineDash([]);ctx.lineDashOffset=0;ctx.clearRect(0,0,W,H);
+
+// Every pixel is recomputed from time; seeking never depends on prior frames.
+function draw(time){
+ const t=Math.max(0,Math.min(DURATION,time));
+ ctx.setTransform(1,0,0,1,0,0);ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+ ctx.setLineDash([]);ctx.lineDashOffset=0;ctx.lineWidth=1;ctx.lineCap='butt';ctx.lineJoin='miter';
+ ctx.shadowBlur=0;ctx.shadowOffsetX=0;ctx.shadowOffsetY=0;ctx.filter='none';ctx.clearRect(0,0,W,H);
  if(t<1.17)greeting(t);
  else if(t<2.66)reading(t);
  else if(t<3.34)lonelyDot();
@@ -214,7 +247,7 @@ function draw(t){
 const playhead={t:0};
 draw(0);
 const timeline=gsap.timeline({paused:true});
-timeline.to(playhead,{t:10,duration:10,ease:'none',onUpdate:function(){draw(playhead.t);}},0);
+timeline.to(playhead,{t:DURATION,duration:DURATION,ease:'none',onUpdate:function(){draw(playhead.t);}},0);
 window.__timelines=window.__timelines||{};
 window.__timelines['main']=timeline;
 })();
