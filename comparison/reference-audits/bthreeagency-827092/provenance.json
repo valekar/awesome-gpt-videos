@@ -1,0 +1,54 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "02f854de3dd61b73afc53d82c843a1db47cdbcb05aca32bc13b9ee6aafd3d097",
+  "reference_evidence": {
+    "slug": "bthreeagency-827092",
+    "width": 1280,
+    "height": 982,
+    "fps": "60/1",
+    "duration_seconds": 11.25,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0,
+      10.0,
+      11.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/bthreeagency-827092/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/bthreeagency-827092/evidence/full-1.jpg",
+      "work/references/bthreeagency-827092/evidence/full-2.jpg",
+      "work/references/bthreeagency-827092/evidence/full-3.jpg",
+      "work/references/bthreeagency-827092/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/bthreeagency-827092/evidence/sheet-01.jpg": "2a2f2af52246e10947bfb768db43a7bde4a8d14df87ef5af77ba0a1df0afc19c",
+    "work/references/bthreeagency-827092/evidence/full-1.jpg": "5fc59731e9ce5ee969d7cadfc51acfc923b26bff3f095e355476847ab4fdbcba",
+    "work/references/bthreeagency-827092/evidence/full-2.jpg": "060e347ebbc392f92ce762b4e4dca1b8835f738eeec79b57bf223c98c73155d7",
+    "work/references/bthreeagency-827092/evidence/full-3.jpg": "6926bdbae1dd248a3eb616bda3d140650c90d3952f142a1c7c036918b894bb79",
+    "work/references/bthreeagency-827092/evidence/full-4.jpg": "43c3e687cc3f799ee7e4877d0b37e74e758e9c495504e275ea4c0a16da0adb5c"
+  },
+  "usage": {
+    "input_tokens": 29859,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 4867,
+    "reasoning_output_tokens": 1552
+  },
+  "audio_supplied": false
+}

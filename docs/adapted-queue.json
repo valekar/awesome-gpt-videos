@@ -2,7 +2,7 @@
   "priority": "adapted",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
-  "updated_at": "2026-10-18T15:53:52.066573+00:00",
+  "updated_at": "2026-10-18T15:57:04.544715+00:00",
   "entries": [
     {
       "slug": "ror-fly-880547",
@@ -130,7 +130,7 @@
     },
     {
       "slug": "bthreeagency-827092",
-      "stage": "ready_for_visual_recreation"
+      "stage": "missing_inputs_or_workflow"
     },
     {
       "slug": "linearuncle-971663",

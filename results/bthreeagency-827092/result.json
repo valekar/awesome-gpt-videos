@@ -50,6 +50,77 @@
     "reason": "The referenced Figma frame URL or an exported design, including the badge assets, typography, lighting and layout.; Animation duration and target dimensions, if not specified in the Figma frame."
   },
   "adapted": {
-    "status": "not_generated"
+    "status": "blocked",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "reference-v3",
+    "track": "adapted",
+    "iteration": 1,
+    "source_prompt_sha256": "d801603a8d27aabbe6a80545f3ff825d8fdddde72cedd0c37c8c9de1a61b284b",
+    "input_sha256": "1f1b85c932aab381c1ba69b03eba137a9b3624ca22d2210b5da4114620a792a6",
+    "started_at": "2026-10-18T15:56:37.265952+00:00",
+    "tools": "none requested; read-only sandbox",
+    "reference_images_supplied": [
+      "sheet-01.jpg",
+      "full-1.jpg",
+      "full-2.jpg",
+      "full-3.jpg",
+      "full-4.jpg"
+    ],
+    "reference_image_sha256": {
+      "sheet-01.jpg": "2a2f2af52246e10947bfb768db43a7bde4a8d14df87ef5af77ba0a1df0afc19c",
+      "full-1.jpg": "5fc59731e9ce5ee969d7cadfc51acfc923b26bff3f095e355476847ab4fdbcba",
+      "full-2.jpg": "060e347ebbc392f92ce762b4e4dca1b8835f738eeec79b57bf223c98c73155d7",
+      "full-3.jpg": "6926bdbae1dd248a3eb616bda3d140650c90d3952f142a1c7c036918b894bb79",
+      "full-4.jpg": "43c3e687cc3f799ee7e4877d0b37e74e758e9c495504e275ea4c0a16da0adb5c"
+    },
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/bthreeagency-827092/adapted/schema.json",
+      "-o",
+      "$REPO/results/bthreeagency-827092/adapted/response.json",
+      "--image",
+      "$REPO/work/references/bthreeagency-827092/evidence/sheet-01.jpg",
+      "--image",
+      "$REPO/work/references/bthreeagency-827092/evidence/full-1.jpg",
+      "--image",
+      "$REPO/work/references/bthreeagency-827092/evidence/full-2.jpg",
+      "--image",
+      "$REPO/work/references/bthreeagency-827092/evidence/full-3.jpg",
+      "--image",
+      "$REPO/work/references/bthreeagency-827092/evidence/full-4.jpg",
+      "-"
+    ],
+    "usage": {
+      "input_tokens": 33328,
+      "cached_input_tokens": 18816,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 688,
+      "reasoning_output_tokens": 562
+    },
+    "finished_at": "2026-10-18T15:57:03.961547+00:00",
+    "assumptions": [
+      "The supplied frames support an inferred reconstruction, but do not replace the Figma source required for exact asset, typography and lighting matching.",
+      "The reference is silent at 60 fps."
+    ],
+    "missing_inputs": [
+      "The creator-referenced Figma frame and its original badge assets, typography and design specifications. No Figma link or source export was supplied."
+    ],
+    "summary": "Exact reproduction is blocked by the missing Figma source. No animation was generated, rendered or reviewed.",
+    "reason": "The creator-referenced Figma frame and its original badge assets, typography and design specifications. No Figma link or source export was supplied."
   }
 }
