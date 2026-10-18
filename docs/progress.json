@@ -30,15 +30,15 @@
       "blocked": 20,
       "not_generated": 637,
       "rendered": 33,
-      "generated": 11,
-      "running": 2
+      "generated": 12,
+      "running": 1
     },
     "adapted": {
       "rendered": 2,
       "not_generated": 701
     }
   },
-  "entries_with_source": 45,
+  "entries_with_source": 46,
   "entries_with_render": 34,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"

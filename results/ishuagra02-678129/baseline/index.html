@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Particle Beach</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#040917;font-family:system-ui,sans-serif}#root{position:relative;width:100%;height:100%;overflow:hidden;background:#040917}canvas{position:absolute;inset:0;width:100%;height:100%}.controls{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:18px;padding:12px 20px;border:1px solid #c9eaff26;border-radius:16px;background:#071020c9;color:#e9eee9;white-space:nowrap}.controls button{appearance:none;border:0;background:none;color:#a9b7c8;font:500 22px system-ui,sans-serif;padding:5px 3px;cursor:pointer}.controls button[data-active="true"]{color:#ffe5b1}.controls button:focus-visible{outline:2px solid #ffe5b1;outline-offset:4px}.controls input{width:140px;accent-color:#ffd3a0;cursor:pointer}.controls output{font-size:24px;font-variant-numeric:tabular-nums;min-width:68px}.controls input:focus-visible{outline:2px solid #ffe5b1}
+</style>
+<script src="gsap.min.js"></script>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="804" data-duration="60" aria-label="An animated particle illustration of Santa Monica Beach, moving from sunrise through night">
+<canvas id="beach" class="clip" data-start="0" data-duration="60" width="1920" height="804" aria-label="Glowing ocean, busy beach, palm trees and a distant pier with a turning Ferris wheel"></canvas>
+<nav class="controls clip" data-start="0" data-duration="60" aria-label="Explore the simulated time of day">
+<button type="button" data-time="0">Dawn</button><button type="button" data-time="20">Noon</button><button type="button" data-time="40">Sunset</button><button type="button" data-time="56">Night</button>
+<input id="scrub" type="range" min="0" max="60" step="0.01" value="0" aria-label="Time of day"><output id="hour">06:00</output>
+</nav>
+</div>
+<script>
+'use strict';
+/* EDITABLE SCENE: meters are illustrative, not survey measurements.
+   All geometry is original procedural point artwork. No external artwork.
+   One deterministic minute maps to a simulated 06:00–24:00 day. */
+const SCENE={width:1920,height:804,duration:60,seed:73119,sandPoints:23500,waterPoints:17500,people:88,umbrellas:28};
+const W=SCENE.width,H=SCENE.height,TAU=Math.PI*2;
+const canvas=document.getElementById('beach'),ctx=canvas.getContext('2d',{alpha:false});
+const scrub=document.getElementById('scrub'),hour=document.getElementById('hour');
+const buttons=Array.from(document.querySelectorAll('[data-time]'));
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const mix=(a,b,u)=>a+(b-a)*u;
+const smooth=v=>{v=clamp(v);return v*v*(3-2*v)};
+const fract=v=>v-Math.floor(v);
+function noise(i){return fract(Math.sin(i*127.1+311.7)*43758.5453123)}
+let seed=SCENE.seed;
+function rand(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296}
+function shore(z){return -12+z*.045+Math.sin(z*.014)*1.1}
+const sand=[],water=[],objects=[],palms=[],umbrellas=[],people=[],stars=[],clouds=[];
+// Point records: world position, palette entry, physical size, stable variation.
+function add(list,x,y,z,c=6,r=.027,n=rand()){list.push({x,y,z,c,r,n})}
+function line(list,a,b,c=6,step=.14,r=.028){
+ const d=Math.hypot(b[0]-a[0],b[1]-a[1],b[2]-a[2]);
+ const count=Math.max(2,Math.ceil(d/step));
+ for(let i=0;i<=count;i++){const u=i/count;add(list,mix(a[0],b[0],u),mix(a[1],b[1],u),mix(a[2],b[2],u),c,r)}
+}
+function boxEdges(list,x,y,z,sx,sy,sz,c){
+ const p=[];for(let i=0;i<8;i++)p.push([x+(i&1?sx:0),y+(i&2?sy:0),z+(i&4?sz:0)]);
+ for(let i=0;i<8;i++)for(const bit of [1,2,4])if(!(i&bit))line(list,p[i],p[i|bit],c,.1,.035);
+}
+for(let i=0;i<SCENE.sandPoints;i++){
+ const z=-7+Math.pow(rand(),1.6)*350;
+ add(sand,shore(z)+rand()*102,.018+rand()*.025,z,0,.014+rand()*.021);
+}
+for(let i=0;i<SCENE.waterPoints;i++){
+ const z=-12+Math.pow(rand(),1.25)*530;
+ add(water,shore(z)-rand()*250,0,z,1,.018+rand()*.03);
+}
+// Point-sampled coast: a quiet backdrop rather than a solid silhouette.
+for(let i=0;i<4100;i++){
+ const x=6+rand()*225,z=290+rand()*160;
+ const h=4+12*Math.pow(.5+.5*Math.sin(x*.035),2);
+ add(objects,x,rand()*h,z,7,.035);
+}
+// Pier deck, railings and piles.
+for(let x=-84;x<=-8;x+=.48)for(let z=80;z<=91;z+=.48)add(objects,x,3.1+rand()*.035,z,9,.027);
+for(let x=-82;x<=-9;x+=4.7){
+ for(const z of [80.5,90.5]){
+  line(objects,[x,-1,z],[x,4.35,z],9,.1,.047);
+  line(objects,[x-.3,-.3,z],[x+2.6,3.1,z],9,.16,.034);
+ }
+}
+for(const z of [80,91]){
+ line(objects,[-84,4.3,z],[-8,4.3,z],6,.12,.032);
+ line(objects,[-84,3.7,z],[-8,3.7,z],9,.15,.025);
+}
+// The wheel itself is rebuilt analytically each frame below.
+for(const z of [84.4,88.6]){
+ line(objects,[-48,3.2,z],[-42,15.2,z],6,.09,.045);
+ line(objects,[-36,3.2,z],[-42,15.2,z],6,.09,.045);
+}
+// An invented coaster gesture references the pier's amusement-park character.
+for(let i=0;i<600;i++){
+ const u=i/599,x=-32+u*23,y=5.1+Math.pow(Math.sin(u*Math.PI*2.6),2)*5.2,z=85+Math.sin(u*TAU)*2;
+ add(objects,x,y,z,10,.035);
+ add(objects,x,y+.24,z+.38,3,.026);
+ if(i%43===0)line(objects,[x,3.15,z],[x,y,z],9,.13,.025);
+}
+// Small pier pavilions, expressed only as dotted outlines.
+for(const x of [-71,-60,-24]){
+ boxEdges(objects,x,3.15,82.5,5,3,5,9);
+ line(objects,[x-.7,6.2,82],[x+2.5,7.7,85],3,.09,.035);
+ line(objects,[x+2.5,7.7,85],[x+5.7,6.2,88],3,.09,.035);
+ line(objects,[x-.7,6.2,82],[x+5.7,6.2,82],3,.09,.035);
+}
+// Lifeguard tower: elevated cabin, striped roof, stilts and a ramp.
+boxEdges(objects,13,2.1,37,3.7,2.6,3.2,5);
+for(const x of [13,16.7])for(const z of [37,40.2])line(objects,[x,0,z],[x,2.1,z],6,.09,.04);
+for(let i=0;i<700;i++){
+ const x=12.5+rand()*4.7,z=36.5+rand()*4.2;
+ add(objects,x,4.8+.45*(1-Math.abs(x-14.85)/2.35),z,i%3?5:6,.027);
+}
+line(objects,[13,2.15,37],[9,0,30],6,.1,.035);
+line(objects,[16.7,2.15,37],[12.7,0,30],6,.1,.035);
+for(let k=0;k<18;k++)line(objects,[mix(9,13,k/18),k/18*2.15,mix(30,37,k/18)],[mix(12.7,16.7,k/18),k/18*2.15,mix(30,37,k/18)],9,.13,.025);
+// Beach umbrellas and their point-woven towels.
+for(let i=0;i<SCENE.umbrellas;i++){
+ const z=11+rand()*175,x=shore(z)+12+rand()*55;
+ const u={x,z,r:1.4+rand()*.65,h:2.1+rand()*.6,c:[3,4,5,6,8,10][i%6],phase:rand()*TAU};
+ if(i===0){u.x=27;u.z=13;u.r=2.35;u.h=2.7;u.c=4}
+ umbrellas.push(u);
+ line(objects,[u.x,0,u.z],[u.x,u.h,u.z],6,.09,.03);
+ for(let j=0;j<270;j++){
+  const a=rand()*TAU,r=Math.sqrt(rand())*u.r;
+  const wedge=Math.floor(a/(TAU/8));
+  add(objects,u.x+Math.cos(a)*r,u.h-.57*Math.pow(r/u.r,1.7),u.z+Math.sin(a)*r,wedge%2?u.c:6,.029);
+ }
+ for(let j=0;j<80;j++)add(objects,x-1+rand()*2.7,.035,z+1.1+rand()*2.6,u.c,.023);
+}
+// Palm silhouettes are dimensional bundles of specks with curved fronds.
+for(const p of [[37,12,12],[44,38,11],[36,81,10],[51,125,13],[67,180,12]]){
+ const [x,z,h]=p,topx=x-2.7;
+ for(let i=0;i<600;i++){
+  const u=rand(),a=rand()*TAU,r=.2+rand()*.1;
+  add(objects,x-2.7*u*u+Math.cos(a)*r,h*u,z+Math.sin(a)*r,9,.034);
+ }
+ for(let k=0;k<10;k++){
+  const a=k*TAU/10+.3;
+  for(let j=0;j<210;j++){
+   const u=rand(),s=(rand()-.5)*.9*u;
+   const reach=5.4*u;
+   const px=topx+Math.cos(a)*reach+Math.cos(a+Math.PI/2)*s;
+   const pz=z+Math.sin(a)*reach+Math.sin(a+Math.PI/2)*s;
+   add(objects,px,h+Math.sin(u*Math.PI)*1.5-u*u*2.5,pz,7,.03+rand()*.02);
+  }
+ }
+ palms.push({x,z,h});
+}
+// Volleyball court and a porous point net.
+for(const x of [20,30])line(objects,[x,0,54],[x,2.8,54],6,.09,.035);
+for(let y=1.65;y<=2.8;y+=.16)line(objects,[20,y,54],[30,y,54],6,.2,.018);
+for(let x=20;x<=30;x+=.25)line(objects,[x,1.65,54],[x,2.8,54],6,.17,.016);
+for(const z of [46,62])line(objects,[19,.025,z],[31,.025,z],6,.19,.022);
+for(const x of [19,31])line(objects,[x,.025,46],[x,.025,62],6,.19,.022);
+// Beachgoers have stable positions and individual analytic walk cycles.
+for(let i=0;i<SCENE.people;i++){
+ const z=9+Math.pow(rand(),1.35)*215;
+ const swimmer=i>=72;
+ people.push({x:shore(z)+(swimmer?-3-rand()*15:3+rand()*59),z,phase:rand()*TAU,speed:.12+rand()*.18,dx:1+rand()*3,dz:1+rand()*5,height:.84+rand()*.27,c:[3,4,5,6,8,10][i%6],swimmer,ribbon:i<24});
+}
+Object.assign(people[0],{x:7,z:13,dx:8,dz:2,speed:.27,phase:.8,height:1.16,c:4,ribbon:true});
+Object.assign(people[1],{x:1,z:29,dx:3,dz:5,speed:.22,phase:2,height:1.08,c:5,ribbon:true});
+Object.assign(people[2],{x:23,z:47,dx:1,dz:1,speed:.24,height:1.1,c:3});
+Object.assign(people[3],{x:27,z:60,dx:1,dz:1,speed:.3,height:1.1,c:5});
+for(let i=0;i<650;i++)stars.push({x:rand()*W,y:rand()*H*.58,r:.5+rand()*1.1,p:rand()*TAU});
+for(let i=0;i<2200;i++){
+ const band=Math.floor(rand()*5),u=rand();
+ clouds.push({x:u*W,y:55+band*41+Math.sin(u*6+band)*20+(rand()-.5)*13,n:rand(),band});
+}
+objects.sort((a,b)=>b.z-a.z);
+const palettes=[
+ {t:0,top:[6,15,34],bottom:[58,44,58],colors:[[188,144,111],[67,130,151],[145,204,208],[255,186,116],[246,131,143],[106,217,214],[239,220,189],[98,158,143],[160,151,222],[167,126,105],[243,143,110]]},
+ {t:20,top:[8,28,49],bottom:[47,94,111],colors:[[224,201,151],[65,165,188],[192,240,229],[255,205,119],[251,149,162],[109,232,219],[245,239,209],[122,191,151],[177,172,240],[192,167,129],[250,154,104]]},
+ {t:40,top:[18,16,40],bottom:[116,57,69],colors:[[232,158,109],[81,133,171],[209,199,210],[255,193,112],[255,135,169],[115,217,216],[255,222,178],[133,162,137],[184,147,233],[212,142,107],[255,156,103]]},
+ {t:50,top:[3,7,23],bottom:[17,23,48],colors:[[100,119,147],[47,108,149],[113,202,224],[255,188,105],[244,122,187],[102,224,231],[197,215,230],[77,131,135],[169,142,239],[149,134,147],[255,155,108]]},
+ {t:60,top:[2,5,18],bottom:[10,18,37],colors:[[82,103,131],[40,91,134],[104,188,218],[255,185,108],[243,119,183],[91,205,222],[180,203,223],[67,118,127],[156,135,226],[127,119,139],[249,150,104]]}
+];
+let P=[],camera={},tick=0,night=0,horizon=280;
+function rgb(c){return 'rgb('+c.map(v=>Math.round(v)).join(',')+')'}
+function paletteAt(t){
+ let k=0;while(k<palettes.length-2&&t>palettes[k+1].t)k++;
+ const a=palettes[k],b=palettes[k+1],u=smooth((t-a.t)/(b.t-a.t));
+ const lerp=(x,y)=>x.map((v,i)=>mix(v,y[i],u));
+ return {top:lerp(a.top,b.top),bottom:lerp(a.bottom,b.bottom),colors:a.colors.map((v,i)=>lerp(v,b.colors[i]))};
+}
+function cameraAt(t){
+ const x=22+2.5*Math.sin(t*.045),y=11.6+.6*Math.sin(t*.06),z=-26+3.5*Math.sin(t*.037);
+ const tx=-8+3*Math.sin(t*.025),ty=2,tz=105;
+ const dx=tx-x,dy=ty-y,dz=tz-z,l=Math.hypot(dx,dy,dz);
+ const fx=dx/l,fy=dy/l,fz=dz/l,rl=Math.hypot(fx,fz),rx=fz/rl,rz=-fx/rl;
+ camera={x,y,z,fx,fy,fz,rx,rz,ux:fy*rz,uy:fz*rx-fx*rz,uz:-fy*rx,f:1120};
+ horizon=H*.5+camera.f*fy/Math.max(.01,Math.hypot(fx,fz));
+}
+function project(x,y,z){
+ const c=camera,dx=x-c.x,dy=y-c.y,dz=z-c.z;
+ const d=dx*c.fx+dy*c.fy+dz*c.fz;if(d<3)return null;
+ return {x:W*.5+c.f*(dx*c.rx+dz*c.rz)/d,y:H*.5-c.f*(dx*c.ux+dy*c.uy+dz*c.uz)/d,s:c.f/d,d};
+}
+function speck(x,y,z,c,r=.025,n=.5,a=1,glow=false){
+ const p=project(x,y,z);if(!p||p.x< -12||p.x>W+12||p.y< -12||p.y>H+12)return;
+ const size=clamp(.55+p.s*r,.65,4.7),fade=clamp(1-p.d/740,.22,1);
+ ctx.fillStyle=P[c];ctx.globalAlpha=clamp(a*fade*(.4+n*.55));
+ ctx.fillRect(p.x-size*.5,p.y-size*.5,size,size);
+ if(glow||n>.967){ctx.globalAlpha=a*fade*.055;const q=size*4.5;ctx.fillRect(p.x-q*.5,p.y-q*.5,q,q)}
+}
+function screenDot(x,y,r,color,a){ctx.fillStyle=color;ctx.globalAlpha=a;ctx.fillRect(x-r*.5,y-r*.5,r,r)}
+function sampledSegment(a,b,c,size=.03,alpha=1,salt=1){
+ const length=Math.hypot(b[0]-a[0],b[1]-a[1],b[2]-a[2]);
+ const n=Math.max(7,Math.ceil(length*25));
+ for(let j=0;j<=n;j++){
+  const u=j/n,ph=j*2.399+salt;
+  speck(mix(a[0],b[0],u)+Math.cos(ph)*.045,mix(a[1],b[1],u),mix(a[2],b[2],u)+Math.sin(ph)*.045,c,size,noise(j+salt),alpha);
+ }
+}
+function pose(a,t){
+ const q=t*a.speed+a.phase;
+ return {x:a.x+Math.sin(q)*a.dx,z:a.z+Math.sin(q*.81)*a.dz,g:t*(a.ribbon?7:4.4)+a.phase};
+}
+function drawRibbons(a,t,index){
+ // Three braided point-streams retain a finite, continuously fading history.
+ for(let strand=0;strand<3;strand++)for(let j=1;j<120;j++){
+  const u=j/119,old=pose(a,t-u*3.7),curl=u*TAU*1.8+t*.8+index;
+  const w=Math.sin(u*Math.PI)*(.18+strand*.09);
+  speck(old.x+Math.sin(curl+strand*2.1)*w,.45+Math.sin(curl*.7+strand)*w+u*.13,old.z+Math.cos(curl+strand)*w,strand===1?6:a.c,.019,noise(j+index*121),(1-u)*.62,true);
+ }
+}
+function drawPerson(a,t,index){
+ const p=pose(a,t),h=a.height;
+ if(a.swimmer){
+  const y=.28+.07*Math.sin(t*1.6+index);
+  for(let j=0;j<27;j++){const q=j*2.399,u=(j+.5)/27;const rr=Math.sqrt(1-Math.pow(u*2-1,2))*.14;
+   speck(p.x+Math.cos(q)*rr,y+u*.29,p.z+Math.sin(q)*rr,6,.028,noise(j+index));}
+  sampledSegment([p.x-.5,y-.08,p.z],[p.x+.5,y-.05,p.z+.12*Math.sin(t*2+index)],a.c,.025,.75,index);
+  return;
+ }
+ const bounce=.035*Math.sin(p.g*2),hip=.84*h+bounce,shoulder=1.33*h+bounce;
+ const stride=Math.sin(p.g)*(a.ribbon?.36:.24)*h;
+ for(let j=0;j<65;j++){
+  const u=j/64,angle=j*2.399;
+  speck(p.x+Math.cos(angle)*(.16-.025*u)*h,hip+(shoulder-hip)*u,p.z+Math.sin(angle)*.115*h,a.c,.026,noise(index*67+j));
+ }
+ sampledSegment([p.x-.11*h,hip,p.z],[p.x-.14*h,.08,p.z+stride],6,.027,1,index+8);
+ sampledSegment([p.x+.11*h,hip,p.z],[p.x+.15*h,.08,p.z-stride],6,.027,1,index+18);
+ const ar=stride*.85;
+ sampledSegment([p.x-.18*h,shoulder,p.z],[p.x-.28*h,.95*h,p.z-ar],a.c,.028,1,index+28);
+ sampledSegment([p.x+.18*h,shoulder,p.z],[p.x+.3*h,1.04*h,p.z+ar],a.c,.028,1,index+38);
+ for(let j=0;j<44;j++){
+  const v=1-2*(j+.5)/44,a0=j*2.399,r=Math.sqrt(1-v*v)*.145*h;
+  speck(p.x+Math.cos(a0)*r,1.59*h+bounce+v*.16*h,p.z+Math.sin(a0)*r,6,.026,noise(index*97+j));
+ }
+ // A few luminous footprints reinforce the beach plane and travel direction.
+ if(a.ribbon)for(let j=0;j<10;j++){
+  const old=pose(a,t-j*.21),side=j%2?1:-1;
+  speck(old.x+side*.13,.025,old.z,a.c,.025,.6,(1-j/10)*.3);
+ }
+}
+function wheel(t){
+ const cx=-42,cy=15.2,cz=86.5,R=11.65,rot=t*.085;
+ const light=.58+night*.42;
+ for(let i=0;i<960;i++){
+  const a=i/960*TAU;
+  for(const rr of [R,R-.38])speck(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr,cz,3,.038,.75,light,true);
+ }
+ for(let k=0;k<16;k++){
+  const a=k/16*TAU+rot,co=Math.cos(a),si=Math.sin(a);
+  for(let j=0;j<88;j++){
+   const r=R*j/87;
+   speck(cx+co*r,cy+si*r,cz,k%3===0?4:3,.028,.7,light,j%9===0);
+  }
+  const x=cx+co*R,y=cy+si*R;
+  // Gondolas remain upright while their attachment points turn.
+  for(let j=0;j<32;j++){
+   const u=j/31;
+   speck(x-.55+u*1.1,y-.8,cz-.15,k%2?5:4,.035,.8,1,true);
+   speck(x-.55,y-.8+u*.7,cz-.15,6,.026,.7,1);
+   speck(x+.55,y-.8+u*.7,cz-.15,6,.026,.7,1);
+  }
+ }
+ for(let i=0;i<150;i++){
+  const a=i*2.399,r=Math.sqrt((i+.5)/150)*.48;
+  speck(cx+Math.cos(a)*r,cy+Math.sin(a)*r,cz-.1,6,.04,.8,1,true);
+ }
+ // Little pier lamps wake up as dusk falls.
+ for(let x=-80;x<-8;x+=4.7){
+  speck(x,4.55,80,3,.11,.9,.25+night*.75,true);
+  speck(x,4.55,91,3,.1,.9,.25+night*.75,true);
+ }
+}
+function sky(t,pal){
+ const gradient=ctx.createLinearGradient(0,0,0,H);
+ gradient.addColorStop(0,rgb(pal.top));gradient.addColorStop(.48,rgb(pal.bottom));gradient.addColorStop(1,rgb(pal.top));
+ ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';ctx.fillStyle=gradient;ctx.fillRect(0,0,W,H);
+ const sunset=Math.exp(-Math.pow((t-39)/7,2));
+ const sx=1480-1140*clamp(t/40),sy=horizon-215*Math.sin(Math.PI*clamp(t/40))+(t>40?(t-40)*10:0);
+ const sunA=1-smooth((t-40)/4);
+ const glow=ctx.createRadialGradient(sx,sy,0,sx,sy,320);
+ glow.addColorStop(0,'rgba(255,173,113,'+(.12*sunA)+')');glow.addColorStop(1,'rgba(255,173,113,0)');
+ ctx.fillStyle=glow;ctx.fillRect(0,0,W,H);
+ ctx.globalCompositeOperation='lighter';
+ for(const c of clouds){
+  const x=((c.x+t*(.9+c.band*.12))%(W+160))-80;
+  const y=c.y+Math.sin(c.x*.005+t*.055+c.band)*4;
+  screenDot(x,y,.65+c.n*.9,P[c.band%2?4:6],(.02+.05*sunset+.025*(1-night))*(.3+c.n));
+ }
+ if(sunA>0)for(let i=0;i<1700;i++){
+  const a=i*2.399963,r=Math.sqrt((i+.5)/1700)*(24+sunset*8);
+  screenDot(sx+Math.cos(a)*r,sy+Math.sin(a)*r,1.1+noise(i)*1.2,'#ffdfb0',sunA*(.32+noise(i+4)*.5));
+ }
+ for(const s of stars){
+  const a=night*(.25+.35*(.5+.5*Math.sin(t*.65+s.p)))*clamp((horizon+15-s.y)/110);
+  if(a>.002)screenDot(s.x,s.y,s.r,'#cee7ff',a);
+ }
+ if(night>0){
+  const mx=1450-(t-48)*3,my=132-(t-48)*1.6;
+  for(let i=0;i<1050;i++){
+   const a=i*2.399963,r=Math.sqrt((i+.5)/1050)*24,x=Math.cos(a)*r,y=Math.sin(a)*r;
+   if(Math.hypot(x-12,y+3)<22)continue;
+   screenDot(mx+x,my+y,1.25,'#d5e8ef',night*.75);
+  }
+ }
+ // A dotted marine horizon; no filled ocean plane.
+ for(let i=0;i<2100;i++){
+  const x=i/2100*W,y=horizon+Math.sin(i*.023)*.7;
+  screenDot(x,y,.65+noise(i+9),P[1],.13+noise(i)*.13);
+ }
+ return {sx,sy,sunA,sunset};
+}
+function seabirds(t){
+ for(let i=0;i<14;i++){
+  const x=-42+i*5.6+Math.sin(t*.045+i)*8,z=118+(i%4)*19,y=17+(i%5)*2+Math.sin(t*.35+i)*.5;
+  const flap=Math.sin(t*2.3+i)*.65;
+  for(let j=0;j<26;j++){
+   const u=j/25;
+   speck(x-u*.9,y+Math.sin(u*Math.PI)*.2+u*flap,z+u*.2,6,.032,.65,.8);
+   speck(x+u*.9,y+Math.sin(u*Math.PI)*.2+u*flap,z+u*.2,6,.032,.65,.8);
+  }
+ }
+}
+function draw(t){
+ tick=t;night=smooth((t-41)/11);cameraAt(t);
+ const pal=paletteAt(t);P=pal.colors.map(rgb);
+ const sun=sky(t,pal);
+ ctx.globalCompositeOperation='lighter';
+ // Deep water: traveling low swell, staccato glints and a warm sun path.
+ for(const p of water){
+  const y=Math.sin(p.x*.13+p.z*.19-t*.9)*.095+Math.sin(p.z*.53-t*1.3)*.04;
+  let a=.47+(Math.sin(p.x*.2+p.z*.48-t*1.6)+1)*.13,c=1;
+  if(p.n>.84){
+   const q=project(p.x,y,p.z);
+   if(q&&Math.abs(q.x-sun.sx)<23+Math.max(0,q.y-horizon)*.23&&sun.sunA>.1){c=3;a*=1.6}
+  }
+  speck(p.x,y,p.z,c,p.r,p.n,a);
+ }
+ for(const p of sand)speck(p.x,p.y,p.z,p.c,p.r,p.n,.56);
+ // Whitewater consists of separate sinuous ribbons of individual particles.
+ for(let band=0;band<8;band++)for(let j=0;j<950;j++){
+  const z=-8+j/949*360;
+  const progress=(.5+.5*Math.sin(t*.54-band*.58));
+  const x=shore(z)-band*1.45+Math.sin(z*.13-t*.86+band*.9)*(.5+band*.06)+progress*.5;
+  const y=.05+Math.pow(.5+.5*Math.sin(z*.14-t*.86+band*.9),5)*.12;
+  const a=(.2+.45*Math.pow(.5+.5*Math.sin(z*.086-t*.7+band),2))*(1-band*.062);
+  speck(x,y,z,2,.022+noise(j+band*971)*.027,noise(j+band*991),a,band<2&&j%17===0);
+ }
+ // A fine line of receding foam fragments on the wet sand.
+ for(let j=0;j<1800;j++){
+  const z=noise(j+800)*220,x=shore(z)+noise(j+300)*1.7;
+  const a=.12+.15*(.5+.5*Math.sin(t*.7+z*.22));
+  speck(x,.025,z,2,.017,noise(j+450),a);
+ }
+ for(const p of objects){
+  const sway=p.c===7&&p.y>7?Math.sin(t*.62+p.z*.13)*.06*(p.y-7):0;
+  speck(p.x+sway,p.y,p.z,p.c,p.r,p.n,p.c===9?.75:.9);
+ }
+ wheel(t);
+ for(let i=0;i<people.length;i++)if(people[i].ribbon)drawRibbons(people[i],t,i);
+ // Back-to-front order is stable; additive point artwork stays translucent.
+ const order=people.map((a,i)=>({a,i,z:pose(a,t).z})).sort((a,b)=>b.z-a.z);
+ for(const o of order)drawPerson(o.a,t,o.i);
+ // Volleyball: a repeatable ballistic arc across the translucent net.
+ const ballPhase=t*.7,by=2.6+2.8*Math.abs(Math.sin(ballPhase));
+ const bx=25+Math.sin(ballPhase*.5)*2,bz=54+Math.cos(ballPhase)*5.4;
+ for(let j=0;j<80;j++){
+  const v=1-2*(j+.5)/80,a=j*2.399,r=Math.sqrt(1-v*v)*.17;
+  speck(bx+Math.cos(a)*r,by+v*.17,bz+Math.sin(a)*r,6,.03,noise(j),1,true);
+ }
+ seabirds(t);
+ // A small point sail far offshore, without a solid polygon.
+ const boatX=-115+t*.2,boatZ=220;
+ sampledSegment([boatX,0,boatZ],[boatX,5.5,boatZ],6,.03,.7,71);
+ for(let j=0;j<220;j++){
+  const u=noise(j+741),v=noise(j+842)*(1-u);
+  speck(boatX-v*3.4,u*5.3,boatZ,6,.023,noise(j+83),.65);
+ }
+ ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
+ // Lens-edge shading belongs to the environment; all modeled forms are dots.
+ const vignette=ctx.createRadialGradient(W*.5,H*.45,W*.18,W*.5,H*.45,W*.65);
+ vignette.addColorStop(0,'rgba(0,0,8,0)');vignette.addColorStop(1,'rgba(0,0,8,.35)');
+ ctx.fillStyle=vignette;ctx.fillRect(0,0,W,H);
+ const minutes=Math.min(1439,Math.floor(360+t*18));
+ hour.value=String(Math.floor(minutes/60)).padStart(2,'0')+':'+String(minutes%60).padStart(2,'0');
+ scrub.value=String(t);
+ const active=t<10?0:t<30?1:t<47?2:3;
+ buttons.forEach((b,i)=>{b.dataset.active=String(i===active);b.setAttribute('aria-pressed',String(i===active))});
+}
+// The harness owns playback. There is no autonomous animation loop or clock.
+const time={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(time,{t:SCENE.duration,duration:SCENE.duration,ease:'none',onUpdate:()=>draw(time.t)},0);
+function seek(t){timeline.pause();timeline.time(clamp(Number(t),0,SCENE.duration),false);draw(time.t)}
+buttons.forEach(button=>button.addEventListener('click',()=>seek(button.dataset.time)));
+scrub.addEventListener('input',event=>seek(event.target.value));
+document.addEventListener('keydown',event=>{
+ if(event.target instanceof HTMLInputElement)return;
+ if(event.code==='ArrowRight'||event.key===']'){event.preventDefault();seek(time.t+1)}
+ else if(event.code==='ArrowLeft'||event.key==='['){event.preventDefault();seek(time.t-1)}
+ else if(event.code==='Space'){event.preventDefault();const stops=[0,20,40,56];seek(stops.find(s=>s>time.t+.1)??0)}
+});
+draw(0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+</script>
+</body>
+</html>
