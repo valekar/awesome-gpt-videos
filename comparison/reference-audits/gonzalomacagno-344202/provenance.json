@@ -1,0 +1,52 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "review_type": "model-generated sampled visual analysis",
+  "input_sha256": "08621389bc56f895c9de2ea86fc357f6a69779352ed285c13292de9460917f54",
+  "reference_evidence": {
+    "slug": "gonzalomacagno-344202",
+    "width": 720,
+    "height": 1280,
+    "fps": "30/1",
+    "duration_seconds": 10.0,
+    "audio_streams": 0,
+    "sample_times": [
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0,
+      6.0,
+      7.0,
+      8.0,
+      9.0
+    ],
+    "scene_change_times": [],
+    "sheets": [
+      "work/references/gonzalomacagno-344202/evidence/sheet-01.jpg"
+    ],
+    "full_frames": [
+      "work/references/gonzalomacagno-344202/evidence/full-1.jpg",
+      "work/references/gonzalomacagno-344202/evidence/full-2.jpg",
+      "work/references/gonzalomacagno-344202/evidence/full-3.jpg",
+      "work/references/gonzalomacagno-344202/evidence/full-4.jpg"
+    ],
+    "review_coverage": "Full duration sampled at >=1s spacing, scene-change timestamps detected. This is not a frame-by-frame review."
+  },
+  "image_sha256": {
+    "work/references/gonzalomacagno-344202/evidence/sheet-01.jpg": "faab0cc9c97a424d477a765186ab3b70a4b113da8324fb131372310d717ecd80",
+    "work/references/gonzalomacagno-344202/evidence/full-1.jpg": "5e93d53e7a8fd5667580e2bdfc2bfdbc7a7fc9b134bc6123bdb9a93d31359415",
+    "work/references/gonzalomacagno-344202/evidence/full-2.jpg": "4e95a3da569b6c47beac865851598e3bdb8c8ec0f75c4d8c8ea1d55e3b451bc6",
+    "work/references/gonzalomacagno-344202/evidence/full-3.jpg": "1f9b7886beac380d7f09cb41474dd3c3516c6287e92a2c042c707f69ab0056f1",
+    "work/references/gonzalomacagno-344202/evidence/full-4.jpg": "a6e6a59be9fb7dfeb35f6c85c0c5486f1c99e902360b5202f82ad15fa6f7b3ee"
+  },
+  "usage": {
+    "input_tokens": 27980,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 5573,
+    "reasoning_output_tokens": 2070
+  },
+  "audio_supplied": false
+}
