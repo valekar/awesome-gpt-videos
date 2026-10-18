@@ -6,6 +6,8 @@ BASE='https://valekar.github.io/awesome-gpt-videos/'
 def cell(s):return re.sub(r'\s+',' ',str(s)).replace('|','\\|').strip()
 def note(v):
  r=v.get('review',{});a=r.get('adapted',{})
+ history=r.get('adapted_review_history',[])
+ if history and history[-1]['iteration']<v['runs']['adapted'].get('iteration',1):return 'Latest attempt awaits a matched-time comparison; prior findings are retained in the review history.'
  differences=a.get('remaining_differences',[]) or r.get('differences',[])
  if differences:
   x=differences[0];return cell(x.get('description',x.get('detail','')) if isinstance(x,dict) else x)

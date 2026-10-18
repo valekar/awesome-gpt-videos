@@ -2,9 +2,19 @@ import copy,json,pathlib,sys,tempfile,unittest
 from unittest.mock import patch
 ROOT=pathlib.Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'tools'))
 import catalog
+import generate
+from types import SimpleNamespace
 from readme_comparisons import refresh
 from adapted_queue import classify
 class ComparisonTests(unittest.TestCase):
+ def test_active_entry_cannot_overwrite_input_or_start_provider(self):
+  with tempfile.TemporaryDirectory() as folder:
+   root=pathlib.Path(folder);entry=root/'results/example';out=entry/'adapted';out.mkdir(parents=True)
+   (entry/'result.json').write_text(json.dumps({'adapted':{'status':'running'}}));(out/'input.txt').write_text('preserved input')
+   with patch.object(generate,'ROOT',root),patch.object(generate.subprocess,'run') as provider:
+    with self.assertRaises(RuntimeError):generate.run_one({'slug':'example'},SimpleNamespace(track='adapted'))
+    provider.assert_not_called()
+   self.assertEqual((out/'input.txt').read_text(),'preserved input')
  def test_review_guidance_preserves_original_prompt(self):
   v=json.loads((ROOT/'data/videos.json').read_text())[0]
   with tempfile.TemporaryDirectory() as folder:

@@ -10,3 +10,8 @@ Preserve the existing dashboard geometry, exact visible wording, request history
 - Shift the zero toward the original's warmer red and the final caption toward warmer amber.
 
 Use independently drawn Canvas elements. Document unresolved timing and event details as reconstruction choices.
+
+
+## Matched-time review of attempt 2
+
+Optional refinement: preserve the current composition and sampled states. Smooth the large slashed-zero contour, slightly reduce horizontal scaling of the white phase captions, make empty-slot outlines and the capacity guide modestly more visible, soften the partial blue strip at 9s, and strengthen the observed empty-state vessel accents at 4s and 6s. Do not introduce additional pulses or transitions.
