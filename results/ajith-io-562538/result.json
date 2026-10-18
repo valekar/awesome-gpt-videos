@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "status": "running",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "08ec560b8c3497434a77159519343e11eab667cd70869e2832a74736560c1fad",
+    "input_sha256": "ed3e32740e960faa5f37a1a0f64ac26e1a41602dc3ae1436b138eb604cbb92db",
+    "started_at": "2026-10-18T15:23:30.560659+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/ajith-io-562538/baseline/schema.json",
+      "-o",
+      "$REPO/results/ajith-io-562538/baseline/response.json",
+      "-"
+    ]
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

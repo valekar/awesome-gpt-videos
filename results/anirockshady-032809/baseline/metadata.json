@@ -1,0 +1,79 @@
+{
+  "status": "rendered",
+  "model": "gpt-6.1-sol",
+  "reasoning_effort": "high",
+  "cli_version": "0.163.0",
+  "protocol_version": "research-v2",
+  "track": "baseline",
+  "iteration": 1,
+  "source_prompt_sha256": "b3a5b67874a1bbc62f438f4a212a3f878df87ebadd305fef7c91833f017c28e3",
+  "input_sha256": "950afea0727d232f27183bddc8bbf3cfaed99b3fff22aa77813513821483e858",
+  "started_at": "2026-10-18T15:19:05.430459+00:00",
+  "tools": "public web search allowed; shell/file/agent tools forbidden",
+  "reference_images_supplied": [],
+  "command": [
+    "npx",
+    "--yes",
+    "@openai/codex@0.163.0",
+    "--search",
+    "exec",
+    "--ignore-user-config",
+    "--ephemeral",
+    "--model",
+    "gpt-6.1-sol",
+    "-c",
+    "model_reasoning_effort=\"high\"",
+    "--sandbox",
+    "read-only",
+    "--json",
+    "--output-schema",
+    "$REPO/results/anirockshady-032809/baseline/schema.json",
+    "-o",
+    "$REPO/results/anirockshady-032809/baseline/response.json",
+    "-"
+  ],
+  "usage": {
+    "input_tokens": 20560,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 8111,
+    "reasoning_output_tokens": 3543
+  },
+  "finished_at": "2026-10-18T15:22:32.589588+00:00",
+  "assumptions": [
+    "Chose a silent 36-second, 16:9 educational animation because duration, audio and aspect ratio were unspecified.",
+    "The ball follows computed gradient-descent updates on an illustrative convex mathematical surface; it does not represent measured training results.",
+    "The editable 3D landscape uses a projected Canvas mesh, with volcanic orange, cyan and gray shading.",
+    "All artwork is procedural; no external assets, fonts or associated license gaps are involved. GSAP is supplied locally by the harness.",
+    "This source has not been rendered or visually reviewed."
+  ],
+  "missing_inputs": [],
+  "summary": "Standalone editable animation showing a ball descending toward a trough, with explanations of gradient descent, major applications and update variants.",
+  "source_sha256": "11e7c39dc43caca84766ca090ae8c88867db9baea6ee567b46c3cbb825702864",
+  "width": 1920,
+  "height": 1080,
+  "duration_seconds": 36,
+  "source_path": "results/anirockshady-032809/baseline/index.html",
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/anirockshady-032809/baseline/video.mp4",
+  "poster_url": "media/anirockshady-032809/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "36.000000"
+    }
+  },
+  "staged_source_sha256": "11e7c39dc43caca84766ca090ae8c88867db9baea6ee567b46c3cbb825702864",
+  "source_modified_after_generation": false
+}

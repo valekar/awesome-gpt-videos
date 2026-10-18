@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Path Points — Gradient Descent</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#151719;font-family:Arial,Helvetica,sans-serif;color:#f3f3f0}#root{position:relative;width:100%;height:100%;overflow:hidden;background:linear-gradient(135deg,#303336 0%,#1d2023 48%,#111416 100%)}.clip{position:absolute;inset:0}canvas{display:block;width:100%;height:100%}.scene{position:absolute;left:100px;top:170px;width:650px;opacity:0;transform-origin:left center}.eyebrow{font-size:25px;font-weight:700;letter-spacing:5px;color:#55e5ee;margin-bottom:30px}h1,h2{font-size:84px;line-height:1.04;letter-spacing:-4px;margin:0 0 35px;font-weight:700}h1 em,h2 em{font-style:normal;color:#ff6937}.description{font-size:31px;line-height:1.5;color:#c8cdd0;margin:0;max-width:630px}.rule{width:90px;height:5px;background:#ff6937;margin:32px 0}.equation{font-size:43px;letter-spacing:-1px;color:#55e5ee;padding:26px 0 20px}.detail{font-size:25px;line-height:1.5;color:#aab3b8;margin:15px 0 0}.uses{margin-top:32px;display:grid;gap:24px}.use{padding-left:24px;border-left:4px solid #ff6937}.use strong{display:block;font-size:32px;margin-bottom:7px}.use span{display:block;font-size:25px;line-height:1.35;color:#b9c1c5}.variants{display:grid;gap:21px;margin-top:29px}.variant{font-size:27px;color:#bdc6cb;line-height:1.4}.variant strong{color:#55e5ee;display:inline-block;min-width:165px}.footer{position:absolute;left:100px;bottom:75px;width:640px;font-size:24px;line-height:1.45;color:#9fa8ad;opacity:0}.accent{color:#ff865d}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-width="1920" data-height="1080" data-duration="36">
+<div class="clip" data-start="0" data-duration="36" data-track-index="0"><canvas id="landscape" width="1920" height="1080" aria-label="A three-dimensional loss surface with an orange ball following gradient-descent path points toward a cyan minimum marker."></canvas></div>
+<div class="clip" data-start="0" data-duration="36" data-track-index="1">
+<section class="scene" data-scene="0">
+<div class="eyebrow">PATH POINTS</div>
+<h1>From crest<br>to <em>trough.</em></h1>
+<div class="rule"></div>
+<p class="description">Follow a ball downhill.<br>Each path point brings it closer to the bottom of a loss surface.</p>
+</section>
+<section class="scene" data-scene="1">
+<div class="eyebrow">GRADIENT DESCENT</div>
+<h2>A first-order<br><em>optimizer.</em></h2>
+<p class="description">It uses the loss gradient to update model parameters in the downhill direction.</p>
+<div class="equation">θ next = θ − η ∇L(θ)</div>
+<p class="detail">η is the learning rate: the size of a step.<br>∇L points toward the steepest increase.</p>
+</section>
+<section class="scene" data-scene="2" style="top:140px">
+<div class="eyebrow">MAJOR USE CASES</div>
+<h2>Learning by<br><em>reducing loss.</em></h2>
+<div class="uses">
+<div class="use"><strong>Neural networks</strong><span>Adjust weights during training.</span></div>
+<div class="use"><strong>Regression &amp; classification</strong><span>Fit linear and logistic models.</span></div>
+<div class="use"><strong>Recommendation systems</strong><span>Fit matrix-factorization models.</span></div>
+<div class="use"><strong>Inverse problems</strong><span>Optimize reconstructions from observations.</span></div>
+</div>
+</section>
+<section class="scene" data-scene="3">
+<div class="eyebrow">ONE IDEA, DIFFERENT UPDATES</div>
+<h2>Step closer.<br><em>Refine the fit.</em></h2>
+<p class="description">Common variants differ in how much training data they use per update.</p>
+<div class="variants">
+<div class="variant"><strong>Batch</strong>All training examples</div>
+<div class="variant"><strong>Stochastic</strong>One training example</div>
+<div class="variant"><strong>Mini-batch</strong>A subset of examples</div>
+</div>
+</section>
+<div id="footer" class="footer"></div>
+</div>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+(function(){
+'use strict';
+// Editable composition settings. The surface and path are illustrative mathematics,
+// not measured model-training results. All visual state is a pure function of time.
+const DURATION=36;
+const C={orange:'#ff6937',cyan:'#55e5ee',white:'#f4f5f1',muted:'#aab5bb'};
+const canvas=document.getElementById('landscape');
+const ctx=canvas.getContext('2d');
+const scenes=Array.from(document.querySelectorAll('.scene'));
+const footer=document.getElementById('footer');
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const smooth=x=>{x=clamp(x);return x*x*(3-2*x);};
+const mix=(a,b,t)=>a+(b-a)*t;
+// Convex demonstration surface: L(u,v)=0.13u²+0.009u⁴+0.10v².
+const loss=(u,v)=>0.13*u*u+0.009*u*u*u*u+0.10*v*v;
+const grad=(u,v)=>({u:0.26*u+0.036*u*u*u,v:0.20*v});
+const project=(u,v,z=loss(u,v))=>({x:1340+(u-v)*85,y:655+(u+v)*53-z*40});
+const path=[{u:-3.5,v:-1.25}];
+const learningRate=0.36;
+for(let i=0;i<28;i++){
+ const p=path[path.length-1],g=grad(p.u,p.v);
+ path.push({u:p.u-learningRate*g.u,v:p.v-learningRate*g.v});
+}
+const cells=[];
+const NX=38,NY=20;
+for(let i=0;i<NX;i++)for(let j=0;j<NY;j++){
+ const u=-3.8+i*7.6/NX,v=-1.9+j*3.8/NY;
+ const du=7.6/NX,dv=3.8/NY;
+ cells.push({u,v,du,dv,depth:u+v+(du+dv)/2});
+}
+cells.sort((a,b)=>a.depth-b.depth);
+function polygon(points,fill,stroke){
+ ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();
+ if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.stroke();}
+}
+function line(points,color,width){
+ if(points.length<2)return;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));
+ ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';ctx.stroke();
+}
+function ring(p,rx,ry,color,width){ctx.beginPath();ctx.ellipse(p.x,p.y,rx,ry,0,0,Math.PI*2);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
+function text(str,x,y,size,color,align='left'){
+ ctx.font=(size>=30?'600 ':'400 ')+size+'px Arial, Helvetica, sans-serif';ctx.textAlign=align;ctx.fillStyle=color;ctx.fillText(str,x,y);
+}
+function sceneAlpha(t,start,end,first,last){
+ const enter=first?1:smooth((t-start)/0.7);
+ const leave=last?1-smooth((t-35.1)/0.9):1-smooth((t-(end-0.65))/0.65);
+ return enter*leave;
+}
+function draw(t){
+ ctx.clearRect(0,0,1920,1080);
+ const exit=1-smooth((t-35.1)/0.9);
+ const reveal=mix(0.20,1,smooth(t/1.4))*exit;
+ // Quiet backdrop illumination, drawn from fixed geometry.
+ let glow=ctx.createRadialGradient(1390,570,25,1390,570,620);
+ glow.addColorStop(0,'rgba(66,118,126,0.12)');glow.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.fillStyle=glow;ctx.fillRect(760,70,1160,940);
+ ctx.save();ctx.globalAlpha=reveal;ctx.translate(0,28*(1-smooth(t/1.4)));
+ // Ground plane provides a depth cue beneath the floating surface.
+ for(let u=-4;u<=4;u+=0.5)line([project(u,-2.2,-0.65),project(u,2.2,-0.65)],'rgba(155,179,187,0.065)',1);
+ for(let v=-2;v<=2;v+=0.5)line([project(-4,v,-0.65),project(4,v,-0.65)],'rgba(155,179,187,0.065)',1);
+ // Thin boundary walls make the loss sheet read as a physical 3D object.
+ const boundary=[[-3.8,-1.9],[3.8,-1.9],[3.8,1.9],[-3.8,1.9]];
+ for(let k=0;k<4;k++){
+  const a=boundary[k],b=boundary[(k+1)%4];
+  polygon([project(a[0],a[1]),project(b[0],b[1]),project(b[0],b[1],loss(b[0],b[1])-0.13),project(a[0],a[1],loss(a[0],a[1])-0.13)],'#22292d');
+ }
+ // Painter-sorted mesh, shaded by height and the analytic surface slope.
+ ctx.lineWidth=0.75;
+ for(const cell of cells){
+  const {u,v,du,dv}=cell;
+  const h=loss(u+du/2,v+dv/2),g=grad(u+du/2,v+dv/2);
+  const lighting=clamp(0.57-0.14*g.u+0.06*g.v,0.20,0.93);
+  const valley=1-clamp(h/3.9);
+  const r=Math.round(31+lighting*39+valley*2);
+  const gr=Math.round(36+lighting*42+valley*12);
+  const b=Math.round(40+lighting*45+valley*15);
+  polygon([project(u,v),project(u+du,v),project(u+du,v+dv),project(u,v+dv)],'rgb('+r+','+gr+','+b+')','rgba(173,211,219,0.16)');
+ }
+ // Longer isolines reveal the continuous curvature of the sheet.
+ for(const v of [-1.9,0,1.9]){
+  const pts=[];for(let i=0;i<=100;i++)pts.push(project(-3.8+i*7.6/100,v));
+  line(pts,v===0?'rgba(85,229,238,0.28)':'rgba(191,210,215,0.28)',v===0?1.7:1.2);
+ }
+ // Exact minimum and the fixed mathematical path.
+ const minimum=project(0,0,0.03);
+ ctx.save();ctx.shadowColor=C.cyan;ctx.shadowBlur=18;
+ ring(minimum,24,12,C.cyan,2);ctx.restore();
+ ring(minimum,7,3.5,'rgba(85,229,238,0.7)',1.5);
+ const progress=clamp((t-2.7)/28.3)*(path.length-1);
+ const index=Math.min(path.length-2,Math.floor(progress));
+ const fraction=smooth(progress-index);
+ const ball={u:mix(path[index].u,path[index+1].u,fraction),v:mix(path[index].v,path[index+1].v,fraction)};
+ const projectedPath=path.map(p=>project(p.u,p.v,loss(p.u,p.v)+0.055));
+ line(projectedPath,'rgba(85,229,238,0.26)',2);
+ const active=projectedPath.slice(0,index+1);
+ active.push(project(ball.u,ball.v,loss(ball.u,ball.v)+0.055));
+ ctx.save();ctx.shadowColor=C.orange;ctx.shadowBlur=12;line(active,C.orange,3.5);ctx.restore();
+ for(let i=0;i<path.length;i++){
+  const p=projectedPath[i];
+  // Later points converge tightly; alternating markers keep the endpoint legible.
+  if(i>12&&i%2)continue;
+  ctx.beginPath();ctx.arc(p.x,p.y,i<=index?4.5:3,0,Math.PI*2);
+  ctx.fillStyle=i<=index?C.orange:'rgba(85,229,238,0.47)';ctx.fill();
+ }
+ // Surface contact shadow and shaded orange sphere.
+ const contact=project(ball.u,ball.v,loss(ball.u,ball.v)+0.04);
+ ctx.save();ctx.translate(contact.x+3,contact.y+3);ctx.scale(1,0.45);
+ let shadow=ctx.createRadialGradient(0,0,1,0,0,28);shadow.addColorStop(0,'rgba(0,0,0,0.65)');shadow.addColorStop(1,'rgba(0,0,0,0)');
+ ctx.fillStyle=shadow;ctx.beginPath();ctx.arc(0,0,28,0,Math.PI*2);ctx.fill();ctx.restore();
+ const bp={x:contact.x,y:contact.y-18};
+ let sphere=ctx.createRadialGradient(bp.x-7,bp.y-8,2,bp.x+1,bp.y+2,22);
+ sphere.addColorStop(0,'#ffe2b0');sphere.addColorStop(0.25,'#ff9a50');sphere.addColorStop(0.65,C.orange);sphere.addColorStop(1,'#9d2819');
+ ctx.save();ctx.shadowColor='rgba(255,105,55,0.35)';ctx.shadowBlur=25;
+ ctx.fillStyle=sphere;ctx.beginPath();ctx.arc(bp.x,bp.y,20,0,Math.PI*2);ctx.fill();ctx.restore();
+ // Readable leaders identify the start and the trough without covering the path.
+ const start=projectedPath[0];
+ const startAlpha=1-smooth((t-8)/2);
+ ctx.save();ctx.globalAlpha*=startAlpha;
+ line([{x:start.x-12,y:start.y-30},{x:start.x-55,y:start.y-75},{x:start.x-145,y:start.y-75}],'rgba(255,135,92,0.75)',1.5);
+ text('CREST',start.x-145,start.y-91,25,'#ff9b72');ctx.restore();
+ const troughAlpha=mix(0.45,1,smooth((t-19)/6));
+ ctx.save();ctx.globalAlpha*=troughAlpha;
+ line([{x:minimum.x+28,y:minimum.y+8},{x:minimum.x+96,y:minimum.y+72},{x:minimum.x+225,y:minimum.y+72}],'rgba(85,229,238,0.65)',1.5);
+ text('TROUGH',minimum.x+105,minimum.y+58,25,C.cyan);
+ text('Minimum of this surface',minimum.x+105,minimum.y+107,23,C.muted);ctx.restore();
+ // The progress caption reflects the visible action, rather than a fabricated metric.
+ const caption=t<7?'A high starting point':t<17?'Follow the negative gradient':t<28?'Successive updates reduce the loss':'Approaching the minimum';
+ line([{x:925,y:929},{x:1780,y:929}],'rgba(163,185,192,0.20)',1);
+ ctx.beginPath();ctx.arc(929,978,5,0,Math.PI*2);ctx.fillStyle=C.orange;ctx.fill();
+ text(caption,951,987,29,'#d5dcdf');
+ ctx.restore();
+ // Text transitions are seek-safe and act on content, never on clip visibility.
+ const timing=[[0,7],[7,17],[17,27],[27,36]];
+ scenes.forEach((el,i)=>{
+  const a=sceneAlpha(t,timing[i][0],timing[i][1],i===0,i===3);
+  el.style.opacity=String(a);
+  const enter=i===0?smooth(t/0.85):smooth((t-timing[i][0])/0.7);
+  el.style.transform='translateY('+(20*(1-enter))+'px)';
+ });
+ const note=t<7?'An illustrative, smooth loss landscape.':t<17?'An optimization method used to train ML models.':t<27?'These applications can use gradient-based optimization.':'Near this trough, the gradient approaches zero. Other loss landscapes can contain local minima.';
+ footer.textContent=note;
+ let fa=0;timing.forEach((pair,i)=>fa=Math.max(fa,sceneAlpha(t,pair[0],pair[1],i===0,i===3)));
+ footer.style.opacity=String(fa*0.95);
+}
+const playhead={t:0};
+const timeline=gsap.timeline({paused:true});
+timeline.to(playhead,{t:DURATION,duration:DURATION,ease:'none',onUpdate:function(){draw(playhead.t);}},0);
+window.__timelines=window.__timelines||{};
+window.__timelines['main']=timeline;
+draw(0);
+})();
+</script>
+</body>
+</html>

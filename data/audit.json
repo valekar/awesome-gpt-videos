@@ -27,9 +27,9 @@
   "sampled_reviews": 3,
   "run_counts": {
     "baseline": {
-      "blocked": 17,
-      "not_generated": 641,
-      "rendered": 32,
+      "blocked": 20,
+      "not_generated": 637,
+      "rendered": 33,
       "generated": 11,
       "running": 2
     },
@@ -38,8 +38,8 @@
       "not_generated": 701
     }
   },
-  "entries_with_source": 44,
-  "entries_with_render": 33,
+  "entries_with_source": 45,
+  "entries_with_render": 34,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"
 }
