@@ -29,8 +29,8 @@
     "baseline": {
       "blocked": 7,
       "not_generated": 684,
-      "rendered": 6,
-      "generated": 4,
+      "rendered": 7,
+      "generated": 3,
       "running": 2
     },
     "adapted": {
@@ -39,7 +39,7 @@
     }
   },
   "entries_with_source": 11,
-  "entries_with_render": 7,
+  "entries_with_render": 8,
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high"
 }
