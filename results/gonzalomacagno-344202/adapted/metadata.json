@@ -5,10 +5,10 @@
   "cli_version": "0.163.0",
   "protocol_version": "reference-v3",
   "track": "adapted",
-  "iteration": 1,
+  "iteration": 2,
   "source_prompt_sha256": "66609e3599c1c68791788d9f97a3078bf733dbb19873aaed245f26032e7d3fe3",
-  "input_sha256": "6103ecdc9bc9c9a677e77e791bac0d46c4561d08c1dd9251911ef26eaac077b3",
-  "started_at": "2026-10-18T17:42:36.382742+00:00",
+  "input_sha256": "b5f6ad01d10907feabdc99d176e713da037da33f73ccd957c44c5a1e757f7d32",
+  "started_at": "2026-10-18T17:44:44.250236+00:00",
   "tools": "none requested; read-only sandbox",
   "reference_images_supplied": [
     "sheet-01.jpg",
@@ -55,23 +55,24 @@
     "-"
   ],
   "usage": {
-    "input_tokens": 31744,
-    "cached_input_tokens": 18816,
+    "input_tokens": 39081,
+    "cached_input_tokens": 0,
     "cache_write_input_tokens": 0,
-    "output_tokens": 5020,
-    "reasoning_output_tokens": 1034
+    "output_tokens": 5595,
+    "reasoning_output_tokens": 1455
   },
-  "finished_at": "2026-10-18T17:44:30.421509+00:00",
+  "finished_at": "2026-10-18T17:46:41.627271+00:00",
   "assumptions": [
-    "The supplied images and reconstruction brief define an inferred visual reconstruction, not an exact reproduction of unobserved transitions.",
-    "Entrances, easing, roster reveal timing and the final hold are inferred. The composition specifies 30 fps and remains silent.",
-    "Generic system sans-serif typography approximates the unknown original fonts; the supplied Bangers and Caveat fonts are unused.",
-    "The three smallest Saturday rows and Sunday’s “sunlid” retain the brief’s tentative transcriptions. Colors and ribbon geometry are estimated from the supplied artwork."
+    "Preserved the previous source's scene order, reveal timing and motion at 30 fps.",
+    "Artist rows now fit measured glyph widths; intentional ribbon and oversized-headliner overflow is explicitly marked.",
+    "Generic sans-serif approximates the unknown original typography. The year uses a slightly deeper violet for contrast.",
+    "Tentative small-name spellings are retained from the supplied reconstruction; transitions and the final hold remain inferred.",
+    "Silent reconstruction. This repaired source has not been rendered or browser-validated."
   ],
   "missing_inputs": [],
-  "summary": "Editable, standalone 10-second HyperFrames reconstruction with vector ribbons, staged lineups and the closing ticket card. Source only; not rendered or visually validated.",
+  "summary": "Repaired billing-text sizing and editable SVG identification while preserving the complete ten-second animation.",
   "fps": 30.0,
-  "source_sha256": "316726f1a686439313ffe554352c8721927ec57867aa2c6429ba181aca1f5025",
+  "source_sha256": "474a2668226fe86729b236d52473f5944acf8f4ac91888c742aa8fdb75cf9718",
   "width": 720,
   "height": 1280,
   "duration_seconds": 10,

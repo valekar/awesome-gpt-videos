@@ -3,7 +3,7 @@
     "status": "not_generated"
   },
   "adapted": {
-    "status": "running",
+    "status": "generated",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -57,6 +57,30 @@
       "--image",
       "$REPO/work/references/gonzalomacagno-344202/evidence/full-4.jpg",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 39081,
+      "cached_input_tokens": 0,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 5595,
+      "reasoning_output_tokens": 1455
+    },
+    "finished_at": "2026-10-18T17:46:41.627271+00:00",
+    "assumptions": [
+      "Preserved the previous source's scene order, reveal timing and motion at 30 fps.",
+      "Artist rows now fit measured glyph widths; intentional ribbon and oversized-headliner overflow is explicitly marked.",
+      "Generic sans-serif approximates the unknown original typography. The year uses a slightly deeper violet for contrast.",
+      "Tentative small-name spellings are retained from the supplied reconstruction; transitions and the final hold remain inferred.",
+      "Silent reconstruction. This repaired source has not been rendered or browser-validated."
+    ],
+    "missing_inputs": [],
+    "summary": "Repaired billing-text sizing and editable SVG identification while preserving the complete ten-second animation.",
+    "fps": 30.0,
+    "source_sha256": "474a2668226fe86729b236d52473f5944acf8f4ac91888c742aa8fdb75cf9718",
+    "width": 720,
+    "height": 1280,
+    "duration_seconds": 10,
+    "source_path": "results/gonzalomacagno-344202/adapted/index.html",
+    "reason": "Source generated; rendering and matched-time fidelity review pending."
   }
 }
