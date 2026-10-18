@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Use Git's configured GitHub credential without printing or persisting it."""
-import argparse,json,os,subprocess,urllib.request,urllib.error
+import argparse,fcntl,json,os,subprocess,urllib.request,urllib.error
 from catalog import ROOT
 
 def credential():
@@ -24,9 +24,15 @@ def repo():
 if __name__=='__main__':
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--push',action='store_true');a=parser.parse_args();full=repo()
  if a.push:
-  subprocess.run(['git','push','origin','HEAD'],cwd=ROOT,env=dict(os.environ,GIT_TERMINAL_PROMPT='0'),check=True)
-  local=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip();remote=api('repos/'+full+'/commits/main')['sha']
-  if local!=remote:raise RuntimeError('Remote commit mismatch')
-  print('Verified pushed commit:',remote)
+  lock=ROOT/'work/github-push.lock';lock.parent.mkdir(exist_ok=True)
+  with lock.open('w') as handle:
+   fcntl.flock(handle,fcntl.LOCK_EX)
+   local=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+   subprocess.run(['git','push','origin',local+':refs/heads/main'],cwd=ROOT,env=dict(os.environ,GIT_TERMINAL_PROMPT='0'),check=True)
+   remote=api('repos/'+full+'/commits/main')['sha']
+   if local!=remote:
+    comparison=api('repos/'+full+'/compare/'+local+'...'+remote)
+    if comparison['status']!='ahead':raise RuntimeError('Pushed commit is not the remote head or its ancestor')
+   print('Verified pushed commit:',local)
  runs=api('repos/'+full+'/actions/runs?per_page=3')['workflow_runs']
  print(json.dumps([{'id':r['id'],'status':r['status'],'conclusion':r['conclusion'],'url':r['html_url'],'commit':r['head_sha']} for r in runs],indent=2))

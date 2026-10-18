@@ -30,21 +30,22 @@ def archive_interrupted():
    dump(archive/'interruption.json',{'previous_state':r,'detected_at':utc(),'reason':'No corresponding corpus worker process remains; previous execution has no completion event.'})
    record(p.parent.name,track,{'status':'not_generated','reason':'Interrupted worker attempt archived before resuming.','previous_attempt':str(archive.relative_to(ROOT)),'model':'gpt-6.1-sol','reasoning_effort':'high'})
 
-def start():
+def start(roles=None):
  (ROOT/'work').mkdir(exist_ok=True)
  with (ROOT/'work/workers-start.lock').open('w') as lock:
   fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
   process_text=subprocess.check_output(['ps','-eo','args='],text=True)
-  if any(re.search(r'python[^ ]* (?:[^ ]*/)?tools/'+script+r'(?: |$)',process_text) for script in ['batch_generate.py','render_queue.py','publish_progress.py']):
+  if any(re.search(r'python[^ ]* (?:[^ ]*/)?tools/'+script+r'(?: |$)',process_text) for script in [{'generation':'batch_generate.py','render':'render_queue.py','publication':'publish_progress.py'}[r] for r in (roles or ['generation','render','publication'])]):
    raise RuntimeError('A corpus worker already exists; inspect it before starting another set.')
-  archive_interrupted()
+  if not roles or 'generation' in roles:archive_interrupted()
   subprocess.run([sys.executable,str(ROOT/'tools/catalog.py')],cwd=ROOT,stdout=subprocess.DEVNULL,check=True)
   jobs={
    'generation':['tools/batch_generate.py','--track','baseline','--workers','2','--research','--execute'],
    'render':['tools/render_queue.py','--watch'],
    'publication':['tools/publish_progress.py','--watch']}
-  registry={}
+  registry=json.loads(REGISTRY.read_text()) if REGISTRY.exists() else {}
   for role,args in jobs.items():
+   if roles and role not in roles:continue
    log=ROOT/'work'/f'worker-{role}.log'
    with log.open('a') as out:
     out.write('\nWorker launched '+utc()+'\n');out.flush()
@@ -53,5 +54,5 @@ def start():
   dump(REGISTRY,registry)
  return status()
 if __name__=='__main__':
- p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['status','start']);a=p.parse_args()
- print(json.dumps(start() if a.action=='start' else status(),indent=2))
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['status','start']);p.add_argument('--role',choices=['generation','render','publication'],action='append');a=p.parse_args()
+ print(json.dumps(start(a.role) if a.action=='start' else status(),indent=2))

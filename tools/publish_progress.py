@@ -21,7 +21,7 @@ if __name__=='__main__':
     # Exact creator inputs and model responses may contain trailing whitespace.
     # Preserve their hashes; provenance tests, rather than formatting, gate publication.
     command(['git','commit','-m','Update corpus generation and render progress'])
-    command(['python3','tools/github_sync.py','--push'])
+   command(['python3','tools/github_sync.py','--push'])
    last=key
   if not a.watch:break
   progress=ROOT/'work/batch-baseline-progress.json'
