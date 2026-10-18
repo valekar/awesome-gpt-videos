@@ -1,0 +1,40 @@
+{
+  "baseline": {
+    "status": "running",
+    "model": "gpt-6.1-sol",
+    "reasoning_effort": "high",
+    "cli_version": "0.163.0",
+    "protocol_version": "research-v2",
+    "track": "baseline",
+    "iteration": 1,
+    "source_prompt_sha256": "24c6aa0bfcad75774e09a2778f8240d0b50973ead4aaf58c6f8004e5da2e96f2",
+    "input_sha256": "2d079203e12990ca274c8dde724c07497e526ee2743b2ff0882f7b9c7071b085",
+    "started_at": "2026-10-18T14:03:53.411317+00:00",
+    "tools": "public web search allowed; shell/file/agent tools forbidden",
+    "reference_images_supplied": [],
+    "command": [
+      "npx",
+      "--yes",
+      "@openai/codex@0.163.0",
+      "--search",
+      "exec",
+      "--ignore-user-config",
+      "--ephemeral",
+      "--model",
+      "gpt-6.1-sol",
+      "-c",
+      "model_reasoning_effort=\"high\"",
+      "--sandbox",
+      "read-only",
+      "--json",
+      "--output-schema",
+      "$REPO/results/monokern-832979/baseline/schema.json",
+      "-o",
+      "$REPO/results/monokern-832979/baseline/response.json",
+      "-"
+    ]
+  },
+  "adapted": {
+    "status": "not_generated"
+  }
+}

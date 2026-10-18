@@ -1,6 +1,6 @@
 {
   "baseline": {
-    "status": "running",
+    "status": "blocked",
     "model": "gpt-6.1-sol",
     "reasoning_effort": "high",
     "cli_version": "0.163.0",
@@ -32,7 +32,25 @@
       "-o",
       "$REPO/results/kloss-xyz-941143/baseline/response.json",
       "-"
-    ]
+    ],
+    "usage": {
+      "input_tokens": 49597,
+      "cached_input_tokens": 20352,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 655,
+      "reasoning_output_tokens": 462
+    },
+    "finished_at": "2026-10-18T14:04:10.509394+00:00",
+    "assumptions": [
+      "The requested format is 9:16.",
+      "Anthropic’s [official newsroom](https://www.anthropic.com/news) lists multiple launches; current announcements cannot establish which launch the creator originally meant.",
+      "No code was executed or rendered."
+    ],
+    "missing_inputs": [
+      "The name or official announcement URL of the Anthropic launch the video should reference."
+    ],
+    "summary": "The intended Anthropic launch must be identified before generating a faithful animation.",
+    "reason": "The name or official announcement URL of the Anthropic launch the video should reference."
   },
   "adapted": {
     "status": "not_generated"

@@ -2810,7 +2810,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "running",
+        "status": "generated",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -2842,7 +2842,31 @@
           "-o",
           "$REPO/results/lexnlin-241739/baseline/response.json",
           "-"
-        ]
+        ],
+        "usage": {
+          "input_tokens": 20612,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 19542,
+          "reasoning_output_tokens": 8415
+        },
+        "finished_at": "2026-10-18T14:03:51.162676+00:00",
+        "assumptions": [
+          "Creative choice: an original fictional landscape with an elliptical cathedral, twisting terrace tower, aqueduct, suspended sanctuaries, forests, cliffs and a winding waterway.",
+          "Chosen format: 1600×900 landscape with a 48-second cinematic camera journey and freely adjustable exploration camera.",
+          "Requires WebGL and the supplied local gsap.min.js. All artwork and shading are procedural; no external assets, fonts or associated license gaps.",
+          "Drag controls camera direction; WASD moves using keyboard presses and native key repeat; Q/E changes altitude; scrolling moves forward or backward; R resumes the current tour position.",
+          "The code has not been executed, rendered or visually reviewed."
+        ],
+        "missing_inputs": [],
+        "summary": "Editable procedural 3D world with monumental architecture, atmospheric terrain, animated water, directional shadows and interactive camera exploration.",
+        "source_sha256": "8fff358618d44dcef4da61a00d5072f9ab06e731755dc6692a948548b0463e7e",
+        "width": 1600,
+        "height": 900,
+        "duration_seconds": 48,
+        "source_path": "results/lexnlin-241739/baseline/index.html",
+        "reason": "Source generated; rendering and matched-time fidelity review pending.",
+        "render_queue_reason": "Interactive controls and deterministic replay need a separate test before recording a comparison movie."
       },
       "adapted": {
         "status": "not_generated"
@@ -3270,7 +3294,7 @@
     },
     "runs": {
       "baseline": {
-        "status": "generated",
+        "status": "rendered",
         "model": "gpt-6.1-sol",
         "reasoning_effort": "high",
         "cli_version": "0.163.0",
@@ -3325,7 +3349,28 @@
         "height": 1080,
         "duration_seconds": 24,
         "source_path": "results/viktoroddy-402509/baseline/index.html",
-        "reason": "Source generated; rendering and matched-time fidelity review pending."
+        "reason": "Rendered and technically checked. Matched-time visual review pending.",
+        "video_url": "media/viktoroddy-402509/baseline/video.mp4",
+        "poster_url": "media/viktoroddy-402509/baseline/poster.jpg",
+        "technical_check": "passed",
+        "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+        "render_probe": {
+          "programs": [],
+          "stream_groups": [],
+          "streams": [
+            {
+              "codec_type": "video",
+              "width": 1920,
+              "height": 1080,
+              "r_frame_rate": "30/1"
+            }
+          ],
+          "format": {
+            "duration": "24.000000"
+          }
+        },
+        "staged_source_sha256": "f25f46a7287f4286e6aa80a6694b33a46a4040b71d8bd0851e66e14643aa6024",
+        "source_modified_after_generation": false
       },
       "adapted": {
         "status": "not_generated"
@@ -3367,7 +3412,57 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "blocked",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "aebbe45e903e96994b4bb9ab4cc3de1ffb0080438a89c39547487938ce0f6195",
+        "input_sha256": "139ac095763f6c721753aa11948bba96f1ccebef1e674138ff23db98295ee2d6",
+        "started_at": "2026-10-18T14:03:35.500704+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/kloss-xyz-941143/baseline/schema.json",
+          "-o",
+          "$REPO/results/kloss-xyz-941143/baseline/response.json",
+          "-"
+        ],
+        "usage": {
+          "input_tokens": 49597,
+          "cached_input_tokens": 20352,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 655,
+          "reasoning_output_tokens": 462
+        },
+        "finished_at": "2026-10-18T14:04:10.509394+00:00",
+        "assumptions": [
+          "The requested format is 9:16.",
+          "Anthropic’s [official newsroom](https://www.anthropic.com/news) lists multiple launches; current announcements cannot establish which launch the creator originally meant.",
+          "No code was executed or rendered."
+        ],
+        "missing_inputs": [
+          "The name or official announcement URL of the Anthropic launch the video should reference."
+        ],
+        "summary": "The intended Anthropic launch must be identified before generating a faithful animation.",
+        "reason": "The name or official announcement URL of the Anthropic launch the video should reference."
       },
       "adapted": {
         "status": "not_generated"
@@ -3451,7 +3546,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "24c6aa0bfcad75774e09a2778f8240d0b50973ead4aaf58c6f8004e5da2e96f2",
+        "input_sha256": "2d079203e12990ca274c8dde724c07497e526ee2743b2ff0882f7b9c7071b085",
+        "started_at": "2026-10-18T14:03:53.411317+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/monokern-832979/baseline/schema.json",
+          "-o",
+          "$REPO/results/monokern-832979/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"
@@ -3495,7 +3622,39 @@
     },
     "runs": {
       "baseline": {
-        "status": "not_generated"
+        "status": "running",
+        "model": "gpt-6.1-sol",
+        "reasoning_effort": "high",
+        "cli_version": "0.163.0",
+        "protocol_version": "research-v2",
+        "track": "baseline",
+        "iteration": 1,
+        "source_prompt_sha256": "605b0e4f49a2be084982cc146eb569fd99577b2a495d6800e4e16e4b10252996",
+        "input_sha256": "3f84bcde01b927e7df8c44ac3194f85da71da8c185750f9b2a44f7fc2e89030c",
+        "started_at": "2026-10-18T14:04:12.980623+00:00",
+        "tools": "public web search allowed; shell/file/agent tools forbidden",
+        "reference_images_supplied": [],
+        "command": [
+          "npx",
+          "--yes",
+          "@openai/codex@0.163.0",
+          "--search",
+          "exec",
+          "--ignore-user-config",
+          "--ephemeral",
+          "--model",
+          "gpt-6.1-sol",
+          "-c",
+          "model_reasoning_effort=\"high\"",
+          "--sandbox",
+          "read-only",
+          "--json",
+          "--output-schema",
+          "$REPO/results/zheke-622583/baseline/schema.json",
+          "-o",
+          "$REPO/results/zheke-622583/baseline/response.json",
+          "-"
+        ]
       },
       "adapted": {
         "status": "not_generated"

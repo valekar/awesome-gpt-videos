@@ -1,5 +1,5 @@
 {
-  "status": "generated",
+  "status": "rendered",
   "model": "gpt-6.1-sol",
   "reasoning_effort": "high",
   "cli_version": "0.163.0",
@@ -54,5 +54,26 @@
   "height": 1080,
   "duration_seconds": 24,
   "source_path": "results/viktoroddy-402509/baseline/index.html",
-  "reason": "Source generated; rendering and matched-time fidelity review pending."
+  "reason": "Rendered and technically checked. Matched-time visual review pending.",
+  "video_url": "media/viktoroddy-402509/baseline/video.mp4",
+  "poster_url": "media/viktoroddy-402509/baseline/poster.jpg",
+  "technical_check": "passed",
+  "technical_check_limits": "Canvas artwork has no DOM text boxes; automated text layout/contrast checks inspected zero text nodes. Visual review is required.",
+  "render_probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "r_frame_rate": "30/1"
+      }
+    ],
+    "format": {
+      "duration": "24.000000"
+    }
+  },
+  "staged_source_sha256": "f25f46a7287f4286e6aa80a6694b33a46a4040b71d8bd0851e66e14643aa6024",
+  "source_modified_after_generation": false
 }
